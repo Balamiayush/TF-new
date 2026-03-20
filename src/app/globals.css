@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Colors */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Base */
+  --color-base-black: #222222;
+  --color-base-white: #ffffff;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Blue Cola */
+  --color-blue-cola-100: #ebf7ff;
+  --color-blue-cola-200: #d9f5ff;
+  --color-blue-cola-300: #b2e8ff;
+  --color-blue-cola-400: #75ceff;
+  --color-blue-cola-500: #07a5ff;
+  --color-blue-cola-600: #0074ff;
+  --color-blue-cola-700: #0049dd;
+  --color-blue-cola-800: #002f9e;
+  --color-blue-cola-900: #002668;
+  --color-blue-cola-1000: #082345;
+
+  /* Pola Violet */
+  --color-pola-violet-100: #faf2ff;
+  --color-pola-violet-200: #fee8ff;
+  --color-pola-violet-300: #fccfff;
+  --color-pola-violet-400: #f2a6ff;
+  --color-pola-violet-500: #dc6eff;
+  --color-pola-violet-600: #b82de1;
+  --color-pola-violet-700: #8c00b0;
+  --color-pola-violet-800: #63007c;
+  --color-pola-violet-900: #430752;
+  --color-pola-violet-1000: #311739;
+
+  /* Oxford Blue */
+  --color-oxford-blue-100: #7199c3;
+  --color-oxford-blue-200: #4d749c;
+  --color-oxford-blue-300: #385e85;
+  --color-oxford-blue-400: #264b71;
+  --color-oxford-blue-500: #163b60;
+  --color-oxford-blue-600: #052d50;
+  --color-oxford-blue-700: #002042;
+  --color-oxford-blue-800: #001335;
+  --color-oxford-blue-900: #000828;
+  --color-oxford-blue-1000: #00001d;
+
+  /* Blue Jeans */
+  --color-blue-jeans-100: #f4fbff;
+  --color-blue-jeans-200: #e6f7ff;
+  --color-blue-jeans-300: #c7edff;
+  --color-blue-jeans-400: #8ed9ff;
+  --color-blue-jeans-500: #3dbfff;
+  --color-blue-jeans-600: #009fff;
+  --color-blue-jeans-700: #007bcc;
+  --color-blue-jeans-800: #005c99;
+  --color-blue-jeans-900: #004166;
+  --color-blue-jeans-1000: #003454;
+
+  /* Neutral */
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+  --color-neutral-1000: #030712;
+
+  /* Grey */
+  --color-grey-100: #f1f5f9;
+  --color-grey-200: #e2e8f0;
+  --color-grey-300: #cbd5e1;
+  --color-grey-400: #94a3b8;
+  --color-grey-500: #64748b;
+  --color-grey-600: #475569;
+  --color-grey-700: #334155;
+  --color-grey-800: #1e293b;
+  --color-grey-900: #0f172a;
+  --color-grey-1000: #020617;
+
+  /* Fonts */
+
+  --font-geist-sans: var(--font-geist-sans-variable);
+  --font-geist-pixel-square: var(--font-geist-pixel-square-variable);
+  --font-geist-pixel-grid: var(--font-geist-pixel-grid-variable);
+  --font-geist-pixel-circle: var(--font-geist-pixel-circle-variable);
+  --font-geist-pixel-triangle: var(--font-geist-pixel-triangle-variable);
+  --font-geist-pixel-line: var(--font-geist-pixel-line-variable);
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Breakpoints */
+
+  --breakpoint-sm: 24.375rem;
+  --breakpoint-2xl: 120rem;
+  --breakpoint-3xl: 160rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
+  font-weight: 400;
+  color: #000;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* For Internet Explorer 10+ */
+  scrollbar-width: none; /* For Firefox */
 }
