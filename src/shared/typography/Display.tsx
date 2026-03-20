@@ -14,8 +14,9 @@ const displayClasses = tv({
   variants: {
     as: {
       "Display 1":
-        "text-[32px] leading-[120%] tracking-[-1.5px] md:text-[42px] md:leading-[110%] xl:text-[56px]",
-      "Display 2": "text-[28px] md:text-[36px] xl:text-[48px] leading-[120%]",
+        "text-[32px] leading-[120%] tracking-[-1.5px] md:text-[42px] md:leading-[110%] md:tracking-[-2px] xl:text-[56px] xl:tracking-[-3px]",
+      "Display 2":
+        "text-[28px] leading-[120%] tracking-[-1.2px] md:text-[36px] md:tracking-[-2px] xl:text-[48px] xl:tracking-[-2.5px]",
     },
     weight: {
       regular: "font-regular",
