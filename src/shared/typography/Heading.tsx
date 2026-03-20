@@ -31,7 +31,7 @@ const headingClasses = tv({
 
 export default function Heading({
   as,
-  weight,
+  weight = "regular",
   children,
   className,
   ...otherProps

@@ -30,7 +30,7 @@ const labelClasses = tv({
 
 export default function Label({
   as,
-  weight,
+  weight = "regular",
   children,
   className,
   ...otherProps
