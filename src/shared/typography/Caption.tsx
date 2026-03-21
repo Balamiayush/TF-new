@@ -22,10 +22,10 @@ const captionClasses = tv({
       regular: "font-normal",
       medium: "font-medium",
     },
-    defaultVariants: {
-      as: "Caption L",
-      weight: "regular",
-    },
+  },
+  defaultVariants: {
+    as: "Caption L",
+    weight: "regular",
   },
 });
 

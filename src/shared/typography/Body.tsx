@@ -24,10 +24,10 @@ const bodyClasses = tv({
       regular: "font-regular",
       medium: "font-medium",
     },
-    defaultVariants: {
-      as: "Body L",
-      weight: "regular",
-    },
+  },
+  defaultVariants: {
+    as: "Body L",
+    weight: "regular",
   },
 });
 

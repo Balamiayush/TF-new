@@ -24,10 +24,10 @@ const displayClasses = tv({
       semibold: "font-semibold",
       bold: "font-bold",
     },
-    defaultVariants: {
-      as: "Display 1",
-      weight: "regular",
-    },
+  },
+  defaultVariants: {
+    as: "Display 1",
+    weight: "regular",
   },
 });
 

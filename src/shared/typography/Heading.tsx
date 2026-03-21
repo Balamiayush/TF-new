@@ -22,10 +22,10 @@ const headingClasses = tv({
       regular: "font-regular",
       semibold: "font-semibold",
     },
-    defaultVariants: {
-      as: "h1",
-      weight: "regular",
-    },
+  },
+  defaultVariants: {
+    as: "h1",
+    weight: "regular",
   },
 });
 

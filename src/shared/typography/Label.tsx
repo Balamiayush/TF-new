@@ -21,10 +21,10 @@ const labelClasses = tv({
       regular: "font-regular",
       medium: "font-medium",
     },
-    defaultVariants: {
-      as: "Label L",
-      weight: "regular",
-    },
+  },
+  defaultVariants: {
+    as: "Label L",
+    weight: "regular",
   },
 });
 
