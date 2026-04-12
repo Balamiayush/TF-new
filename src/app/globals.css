@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
+  /* * Colors */
 
-  /* Base */
+  /* * Base */
   --color-base-black: #222222;
   --color-base-white: #ffffff;
 
-  /* Blue Cola */
+  /* * Blue Cola */
   --color-blue-cola-100: #ebf7ff;
   --color-blue-cola-200: #d9f5ff;
   --color-blue-cola-300: #b2e8ff;
@@ -19,7 +19,7 @@
   --color-blue-cola-900: #002668;
   --color-blue-cola-1000: #082345;
 
-  /* Pola Violet */
+  /* * Pola Violet */
   --color-pola-violet-100: #faf2ff;
   --color-pola-violet-200: #fee8ff;
   --color-pola-violet-300: #fccfff;
@@ -31,7 +31,7 @@
   --color-pola-violet-900: #430752;
   --color-pola-violet-1000: #311739;
 
-  /* Oxford Blue */
+  /* * Oxford Blue */
   --color-oxford-blue-100: #7199c3;
   --color-oxford-blue-200: #4d749c;
   --color-oxford-blue-300: #385e85;
@@ -43,7 +43,7 @@
   --color-oxford-blue-900: #000828;
   --color-oxford-blue-1000: #00001d;
 
-  /* Blue Jeans */
+  /* * Blue Jeans */
   --color-blue-jeans-100: #f4fbff;
   --color-blue-jeans-200: #e6f7ff;
   --color-blue-jeans-300: #c7edff;
@@ -55,7 +55,7 @@
   --color-blue-jeans-900: #004166;
   --color-blue-jeans-1000: #003454;
 
-  /* Neutral */
+  /* * Neutral */
   --color-neutral-100: #f3f4f6;
   --color-neutral-200: #e5e7eb;
   --color-neutral-300: #d1d5db;
@@ -67,7 +67,7 @@
   --color-neutral-900: #111827;
   --color-neutral-1000: #030712;
 
-  /* Grey */
+  /* * Grey */
   --color-grey-100: #f1f5f9;
   --color-grey-200: #e2e8f0;
   --color-grey-300: #cbd5e1;
@@ -79,7 +79,7 @@
   --color-grey-900: #0f172a;
   --color-grey-1000: #020617;
 
-  /* Fonts */
+  /* * Fonts */
 
   --font-geist-sans: var(--font-geist-sans-variable);
   --font-geist-pixel-square: var(--font-geist-pixel-square-variable);
@@ -93,7 +93,7 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* Breakpoints */
+  /* * Breakpoints */
 
   --breakpoint-sm: 24.375rem;
   --breakpoint-2xl: 120rem;
@@ -111,6 +111,6 @@ body {
 }
 
 .scrollbar-hidden {
-  -ms-overflow-style: none; /* For Internet Explorer 10+ */
-  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* * For Internet Explorer 10+ */
+  scrollbar-width: none; /* * For Firefox */
 }
