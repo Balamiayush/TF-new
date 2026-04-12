@@ -12,9 +12,10 @@ import {
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Third Factor | A Prixa Company",
+  title:
+    "Third Factor | A Prixa Company - AI Identity Verification & Identity Intelligence system",
   description:
-    "AI-powered identity verification and identity intelligence system",
+    "Experience seamless AI-powered identity verification with ThirdFactor. Our advanced Identity Intelligence Solutions ensure compliance and fraud prevention.",
 };
 
 export default function RootLayout({
