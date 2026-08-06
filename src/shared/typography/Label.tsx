@@ -13,9 +13,9 @@ const labelClasses = tv({
   base: "text-black",
   variants: {
     as: {
-      "Label L": "text-[14px] leading-[140%] md:text-[16px] md:leading-[150%]",
+      "Label L": "text-[14px] leading-[140%] md:text-[16px] md:leading-[130%]",
       "Label M":
-        "text-[13px] leading-[140%] md:text-[14px] md:leading-[140%] xl:leading-[150%]",
+        "text-[13px] leading-[140%] md:text-[14px] md:leading-[140%] xl:leading-[130%]",
     },
     weight: {
       regular: "font-regular",

@@ -18,6 +18,7 @@
   --color-blue-cola-800: #002f9e;
   --color-blue-cola-900: #002668;
   --color-blue-cola-1000: #082345;
+    
 
   /* * Pola Violet */
   --color-pola-violet-100: #faf2ff;
@@ -42,6 +43,7 @@
   --color-oxford-blue-800: #001335;
   --color-oxford-blue-900: #000828;
   --color-oxford-blue-1000: #00001d;
+  --color-blue2-500 : #3B82F6;
 
   /* * Blue Jeans */
   --color-blue-jeans-100: #f4fbff;
@@ -98,6 +100,14 @@
   --breakpoint-sm: 24.375rem;
   --breakpoint-2xl: 120rem;
   --breakpoint-3xl: 160rem;
+
+
+    --font-inter: var(--font-inter);
+    --font-weight-inter-400: 400;
+    --font-weight-inter-500: 500;
+    --font-weight-inter-600: 600;
+    --font-weight-inter-700: 700;
+    --font-weight-inter-800: 800;
 }
 
 body {

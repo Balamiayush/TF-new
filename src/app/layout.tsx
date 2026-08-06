@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
+import { Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
+
 import {
   GeistPixelSquare,
   GeistPixelGrid,
@@ -10,6 +12,14 @@ import {
 } from "geist/font/pixel";
 
 import "./globals.css";
+
+import MainNavigation from "@/shared/layouts/header/MainNavigation";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title:
@@ -26,8 +36,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${GeistSans.variable} ${GeistPixelSquare.variable} ${GeistPixelGrid.variable} ${GeistPixelCircle.variable} ${GeistPixelTriangle.variable} ${GeistPixelLine.variable} antialiased`}
+        className={`${inter.variable} ${GeistSans.variable} ${GeistPixelSquare.variable} ${GeistPixelGrid.variable} ${GeistPixelCircle.variable} ${GeistPixelTriangle.variable} ${GeistPixelLine.variable} antialiased`}
       >
+        <MainNavigation />
         {children}
       </body>
     </html>
