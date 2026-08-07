@@ -16,11 +16,16 @@ import { DitherHoverBackground } from "@/shared/ui/DitherHoverBackground";
 
 import { DashboardCard, FingerprintCard } from "./HeroSectionAnim";
 import Button from "@/shared/ui/buttons/Button";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function HeroSection() {
   const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
   const [capabilityIndex, setCapabilityIndex] = useState(0);
+  const [textIndex, setTextIndex] = useState(0);
+
   const labels = ["NRB Compliant", "VAPT Certified", "Sub-0.1ms 1:N Search"];
+  const textSuffal = ["compliance", "OCR", "deepfake detection"];
+
   const capability = labels[capabilityIndex];
 
   useEffect(() => {
@@ -30,6 +35,14 @@ export default function HeroSection() {
 
     return () => window.clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    const shuffleInterval = window.setInterval(() => {
+      setTextIndex((prevIndex) => (prevIndex + 1) % textSuffal.length);
+    }, 2500);
+
+    return () => window.clearInterval(shuffleInterval);
+  }, [textSuffal.length]);
 
   const showNextCapability = () => {
     setCapabilityIndex((currentIndex) => (currentIndex + 1) % labels.length);
@@ -82,14 +95,6 @@ export default function HeroSection() {
       <LayoutWrapper>
         <div className="relative mt-26.5">
           <div className="flex gap-1">
-            {/* {labels.map((label, index) => (
-              <p
-                key={index}
-                className="rounded-lg bg-[#FFFFFF47] px-3 py-1.5 text-[12px] leading-[110%] font-medium text-[#1A1A1A]"
-              >
-                {label}
-              </p>
-            ))} */}
             {labels.map((label, index) => (
               <LablesButton key={index} label={label} />
             ))}
@@ -97,8 +102,22 @@ export default function HeroSection() {
           <div className="mt-4 flex w-full items-center justify-between">
             <h1 className="max-w-[673px] text-[48px] leading-[110%] font-medium tracking-[-0.6px]">
               AI native trust infrastructure for{" "}
-              <span className="font-geist-pixel-circle text-[#0088D4]">
-                compliance
+              <span className="font-geist-pixel-circle vertical-bottom inline-grid overflow-hidden text-[#0088D4]">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={textSuffal[textIndex]}
+                    initial={{ y: "100%", opacity: 0, filter: "blur(4px)" }}
+                    animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
+                    exit={{ y: "-100%", opacity: 0, filter: "blur(4px)" }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="col-start-1 row-start-1"
+                  >
+                    {textSuffal[textIndex]}
+                  </motion.span>
+                </AnimatePresence>
               </span>{" "}
               at scale
             </h1>
@@ -111,10 +130,18 @@ export default function HeroSection() {
                 </p>
               </div>
               <div className="flex gap-4">
-                <Button variant="secondary" showArrow={false}>
+                <Button variant="secondary" showArrow={false} className="group">
                   Get a demo
-                  <div className="bg-alpha-light-100 flex h-7 w-7 items-center justify-center p-1.5">
-                    <ArrowRight className="h-4 w-4" strokeWidth={2} />
+                  <div className="bg-alpha-light-100 relative flex h-7 w-7 items-center justify-center overflow-hidden p-1.5">
+                    <ArrowRight
+                      className="absolute h-4 w-4 -translate-x-6 opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100"
+                      strokeWidth={2}
+                    />
+
+                    <ArrowRight
+                      className="h-4 w-4 transition-all duration-300 ease-out group-hover:translate-x-6 group-hover:opacity-0"
+                      strokeWidth={2}
+                    />
                   </div>
                 </Button>
                 <Button variant="contactus" showArrow={false}>

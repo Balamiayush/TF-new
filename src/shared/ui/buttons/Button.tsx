@@ -18,12 +18,9 @@ const buttonClasses = tv({
   ],
   variants: {
     variant: {
-      primary:
-        "bg-blue-500 text-slate-50 hover:bg-blue-500  leading-none ",
-      secondary:
-        "bg-slate-50 text-gray-900 hover:bg-slate-100  leading-none ",
-      contactus:
-        "  bg-white/60 text-[#1A1A1ACC] ",
+      primary: "bg-blue-500 text-slate-50 hover:bg-blue-500  leading-none ",
+      secondary: "bg-slate-50 text-gray-900 hover:bg-slate-100  leading-none ",
+      contactus: "  bg-white/60 text-[#1A1A1ACC] ",
     },
   },
   defaultVariants: {
@@ -47,7 +44,7 @@ export default function Button({
       })}
       {...otherProps}
     >
-      <span className="inline-flex  items-center gap-2.5 whitespace-nowrap">
+      <span className="inline-flex items-center gap-2.5 whitespace-nowrap">
         {children}
       </span>
 

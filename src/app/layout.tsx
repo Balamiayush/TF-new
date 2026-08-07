@@ -15,6 +15,7 @@ import "./globals.css";
 
 import MainNavigation from "@/shared/layouts/header/MainNavigation";
 import Footer from "@/shared/layouts/footer/Footer";
+import LenisContextProvider from "@/store/lenis-context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,9 +40,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${GeistSans.variable} ${GeistPixelSquare.variable} ${GeistPixelGrid.variable} ${GeistPixelCircle.variable} ${GeistPixelTriangle.variable} ${GeistPixelLine.variable} antialiased`}
       >
+        <LenisContextProvider>
         <MainNavigation />
         {children}
         <Footer/>
+        </LenisContextProvider>
       </body>
     </html>
   );

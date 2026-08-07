@@ -57,7 +57,6 @@ export  function FingerprintCard() {
         className="pointer-events-none absolute top-[59.14%] left-1/2 h-auto w-[555%] max-w-none -translate-x-1/2 opacity-90"
       />
 
-      {/* Wireframe globe centered near the top */}
       <div className="pointer-events-none absolute top-[9px] left-1/2 h-[302px] w-[302px] -translate-x-1/2">
         {globeRings.map(({ w, h }, i) => (
           <div
@@ -66,9 +65,7 @@ export  function FingerprintCard() {
             style={{ width: `${w}px`, height: `${h}px` }}
           />
         ))}
-        {/* Horizontal magenta glow behind the orb */}
         <div className="absolute top-1/2 left-1/2 h-[60px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-transparent via-[#e18cff]/70 to-transparent blur-md" />
-        {/* The pupil follows the visitor inside its soft violet eye. */}
         <div
           ref={eyeRef}
           className="absolute top-1/2 left-1/2 flex h-[60px] w-[60px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#E18CFF] shadow-[0_0_28px_6px_rgba(225,140,255,0.55)]"
@@ -97,7 +94,7 @@ export  function FingerprintCard() {
 
 export  function DashboardCard() {
   return (
-    <div className="flex h-[420px] flex-col overflow-hidden rounded-lg bg-white/50 p-1 backdrop-blur-xl lg:h-[518px]">
+    <div className="flex h-[420px] flex-col overflow-hidden rounded-lg bg-white/50 p-1 backdrop-blur-xl lg:h-[518px] mb-[50px]">
       {/* Tabs */}
       <div className="flex w-full items-center border-b border-[#1a1a1a]/[0.06]">
         <DashboardTab active label="Dashboard" icon={<TabIconDashboard />} />
@@ -106,9 +103,8 @@ export  function DashboardCard() {
         <DashboardTab label="Metric Trees" icon={<TabIconFork />} />
       </div>
 
-      {/* Content area: blue #5e93da frame with dashboard inset from top-left */}
       <div className="relative flex-1 overflow-hidden bg-[#5e93da]">
-        <div className="absolute inset-0 top-[42px] left-[40px] overflow-hidden rounded-tl-sm bg-white">
+        <div className="absolute inset-0 top-[42px] left-[40px] overflow-hidden rounded-lg bg-white">
           <Image
             src="/images/hero/dashboard-preview.png"
             alt="thirdfactor.ai dashboard preview"
