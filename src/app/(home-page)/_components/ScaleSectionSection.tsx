@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-// Register GSAP plugin safely on the client side
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Custom Pixel SVG Component provided in your design
+// Custom Pixel SVG Component
 const PixelGridSvg = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@ const PixelGridSvg = (props: React.SVGProps<SVGSVGElement>) => (
     viewBox="0 0 1422 740"
     {...props}
   >
-    <g fill="" id="fillSvg" clipPath="url(#clip0_549_31)">
+    <g id="fillSvg" fill="" clipPath="url(#clip0_549_31)">
       <path d="M1422 18.5h-23.7V37h23.7zM1398.3 37h-23.7v18.5h23.7zM1422 37h-23.7v18.5h23.7zM1398.3 55.5h-23.7V74h23.7zM1398.3 74h-23.7v18.5h23.7zM1422 74h-23.7v18.5h23.7zM1350.9 92.5h-23.7V111h23.7z" />
       <path d="M1374.6 92.5h-23.7V111h23.7zM1422 92.5h-23.7V111h23.7zM1350.9 111h-23.7v18.5h23.7z" />
       <path d="M1374.6 111h-23.7v18.5h23.7zM1398.3 111h-23.7v18.5h23.7zM1422 111h-23.7v18.5h23.7zM1327.2 129.5h-23.7V148h23.7zM1350.9 129.5h-23.7V148h23.7z" />
@@ -147,32 +147,31 @@ export default function ScaleSection() {
   const svgWrapperRef = useRef<HTMLDivElement | null>(null);
   const numbersRef = useRef<(HTMLSpanElement | null)[]>([]);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    const svgWrapper = svgWrapperRef.current;
-    if (!container || !svgWrapper) return;
+  useGSAP(
+    () => {
+      const container = containerRef.current;
+      if (!container) return;
 
-    const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
-          start: "top top",
-          end: "+=200%",
-          pin: true,
-          scrub: 1,
+          start: "top 75%", // Triggers when section top hits 75% viewport height
+          once: true, // Only triggers ONCE and stays completed
+          toggleActions: "play none none none",
+          end:"bottom bottom",
+          scrub:0.5,
         },
       });
 
-      tl.to(
-        "#fillSvg path",
-        {
-          fill: "#2563EB",
-          stagger: { each: 1, from: "center" },
-          ease: "power2.inOut",
-        },
-        0,
-      );
+      // 1. Animate SVG path fill
+      tl.to("#fillSvg path", {
+        fill: "#2563EB",
 
+        stagger: { each: 0.1, from: "end" }, // Micro-stagger for smooth grid flow
+        ease: "power2.inOut",
+      });
+
+      // 2. Animate counter values concurrently
       statsData.forEach((stat, idx) => {
         const el = numbersRef.current[idx];
         if (!el) return;
@@ -182,6 +181,7 @@ export default function ScaleSection() {
           obj,
           {
             val: stat.targetValue,
+            duration: 1.5,
             ease: "power1.out",
             onUpdate: () => {
               const formattedVal =
@@ -191,13 +191,12 @@ export default function ScaleSection() {
               el.innerText = `${formattedVal}${stat.suffix}`;
             },
           },
-          0.1,
+          0.1 // Slight position offset from 0s mark so numbers count along with the grid fill
         );
       });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+    },
+    { scope: containerRef }
+  );
 
   return (
     <section
@@ -216,7 +215,7 @@ export default function ScaleSection() {
           <div className="max-w-[720px]">
             <h2 className="font-geist text-[48px] leading-[110%] font-medium tracking-[-0.6px]">
               <span className="animated-heading-dark text-[#0F172A]">
-                Run at any scale.
+                Run at any scale.{" "}
               </span>
               <span className="animated-heading-light text-[#64748B]">
                 Production-grade for your team and agents.

@@ -2,16 +2,20 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight, Phone } from "lucide-react";
+
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
-import { FingerprintCard, DashboardCard } from "./HeroSectionAnim";
+import LablesButton from "@/shared/ui/LablesButton";
 
 import {
-  DitherControls,
   DEFAULT_DITHER_SETTINGS,
+  DitherControls,
   hexToRgba,
   type DitherSettings,
 } from "@/shared/ui/DitherControls";
 import { DitherHoverBackground } from "@/shared/ui/DitherHoverBackground";
+
+import { DashboardCard, FingerprintCard } from "./HeroSectionAnim";
+import Button from "@/shared/ui/buttons/Button";
 
 export default function HeroSection() {
   const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
@@ -78,19 +82,25 @@ export default function HeroSection() {
       <LayoutWrapper>
         <div className="relative mt-26.5">
           <div className="flex gap-1">
-            {labels.map((label, index) => (
+            {/* {labels.map((label, index) => (
               <p
                 key={index}
                 className="rounded-lg bg-[#FFFFFF47] px-3 py-1.5 text-[12px] leading-[110%] font-medium text-[#1A1A1A]"
               >
                 {label}
               </p>
+            ))} */}
+            {labels.map((label, index) => (
+              <LablesButton key={index} label={label} />
             ))}
           </div>
           <div className="mt-4 flex w-full items-center justify-between">
             <h1 className="max-w-[673px] text-[48px] leading-[110%] font-medium tracking-[-0.6px]">
               AI native trust infrastructure for{" "}
-              <span className="text-[#0088D4]">compliance</span> at scale
+              <span className="font-geist-pixel-circle text-[#0088D4]">
+                compliance
+              </span>{" "}
+              at scale
             </h1>
             <div className="flex flex-col gap-6">
               <div className="max-w-[435px]">
@@ -101,25 +111,16 @@ export default function HeroSection() {
                 </p>
               </div>
               <div className="flex gap-4">
-                <button
-                  type="button"
-                  className="group font-geist relative inline-flex h-10 min-w-[156px] cursor-pointer items-center justify-between gap-2 rounded-md bg-white py-3 pr-1.5 pl-5 text-[14px] font-medium text-[#0f172a] shadow-[inset_0_4px_8px_0_rgba(255,255,255,0.2),0_1px_2px_0_rgba(15,23,42,0.06)] transition-transform hover:-translate-y-px active:scale-[0.98]"
-                >
-                  <span className="flex-1 text-left">Get a demo</span>
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-[3px] bg-[#1a1a1a]/[0.09]">
-                    <ArrowRight
-                      className="h-4 w-4 text-[#0f172a] transition-transform group-hover:translate-x-0.5"
-                      strokeWidth={2}
-                    />
-                  </span>
-                </button>
-                <button
-                  type="button"
-                  className="font-geist inline-flex h-10 items-center justify-center gap-2.5 rounded-md bg-white/40 px-5 py-3 text-[14px] font-medium text-[#1a1a1a]/80 backdrop-blur-sm transition-colors hover:bg-white/60 active:scale-[0.98]"
-                >
+                <Button variant="secondary" showArrow={false}>
+                  Get a demo
+                  <div className="bg-alpha-light-100 flex h-7 w-7 items-center justify-center p-1.5">
+                    <ArrowRight className="h-4 w-4" strokeWidth={2} />
+                  </div>
+                </Button>
+                <Button variant="contactus" showArrow={false}>
                   <Phone className="h-4 w-4" strokeWidth={2} />
                   Contact us
-                </button>
+                </Button>
               </div>
             </div>
           </div>

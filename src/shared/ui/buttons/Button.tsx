@@ -4,26 +4,26 @@ import { tv } from "tailwind-variants";
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
 
 type ButtonProps = {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "contactus";
   showArrow?: boolean;
 } & PropsWithChildren &
   ComponentPropsWithoutRef<"button">;
 
 const buttonClasses = tv({
   base: [
-    "inline-flex items-center justify-center gap-2",
-    " px-6 py-3",
-    "text-sm font-medium leading-none",
+    "inline-flex items-center justify-center gap-2.5 px-6 py-3 text-sm h-10",
     "transition-all duration-200",
-    "cursor-pointer",
+    "cursor-pointer font-medium",
     "disabled:pointer-events-none disabled:opacity-50",
   ],
   variants: {
     variant: {
       primary:
-        "bg-[#3B82F6] text-slate-50 hover:bg-[#2563EB]",
+        "bg-blue-500 text-slate-50 hover:bg-blue-500  leading-none ",
       secondary:
-        "bg-slate-50 text-gray-900 hover:bg-slate-100",
+        "bg-slate-50 text-gray-900 hover:bg-slate-100  leading-none ",
+      contactus:
+        "  bg-white/60 text-[#1A1A1ACC] ",
     },
   },
   defaultVariants: {
@@ -40,13 +40,16 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
+      type="button"
       className={buttonClasses({
         variant,
         className,
       })}
       {...otherProps}
     >
-      <span>{children}</span>
+      <span className="inline-flex  items-center gap-2.5 whitespace-nowrap">
+        {children}
+      </span>
 
       {showArrow && <DropdownArrow />}
     </button>

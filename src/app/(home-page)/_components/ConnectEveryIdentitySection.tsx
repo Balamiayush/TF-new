@@ -21,20 +21,20 @@ const FEATURES_DATA = [
         title: 'Face Detection',
         description:
           'Confirms a real, clearly visible face is present before verification begins.',
-        src: '/user-experience/Face Detection.png',
+        src: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
       },
       {
         id: 2,
         title: 'Liveness Detection',
         description:
           'Active and passive checks prove the face belongs to a live, present person.',
-        src: '/user-experience/LIveness.png',
+        src: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
       },
       {
         id: 3,
         title: 'Face Matching',
         description: 'Matches the detected face against the document.',
-        src: '/user-experience/face match.png',
+        src: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
       },
     ],
   },
@@ -50,21 +50,21 @@ const FEATURES_DATA = [
         title: 'Document Verification & OCR',
         description:
           'Reads official documents — including handwritten Nepali document.',
-        src: '/user-experience/Document OCR-1.png',
+        src: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
       },
       {
         id: 2,
         title: '1:1 Face Match',
         description:
           'Confirms the live person is the same person on the submitted document.',
-        src: '/user-experience/1_1 face match.png',
+        src: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
       },
       {
         id: 3,
         title: '1:N Face Match',
         description:
           'Compares one face against many to detect duplicates, fraud rings, and repeat applicants.',
-        src: '/user-experience/1_N Face Match.png',
+        src: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
       },
     ],
   },
@@ -80,20 +80,20 @@ const FEATURES_DATA = [
         id: 1,
         title: 'KYC / AML / PEP Screening',
         description: 'Automated checks against sanction, PEP data.',
-        src: '/user-experience/PEP Screening.png',
+        src: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
       },
       {
         id: 2,
         title: 'On-Prem & Zero Data Retention',
         description: 'Fully self-hosted and stateless.',
-        src: '/user-experience/On-Prem & Zero Data Retention.png',
+        src: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
       },
       {
         id: 3,
         title: 'Audit-Ready by Design',
         description:
           'Every verification and decision is logged with a human-in-the-loop trail.',
-        src: '/user-experience/Audit-Ready by Design.png',
+        src: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
       },
     ],
   },
@@ -143,7 +143,7 @@ export default function ConnectEveryIdentitySection() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-[#E9F1FF]">
+    <div className="min-h-screen  w-full bg-[#E9F1FF]">
       <div className="py-30">
         <LayoutWrapper>
           <div className="flex w-full items-end justify-between">
@@ -164,7 +164,7 @@ export default function ConnectEveryIdentitySection() {
             className="mt-12 flex h-full w-full gap-3 relative items-start"
           >
             {/* Sticky Left Container preserving exact height and gradient */}
-            <div className="flex-1 rounded-[10px] sticky top-0 bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)] xl:h-[48.61vw] 2xl:h-[700px] overflow-hidden relative">
+            <div className="flex-1 rounded-[10px] sticky top-[5%] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)]  h-[700px] overflow-hidden relative">
               <Image
                 src={activeImage}
                 alt="Active Feature Visual"

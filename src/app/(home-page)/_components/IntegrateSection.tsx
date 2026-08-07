@@ -9,28 +9,28 @@ const stepsData = [
     title: "Selfie capture",
     description:
       "Passive liveness detection confirms a real person is present. Without asking them to do anything. Works in seconds. Blocks bots, deepfakes, and replay attacks.",
-    imgSrc: "/images/selfie-capture.png", // Add your image path here
+    imgSrc: "/images/selfie-capture.png", 
   },
   {
     id: "upload",
     title: "Upload document",
     description:
       "Automated OCR and document authenticity verification for passports, driver's licenses, and national IDs across global formats.",
-    imgSrc: "/images/upload-document.png", // Add your image path here
+    imgSrc: "/images/upload-document.png", 
   },
   {
     id: "gesture",
     title: "Active gesture",
     description:
       "Prompt users with randomized motion challenges to add an un-spoofable layer of biometric security when required.",
-    imgSrc: "/images/active-gesture.png", // Add your image path here
+    imgSrc: "/images/active-gesture.png", 
   },
   {
     id: "videokyc",
     title: "Video KYC",
     description:
       "High-trust video verification sessions with live agent integration and recorded audit logs for strict regulatory compliance.",
-    imgSrc: "/images/video-kyc.png", // Add your image path here
+    imgSrc: "/images/video-kyc.png", 
   },
 ];
 
