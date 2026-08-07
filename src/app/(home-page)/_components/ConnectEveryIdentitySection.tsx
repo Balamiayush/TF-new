@@ -11,7 +11,7 @@ const FEATURES_DATA = [
   {
     id: 1,
     tag: 'Device and behavior',
-    title: 'Spot suspicious behavior from onboarding',
+    title: 'Spot suspicious behavior from onboarding to payments',
     description:
       'Behavioral signals uncover early signs of fraud, without adding friction.',
     icon: <Smartphone className="h-5 w-5 text-white" />,
@@ -185,18 +185,18 @@ export default function ConnectEveryIdentitySection() {
                     data-id={feature.id}
                     className="feature-card w-full rounded-[10px] border border-[#F4F2F1] bg-[#F8FAFC] h-[700px] p-6 flex flex-col justify-between"
                   >
-                    <div>
-                      <p className="text-sm font-medium tracking-wide text-neutral-500">
+                    <div className=' flex flex-col gap-4 py-4'>
+                      <p className="text-[14px] font-geist-pixel-circle text-alpha-light-1000 tracking-[1.2px] uppercase leading-[100%] ">
                         {feature.tag}
                       </p>
-                      <div className="mt-6">
-                        <h4 className="text-2xl font-medium text-black">
+                 
+                        <h4 className="text-2xl leading-[110%] max-w-[400px] text-alpha-light-1000 ">
                           {feature.title}
                         </h4>
-                        <p className="mt-4 max-w-[95%] text-base leading-relaxed text-neutral-600">
+                        <p className=" max-w-[60%] text-base leading-relaxed text-neutral-600">
                           {feature.description}
                         </p>
-                      </div>
+            
                     </div>
 
                     {/* Mobile Image Fallback */}

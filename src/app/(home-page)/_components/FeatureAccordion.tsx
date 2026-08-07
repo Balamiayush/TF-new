@@ -27,7 +27,6 @@ export default function FeatureAccordion({
 
   useEffect(() => {
     const handleResize = () => {
-      // CHANGED: Match Tailwind's md breakpoint (768px)
       setIsMobile(window.innerWidth < 768);
     };
 
@@ -62,8 +61,7 @@ export default function FeatureAccordion({
           <div
             key={item.id}
             onClick={() => setAccordion(index)}
-            // CHANGED: max-lg:w-[85vw] max-lg:shrink-0 -> max-md:w-[85vw] max-md:shrink-0
-            className={`rounded-lg w-full max-md:w-[85vw] max-md:shrink-0 snap-start p-4 transition-all duration-300 cursor-pointer ${
+            className={`rounded-lg w-full max-md:w-[85vw] max-md:shrink-0 snap-start p-4 transition-all ease-linear duration-300 cursor-pointer ${
               isCurrentlySelectedPhoto
                 ? 'bg-white border border-[#1D4ED8]/20'
                 : 'bg-white/60'
@@ -71,8 +69,8 @@ export default function FeatureAccordion({
           >
             <div className="flex gap-3 ">
               <div
-                className={`w-3 h-3 shrink-0  mt-2 transition-colors duration-300 ${
-                  isCurrentlySelectedPhoto ? 'bg-[#1D4ED8]' : 'bg-neutral-300'
+                className={`w-4 h-2.5 rounded-xs shrink-0  mt-2 transition-colors duration-300 ${
+                  isCurrentlySelectedPhoto ? 'bg-slate-900' : 'bg-neutral-300'
                 }`}
               ></div>
 
@@ -80,17 +78,41 @@ export default function FeatureAccordion({
                 <p className="text-body1 font-medium">{item.title}</p>
 
                 <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={isMobile ? false : { height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={isMobile ? undefined : { height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="text-label1 mt-2">{item.description}</p>
-                    </motion.div>
-                  )}
+                 {isOpen && (
+  <motion.div
+    initial={
+      isMobile
+        ? false
+        : {
+            height: 0,
+            opacity: 0,
+            filter: "blur(8px)",
+          }
+    }
+    animate={{
+      height: "auto",
+      opacity: 1,
+      filter: "blur(0px)",
+    }}
+    exit={
+      isMobile
+        ? undefined
+        : {
+            height: 0,
+            opacity: 0,
+            filter: "blur(8px)",
+          }
+    }
+    transition={{
+      duration: 0.35,
+      ease: "easeOut",
+    }}
+    className="overflow-hidden"
+  >
+    <p className="text-label1 mt-2">{item.description}</p>
+  </motion.div>
+)}
+
                 </AnimatePresence>
               </div>
             </div>
