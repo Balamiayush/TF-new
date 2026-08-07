@@ -11,32 +11,31 @@ const faqData = [
   },
   {
     id: 2,
-    question: "What payment methods do you accept?",
+    question: "What is your refund policy?",
     answer:
-      "We accept all major credit cards (Visa, MasterCard, American Express) and offer invoice-based billing for Enterprise customers. Annual plans can also be paid via bank transfer.",
+      "We offer a 30-day money-back guarantee for all new subscriptions. If you are not satisfied, you can request a full refund through your billing settings or by contacting support.",
   },
   {
     id: 3,
-    question: "What payment methods do you accept?",
+    question: "Can I change my subscription plan later?",
     answer:
-      "We accept all major credit cards (Visa, MasterCard, American Express) and offer invoice-based billing for Enterprise customers. Annual plans can also be paid via bank transfer.",
+      "Yes, you can upgrade, downgrade, or cancel your subscription at any time from your account dashboard. Changes will take effect immediately.",
   },
   {
     id: 4,
-    question: "What payment methods do you accept?",
+    question: "Do you offer discounts for non-profits and students?",
     answer:
-      "We accept all major credit cards (Visa, MasterCard, American Express) and offer invoice-based billing for Enterprise customers. Annual plans can also be paid via bank transfer.",
+      "Yes! We offer special pricing for educational institutions, students, and registered non-profit organizations. Reach out to our sales team with proof of status.",
   },
   {
     id: 5,
-    question: "What payment methods do you accept?",
+    question: "Is technical support available 24/7?",
     answer:
-      "We accept all major credit cards (Visa, MasterCard, American Express) and offer invoice-based billing for Enterprise customers. Annual plans can also be paid via bank transfer.",
+      "Our standard support team operates during business hours, but Enterprise customers receive around-the-clock dedicated technical assistance and fast SLA response times.",
   },
 ];
 
 export default function FAQ() {
-  // Set first item open by default to match your design screenshot
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleAccordion = (index: number) => {
@@ -60,55 +59,40 @@ export default function FAQ() {
               <div
                 key={item.id}
                 onClick={() => toggleAccordion(index)}
-                className="cursor-pointer rounded-lg bg-[#F1F5F9] p-6 transition-all duration-200"
+                className="cursor-pointer rounded-lg bg-[#F1F5F9] p-6 transition-colors duration-300 hover:bg-[#E2E8F0]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="font-geist text-[20px] font-medium leading-[120%] tracking-[0px] text-[#0F172A]">
                     {item.question}
                   </h3>
 
-                  {/* Plus / Minus Icon */}
-                  <span className="text-xl text-[#0F172A]">
-                    {isOpen ? (
-                      <svg
-                        width="16"
-                        height="2"
-                        viewBox="0 0 16 2"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 1H15"
-                          stroke="#0F172A"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M8 1V15M1 8H15"
-                          stroke="#0F172A"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    )}
-                  </span>
+                  {/* Animated Plus / Minus Icon */}
+                  <div className="relative flex h-4 w-4 shrink-0 items-center justify-center">
+                    {/* Horizontal bar (always present) */}
+                    <span className="absolute h-[2px] w-full rounded-full bg-[#0F172A]" />
+                    {/* Vertical bar (rotates and fades out when open) */}
+                    <span
+                      className={`absolute h-full w-[2px] rounded-full bg-[#0F172A] transition-transform duration-300 ease-in-out ${
+                        isOpen ? "rotate-90 scale-0" : "rotate-0 scale-100"
+                      }`}
+                    />
+                  </div>
                 </div>
 
-                {/* Answer Content */}
-                {isOpen && (
-                  <p className="font-inter mt-3 max-w-[560px] text-[16px] font-normal leading-[130%] tracking-[-0.5px] text-[#475569]">
-                    {item.answer}
-                  </p>
-                )}
+                {/* Smooth Grid-based Collapse/Expand Container */}
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isOpen
+                      ? "grid-rows-[1fr] opacity-100 mt-3"
+                      : "grid-rows-[0fr] opacity-0 mt-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="font-inter max-w-[560px] text-[16px] font-normal leading-[130%] tracking-[-0.5px] text-[#475569]">
+                      {item.answer}
+                    </p>
+                  </div>
+                </div>
               </div>
             );
           })}

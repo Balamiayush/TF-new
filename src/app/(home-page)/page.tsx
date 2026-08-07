@@ -19,10 +19,10 @@ export default function HomePage() {
       <Streamline />
       <Integrate />
       <ConnectEveryIdentitySection/>
-      <StartVerifyingSection/>
       <Infrastructure />
-      <ReadAllStories />
       <ScaleSection/>
+      <StartVerifyingSection/>
+      <ReadAllStories />
       <FAQ />
     </main>
   );
