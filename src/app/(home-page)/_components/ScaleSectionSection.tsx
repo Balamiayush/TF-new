@@ -10,7 +10,6 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Custom Pixel SVG Component
 const PixelGridSvg = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -155,23 +154,21 @@ export default function ScaleSection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
-          start: "top 75%", // Triggers when section top hits 75% viewport height
-          once: true, // Only triggers ONCE and stays completed
+          start: "top 75%", 
+          once: true, 
           toggleActions: "play none none none",
           end:"bottom bottom",
           scrub:0.5,
         },
       });
 
-      // 1. Animate SVG path fill
       tl.to("#fillSvg path", {
         fill: "#2563EB",
 
-        stagger: { each: 0.1, from: "end" }, // Micro-stagger for smooth grid flow
+        stagger: { each: 0.1, from: "end" }, 
         ease: "power2.inOut",
       });
 
-      // 2. Animate counter values concurrently
       statsData.forEach((stat, idx) => {
         const el = numbersRef.current[idx];
         if (!el) return;
