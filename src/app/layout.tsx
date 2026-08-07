@@ -14,6 +14,7 @@ import {
 import "./globals.css";
 
 import MainNavigation from "@/shared/layouts/header/MainNavigation";
+import Footer from "@/shared/layouts/footer/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
       >
         <MainNavigation />
         {children}
+        <Footer/>
       </body>
     </html>
   );
