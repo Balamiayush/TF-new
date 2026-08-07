@@ -2,7 +2,7 @@
 
 import FAQ from "./_components/FAQ";
 import ConnectEveryIdentitySection from "./_components/ConnectEveryIdentitySection";
-import HeroSection from "./_components/HeroSection";
+import HeroSection from "./_components/herosection/HeroSection";
 import Infrastructure from "./_components/Infrastructure";
 import Integrate from "./_components/Integrate";
 import ReadAllStories from "./_components/ReadAllStories";
