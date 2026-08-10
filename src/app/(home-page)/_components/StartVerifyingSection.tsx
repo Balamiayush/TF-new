@@ -14,18 +14,18 @@ const floatingImages = [
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "KYC Mobile Screen",
     className: "top-[10%] left-[8%] ",
-    speed: 25, 
-    width:305,
-    height:203,
+    speed: 25,
+    width: 305,
+    height: 203,
   },
   {
     id: 2,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "Document Verification",
     className: "top-[15%] right-[6%] ",
-    speed: 30, 
-    width:305,
-    height:157,
+    speed: 30,
+    width: 305,
+    height: 157,
   },
   {
     id: 3,
@@ -33,8 +33,8 @@ const floatingImages = [
     alt: "Liveness Capture",
     className: "bottom-[12%] left-[6%]",
     speed: 35,
-    width:197,
-    height:130,
+    width: 197,
+    height: 130,
   },
   {
     id: 4,
@@ -42,8 +42,8 @@ const floatingImages = [
     alt: "Face Verification",
     className: "bottom-[0%] left-[45%] -translate-x-1/2",
     speed: 30,
-    width:305,
-    height:157,
+    width: 305,
+    height: 157,
   },
   {
     id: 5,
@@ -51,8 +51,8 @@ const floatingImages = [
     alt: "Dashboard Verification Stream",
     className: "bottom-[0%] right-[8%]",
     speed: 25,
-      width:305,
-    height:157,
+    width: 305,
+    height: 157,
   },
 ];
 
@@ -67,14 +67,13 @@ export default function StartVerifyingSection() {
         const speed = parseFloat(card.dataset.speed || "0");
 
         gsap.to(card, {
-          yPercent: -speed*6,
+          yPercent: -speed * 2,
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top bottom", 
-            end: "bottom top", 
-            scrub: 1, 
-       
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
           },
         });
       });
@@ -86,7 +85,7 @@ export default function StartVerifyingSection() {
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-screen  w-full items-center justify-center overflow-hidden bg-[#2262EC] px-4 py-32"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#2262EC] px-4 py-32"
     >
       {floatingImages.map((img) => (
         <div
@@ -94,16 +93,14 @@ export default function StartVerifyingSection() {
           data-speed={img.speed}
           className={`parallax-card absolute z-0 overflow-hidden rounded-2xl shadow-xl transition-shadow duration-300 ${img.className}`}
         >
-            
           <Image
             src={img.src}
             alt={img.alt}
             width={img.width}
             height={img.height}
-            className=" object-cover"
+            className="object-cover"
             priority
-            />
-
+          />
         </div>
       ))}
 

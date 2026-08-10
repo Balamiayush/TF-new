@@ -11,6 +11,7 @@ import NavLink from "@/shared/ui/navlinks/NavLinks";
 import { navLinks } from "@/shared/data";
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
 import Button from "@/shared/ui/buttons/Button";
+import Image from "next/image";
 
 export default function MainNavigation() {
   const [hidden, setHidden] = useState(false);
@@ -40,7 +41,13 @@ export default function MainNavigation() {
       <LayoutWrapper>
         <nav className="flex w-full items-center justify-between">
           <div className="flex gap-12">
-            <MainLogo />
+            <Image
+            alt="logo"
+            width={100}
+            height={20}
+            className="w-full h-full "
+            src={'/logos/thirdfactor-logo.svg'}
+            />
             <div className="flex w-full items-center gap-1">
               {navLinks.map((link) => (
                 <Link key={link.id} href={link.href ?? "/"}>

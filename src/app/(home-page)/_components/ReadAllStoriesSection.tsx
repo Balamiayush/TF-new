@@ -1,5 +1,7 @@
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
-import React from "react";
+import Button from "@/shared/ui/buttons/Button";
+import Image from "next/image";
+
 
 const storiesData = [
   {
@@ -30,7 +32,13 @@ const storiesData = [
 
 export default function ReadAllStories() {
   return (
-    <section className="relative w-full bg-white py-21">
+    <section className="relative w-full bg-slate-50 py-21">
+        <Image
+              alt="gitter"
+              fill
+              className="w-full h-full absolute pointer-events-none"
+              src={"/gitter.png"}
+            />
       <LayoutWrapper>
         {/* Header Section */}
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
@@ -38,12 +46,9 @@ export default function ReadAllStories() {
             Get insights, tips, and updates from our team.
           </h2>
 
-          <a
-            href="#stories"
-            className="rounded-lg bg-[#F8FAFC] px-5 py-3 font-inter text-xs font-medium text-[#1A1A1A] hover:bg-gray-100 transition-colors border border-gray-100"
-          >
-            Read all stories
-          </a>
+         <Button variant="secondary">
+          Read all stories
+         </Button>
         </div>
 
         {/* Stories Grid Container */}

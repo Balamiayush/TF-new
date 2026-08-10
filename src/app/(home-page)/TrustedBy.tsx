@@ -57,7 +57,7 @@ export default function TrustedBy() {
                   height={40}
                   alt={item.name}
                   key={index}
-                  className=" grayscale hover:grayscale-0 transition-all duration-300"
+                  className="grayscale transition-all duration-300 hover:grayscale-0"
                 />
               );
             })}
