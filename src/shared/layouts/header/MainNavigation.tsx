@@ -60,7 +60,13 @@ export default function MainNavigation() {
           <div className="flex gap-2">
             <div className="flex h-10 items-center gap-1">
               <p className="text-[14px] leading-[110%] text-gray-900">NP</p>
-              <div className="h-4 w-4 bg-blue-500"></div>
+              <div className="relative h-4 w-4">
+                <Image
+                fill
+                alt="nepal flag"
+                src={'/navbar-flag-svg/nepal-flag1.svg'}
+                />
+              </div>
               <div className="flex h-4 w-4 items-center justify-center">
                 <DropdownArrow />
               </div>
