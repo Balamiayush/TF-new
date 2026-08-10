@@ -5,13 +5,11 @@ import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 import LayoutWrapper from "../wrapper/LayoutWrapper";
-import { MainLogo } from "@/shared/icons/MainLogo";
-import NavLink from "@/shared/ui/navlinks/NavLinks";
-
 import { navLinks } from "@/shared/data";
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
 import Button from "@/shared/ui/buttons/Button";
 import Image from "next/image";
+import NavLink from "@/shared/ui/navlinks/NavLinks";
 
 export default function MainNavigation() {
   const [hidden, setHidden] = useState(false);
@@ -19,7 +17,7 @@ export default function MainNavigation() {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
-    
+
     if (latest > previous && latest > 150) {
       setHidden(true);
     } else {
@@ -30,23 +28,22 @@ export default function MainNavigation() {
   return (
     <motion.header
       variants={{
-        visible: { y: 0 },
+        visible: { y: "0%" },
         hidden: { y: "-100%" },
-
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 z-50 w-full py-4.5"
+      className=" fixed top-0 z-50 w-full min-h-[68px] py-4.5 bg-transparent"
     >
       <LayoutWrapper>
         <nav className="flex w-full items-center justify-between">
           <div className="flex gap-12">
             <Image
-            alt="logo"
-            width={100}
-            height={20}
-            className="w-full h-full "
-            src={'/logos/thirdfactor-logo.svg'}
+              alt="logo"
+              width={100}
+              height={20}
+              className="w-full h-full"
+              src={"/logos/thirdfactor-logo.svg"}
             />
             <div className="flex w-full items-center gap-1">
               {navLinks.map((link) => (
@@ -62,9 +59,9 @@ export default function MainNavigation() {
               <p className="text-[14px] leading-[110%] text-gray-900">NP</p>
               <div className="relative h-4 w-4">
                 <Image
-                fill
-                alt="nepal flag"
-                src={'/navbar-flag-svg/nepal-flag1.svg'}
+                  fill
+                  alt="nepal flag"
+                  src={"/navbar-flag-svg/nepal-flag1.svg"}
                 />
               </div>
               <div className="flex h-4 w-4 items-center justify-center">

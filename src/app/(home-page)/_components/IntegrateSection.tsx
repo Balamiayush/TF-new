@@ -45,6 +45,8 @@ export default function Integrate() {
   // Layout metrics
   const cardGap = 20;
   const inactiveCardWidth = 218;
+  const activeCardWidth = 302;
+  const containerWidth = 580;
 
   // Clone elements to enable seamless circular peeking:
   // [Last Item, Item 0, Item 1, Item 2, Item 3, First Item]
@@ -63,7 +65,14 @@ export default function Integrate() {
   ];
 
   const virtualActiveIndex = activeTab + 1;
-  const trackOffset = 139 - virtualActiveIndex * (inactiveCardWidth + cardGap);
+
+  // Calculate dynamic width of all items preceding the active index
+  const precedingWidth = virtualActiveIndex * (inactiveCardWidth + cardGap);
+
+  // Center alignment offset math:
+  // Center of container - Center of active card - Total width of preceding items
+  const trackOffset =
+    containerWidth / 2 - activeCardWidth / 2 - precedingWidth;
 
   return (
     <section className="min-h-screen w-full py-21 pb-30">
@@ -137,7 +146,7 @@ export default function Integrate() {
                     onClick={() => setActiveTab(step.originalIndex)}
                     layout
                     animate={{
-                      width: isActive ? 302 : 218,
+                      width: isActive ? activeCardWidth : inactiveCardWidth,
                       height: isActive ? 500 : 438,
                     }}
                     transition={{ type: "spring", stiffness: 260, damping: 28 }}
