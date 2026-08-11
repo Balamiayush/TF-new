@@ -60,7 +60,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
         variants={headerVariants}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className=" sticky top-0 z-50 w-full min-h-[68px] py-4.5 bg-transparent"
+        className=" fixed top-0 z-50 w-full min-h-[68px] py-4.5 bg-transparent"
       >
         <LayoutWrapper>
           <nav className="flex w-full items-center justify-between">
