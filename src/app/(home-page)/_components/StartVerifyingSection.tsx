@@ -13,46 +13,42 @@ const floatingImages = [
     id: 1,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "KYC Mobile Screen",
-    className: "top-[10%] left-[8%] ",
+    className: "top-[10%] left-[8%] w-[150px] h-[100px] lg:w-[] lg:h-[ ",
     speed: 25,
-    width: 305,
-    height: 203,
+   
   },
   {
     id: 2,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "Document Verification",
-    className: "top-[15%] right-[6%] ",
+    className: "top-[15%] right-[6%] w-[150px] h-[100px] lg:w-[] lg:h-[ ",
     speed: 30,
-    width: 305,
-    height: 157,
+   
   },
   {
     id: 3,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "Liveness Capture",
-    className: "bottom-[12%] left-[6%]",
+    className: "bottom-[12%] left-[6%] w-[150px] h-[100px] lg:w-[] lg:h-[",
     speed: 35,
-    width: 197,
-    height: 130,
+  
   },
   {
     id: 4,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "Face Verification",
-    className: "bottom-[0%] left-[45%] -translate-x-1/2",
+    className: "bottom-[0%] left-[45%] hidden lg:block -translate-x-1/2 w-[157px] h-[100px] lg:w-[] lg:h-[",
     speed: 30,
-    width: 305,
-    height: 157,
+    
   },
   {
     id: 5,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "Dashboard Verification Stream",
-    className: "bottom-[0%] right-[8%]",
+        className: "bottom-[0%] right-3  w-[157px] h-[100px] lg:w-[] lg:h-[",
+
     speed: 25,
-    width: 305,
-    height: 157,
+  
   },
 ];
 
@@ -91,21 +87,23 @@ export default function StartVerifyingSection() {
         <div
           key={img.id}
           data-speed={img.speed}
-          className={`parallax-card absolute z-0 overflow-hidden rounded-2xl shadow-xl transition-shadow duration-300 ${img.className}`}
+          className={`parallax-card absolute z-0 overflow-hidden  transition-shadow duration-300 ${img.className}`}
         >
+          <div className={`${img.className} relative`}>
+
           <Image
             src={img.src}
             alt={img.alt}
-            width={img.width}
-            height={img.height}
-            className="object-cover"
+            fill
+            className="object-cover w-full h-full"
             priority
-          />
+            />
+            </div>
         </div>
       ))}
 
       <div className="z-10 flex max-w-[800px] flex-col items-center text-center">
-        <h1 className="font-geist text-[50px] leading-[100%] font-normal tracking-[-0.4px] text-white">
+        <h1 className="font-geist text-[26px] lg:text-[50px] leading-[100%] font-normal tracking-[-0.4px] text-white">
           Start Verifying with <br /> Confidence
         </h1>
 

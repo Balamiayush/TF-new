@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
+
 import remarkGfm from "remark-gfm";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
+import Button from "@/shared/ui/buttons/Button";
 
 const sections = [
   { id: "1-definitions", label: "1. Definitions" },
@@ -78,70 +80,25 @@ export default function TermsClient({ markdownContent }: TermsClientProps) {
   };
 
   return (
-    <div className="w-full bg-[#F8FAFC] min-h-screen py-6 sm:py-12 md:py-[64px] overflow-clip">
+    <div className="w-full bg-[#95C5FF]/25 min-h-screen py-6 sm:py-12 md:py-[64px] overflow-clip">
       <LayoutWrapper>
         <div className="flex flex-col gap-6 sm:gap-10">
-          {/* Header Switcher Row */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-200/80 pb-4 sm:pb-6 gap-4">
-            <div className="flex items-center gap-1.5 sm:gap-2 bg-slate-100/80 p-1 rounded-lg w-full sm:w-auto">
-              <button
-                onClick={() => setActiveTab("privacy")}
-                className={`flex-1 sm:flex-none text-center px-3 sm:px-4 py-2 text-[13px] sm:text-[14px] font-medium transition-all rounded-md ${
-                  activeTab === "privacy"
-                    ? "bg-white text-slate-900 shadow-sm"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
-              >
-                Privacy Policy
-              </button>
-              <button
-                onClick={() => setActiveTab("terms")}
-                className={`flex-1 sm:flex-none text-center px-3 sm:px-4 py-2 text-[13px] sm:text-[14px] font-medium transition-all rounded-md ${
-                  activeTab === "terms"
-                    ? "bg-white text-slate-900 shadow-sm"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
-              >
-                Terms & Condition
-              </button>
+          <div className="flex flex-col  sm:flex-row items-start sm:items-start justify-between border-b border-slate-200/80 pb-4 sm:pb-6 gap-4">
+            <div className="flex items-center gap-1.5 sm:gap-2  w-full sm:w-auto">
+            <Button variant="secondary">Terms & Condition</Button>
+            <Button variant="secondary">Privacy Policy</Button>
             </div>
 
-            <span className="text-[12px] sm:text-[14px] font-medium text-slate-500">
+            <span className="text-[12px] sm:text-[14px]  text-slate-900">
               Last Updated: September 10, 2025
             </span>
           </div>
+        
 
-          {/* Sticky Mobile Section Scroll Navigation (Visible on < lg) */}
-          <div className="lg:hidden sticky top-0 z-20 -mx-4 px-4 py-3 bg-[#F8FAFC]/90 backdrop-blur-md border-b border-slate-200/80">
-            <div
-              ref={mobileNavRef}
-              className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth"
-            >
-              {sections.map((section) => {
-                const isActive = activeSection === section.id;
-                return (
-                  <button
-                    key={`mobile-${section.id}`}
-                    id={`pill-${section.id}`}
-                    onClick={() => scrollToSection(section.id)}
-                    className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-all ${
-                      isActive
-                        ? "bg-slate-900 text-white shadow-sm"
-                        : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
-                    }`}
-                  >
-                    {section.label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Main Layout Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Desktop Sidebar Navigation */}
             <aside className="lg:col-span-4 sticky top-12 hidden lg:block pr-4">
-              <h4 className="font-geist text-[18px] font-medium leading-[100%] text-slate-900 tracking-[0px] mb-6">
+              <h4 className="font-geist text-[18px]  leading-[100%] text-slate-900 tracking-[0px] mb-6">
                 Terms and Condition
               </h4>
               <nav className="flex flex-col gap-3">
@@ -170,7 +127,7 @@ export default function TermsClient({ markdownContent }: TermsClientProps) {
                 remarkPlugins={[remarkGfm]}
                 components={{
                   h1: ({ children }) => (
-                    <h1 className="font-geist text-[28px] sm:text-[36px] md:text-[40px] font-medium leading-[1.2] tracking-[0px] text-slate-900 mb-6">
+                    <h1 className="font-geist text-[28px] sm:text-[36px] md:text-[40px]  leading-[1.2] tracking-[0px] text-slate-900 mb-6">
                       {children}
                     </h1>
                   ),
@@ -182,14 +139,14 @@ export default function TermsClient({ markdownContent }: TermsClientProps) {
                     return (
                       <h2
                         id={id}
-                        className="font-geist text-[20px] sm:text-[24px] font-medium leading-[1.3] tracking-[0px] text-slate-900 mt-8 mb-4 scroll-mt-28"
+                        className="font-geist text-[20px] sm:text-[24px]  leading-[1.3] tracking-[0px] text-slate-900 mt-8 mb-4 scroll-mt-28"
                       >
                         {children}
                       </h2>
                     );
                   },
                   h3: ({ children }) => (
-                    <h3 className="font-geist text-[16px] sm:text-[18px] font-medium text-slate-800 mt-4 mb-2">
+                    <h3 className="font-geist text-[16px] sm:text-[18px]  text-slate-800 mt-4 mb-2">
                       {children}
                     </h3>
                   ),
@@ -206,7 +163,7 @@ export default function TermsClient({ markdownContent }: TermsClientProps) {
                   a: ({ href, children }) => (
                     <a
                       href={href}
-                      className="text-blue-600 font-medium hover:underline break-all"
+                      className="text-blue-600  hover:underline break-all"
                     >
                       {children}
                     </a>

@@ -4,52 +4,25 @@ import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const stepsData = [
-  {
-    id: "selfie",
-    title: "Selfie capture",
-    description:
-      "Passive liveness detection confirms a real person is present. Without asking them to do anything. Works in seconds. Blocks bots, deepfakes, and replay attacks.",
-    imgSrc:
-      "https://images.pexels.com/photos/31145167/pexels-photo-31145167.jpeg",
-  },
-  {
-    id: "upload",
-    title: "Upload document",
-    description:
-      "Automated OCR and document authenticity verification for passports, driver's licenses, and national IDs across global formats.",
-    imgSrc:
-      "https://images.pexels.com/photos/15924114/pexels-photo-15924114.jpeg",
-  },
-  {
-    id: "gesture",
-    title: "Active gesture",
-    description:
-      "Prompt users with randomized motion challenges to add an un-spoofable layer of biometric security when required.",
-    imgSrc:
-      "https://images.pexels.com/photos/38135288/pexels-photo-38135288.jpeg",
-  },
-  {
-    id: "videokyc",
-    title: "Video KYC",
-    description:
-      "High-trust video verification sessions with live agent integration and recorded audit logs for strict regulatory compliance.",
-    imgSrc:
-      "https://images.pexels.com/photos/38845229/pexels-photo-38845229.jpeg",
-  },
-];
+export interface StepsDataType {
+  id: string;
+  title: string;
+  description: string;
+  imgSrc: string;
+}
 
-export default function Integrate() {
+interface IntegrateProps {
+  stepsData: StepsDataType[];
+}
+
+export default function Integrate({ stepsData }: IntegrateProps) {
   const [activeTab, setActiveTab] = useState(0);
 
-  // Layout metrics
   const cardGap = 20;
   const inactiveCardWidth = 218;
   const activeCardWidth = 302;
   const containerWidth = 580;
 
-  // Clone elements to enable seamless circular peeking:
-  // [Last Item, Item 0, Item 1, Item 2, Item 3, First Item]
   const displayItems = [
     {
       ...stepsData[stepsData.length - 1],
@@ -65,28 +38,21 @@ export default function Integrate() {
   ];
 
   const virtualActiveIndex = activeTab + 1;
-
-  // Calculate dynamic width of all items preceding the active index
   const precedingWidth = virtualActiveIndex * (inactiveCardWidth + cardGap);
-
-  // Center alignment offset math:
-  // Center of container - Center of active card - Total width of preceding items
-  const trackOffset =
-    containerWidth / 2 - activeCardWidth / 2 - precedingWidth;
+  const trackOffset = containerWidth / 2 - activeCardWidth / 2 - precedingWidth;
 
   return (
-    <section className="min-h-screen w-full py-21 pb-30">
+    <section className="min-h-screen w-full py-21 pb-30 lg:block hidden">
       <LayoutWrapper>
         <div className="flex min-h-[753px] w-full flex-col justify-between rounded-xl bg-gradient-to-br from-[#FBEAF9] to-[#E8B9E5] p-12 lg:flex-row lg:items-center">
-          {/* Left Side: Accordion Tabs */}
-          <div className="flex max-w-[430px] flex-col justify-between self-stretch">
-            <h2 className="font-geist text-[48px] leading-[115%] font-medium tracking-tight text-[#1A1A1A]">
+          <div className="flex lg:max-w-[430px] w-full flex-col justify-between self-stretch">
+            <h2 className="font-geist text-[26px] lg:text-[48px] leading-[115%] font-medium tracking-tight text-[#1A1A1A]">
               Integrate in
               <br />
               Days, Not Weeks
             </h2>
 
-            <div className="mt-12 flex flex-col">
+            <div className="lg:mt-12 mt-8 flex flex-col">
               {stepsData.map((step, index) => {
                 const isActive = activeTab === index;
                 return (

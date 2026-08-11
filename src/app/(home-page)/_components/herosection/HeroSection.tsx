@@ -55,7 +55,7 @@ export default function HeroSection() {
     <div className="relative isolate min-h-screen w-full overflow-hidden bg-[#fafcff]">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[820px]"
+        className="pointer-events-none absolute lg:block hidden inset-x-0 top-0 z-0 h-[820px]"
       >
         <div className="absolute -top-14 -left-16 flex h-[812px] w-[454px] items-center justify-center">
           <div className="h-[832px] w-[127px] -rotate-[24deg] rounded-[130px] bg-[#95c5ff]/60 blur-[140px]" />
@@ -96,14 +96,14 @@ export default function HeroSection() {
       <DitherControls value={dither} onChange={setDither} />
 
       <LayoutWrapper>
-        <div className="relative mt-26.5">
-          <div className="flex gap-1">
+        <div className="relative mt-15 lg:mt-26.5">
+          <div className="lg:flex hidden gap-1 ">
             {labels.map((label, index) => (
               <LablesButton key={index} label={label} />
             ))}
           </div>
-          <div className="mt-4 flex w-full items-center justify-between">
-            <h1 className="max-w-[680px] text-[48px] leading-[110%] font-medium tracking-[-0.6px]">
+          <div className="mt-4 flex w-full items-center justify-between lg:flex-row flex-col gap-4">
+            <h1 className="max-w-[680px] lg:text-[48px] text-[32px] leading-[110%] font-medium tracking-[-0.6px]">
               AI native trust infrastructure for{" "}
               <span className="font-geist-pixel-circle vertical-bottom inline-grid overflow-hidden text-[#0088D4]">
                 <AnimatePresence mode="wait">
@@ -124,9 +124,9 @@ export default function HeroSection() {
               </span>{" "}
               at scale
             </h1>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6 ">
               <div className="max-w-[435px]">
-                <p className="font-inter text-[16px] leading-[1.3] tracking-[-0.4px] text-[#1a1a1a]/80">
+                <p className="font-inter text-[16px]  leading-[1.3] tracking-[-0.4px]  text-[#1a1a1a]/80">
                   Transforming users into verified identities boosts security
                   and trust. This process should be seamless, ensuring swift
                   onboarding while safeguarding our community.
@@ -156,7 +156,9 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-[328px_1fr]">
+          <div className=" lg:block hidden">
           <FingerprintCard />
+          </div>
           <HeroSectionDashboardCard/>
         </div>
       </LayoutWrapper>

@@ -45,13 +45,13 @@ export default function FAQ() {
   return (
     <section className="w-full bg-white py-21">
       <div className="mx-auto max-w-[768px] px-4">
-        {/* Header Title */}
-        <h2 className="font-geist text-center text-[40px] font-normal leading-[120%] tracking-[0px] text-[#0F172A]">
+      
+        <h2 className="font-geist lg:text-center text-[26px] font-medium lg:text-[40px] max-md:max-w-[209px] leading-[120%] tracking-[0px] text-[#0F172A]">
           Frequently Asked Questions
         </h2>
 
-        {/* Accordion List */}
-        <div className="mt-12 flex flex-col gap-3">
+      
+        <div className="lg:mt-12 mt-8 flex flex-col gap-3">
           {faqData.map((item, index) => {
             const isOpen = openIndex === index;
 
@@ -62,15 +62,14 @@ export default function FAQ() {
                 className="cursor-pointer rounded-lg bg-[#F1F5F9] p-6 transition-colors duration-300 hover:bg-[#E2E8F0]"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <h3 className="font-geist text-[20px] font-medium leading-[120%] tracking-[0px] text-[#0F172A]">
+                  <h3 className="font-geist text-[16px] lg:text-[20px] font-medium leading-[120%] tracking-[0px] text-[#0F172A]">
                     {item.question}
                   </h3>
 
-                  {/* Animated Plus / Minus Icon */}
+                 
                   <div className="relative flex h-4 w-4 shrink-0 items-center justify-center">
-                    {/* Horizontal bar (always present) */}
+                
                     <span className="absolute h-[2px] w-full rounded-full bg-[#0F172A]" />
-                    {/* Vertical bar (rotates and fades out when open) */}
                     <span
                       className={`absolute h-full w-[2px] rounded-full bg-[#0F172A] transition-transform duration-300 ease-in-out ${
                         isOpen ? "rotate-90 scale-0" : "rotate-0 scale-100"
@@ -79,7 +78,6 @@ export default function FAQ() {
                   </div>
                 </div>
 
-                {/* Smooth Grid-based Collapse/Expand Container */}
                 <div
                   className={`grid transition-all duration-300 ease-in-out ${
                     isOpen
@@ -88,7 +86,7 @@ export default function FAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="font-inter max-w-[560px] text-[16px] font-normal leading-[130%] tracking-[-0.5px] text-[#475569]">
+                    <p className="font-inter text-[14px] lg:max-w-[560px] lg:text-[16px] font-normal leading-[130%] tracking-[-0.5px] text-[#475569]">
                       {item.answer}
                     </p>
                   </div>

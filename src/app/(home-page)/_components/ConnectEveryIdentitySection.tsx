@@ -30,7 +30,7 @@ const FEATURES_DATA: FeatureItem[] = [
     tag: 'Device and behavior',
     title: 'Spot suspicious behavior from onboarding to payments',
     description:
-      'Behavioral signals uncover early signs of fraud, without adding friction.',
+      'Proprietary device and behavioral signals uncover early signs of fraud, without adding friction.',
     icon: <Smartphone className="h-5 w-5 text-white" />,
     imgSrc: 'https://images.pexels.com/photos/7241592/pexels-photo-7241592.jpeg',
     ACCORDION_DATA: [
@@ -156,26 +156,29 @@ export default function ConnectEveryIdentitySection() {
 
   return (
     <div className="min-h-screen w-full bg-[#E9F1FF]">
-      <div className="py-30">
+      <div className="py-8 lg:py-30">
         <LayoutWrapper>
-          <div className="flex w-full items-end justify-between">
-            <h2 className="font-geist max-w-[660px] text-[48px] leading-[115%] font-medium tracking-tight text-black">
+       
+          <div className="flex flex-col lg:flex-row items-start gap-4 lg:gap-6 w-full lg:items-end lg:justify-between">
+            <h2 className="font-geist max-w-[660px] text-[24px] sm:text-[28px] lg:text-[48px] leading-[115%] font-medium tracking-tight text-black">
               Connect every identity signal to one governed trust layer.
             </h2>
             <button
               type="button"
-              className="font-geist inline-flex h-10 items-center justify-center gap-2.5 rounded-md bg-white/40 px-5 py-3 text-[14px] font-medium text-[#1a1a1a]/80 backdrop-blur-sm transition-colors hover:bg-white/60 active:scale-[0.98]"
+              className="font-geist inline-flex h-9 sm:h-10 items-center justify-center gap-2.5 rounded-md bg-white/40 px-4 sm:px-5 py-2.5 text-[13px] sm:text-[14px] font-medium text-[#1a1a1a]/80 backdrop-blur-sm transition-colors hover:bg-white/60 active:scale-[0.98]"
             >
               <Phone className="h-4 w-4" strokeWidth={2} />
               Contact us
             </button>
           </div>
 
+   
           <div
             ref={containerRef}
-            className="mt-12 flex h-full w-full gap-3 relative items-start"
+            className="mt-6 lg:mt-12 flex flex-col lg:flex-row h-full w-full gap-6 lg:gap-3 relative items-start"
           >
-            <div className="flex-1 rounded-[10px] sticky top-[5%] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)] h-[700px] overflow-hidden relative">
+      
+            <div className="hidden lg:block flex-1 rounded-[10px] sticky top-[5%] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)] h-[700px] overflow-hidden relative">
               <Image
                 src={activeImage}
                 alt="Active Feature Visual"
@@ -185,7 +188,7 @@ export default function ConnectEveryIdentitySection() {
               />
             </div>
 
-            <div className="flex h-full w-full flex-1 flex-col gap-3">
+            <div className="flex h-full w-full flex-1 flex-col gap-8 lg:gap-3">
               {FEATURES_DATA.map((feature) => {
                 const isSectionVisible = activeFeatureId === feature.id;
 
@@ -193,43 +196,46 @@ export default function ConnectEveryIdentitySection() {
                   <div
                     key={feature.id}
                     data-id={feature.id}
-                    className="feature-card w-full rounded-[10px] border border-[#F4F2F1] bg-[#F8FAFC] h-[700px] p-6 flex flex-col justify-between"
+                    className="feature-card flex flex-col w-full"
                   >
-                    <div className="flex flex-col gap-4 py-4">
-                      <p className="text-[14px] font-geist-pixel-circle text-alpha-light-1000 tracking-[1.2px] uppercase leading-[100%]">
-                        {feature.tag}
-                      </p>
-
-                      <h4 className="text-2xl leading-[110%] max-w-[400px] text-alpha-light-1000">
-                        {feature.title}
-                      </h4>
-                      <p className="max-w-[60%] text-base leading-relaxed text-neutral-600">
-                        {feature.description}
-                      </p>
-                    </div>
-
-                    <div className="relative my-4 block h-[300px] w-full overflow-hidden rounded-lg lg:hidden">
+                    <div className="block lg:hidden relative w-full aspect-[4/3] mb-3 overflow-hidden rounded-[16px] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)]">
                       <Image
                         src={isSectionVisible ? activeImage : feature.imgSrc}
                         alt={feature.title}
                         fill
-                        className="h-full w-full object-cover transition-all duration-300"
+                        className="object-cover transition-all duration-300"
                       />
                     </div>
 
-                    <div className="mt-4">
-                      <FeatureAccordion
-                        data={feature.ACCORDION_DATA}
-                        isParentActive={isSectionVisible}
-                        onAccordionChange={(index) => {
-                          const targetImage =
-                            feature.ACCORDION_DATA[index]?.imgSrc ||
-                            feature.imgSrc;
-                          if (targetImage) {
-                            setActiveImage(targetImage);
-                          }
-                        }}
-                      />
+                    <div className="w-full rounded-[16px] lg:rounded-[10px] border border-[#F4F2F1] bg-[#F8FAFC] p-4 lg:h-[700px] lg:flex lg:flex-col lg:justify-between">
+                      {/* Text Header */}
+                      <div className="flex flex-col gap-2.5 lg:gap-4 lg:py-4">
+                        <p className="text-[11px] sm:text-[13px] font-geist-pixel-circle text-neutral-400 tracking-[1.5px] uppercase leading-[100%]">
+                          {feature.tag}
+                        </p>
+
+                        <h3 className="text-[20px] sm:text-2xl font-medium leading-[115%] lg:leading-[110%] text-black lg:max-w-[400px]">
+                          {feature.title}
+                        </h3>
+                        <p className="text-[13px] sm:text-base leading-relaxed text-neutral-500 lg:max-w-[80%]">
+                          {feature.description}
+                        </p>
+                      </div>
+
+                      <div className="mt-5 lg:mt-4">
+                        <FeatureAccordion
+                          data={feature.ACCORDION_DATA}
+                          isParentActive={isSectionVisible}
+                          onAccordionChange={(index) => {
+                            const targetImage =
+                              feature.ACCORDION_DATA[index]?.imgSrc ||
+                              feature.imgSrc;
+                            if (targetImage) {
+                              setActiveImage(targetImage);
+                            }
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 );

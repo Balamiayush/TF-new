@@ -31,9 +31,9 @@ export default function HeroSectionDashboardCard() {
   }, [activeIndex]);
 
   return (
-    <div className="flex h-[420px] flex-col overflow-hidden rounded-lg bg-white/50 p-1 backdrop-blur-xl lg:h-[518px] mb-[50px]">
+    <div className="flex h-[420px] flex-col overflow-hidden rounded-lg bg-white/50 p-1  lg:h-[518px] mb-[50px]">
 
-      <div className="flex w-full items-center border-b border-[#1a1a1a]/[0.06]">
+      <div className="lg:flex hidden w-full items-center border-b border-[#1a1a1a]/[0.06] ">
         {TABS.map((tab, index) => (
           <DashboardTab
             key={tab.label}
@@ -46,7 +46,7 @@ export default function HeroSectionDashboardCard() {
       </div>
 
  
-      <div className="relative flex-1 overflow-hidden bg-[#5e93da]">
+      <div className="relative flex-1 overflow-hidden rounded-lg bg-[#5e93da]">
         <motion.div
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}

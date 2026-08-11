@@ -188,7 +188,7 @@ export default function ScaleSection() {
               el.innerText = `${formattedVal}${stat.suffix}`;
             },
           },
-          0.1 // Slight position offset from 0s mark so numbers count along with the grid fill
+          0.1
         );
       });
     },
@@ -196,54 +196,54 @@ export default function ScaleSection() {
   );
 
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-screen w-full overflow-hidden bg-white"
-    >
-      <div
-        ref={svgWrapperRef}
-        className="pointer-events-none absolute right-0 bottom-0 z-0 h-full w-full origin-bottom-right"
-      >
-        <PixelGridSvg className="h-full w-full object-cover" />
-      </div>
+   <section
+  ref={containerRef}
+  className="relative  lg:min-h-screen min-h-[526px] w-full overflow-hidden bg-white max-lg:pt-8"
+>
+  <div
+    ref={svgWrapperRef}
+    className="pointer-events-none absolute right-0 bottom-0 z-0  origin-bottom-right "
+  >
+    <PixelGridSvg className="h-full w-full object-cover pointer-events-none z-0  origin-bottom-right" />
+  </div>
 
-      <div className="relative z-10 flex min-h-screen flex-col justify-center py-20">
-        <LayoutWrapper>
-          <div className="max-w-[720px]">
-            <h2 className="font-geist text-[48px] leading-[110%] font-medium tracking-[-0.6px]">
-              <span className="animated-heading-dark text-[#0F172A]">
-                Run at any scale.{" "}
-              </span>
-              <span className="animated-heading-light text-[#64748B]">
-                Production-grade for your team and agents.
-              </span>
-            </h2>
+  <div className="relative z-10 flex lg:min-h-screen flex-col  lg:py-20">
+    <LayoutWrapper>
+      <div className="lg:max-w-[720px]">
+        <h2 className="font-geist max-lg:max-w-[300px] text-[26px] lg:text-[48px] leading-[110%] font-medium tracking-[-0.6px]">
+          <span className="animated-heading-dark text-[#0F172A]">
+            Run at any scale.{" "}
+          </span>
+          <span className="animated-heading-light text-[#64748B]">
+            Production-grade for your team and agents.
+          </span>
+        </h2>
 
-            <div className="mt-16 grid grid-cols-2 gap-x-12 gap-y-10">
-              {statsData.map((stat, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <div className="animated-indicator h-8 w-[3px] shrink-0 bg-[#2563EB]" />
+        <div className="mt-14 sm:mt-12 lg:mt-16 grid lg:grid-cols-2   gap-y-6  gap-x-12">
+          {statsData.map((stat, index) => (
+            <div key={index} className="flex items-start gap-3">
+              <div className="animated-indicator h-full w-[2px] shrink-0 bg-[#0088D4]" />
 
-                  <div>
-                    <span
-                      ref={(el) => {
-                        numbersRef.current[index] = el;
-                      }}
-                      className="animated-stat-title font-geist block text-[32px] leading-[100%] font-medium text-[#0F172A]"
-                    >
-                      0{stat.suffix}
-                    </span>
+              <div>
+                <span
+                  ref={(el) => {
+                    numbersRef.current[index] = el;
+                  }}
+                  className="animated-stat-title font-geist block text-[24px] lg:text-[32px] leading-[100%] font-medium text-[#0F172A]"
+                >
+                  0{stat.suffix}
+                </span>
 
-                    <p className="animated-stat-sub font-inter mt-1.5 text-[14px] leading-[120%] text-[#64748B]">
-                      {stat.label}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                <p className="animated-stat-sub font-inter mt-1.5 text-[14px] leading-[120%] text-[#64748B]">
+                  {stat.label}
+                </p>
+              </div>
             </div>
-          </div>
-        </LayoutWrapper>
+          ))}
+        </div>
       </div>
-    </section>
+    </LayoutWrapper>
+  </div>
+</section>
   );
 }

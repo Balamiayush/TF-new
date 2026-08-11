@@ -7,6 +7,8 @@ const FooterLogo = (props: SVGProps<SVGSVGElement>) => (
     height="125"
     fill="none"
     viewBox="0 0 1025 125"
+    {...props}
+    className={`w-full ${props.className}`}
   >
     <path
       fill="url(#paint0_linear_2011_2005)"

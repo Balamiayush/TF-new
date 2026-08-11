@@ -7,6 +7,7 @@ import builtForOperations from "@public/second-section-lottie/built-for-operatio
 import developer from "@public/second-section-lottie/developer.json";
 import multilevelOrchestration from "@public/second-section-lottie/multilevel-orchestration.json";
 import transparentPricing from "@public/second-section-lottie/transparent-pricing.json";
+
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 const streamlineData = [
@@ -42,10 +43,10 @@ const streamlineData = [
 
 export default function Streamline() {
   return (
-    <div className="relative w-full bg-white py-21">
-      <LayoutWrapper>
+    <div className="relative w-full bg-white lg:py-21">
+      <LayoutWrapper className="">
         <div className="flex flex-col gap-6">
-          <h1 className="max-w-[620px] text-[48px] leading-[110%] font-medium tracking-[-0.6px] text-black">
+          <h1 className="lg:max-w-[620px] text-[26px] max-w-[230px] lg:text-[48px] leading-[110%] font-medium tracking-[-0.6px] text-black">
             Streamline user verification from one dashboard.
           </h1>
           <p className="max-w-[554px] text-[16px] leading-[1.4] tracking-[-0.3px] text-gray-500">
@@ -54,27 +55,29 @@ export default function Streamline() {
             integration and audit trail.
           </p>
         </div>
+   </LayoutWrapper>
+   <LayoutWrapper className="pr-0! lg:pr-8! ">
 
-        <div className="mt-21 flex flex-col gap-3">
-          {/* Row 1 */}
-          <div className="flex flex-col gap-3 lg:flex-row">
+        <div className="mt-12 lg:mt-21 flex overflow-x-auto lg:overflow-x-visible space-x-3 lg:space-x-0 lg:flex-col lg:gap-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing pb-4 lg:pb-0">
+        
+          <div className="flex flex-row gap-3 lg:flex-row shrink-0 lg:shrink">
             {streamlineData.slice(0, 2).map((card, index) => (
               <div
                 key={index}
-                className="relative flex h-[266px] flex-1 justify-between overflow-hidden rounded-lg bg-[#F1F5F9] p-8"
+                className="relative flex w-[326px] h-[335px] shrink-0 flex-col justify-between overflow-hidden rounded-[8px] bg-[#F1F5F9] p-[16px] lg:w-auto lg:h-[266px] lg:flex-1 lg:flex-row lg:p-8 lg:shrink"
               >
                 <div className="z-10 flex flex-col justify-start">
-                  <h3 className="font-geist text-[24px] leading-[100%] font-medium tracking-[0.6px] text-[#1A1A1A]">
+                  <h3 className="font-geist text-[22px] lg:text-[24px] leading-[100%] font-medium tracking-[0.6px] text-[#1A1A1A]">
                     {card.title}
                   </h3>
                   <p
-                    className={`font-inter mt-[22px] ${card.maxwidth} text-[14px] leading-[130%] tracking-[-0.15px] text-[#1A1A1ABF]`}
+                    className={`font-inter mt-3 lg:mt-[22px] ${card.maxwidth} text-[14px] leading-[130%] tracking-[-0.15px] text-[#1A1A1ABF]`}
                   >
                     {card.desc}
                   </p>
                 </div>
 
-                <div className="absolute top-4 right-6 bottom-4 flex w-[208px] items-center justify-center">
+                <div className="relative mt-4 flex h-[200px] items-center justify-center self-center lg:absolute lg:right-6 lg:top-4 lg:bottom-4 lg:mt-0 lg:h-auto lg:w-[208px]">
                   <Lottie
                     animationData={card.lottie}
                     loop={true}
@@ -85,25 +88,27 @@ export default function Streamline() {
             ))}
           </div>
 
-          {/* Row 2 */}
-          <div className="flex flex-col gap-3 lg:flex-row">
+    
+          <div className="flex flex-row gap-3 lg:flex-row shrink-0 lg:shrink">
             {streamlineData.slice(2, 5).map((card, index) => (
               <div
                 key={index}
-                className={`${index === 0 ? "w-[504px]" : "flex-1"} relative flex h-[266px] justify-between overflow-hidden rounded-lg bg-[#F1F5F9] p-8`}
+                className={`relative flex w-[326px] h-[335px] shrink-0 flex-col justify-between overflow-hidden rounded-[8px] bg-[#F1F5F9] p-[16px] lg:h-[266px] lg:flex-row lg:p-8 lg:shrink ${
+                  index === 0 ? "lg:w-[504px]" : "lg:flex-1"
+                }`}
               >
                 <div className="z-10 flex flex-col justify-start">
                   <h3 className="font-geist text-[24px] leading-[100%] font-medium tracking-[0.6px] text-[#1A1A1A]">
                     {card.title}
                   </h3>
                   <p
-                    className={`font-inter mt-[22px] ${card.maxwidth} text-[14px] leading-[130%] tracking-[-0.15px] text-[#1A1A1ABF]`}
+                    className={`font-inter mt-3 lg:mt-[22px] ${card.maxwidth} text-[14px] leading-[130%] tracking-[-0.15px] text-[#1A1A1ABF]`}
                   >
                     {card.desc}
                   </p>
                 </div>
 
-                <div className="absolute top-4 right-6 bottom-4 flex w-[208px] items-center justify-center">
+                <div className="relative mt-4 flex h-[160px] w-full items-center justify-center self-center lg:absolute lg:right-6 lg:top-4 lg:bottom-4 lg:mt-0 lg:h-auto lg:w-[208px]">
                   <Lottie
                     animationData={card.lottie}
                     loop={true}
@@ -114,7 +119,8 @@ export default function Streamline() {
             ))}
           </div>
         </div>
-      </LayoutWrapper>
+   
+   </LayoutWrapper>
     </div>
   );
 }
