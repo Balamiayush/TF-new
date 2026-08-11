@@ -48,10 +48,10 @@ export default function LeadershipTeam() {
   };
 
   return (
-<section className="w-full bg-white py-12 md:py-[84px]">
+    <section className="w-full bg-white py-12 md:py-[84px]">
       <LayoutWrapper>
         <div className="flex flex-col gap-6 md:gap-10">
-          <h3 className="font-geist text-[28px] font-medium leading-[114%] tracking-[-0.3px] text-slate-900 md:text-[48px]">
+          <h3 className="font-geist text-[28px] leading-[114%] font-medium tracking-[-0.3px] text-slate-900 md:text-[48px]">
             Leadership Team
           </h3>
 
@@ -65,12 +65,13 @@ export default function LeadershipTeam() {
                   className="group relative flex w-full flex-col overflow-hidden rounded-xl bg-slate-900 text-white"
                 >
                   <div className="relative h-[335px] w-full overflow-hidden md:h-[340px]">
-                    {/* Smooth Image Zoom & Blur */}
                     <motion.div
                       className="absolute inset-0 h-full w-full"
                       animate={{
                         scale: isExpanded ? 1.08 : 1,
-                        filter: isExpanded ? "blur(4px) grayscale(100%)" : "blur(0px) grayscale(100%)",
+                        filter: isExpanded
+                          ? "blur(4px) grayscale(100%)"
+                          : "blur(0px) grayscale(100%)",
                       }}
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     >
@@ -82,7 +83,6 @@ export default function LeadershipTeam() {
                       />
                     </motion.div>
 
-                    {/* Smooth Gradient Overlay */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"
                       animate={{
@@ -97,12 +97,11 @@ export default function LeadershipTeam() {
                           <p className="font-geist text-[18px] leading-tight text-white">
                             {member.name}
                           </p>
-                          <span className="font-geist inline-flex items-center rounded-[3px] bg-white/20 px-2 py-0.5 text-[11px] font-medium uppercase tracking-wider text-white backdrop-blur-md">
+                          <span className="font-geist inline-flex items-center rounded-[3px] bg-white/20 px-2 py-0.5 text-[11px] font-medium tracking-wider text-white uppercase backdrop-blur-md">
                             {member.title}
                           </span>
                         </div>
 
-                        {/* Animated Toggle Button with Smooth Rotation */}
                         <button
                           type="button"
                           onClick={() => toggleExpand(member.name)}
@@ -111,7 +110,10 @@ export default function LeadershipTeam() {
                         >
                           <motion.div
                             animate={{ rotate: isExpanded ? 45 : 0 }}
-                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{
+                              duration: 0.3,
+                              ease: [0.16, 1, 0.3, 1],
+                            }}
                             className="flex items-center justify-center"
                           >
                             <Image
@@ -124,14 +126,16 @@ export default function LeadershipTeam() {
                         </button>
                       </div>
 
-                      {/* Smooth Collapsible Bio Section */}
                       <AnimatePresence>
                         {isExpanded && (
                           <motion.div
                             initial={{ opacity: 0, y: 15, height: 0 }}
                             animate={{ opacity: 1, y: 0, height: "auto" }}
                             exit={{ opacity: 0, y: 10, height: 0 }}
-                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{
+                              duration: 0.35,
+                              ease: [0.16, 1, 0.3, 1],
+                            }}
                             className="flex h-full w-full flex-col justify-between gap-3 overflow-hidden pt-4"
                           >
                             <p className="font-geist text-alpha-dark-900 text-[14px] leading-[130%]">
