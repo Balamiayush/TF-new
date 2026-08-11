@@ -22,7 +22,7 @@ export default function BuiltInNepalSection() {
               Built in Nepal. <br />
               Trusted at national scale.
             </h2>
-            <div className="lg:hidde w relative block aspect-square w-full overflow-hidden rounded-2xl bg-slate-900 lg:h-[752px]">
+            <div className="lg:hidden relative block aspect-square w-full overflow-hidden rounded-2xl bg-slate-900 lg:h-[752px]">
               <Image
                 alt="Third Factor AI Team - Built in Nepal"
                 fill
