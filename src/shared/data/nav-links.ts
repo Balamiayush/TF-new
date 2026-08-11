@@ -16,8 +16,8 @@ export const navLinks: NavItem[] = [
   },
   
   {
-    id: "company",
-    label: "Company",
-    href: '/company',
+    id: "about",
+    label: "About",
+    href: '/about',
   },
 ];
