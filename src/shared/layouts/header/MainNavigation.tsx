@@ -60,7 +60,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
         variants={headerVariants}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className=" sticky top-0 z-50 w-full min-h-[68px] py-4.5 bg-white"
+        className=" sticky top-0 z-50 w-full min-h-[68px] py-4.5 bg-[#F9FAFB]"
       >
         <LayoutWrapper>
           <nav className="flex w-full items-center justify-between">
@@ -142,7 +142,6 @@ export default function MainNavigation({ children }: MainNavigationProps) {
         </LayoutWrapper>
       </motion.header>
 
-      {/* Mobile Drawer Navigation */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -150,7 +149,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="fixed inset-0 z-40 pt-[80px] pb-8 px-6 flex flex-col justify-between lg:hidden overflow-y-auto"
+            className="fixed inset-0 z-40 h-fit bg-alpha-dark-1000 pt-[80px] pb-8 px-6 flex flex-col justify-between lg:hidden overflow-y-auto"
           >
             <div className="flex flex-col gap-4 mt-4">
               {navLinks.map((link) => (
