@@ -5,9 +5,7 @@ import Image from "next/image";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 
 export default function LeadershipTeam() {
-  const [expandedId, setExpandedId] = useState<string | null>(
-    "Sojan Prajapati",
-  );
+  const [expandedId, setExpandedId] = useState<string | null>("");
 
   const data = [
     {
@@ -85,7 +83,7 @@ export default function LeadershipTeam() {
 
                     <div className="absolute inset-0 z-10 flex flex-col justify-between p-5">
                       <div className="flex items-start justify-between">
-                        <div className="flex flex-col items-start gap-1">
+                        <div className="flex flex-col items-start gap-2">
                           <p className="font-geist text-[18px] leading-tight text-white">
                             {member.name}
                           </p>
@@ -97,22 +95,18 @@ export default function LeadershipTeam() {
                         <button
                           type="button"
                           onClick={() => toggleExpand(member.name)}
-                          className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-transform active:scale-90"
+                          className="flex h-8 w-8 items-center justify-center rounded-full bg-alpha-dark-200 text-white backdrop-blur-md transition-transform active:scale-90"
                           aria-label="Toggle bio details"
                         >
                           {isExpanded ? (
-                            <svg
-                              className="h-4 w-4 stroke-white"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="2"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M6 18L18 6M6 6l12 12"
+                            <div className="">
+                              <Image
+                              alt=""
+                              width={30}
+                              height={30}
+                              src={'https://res.cloudinary.com/dfajjqglx/image/upload/v1786471089/plus-large_add_large_kchgm2.svg'}
                               />
-                            </svg>
+                            </div>
                           ) : (
                             <svg
                               className="h-4 w-4 stroke-white"

@@ -1,6 +1,7 @@
-import React from 'react';
-import Integrate, { StepsDataType } from './IntegrateSection';
+
+import Integrate from './IntegrateSection';
 import IntegrateMobile from './IntegrateMobile';
+import { StepsDataType } from "./type";
 
 export default function IntegrateMain() {
   const stepsData: StepsDataType[] = [

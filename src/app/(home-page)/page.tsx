@@ -7,7 +7,7 @@ import Infrastructure from "./_components/InfrastructureSection";
 import ReadAllStories from "./_components/ReadAllStoriesSection";
 import ScaleSection from "./_components/ScaleSectionSection";
 import Streamline from "./_components/StreamlineSection";
-import TrustedBy from "./TrustedBy";
+import TrustedBy from "./_components/TrustedBy";
 import StartVerifyingSection from "./_components/StartVerifyingSection";
 import IntegrateMain from "./_components/integrate-section/IntegrateMain";
 

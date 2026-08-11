@@ -3,17 +3,8 @@
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { IntegrateProps } from "./type";
 
-export interface StepsDataType {
-  id: string;
-  title: string;
-  description: string;
-  imgSrc: string;
-}
-
-interface IntegrateProps {
-  stepsData: StepsDataType[];
-}
 
 export default function IntegrateMobile({ stepsData }: IntegrateProps) {
   const [activeTab, setActiveTab] = useState(0);
