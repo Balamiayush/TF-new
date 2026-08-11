@@ -23,7 +23,6 @@ export default function TrustedBy() {
         <div className="flex w-full flex-col items-center justify-center gap-6">
           <Label as="Label L">Trusted by</Label>
 
-          {/* ================= MOBILE MARQUEE ================= */}
           <div className="relative flex w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] md:hidden">
             <div className="flex shrink-0 animate-marquee items-center gap-8 pr-8">
               {organizations.map((item) => (
@@ -38,7 +37,6 @@ export default function TrustedBy() {
               ))}
             </div>
 
-            {/* Duplicated track for infinite seamless loop */}
             <div className="flex shrink-0 animate-marquee items-center gap-8 pr-8" aria-hidden="true">
               {organizations.map((item) => (
                 <div key={`m2-${item.name}`} className="relative h-[32px] w-[90px] shrink-0">
@@ -53,7 +51,6 @@ export default function TrustedBy() {
             </div>
           </div>
 
-          {/* ================= DESKTOP GRID / FLEX ================= */}
           <div className="hidden w-full lg:flex-nowrap flex-wrap items-center justify-center gap-8 lg:gap-10 md:flex">
             {organizations.map((item) => (
               <div
