@@ -4,6 +4,7 @@ import OurMission from './_components/OurMissionSection'
 import TimelineSection from './_components/TimelineSection'
 import LeadershipTeam from './_components/LeadershipTeam'
 import BuiltInNepalSection from './_components/BuiltInNepalSection'
+import FAQ from '../(home-page)/_components/FAQSection'
 
 export default function page() {
   return (
@@ -13,6 +14,7 @@ export default function page() {
 <TimelineSection/>
 <LeadershipTeam/>
 <BuiltInNepalSection/>
+<FAQ/>
     </div>
   )
 }

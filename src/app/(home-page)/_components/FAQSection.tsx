@@ -43,7 +43,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="w-full bg-white py-21">
+    <section className="w-full bg-white py-12 lg:py-21">
       <div className="mx-auto max-w-[768px] px-4">
       
         <h2 className="font-geist lg:text-center text-[26px] font-medium lg:text-[40px] max-md:max-w-[209px] leading-[120%] tracking-[0px] text-[#0F172A]">
@@ -59,7 +59,7 @@ export default function FAQ() {
               <div
                 key={item.id}
                 onClick={() => toggleAccordion(index)}
-                className="cursor-pointer rounded-lg bg-[#F1F5F9] p-6 transition-colors duration-300 hover:bg-[#E2E8F0]"
+                className="cursor-pointer rounded-lg bg-[#F1F5F9] lg:p-6 p-4 transition-colors duration-300 hover:bg-[#E2E8F0]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="font-geist text-[16px] lg:text-[20px] font-medium leading-[120%] tracking-[0px] text-[#0F172A]">
