@@ -56,7 +56,7 @@ export default function LeadershipTeam() {
             Leadership Team
           </h3>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-[16px] lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:gap-[16px] lg:grid-cols-4">
             {data.map((member) => {
               const isExpanded = expandedId === member.name;
 
@@ -70,9 +70,7 @@ export default function LeadershipTeam() {
                       alt={member.name}
                       fill
                       className={`object-cover grayscale transition-all duration-300 ${
-                        isExpanded
-                          ? "scale-105 opacity-30 blur-[3px]"
-                          : "opacity-85 group-hover:scale-105 group-hover:opacity-40 group-hover:blur-[2px]"
+                        isExpanded ? "scale-105 opacity-80 blur-[3px]" : ""
                       }`}
                       src={member.imgSrc}
                     />
@@ -133,18 +131,18 @@ export default function LeadershipTeam() {
                       </div>
 
                       {isExpanded && (
-                        <div className="mt-auto flex flex-col gap-3 pt-4 transition-all duration-300">
-                          <p className="font-geist text-[13px] leading-[140%] text-slate-200">
+                        <div className="mt-6 flex h-full w-full flex-col justify-between gap-3 pt-4 transition-all duration-300 lg:mt-8">
+                          <p className="font-geist text-alpha-dark-900 text-[14px] leading-[130%]">
                             {member.bio}
                           </p>
                           <a
                             href={member.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-geist inline-flex items-center gap-1.5 text-[13px] font-medium text-white transition-opacity hover:opacity-80"
+                            className="font-geist text-alpha-dark-900 inline-flex items-center gap-1.5 text-[16px] transition-opacity hover:opacity-80"
                           >
                             <svg
-                              className="h-3.5 w-3.5 fill-current"
+                              className="h-5 w-5 fill-current"
                               viewBox="0 0 24 24"
                             >
                               <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />

@@ -49,11 +49,10 @@ export default function TimelineSection() {
     offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-68%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-35%"]);
 
   return (
     <section ref={targetRef} className="relative bg-[#F4F6FB] md:h-[300vh]">
-      {/* ---------------- MOBILE LAYOUT (Vertical Layout matching design image) ---------------- */}
       <div className="block px-4 py-12 md:hidden">
         <LayoutWrapper>
           <h3 className="font-geist mb-8 text-[24px] leading-[1.2] font-medium tracking-[-0.6px] text-slate-900">
@@ -106,7 +105,6 @@ export default function TimelineSection() {
         </LayoutWrapper>
       </div>
 
-      {/* ---------------- DESKTOP LAYOUT (Unchanged Horizontal Scroll Animation) ---------------- */}
       <div className="sticky top-0 flex hidden h-screen w-full flex-col justify-between overflow-hidden py-[72px] md:block">
         <LayoutWrapper>
           <h3 className="font-geist text-[24px] leading-[1.2] font-medium tracking-[-0.6px] text-slate-900">
@@ -157,7 +155,7 @@ function TimelineBlock({
   const opacity = useTransform(
     scrollYProgress,
     [inputStart, inputMidStart, inputMidEnd, inputEnd],
-    [0.35, 1, 1, 0.35],
+    [0.35, 1, 1, 1],
   );
 
   return (
