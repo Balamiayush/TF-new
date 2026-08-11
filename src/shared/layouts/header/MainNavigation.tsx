@@ -60,11 +60,10 @@ export default function MainNavigation({ children }: MainNavigationProps) {
         variants={headerVariants}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className=" fixed top-0 z-50 w-full min-h-[68px] py-4.5 bg-transparent"
+        className=" sticky top-0 z-50 w-full min-h-[68px] py-4.5 bg-transparent"
       >
         <LayoutWrapper>
           <nav className="flex w-full items-center justify-between">
-            {/* Logo and Desktop Links */}
             <div className="flex items-center gap-12">
               <Link href="/" className="relative flex items-center shrink-0">
                 <Image
@@ -77,7 +76,6 @@ export default function MainNavigation({ children }: MainNavigationProps) {
                 />
               </Link>
 
-              {/* Desktop Navigation Links */}
               <div className="hidden lg:flex w-full items-center gap-1">
                 {navLinks.map((link) => (
                   <Link key={link.id} href={link.href ?? "/"}>
