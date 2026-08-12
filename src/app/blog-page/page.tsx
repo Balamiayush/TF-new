@@ -93,7 +93,7 @@ export default function page() {
       <LayoutWrapper>
         {/* Header Content */}
         <div className="flex flex-col items-start gap-[32px] pt-6 pb-8">
-          <Button variant="tertiary">
+          <Button href="/blog" variant="tertiary">
             <ArrowIcon className="rotate-180" strokeWidth={2} />
             Back
           </Button>

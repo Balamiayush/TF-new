@@ -2,6 +2,7 @@ import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import Button from "@/shared/ui/buttons/Button";
 import CardCom from "@/shared/ui/card/CardCom";
 import Image from "next/image";
+import Link from "next/link";
 
 interface BlogPost {
   id: number;
@@ -18,7 +19,8 @@ interface FeaturedCardProps {
 
 function FeaturedCard({ post, reversed = false }: FeaturedCardProps) {
   return (
-    <div className="group flex cursor-pointer flex-col justify-between rounded-[8px] border border-slate-200 bg-white p-2 transition-all duration-300 hover:bg-slate-100 hover:translate-y-[-2.5%] md:col-span-2 md:flex-row md:gap-6">
+    <Link href={'/blog-page'} className="group flex cursor-pointer flex-col justify-between rounded-[8px] border border-slate-200 bg-white p-2 transition-all duration-300 hover:bg-slate-100 hover:translate-y-[-2.5%] md:col-span-2 md:flex-row md:gap-6">
+
       <div
         className={`relative h-[240px] w-full overflow-hidden rounded-[6px] border border-black/5 md:h-full md:w-1/2 ${
           reversed ? "max-md:order-1" : ""
@@ -41,7 +43,7 @@ function FeaturedCard({ post, reversed = false }: FeaturedCardProps) {
           <div className="font-inter text-[14px] font-medium text-slate-500">
             {post.category}
           </div>
-          <h3 className="font-geist mt-3 text-[20px] font-medium leading-[130%] tracking-[-0.3px] text-slate-900 transition-colors group-hover:text-blue-600 lg:text-[22px]">
+          <h3 className="font-geist mt-3 text-[20px] font-medium leading-[130%] tracking-[-0.3px] text-slate-900 transition-colors  lg:text-[22px]">
             {post.title}
           </h3>
         </div>
@@ -52,7 +54,8 @@ function FeaturedCard({ post, reversed = false }: FeaturedCardProps) {
             </div>
         </div>
       </div>
-    </div>
+   
+    </Link>
   );
 }
 

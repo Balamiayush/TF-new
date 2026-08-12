@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function AboutHeroSection() {
   return (
-<div className='  w-full h-[728px] relative  bg-[#EDF4FF]  '>
+<div className='  w-full h-[800px] lg:h-[728px] relative  bg-[#EDF4FF]  '>
         <LayoutWrapper>
             <div className=" w-full h-full flex lg:flex-row flex-col-reverse lg:items-end justify-between">
                   <div className='flex flex-col gap-4 lg:gap-8'>

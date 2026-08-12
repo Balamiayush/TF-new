@@ -46,7 +46,7 @@ export default function HeroSectionDashboardCard() {
       </div>
 
  
-      <div className="relative flex-1 overflow-hidden  bg-[#5e93da]">
+      <div className="relative flex-1 overflow-hidden  bg-[#5e93da] max-lg:rounded-[6px] max-lg:border border-alpha-dark-500 max-lg:p-2">
         <motion.div
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}

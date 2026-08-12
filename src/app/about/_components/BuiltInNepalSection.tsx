@@ -4,7 +4,7 @@ import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 
 export default function BuiltInNepalSection() {
   return (
-    <section className="h-full w-full py-[84px]">
+    <section className="h-full w-full lg:py-[84px]">
       <LayoutWrapper>
         <div className="flex flex-col gap-12">
           <div className="relative hidden aspect-square w-full overflow-hidden rounded-2xl bg-slate-900 md:block lg:h-[718px]">
