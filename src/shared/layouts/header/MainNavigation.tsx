@@ -159,7 +159,6 @@ export default function MainNavigation({ children }: MainNavigationProps) {
               </div>
 
               <div className="flex items-center gap-2">
-                {/* Country Dropdown Container */}
                 <div className="relative">
                   <button
                     type="button"
