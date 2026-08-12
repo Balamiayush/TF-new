@@ -52,7 +52,7 @@ export default function HeroSection() {
   };
 
   return (
-<div className="relative isolate min-h-screen w-full overflow-hidden bg-[#fafcff] ">
+<div className="relative isolate min-h-screen w-full overflow-hidden bg-[#fafcff] pt-12">
   <div
     aria-hidden
     className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[820px] lg:block"
