@@ -160,7 +160,7 @@ export default function page() {
           />
 
      
-          <div className="group flex cursor-pointer flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md md:col-span-2 md:flex-row  md:gap-6">
+          <div className="group flex cursor-pointer flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4  transition-all duration-300  md:col-span-2 md:flex-row  md:gap-6">
             <div className="flex flex-1 flex-col justify-between py-2 max-md:order-2 max-md:mt-4">
               <div>
                 <div className="font-inter text-[13px] font-medium text-slate-500">
