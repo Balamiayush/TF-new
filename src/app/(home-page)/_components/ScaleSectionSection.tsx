@@ -210,7 +210,7 @@ export default function ScaleSection() {
       <div className="relative z-10 flex lg:min-h-screen flex-col lg:py-20">
         <LayoutWrapper>
           <div className="lg:max-w-[720px]">
-            <h2 className="font-geist max-lg:max-w-[300px] text-[26px] lg:text-[48px] leading-[110%] font-medium tracking-[-0.6px]">
+            <h2 className="font-geist max-lg:max-w-[300px] text-[26px] lg:text-[42px] leading-[110%] font-medium tracking-[-0.6px]">
               <span className="animated-heading-dark text-[#0F172A]">
                 Run at any scale.{" "}
               </span>
