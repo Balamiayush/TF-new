@@ -125,7 +125,7 @@ export default function page() {
 
         <div className="blog-cards-container mt-12 grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* Row 1: Featured Left */}
-          <div className="group flex cursor-pointer flex-col justify-between rounded-2xl border border-slate-200 bg-white p-2 md:col-span-2 md:flex-row md:items-center md:gap-6">
+          <div className="group flex cursor-pointer flex-col justify-between rounded-2xl border border-slate-200 bg-white p-2 md:col-span-2 md:flex-row md:gap-6">
             <div className="relative h-[240px] w-full overflow-hidden rounded-xl border border-black/5 md:h-full md:w-1/2">
               <Image
                 src={blogPosts[0].image}
@@ -160,7 +160,7 @@ export default function page() {
           />
 
      
-          <div className="group flex cursor-pointer flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md md:col-span-2 md:flex-row md:items-center md:gap-6">
+          <div className="group flex cursor-pointer flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md md:col-span-2 md:flex-row  md:gap-6">
             <div className="flex flex-1 flex-col justify-between py-2 max-md:order-2 max-md:mt-4">
               <div>
                 <div className="font-inter text-[13px] font-medium text-slate-500">

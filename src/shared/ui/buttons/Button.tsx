@@ -1,4 +1,5 @@
-import { ComponentPropsWithoutRef, PropsWithChildren, ReactNode } from "react";
+import Link from "next/link";
+import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
@@ -21,7 +22,7 @@ const buttonClasses = tv({
       contactus: " bg-white/60 text-[#1A1A1ACC]",
     },
     hasRightIcon: {
-      true: "pr-[6px]", 
+      true: "pr-[6px]",
       false: "pr-5",
     },
   },
@@ -33,12 +34,21 @@ const buttonClasses = tv({
 
 type ButtonVariants = VariantProps<typeof buttonClasses>;
 
-type ButtonProps = {
+type BaseProps = {
   variant?: ButtonVariants["variant"];
   showArrow?: boolean;
-  hasRightIcon?: boolean; 
-} & PropsWithChildren &
-  ComponentPropsWithoutRef<"button">;
+  hasRightIcon?: boolean;
+  link?: string;
+} & PropsWithChildren;
+
+// Omit 'href' from Next.js Link props to prevent duplicate declaration
+type AnchorProps = Omit<ComponentPropsWithoutRef<typeof Link>, "href"> & {
+  href?: string;
+};
+
+type ButtonProps = BaseProps &
+  Omit<ComponentPropsWithoutRef<"button">, "href"> &
+  AnchorProps;
 
 export default function Button({
   variant = "primary",
@@ -46,25 +56,47 @@ export default function Button({
   hasRightIcon,
   className,
   children,
+  href,
+  link,
   ...otherProps
 }: ButtonProps) {
   const isRightIconActive = hasRightIcon ?? showArrow;
+  const targetUrl = href || link;
+
+  const combinedClasses = buttonClasses({
+    variant,
+    hasRightIcon: isRightIconActive,
+    className,
+  });
+
+  const content = (
+    <>
+      <span className="inline-flex items-center gap-2.5 whitespace-nowrap">
+        {children}
+      </span>
+      {showArrow && <DropdownArrow />}
+    </>
+  );
+
+  if (targetUrl) {
+    return (
+      <Link
+        href={targetUrl}
+        className={combinedClasses}
+        {...(otherProps as Omit<ComponentPropsWithoutRef<typeof Link>, "href">)}
+      >
+        {content}
+      </Link>
+    );
+  }
 
   return (
     <button
       type="button"
-      className={buttonClasses({
-        variant,
-        hasRightIcon: isRightIconActive,
-        className,
-      })}
-      {...otherProps}
+      className={combinedClasses}
+      {...(otherProps as ComponentPropsWithoutRef<"button">)}
     >
-      <span className="inline-flex items-center gap-2.5 whitespace-nowrap">
-        {children}
-      </span>
-
-      {showArrow && <DropdownArrow />}
+      {content}
     </button>
   );
 }

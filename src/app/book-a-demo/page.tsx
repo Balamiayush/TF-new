@@ -14,9 +14,8 @@ export default function page() {
   <div className="bg-brand-50 min-h-[800px] w-full pb-16 lg:pb-24">
       <LayoutWrapper>
         <div className="flex w-full flex-col items-center justify-between gap-12 lg:flex-row lg:items-start lg:gap-8">
-          {/* Left Column Text & Stats */}
           <div className="mt-8 max-w-[578px] lg:mt-[104px]">
-            {/* Top Labels */}
+           
             <div className="hidden gap-1 pb-10 lg:flex">
               {labels.map((label, index) => (
                 <div key={index} className="flex items-center gap-1">
@@ -28,7 +27,6 @@ export default function page() {
               ))}
             </div>
 
-            {/* Main Heading & Subtitle */}
             <div className="max-w-[568px]">
               <h1 className="text-[32px] font-medium leading-[114%] text-[#007BE5] sm:text-[40px] sm:text-nowrap lg:text-[48px]">
                 The identity <br className="hidden sm:inline" /> intelligence layer{" "}
@@ -42,7 +40,6 @@ export default function page() {
               </p>
             </div>
 
-            {/* Stats Metrics */}
             <div className="flex flex-wrap items-center gap-6 pt-10 sm:gap-[72px] lg:pt-[146px]">
               <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-1.5">
@@ -82,7 +79,6 @@ export default function page() {
             </div>
           </div>
 
-          {/* Right Column Form Container */}
           <div className="mt-6 w-full  bg-white p-4  sm:p-8 lg:mt-[64px] lg:w-[648px]">
             <ContactForm />
           </div>
