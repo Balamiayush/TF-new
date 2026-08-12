@@ -138,7 +138,7 @@ html.lenis, html.lenis body {
 body {
   font-family: var(--font-geist-sans);
   font-weight: 400;
-  color: #000;  will-change: transform;
+  color: #000;  
 
 }
 

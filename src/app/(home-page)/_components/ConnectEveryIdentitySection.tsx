@@ -1,11 +1,13 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useEffect, useRef, useState, ReactNode } from 'react';
-import { Fingerprint, Phone, ScanFace, Smartphone } from 'lucide-react';
+import Image from "next/image";
+import { useEffect, useRef, useState, ReactNode } from "react";
+import { Fingerprint, ScanFace, Smartphone } from "lucide-react";
 
-import LayoutWrapper from '@/shared/layouts/wrapper/LayoutWrapper';
-import FeatureAccordion from './FeatureAccordion';
+import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
+import FeatureAccordion from "./FeatureAccordion";
+import Button from "@/shared/ui/buttons/Button";
+import PhoneIcon from "@/shared/icons/PhoneIcon";
 
 type AccordionItem = {
   id: number;
@@ -27,87 +29,93 @@ type FeatureItem = {
 const FEATURES_DATA: FeatureItem[] = [
   {
     id: 1,
-    tag: 'Device and behavior',
-    title: 'Spot suspicious behavior from onboarding to payments',
+    tag: "Device and behavior",
+    title: "Spot suspicious behavior from onboarding to payments",
     description:
-      'Proprietary device and behavioral signals uncover early signs of fraud, without adding friction.',
+      "Proprietary device and behavioral signals uncover early signs of fraud, without adding friction.",
     icon: <Smartphone className="h-5 w-5 text-white" />,
-    imgSrc: 'https://images.pexels.com/photos/7241592/pexels-photo-7241592.jpeg',
+    imgSrc:
+      "https://images.pexels.com/photos/7241592/pexels-photo-7241592.jpeg",
     ACCORDION_DATA: [
       {
         id: 1,
-        title: 'Face Detection',
+        title: "Face Detection",
         description:
-          'Confirms a real, clearly visible face is present before verification begins.',
+          "Confirms a real, clearly visible face is present before verification begins.",
       },
       {
         id: 2,
-        title: 'Liveness Detection',
+        title: "Liveness Detection",
         description:
-          'Active and passive checks prove the face belongs to a live, present person.',
+          "Active and passive checks prove the face belongs to a live, present person.",
       },
       {
         id: 3,
-        title: 'Face Matching',
-        description: 'Matches the detected face against the document.',
+        title: "Face Matching",
+        description: "Matches the detected face against the document.",
       },
     ],
   },
   {
     id: 2,
-    tag: 'Identity Verification',
-    title: 'Verify real identities in milliseconds',
-    description: 'Automated document scanning and face matching',
+    tag: "Identity Verification",
+    title: "Verify real identities in milliseconds",
+    description: "Automated document scanning and face matching",
     icon: <ScanFace className="h-5 w-5 text-white" />,
-    imgSrc: 'https://images.pexels.com/photos/9799395/pexels-photo-9799395.jpeg',
+    imgSrc:
+      "https://images.pexels.com/photos/9799395/pexels-photo-9799395.jpeg",
     ACCORDION_DATA: [
       {
         id: 1,
-        title: 'Document Verification & OCR',
+        title: "Document Verification & OCR",
         description:
-          'Reads official documents — including handwritten Nepali document.',
-        imgSrc: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
+          "Reads official documents — including handwritten Nepali document.",
+        imgSrc:
+          "https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg",
       },
       {
         id: 2,
-        title: '1:1 Face Match',
+        title: "1:1 Face Match",
         description:
-          'Confirms the live person is the same person on the submitted document.',
-        imgSrc: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
+          "Confirms the live person is the same person on the submitted document.",
+        imgSrc:
+          "https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg",
       },
       {
         id: 3,
-        title: '1:N Face Match',
+        title: "1:N Face Match",
         description:
-          'Compares one face against many to detect duplicates, fraud rings, and repeat applicants.',
-        imgSrc: 'https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg',
+          "Compares one face against many to detect duplicates, fraud rings, and repeat applicants.",
+        imgSrc:
+          "https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg",
       },
     ],
   },
   {
     id: 3,
-    tag: 'Compliance & Security',
-    title: 'Stay compliant with ever-changing regulations',
+    tag: "Compliance & Security",
+    title: "Stay compliant with ever-changing regulations",
     description:
-      'Bank-grade infrastructure built to scale effortlessly across jurisdictions.',
+      "Bank-grade infrastructure built to scale effortlessly across jurisdictions.",
     icon: <Fingerprint className="h-5 w-5 text-white" />,
-    imgSrc: 'https://images.pexels.com/photos/35182045/pexels-photo-35182045.jpeg',
+    imgSrc:
+      "https://images.pexels.com/photos/35182045/pexels-photo-35182045.jpeg",
     ACCORDION_DATA: [
       {
         id: 1,
-        title: 'KYC / AML / PEP Screening',
-        description: 'Automated checks against sanction, PEP data.',
+        title: "KYC / AML / PEP Screening",
+        description: "Automated checks against sanction, PEP data.",
       },
       {
         id: 2,
-        title: 'On-Prem & Zero Data Retention',
-        description: 'Fully self-hosted and stateless.',
+        title: "On-Prem & Zero Data Retention",
+        description: "Fully self-hosted and stateless.",
       },
       {
         id: 3,
-        title: 'Audit-Ready by Design',
+        title: "Audit-Ready by Design",
         description:
-          'Every verification and decision is logged with a human-in-the-loop trail.',
+          "Every verification and decision is logged with a human-in-the-loop trail.",
       },
     ],
   },
@@ -121,14 +129,14 @@ export default function ConnectEveryIdentitySection() {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-20% 0px -40% 0px',
+      rootMargin: "-20% 0px -40% 0px",
       threshold: 0.2,
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const sectionId = entry.target.getAttribute('data-id');
+          const sectionId = entry.target.getAttribute("data-id");
           if (sectionId) {
             const numericId = Number(sectionId);
             setActiveFeatureId(numericId);
@@ -144,9 +152,9 @@ export default function ConnectEveryIdentitySection() {
 
     const observer = new IntersectionObserver(
       observerCallback,
-      observerOptions
+      observerOptions,
     );
-    const cards = containerRef.current?.querySelectorAll('.feature-card');
+    const cards = containerRef.current?.querySelectorAll(".feature-card");
     cards?.forEach((card) => observer.observe(card));
 
     return () => {
@@ -158,27 +166,21 @@ export default function ConnectEveryIdentitySection() {
     <div className="min-h-screen w-full bg-[#E9F1FF]">
       <div className="py-8 lg:py-30">
         <LayoutWrapper>
-       
-          <div className="flex flex-col lg:flex-row items-start gap-4 lg:gap-6 w-full lg:items-end lg:justify-between">
-            <h2 className="font-geist max-w-[660px] text-[24px] sm:text-[28px] lg:text-[48px] leading-[115%] font-medium tracking-tight text-black">
+          <div className="flex w-full flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-6">
+            <h2 className="font-geist max-w-[660px] text-[24px] leading-[115%] font-medium tracking-tight text-black sm:text-[28px] lg:text-[48px]">
               Connect every identity signal to one governed trust layer.
             </h2>
-            <button
-              type="button"
-              className="font-geist inline-flex h-9 sm:h-10 items-center justify-center gap-2.5 rounded-md bg-white/40 px-4 sm:px-5 py-2.5 text-[13px] sm:text-[14px] font-medium text-[#1a1a1a]/80 backdrop-blur-sm transition-colors hover:bg-white/60 active:scale-[0.98]"
-            >
-              <Phone className="h-4 w-4" strokeWidth={2} />
+            <Button variant="contactus">
+              <PhoneIcon />
               Contact us
-            </button>
+            </Button>
           </div>
 
-   
           <div
             ref={containerRef}
-            className="mt-6 lg:mt-12 flex flex-col lg:flex-row h-full w-full gap-6 lg:gap-3 relative items-start"
+            className="relative mt-6 flex h-full w-full flex-col items-start gap-6 lg:mt-12 lg:flex-row lg:gap-3"
           >
-      
-            <div className="hidden lg:block flex-1 rounded-[10px] sticky top-[5%] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)] h-[700px] overflow-hidden relative">
+            <div className="relative sticky top-[5%] hidden h-[700px] flex-1 overflow-hidden rounded-[10px] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)] lg:block">
               <Image
                 src={activeImage}
                 alt="Active Feature Visual"
@@ -196,9 +198,9 @@ export default function ConnectEveryIdentitySection() {
                   <div
                     key={feature.id}
                     data-id={feature.id}
-                    className="feature-card flex flex-col w-full"
+                    className="feature-card flex w-full flex-col"
                   >
-                    <div className="block lg:hidden relative w-full aspect-[4/3] mb-3 overflow-hidden rounded-[16px] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)]">
+                    <div className="relative mb-3 block aspect-[4/3] w-full overflow-hidden rounded-[16px] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)] lg:hidden">
                       <Image
                         src={isSectionVisible ? activeImage : feature.imgSrc}
                         alt={feature.title}
@@ -207,17 +209,17 @@ export default function ConnectEveryIdentitySection() {
                       />
                     </div>
 
-                    <div className="w-full rounded-[16px] lg:rounded-[10px] border border-[#F4F2F1] bg-[#F8FAFC] p-4 lg:h-[700px] lg:flex lg:flex-col lg:justify-between">
+                    <div className="w-full rounded-[16px] border border-[#F4F2F1] bg-[#F8FAFC] p-4 lg:flex lg:h-[700px] lg:flex-col lg:justify-between lg:rounded-[10px]">
                       {/* Text Header */}
                       <div className="flex flex-col gap-2.5 lg:gap-4 lg:py-4">
-                        <p className="text-[11px] sm:text-[13px] font-geist-pixel-circle text-neutral-400 tracking-[1.5px] uppercase leading-[100%]">
+                        <p className="font-geist-pixel-circle text-[11px] leading-[100%] tracking-[1.5px] text-neutral-400 uppercase sm:text-[13px]">
                           {feature.tag}
                         </p>
 
-                        <h3 className="text-[20px] sm:text-2xl font-medium leading-[115%] lg:leading-[110%] text-black lg:max-w-[400px]">
+                        <h3 className="text-[20px] leading-[115%] font-medium text-black sm:text-2xl lg:max-w-[400px] lg:leading-[110%]">
                           {feature.title}
                         </h3>
-                        <p className="text-[13px] sm:text-base leading-relaxed text-neutral-500 lg:max-w-[80%]">
+                        <p className="text-[13px] leading-relaxed text-neutral-500 sm:text-base lg:max-w-[80%]">
                           {feature.description}
                         </p>
                       </div>

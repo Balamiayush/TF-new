@@ -6,7 +6,9 @@ export default function AboutHeroSection() {
   return (
 <div className='  w-full h-screen relative flex bg-[#EDF4FF] items-center  '>
         <LayoutWrapper>
-            <div className="w-full h-[356px] lg:hidden"></div>
+            <div className="w-full h-[356px] lg:hidden">
+                <video src="" autoPlay loop muted></video>
+            </div>
             <div className='flex flex-col gap-4 lg:gap-8'>
                 <h2 className=' text-[32px] lg:text-[48px]  font-medium max-w-[699px] leading-[1.2]'>Humans at the Center. Compliance at the Foundation</h2>
                 <div className=' flex flex-col gap-6 '>

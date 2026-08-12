@@ -13,7 +13,7 @@ const floatingImages = [
     id: 1,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "KYC Mobile Screen",
-    className: "top-[10%] left-[8%] w-[150px] h-[100px] lg:w-[] lg:h-[ ",
+    className: "top-[10%] left-[8%] w-[150px] h-[100px] lg:w-[307px] lg:h-[203px] ",
     speed: 25,
    
   },
@@ -21,7 +21,7 @@ const floatingImages = [
     id: 2,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "Document Verification",
-    className: "top-[15%] right-[6%] w-[150px] h-[100px] lg:w-[] lg:h-[ ",
+    className: "top-[15%] right-[6%] w-[150px] h-[100px] lg:w-[305px] lg:h-[200px]",
     speed: 30,
    
   },
@@ -29,7 +29,7 @@ const floatingImages = [
     id: 3,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "Liveness Capture",
-    className: "bottom-[12%] left-[6%] w-[150px] h-[100px] lg:w-[] lg:h-[",
+    className: "bottom-[12%] left-[6%] w-[150px] h-[100px] lg:w-[197px] lg:h-[138px]",
     speed: 35,
   
   },
@@ -37,7 +37,7 @@ const floatingImages = [
     id: 4,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "Face Verification",
-    className: "bottom-[0%] left-[45%] hidden lg:block -translate-x-1/2 w-[157px] h-[100px] lg:w-[] lg:h-[",
+    className: "bottom-[0%] left-[45%] hidden lg:block -translate-x-1/2 w-[157px] h-[100px] lg:w-[197px] lg:h-[138px]",
     speed: 30,
     
   },
@@ -45,7 +45,7 @@ const floatingImages = [
     id: 5,
     src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
     alt: "Dashboard Verification Stream",
-        className: "bottom-[0%] right-3  w-[157px] h-[100px] lg:w-[] lg:h-[",
+        className: "bottom-[0%] right-3  w-[157px] h-[100px] lg:w-[217px] lg:h-[202px]",
 
     speed: 25,
   
@@ -63,7 +63,7 @@ export default function StartVerifyingSection() {
         const speed = parseFloat(card.dataset.speed || "0");
 
         gsap.to(card, {
-          yPercent: -speed * 2,
+          yPercent: -speed * 3,
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
