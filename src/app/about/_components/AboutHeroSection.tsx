@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function AboutHeroSection() {
   return (
-<div className='  w-full h-[800px] lg:h-[728px] relative  bg-[#EDF4FF]  '>
+<div className='  w-full min-h-screen lg:min-h-[800px] relative  bg-[#EDF4FF]  '>
      <Image
             alt="gitter"
             fill
@@ -13,7 +13,7 @@ export default function AboutHeroSection() {
             src={"/gitter.png"}
           />
         <LayoutWrapper>
-            <div className="w-full h-full flex lg:flex-row flex-col-reverse lg:items-end justify-between py-12">
+            <div className="w-full h-full flex lg:flex-row flex-col-reverse lg:items-end justify-between py-21 lg:py-12">
                   <div className='flex flex-col gap-4 lg:gap-8'>
                 <h2 className=' text-[32px] lg:text-[48px]  font-medium md:max-w-[500px] lg:max-w-[699px] leading-[1.2]'>Humans at the Center. Compliance at the Foundation</h2>
                 <div className=' flex flex-col gap-6 '>
