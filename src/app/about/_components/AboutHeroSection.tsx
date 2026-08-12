@@ -9,7 +9,7 @@ export default function AboutHeroSection() {
      <Image
             alt="gitter"
             fill
-            className="pointer-events-none absolute h-full w-full object-cover"
+            className="pointer-events-none absolute z-[-1] h-full w-full object-cover"
             src={"/gitter.png"}
           />
         <LayoutWrapper>

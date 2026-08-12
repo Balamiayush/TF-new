@@ -43,7 +43,7 @@ export default function ReadAllStories() {
       <Image
         alt="gitter"
         fill
-        className="pointer-events-none absolute h-full w-full object-cover"
+        className="pointer-events-none  z-[-1] absolute h-full w-full object-cover"
         src={"/gitter.png"}
       />
       <LayoutWrapper>
