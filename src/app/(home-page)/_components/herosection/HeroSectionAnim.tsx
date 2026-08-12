@@ -5,7 +5,6 @@ import React, { useRef, useState } from "react";
 import { Fingerprint } from "lucide-react";
 
 export  function FingerprintCard() {
-  // Nested horizontal ellipses that share a common vertical center create a wireframe globe.
   const globeRings = [
     { w: 302, h: 302 },
     { w: 302, h: 244.5 },
@@ -42,14 +41,12 @@ export  function FingerprintCard() {
       onPointerMove={followPointer}
       onPointerLeave={() => setPupilOffset({ x: 0, y: 0 })}
     >
-      {/* Lower castle-crenellation base — soft blue, extends far beyond bounds */}
       <img
         src="/images/hero/fingerprint-globe.svg"
         alt=""
         aria-hidden
         className="pointer-events-none absolute bottom-[-41px] left-1/2 h-[217px] w-[555%] max-w-none -translate-x-1/2"
       />
-      {/* Small white teeth pattern overlay */}
       <img
         src="/images/hero/fingerprint-bottom.svg"
         alt=""
@@ -82,7 +79,6 @@ export  function FingerprintCard() {
         </div>
       </div>
 
-      {/* Fingerprint pill at bottom */}
       <div className="absolute bottom-6 left-1/2 flex h-[109px] w-[306px] -translate-x-1/2 items-center justify-end rounded-full border-[1.2px] border-slate-200 bg-white/70 py-1.5 pr-[7px] pl-[196px] backdrop-blur-xl">
         <div className="flex h-[97px] w-[127px] items-center justify-center rounded-full border border-slate-200 bg-white">
           <Fingerprint className="h-16 w-16 text-slate-700" strokeWidth={1.5} />

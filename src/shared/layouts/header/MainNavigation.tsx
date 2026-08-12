@@ -99,7 +99,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
 
   return (
     <>
-      <div className="sticky top-0 left-0 right-0 z-50 w-full pointer-events-none">
+      <div className="fixed top-0 left-0 right-0 z-50 w-full pointer-events-none">
         <motion.header
           variants={headerVariants}
           animate={hidden ? "hidden" : "visible"}
@@ -139,7 +139,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
                   <button
                     type="button"
                     onClick={() => setCountryDropdownOpen((prev) => !prev)}
-                    className="flex h-10 items-center gap-1 cursor-pointer select-none focus:outline-none"
+                  className="flex h-10 items-center gap-1 cursor-pointer select-none focus:outline-none bg-alpha-dark-500 border border-white shadow-[0px_4px_8px_0px_#FFFFFF33_inset] p-3"
                   >
                     <p className="text-[14px] leading-[110%] text-gray-900">{selectedCountry.code}</p>
                     <div className="relative h-4 w-4">

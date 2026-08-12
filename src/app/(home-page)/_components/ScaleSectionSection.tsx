@@ -154,21 +154,21 @@ export default function ScaleSection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
-          start: "top 75%", 
-          once: true, 
+          start: "top 75%",
+          once: true,
           toggleActions: "play none none none",
-          end:"bottom bottom",
-          scrub:0.5,
         },
       });
 
+      // SVG path fill animation
       tl.to("#fillSvg path", {
         fill: "#2563EB",
-
-        stagger: { each: 0.1, from: "end" }, 
-        ease: "power2.inOut",
+        stagger: { each: 0.008, from: "end" },
+        duration: 0,
+        ease: "expo",
       });
 
+      // Counter animation
       statsData.forEach((stat, idx) => {
         const el = numbersRef.current[idx];
         if (!el) return;
@@ -178,8 +178,8 @@ export default function ScaleSection() {
           obj,
           {
             val: stat.targetValue,
-            duration: 1.5,
-            ease: "power1.out",
+            duration: 1.8,
+            ease: "power2.out",
             onUpdate: () => {
               const formattedVal =
                 stat.targetValue % 1 !== 0
@@ -188,7 +188,7 @@ export default function ScaleSection() {
               el.innerText = `${formattedVal}${stat.suffix}`;
             },
           },
-          0.1
+          "<+=0.1" // Starts slightly after the SVG fill animation begins
         );
       });
     },
@@ -196,54 +196,54 @@ export default function ScaleSection() {
   );
 
   return (
-   <section
-  ref={containerRef}
-  className="relative  lg:min-h-screen min-h-[526px] w-full overflow-hidden bg-white max-lg:pt-8"
->
-  <div
-    ref={svgWrapperRef}
-    className="pointer-events-none absolute right-0 bottom-0 z-0  origin-bottom-right "
-  >
-    <PixelGridSvg className="h-full w-full object-cover pointer-events-none z-0  origin-bottom-right" />
-  </div>
-
-  <div className="relative z-10 flex lg:min-h-screen flex-col  lg:py-20">
-    <LayoutWrapper>
-      <div className="lg:max-w-[720px]">
-        <h2 className="font-geist max-lg:max-w-[300px] text-[26px] lg:text-[48px] leading-[110%] font-medium tracking-[-0.6px]">
-          <span className="animated-heading-dark text-[#0F172A]">
-            Run at any scale.{" "}
-          </span>
-          <span className="animated-heading-light text-[#64748B]">
-            Production-grade for your team and agents.
-          </span>
-        </h2>
-
-        <div className="mt-14 sm:mt-12 lg:mt-16 grid lg:grid-cols-2   gap-y-6  gap-x-12">
-          {statsData.map((stat, index) => (
-            <div key={index} className="flex items-start gap-3">
-              <div className="animated-indicator h-full w-[2px] shrink-0 bg-[#0088D4]" />
-
-              <div>
-                <span
-                  ref={(el) => {
-                    numbersRef.current[index] = el;
-                  }}
-                  className="animated-stat-title font-geist block text-[24px] lg:text-[32px] leading-[100%] font-medium text-[#0F172A]"
-                >
-                  0{stat.suffix}
-                </span>
-
-                <p className="animated-stat-sub font-inter mt-1.5 text-[14px] leading-[120%] text-[#64748B]">
-                  {stat.label}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+    <section
+      ref={containerRef}
+      className="relative lg:min-h-screen min-h-[526px] w-full overflow-hidden bg-white max-lg:pt-8"
+    >
+      <div
+        ref={svgWrapperRef}
+        className="pointer-events-none absolute right-0 bottom-0 z-0 origin-bottom-right"
+      >
+        <PixelGridSvg className="h-full w-full object-cover pointer-events-none z-0 origin-bottom-right" />
       </div>
-    </LayoutWrapper>
-  </div>
-</section>
+
+      <div className="relative z-10 flex lg:min-h-screen flex-col lg:py-20">
+        <LayoutWrapper>
+          <div className="lg:max-w-[720px]">
+            <h2 className="font-geist max-lg:max-w-[300px] text-[26px] lg:text-[48px] leading-[110%] font-medium tracking-[-0.6px]">
+              <span className="animated-heading-dark text-[#0F172A]">
+                Run at any scale.{" "}
+              </span>
+              <span className="animated-heading-light text-[#64748B]">
+                Production-grade for your team and agents.
+              </span>
+            </h2>
+
+            <div className="mt-14 sm:mt-12 lg:mt-16 grid lg:grid-cols-2 gap-y-6 gap-x-12">
+              {statsData.map((stat, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="animated-indicator h-full w-[2px] shrink-0 bg-[#0088D4]" />
+
+                  <div>
+                    <span
+                      ref={(el) => {
+                        numbersRef.current[index] = el;
+                      }}
+                      className="animated-stat-title font-geist block text-[24px] lg:text-[32px] leading-[100%] font-medium text-[#0F172A]"
+                    >
+                      0{stat.suffix}
+                    </span>
+
+                    <p className="animated-stat-sub font-inter mt-1.5 text-[14px] leading-[120%] text-[#64748B]">
+                      {stat.label}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </LayoutWrapper>
+      </div>
+    </section>
   );
 }

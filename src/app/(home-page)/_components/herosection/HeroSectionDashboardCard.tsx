@@ -31,9 +31,9 @@ export default function HeroSectionDashboardCard() {
   }, [activeIndex]);
 
   return (
-    <div className="flex h-[420px] flex-col overflow-hidden rounded-lg bg-white/50 p-1  lg:h-[518px] mb-[50px]">
+    <div className="flex h-[420px] relative z-1000 flex-col overflow-hidden rounded-lg bg-alpha-dark-400 p-1  lg:h-[518px] mb-[50px]  ">
 
-      <div className="lg:flex hidden w-full items-center border-b border-[#1a1a1a]/[0.06] ">
+      <div className="lg:flex hidden w-full items-center border-b border-[#1a1a1a]/[0.06] bg-alpha-dark-500 ">
         {TABS.map((tab, index) => (
           <DashboardTab
             key={tab.label}
@@ -46,7 +46,7 @@ export default function HeroSectionDashboardCard() {
       </div>
 
  
-      <div className="relative flex-1 overflow-hidden rounded-lg bg-[#5e93da]">
+      <div className="relative flex-1 overflow-hidden  bg-[#5e93da]">
         <motion.div
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
@@ -91,7 +91,7 @@ export function DashboardTab({
   return (
     <div
       onClick={onClick}
-      className="relative flex flex-1 items-center gap-2.5 border-r border-[#1a1a1a]/[0.06] px-4 py-3 last:border-r-0 bg-white/40 cursor-pointer overflow-hidden select-none"
+      className="relative flex flex-1 items-center gap-2.5 border-r border-[#1a1a1a]/[0.06] px-4 py-3 last:border-r-0 bg-alpha-dark-400  cursor-pointer overflow-hidden   "
     >
       {active && (
         <motion.div
@@ -99,7 +99,7 @@ export function DashboardTab({
           initial={{ width: '0%' }}
           animate={{ width: '100%' }}
           transition={{ duration: 5, ease: 'linear' }}
-          className="absolute inset-0 bg-white/80 pointer-events-none"
+          className="absolute inset-0 bg-white  pointer-events-none"
         />
       )}
 
@@ -113,7 +113,7 @@ export function DashboardTab({
 
       <span
         className={`relative z-10 font-inter text-[14px] leading-[1.3] tracking-[-0.4px] whitespace-nowrap transition-colors duration-300 ${
-          active ? 'text-[#0070ae]' : 'text-[#1a1a1a]/70'
+          active ? 'text-brand-600' : 'text-[#1a1a1a]/70'
         }`}
       >
         {label}
