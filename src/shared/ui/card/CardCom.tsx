@@ -17,7 +17,7 @@ interface CardComProps {
 export default function CardCom({ story, className = "" }: CardComProps) {
   return (
     <div
-      className={`group flex  shrink-0 cursor-pointer snap-start flex-col justify-between rounded-[8px] border border-slate-200 bg-slate-50 p-2 shadow-sm backdrop-blur-sm transition-all duration-300 md:w-full ${className}`}
+      className={`group flex shrink-0 cursor-pointer snap-start flex-col justify-between rounded-[8px] border border-slate-200 bg-slate-50 p-2 transition-all duration-300 md:w-full ${className}hover:bg-slate-100 hover:translate-y-[-2.5%]`}
     >
       <div>
         <div className="relative h-[256.5px] w-full overflow-hidden rounded-[6px] border border-black/5">
@@ -33,12 +33,12 @@ export default function CardCom({ story, className = "" }: CardComProps) {
         </div>
         <div className="flex flex-col p-3">
           {story?.category && (
-            <div className="font-inter text-[14px] font-medium leading-none text-slate-700">
+            <div className="font-inter text-[14px] leading-none font-medium text-slate-700">
               {story.category}
             </div>
           )}
 
-          <h3 className="font-geist mt-4 text-[18px] font-medium leading-[125%] tracking-[-0.3px] text-slate-900 transition-colors group-hover:text-blue-600">
+          <h3 className="font-geist mt-4 text-[18px] leading-[125%] font-medium tracking-[-0.3px] text-slate-900 transition-colors">
             {story?.title}
           </h3>
 

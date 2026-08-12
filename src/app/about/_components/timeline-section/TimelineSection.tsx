@@ -39,7 +39,7 @@ export default function TimelineSection({
         tl.fromTo(
           trackRef.current,
           { xPercent: 0 },
-          { xPercent: -35, duration: 1 },
+          { xPercent: -50, duration: 1 },
           0,
         );
 
@@ -93,7 +93,7 @@ export default function TimelineSection({
   return (
     <section
       ref={sectionRef}
-      className="relative hidden bg-[#F4F6FB] md:block md:h-[300vh]"
+      className="relative hidden bg-[#F4F6FB] lg:block md:h-[300vh]"
     >
       <div className="sticky -top-10 hidden min-h-screen w-full flex-col justify-between overflow-hidden py-[72px] md:flex">
         <LayoutWrapper>
@@ -135,8 +135,8 @@ function TimelineBlock({
   cardRef: (el: HTMLDivElement | null) => void;
 }) {
   return (
-    <div className="flex w-[680px] shrink-0 flex-col justify-center">
-      {/* Top Container Space */}
+    <div className="flex w-[952px] shrink-0 flex-col justify-center ">
+  
       {item.position === "top" ? (
         <div
           ref={cardRef}
@@ -152,7 +152,6 @@ function TimelineBlock({
         <div className="h-[310px]" />
       )}
 
-      {/* Progress Bar Container with Filling Track */}
       <div className="relative h-[56px] w-full overflow-hidden bg-slate-200/50">
         <div
           ref={barRef}
@@ -195,7 +194,7 @@ function TimelineCard({
 }) {
   return (
     <div
-      className={`flex h-[310px] w-[680px] flex-col ${
+      className={`flex h-[310px] w-[800px] flex-col ${
         isTop ? "justify-end pb-3" : "justify-start pt-3"
       }`}
     >
@@ -212,8 +211,8 @@ function TimelineCard({
         </h4>
       </div>
 
-      {/* White Card Container */}
-      <div className="flex h-[174px] w-[680px] items-center gap-[12px] rounded-[8px] border border-slate-200/60 bg-white p-[6px] shadow-sm">
+
+      <div className="flex h-[174px] w-[680px]  gap-[12px] rounded-[8px] border border-slate-200/60 bg-white p-[6px] ">
         {item.image && (
           <div className="relative h-[162px] w-[295px] shrink-0 overflow-hidden rounded-[6px]">
             <Image
@@ -224,7 +223,7 @@ function TimelineCard({
             />
           </div>
         )}
-        <p className="font-geist max-w-[345px] text-[14px] leading-[140%] tracking-[-0.2px] text-slate-600">
+        <p className="font-inter max-w-[345px] text-[14px] leading-[140%] tracking-[-0.2px] text-[#000000] p-2 text-[16px]">
           {item.description}
         </p>
       </div>

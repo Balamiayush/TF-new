@@ -64,7 +64,7 @@ export default function TImelineMobile({
   return (
     <div
       ref={wrapperRef}
-      className="block bg-[#F4F6FB] px-4 py-12 md:hidden"
+      className="block bg-[#F4F6FB] px-4 py-12 sm:px-6 md:px-8 lg:hidden"
     >
       <LayoutWrapper>
         <h3 className="font-geist mb-8 text-[24px] font-medium leading-[1.2] tracking-[-0.6px] text-slate-900">
@@ -72,7 +72,6 @@ export default function TImelineMobile({
         </h3>
 
         <div className="relative flex flex-col items-center">
-          {/* Continuous Vertical Timeline Line behind cards */}
           <div className="absolute top-0 bottom-0 z-0 flex w-[48px] flex-col items-center overflow-hidden">
             <div
               ref={(el) => {

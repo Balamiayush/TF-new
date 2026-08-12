@@ -48,14 +48,14 @@ export default function LeadershipTeam() {
   };
 
   return (
-    <section className="w-full bg-white py-12 md:py-[84px]">
+   <section className="w-full bg-white py-12 md:py-[84px]">
       <LayoutWrapper>
         <div className="flex flex-col gap-6 md:gap-10">
           <h3 className="font-geist text-[28px] leading-[114%] font-medium tracking-[-0.3px] text-slate-900 md:text-[48px]">
             Leadership Team
           </h3>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:gap-[16px] lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-[16px] lg:grid-cols-4">
             {data.map((member: any) => {
               const isExpanded = expandedId === member.name;
 
