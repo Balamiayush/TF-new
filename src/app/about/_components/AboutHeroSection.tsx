@@ -1,10 +1,17 @@
 import LayoutWrapper from '@/shared/layouts/wrapper/LayoutWrapper'
 import Button from '@/shared/ui/buttons/Button'
-import React from 'react'
+import Image from 'next/image'
+
 
 export default function AboutHeroSection() {
   return (
 <div className='  w-full h-[800px] lg:h-[728px] relative  bg-[#EDF4FF]  '>
+     <Image
+            alt="gitter"
+            fill
+            className="pointer-events-none absolute h-full w-full object-cover"
+            src={"/gitter.png"}
+          />
         <LayoutWrapper>
             <div className=" w-full h-full flex lg:flex-row flex-col-reverse lg:items-end justify-between">
                   <div className='flex flex-col gap-4 lg:gap-8'>

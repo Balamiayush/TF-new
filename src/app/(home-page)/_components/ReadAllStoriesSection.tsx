@@ -58,7 +58,8 @@ export default function ReadAllStories() {
         <div className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [scrollbar-width:none] md:grid md:grid-cols-2 md:overflow-visible md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
           {storiesData.map((story) => (
             <CardCom
-            story={story}
+              key={story.id}
+              story={story}
             />
           ))}
         </div>
