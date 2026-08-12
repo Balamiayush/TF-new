@@ -114,7 +114,7 @@ export default function Infrastructure() {
                   /* Changed h-[334px] -> min-h-[334px] h-auto on mobile so gaps don't cause text overflow */
                   className={`relative flex shrink-0 opacity-100 snap-start text-white overflow-hidden ${item.bgGradient}
                     w-[334px] min-h-[334px] h-auto rounded-[8px] p-4 flex-col justify-between
-                    lg:w-[880px] lg:h-[472px] lg:min-h-[472px] lg:rounded-2xl lg:p-0 lg:flex-row`}
+                    lg:w-[880px] lg:h-[472px] lg:min-h-[472px]  lg:p-0 lg:flex-row`}
                 >
                   {/* Content Box with your requested gap-8 */}
                   <div className="z-10 flex flex-col gap-8 h-full w-full lg:w-[480px] lg:p-10 lg:justify-between">
