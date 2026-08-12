@@ -200,7 +200,7 @@ export default function ConnectEveryIdentitySection() {
                     data-id={feature.id}
                     className="feature-card flex w-full flex-col"
                   >
-                    <div className="relative mb-3 block aspect-[4/3] w-full overflow-hidden rounded-[16px] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)] lg:hidden">
+                    <div className="relative mb-3 block aspect-[4/3] w-full overflow-hidden rounded-[10px] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)] lg:hidden">
                       <Image
                         src={isSectionVisible ? activeImage : feature.imgSrc}
                         alt={feature.title}
