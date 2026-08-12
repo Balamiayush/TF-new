@@ -126,7 +126,7 @@ export default function page() {
         <div className="blog-cards-container mt-12 grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* Row 1: Featured Left */}
           <div className="group flex cursor-pointer flex-col justify-between rounded-2xl border border-slate-200 bg-white p-2 md:col-span-2 md:flex-row md:gap-6">
-            <div className="relative h-[240px] w-full overflow-hidden rounded-xl border border-black/5 md:h-full md:w-1/2">
+            <div className="relative h-[240px] w-full overflow-hidden rounded-[6px] border border-black/5 md:h-full md:w-1/2">
               <Image
                 src={blogPosts[0].image}
                 alt={blogPosts[0].title}
@@ -174,7 +174,7 @@ export default function page() {
                 <span>{blogPosts[2].date}</span>
               </div>
             </div>
-            <div className="relative h-[240px] w-full overflow-hidden rounded-xl border border-black/5 max-md:order-1 md:h-full md:w-1/2">
+            <div className="relative h-[240px] w-full overflow-hidden rounded-[6px] border border-black/5 max-md:order-1 md:h-full md:w-1/2">
               <Image
                 src={blogPosts[2].image}
                 alt={blogPosts[2].title}
