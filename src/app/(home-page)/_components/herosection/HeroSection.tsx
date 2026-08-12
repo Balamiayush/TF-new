@@ -99,7 +99,11 @@ export default function HeroSection() {
         <div className="relative mt-15 lg:mt-26.5">
           <div className="lg:flex hidden gap-1 ">
             {labels.map((label, index) => (
-              <LablesButton key={index} label={label} />
+              // <LablesButton key={index} label={label} />
+              <div key={index} className=" flex items-center  gap-1">
+                <div className="w-2 h-2 bg-brand-200"></div>
+                <p className="text-xs  font-medium font-inter p-1.5">{label}</p>
+              </div>
             ))}
           </div>
           <div className="mt-4 flex w-full items-center justify-between lg:flex-row flex-col gap-4">

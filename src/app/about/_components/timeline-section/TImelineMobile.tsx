@@ -106,7 +106,7 @@ export default function TImelineMobile({
                 </div>
 
                 {/* Inner White Container */}
-                <div className="flex flex-col gap-[12px] rounded-[6px] border border-slate-100 bg-[var(--b-w-white,#FFFFFF)] p-2.5 shadow-sm">
+                <div className="flex flex-col gap-[12px] rounded-[6px] border border-slate-100 bg-[var(--b-w-white,#FFFFFF)] p-2.5 ">
                   {item.image && (
                     <div className="relative h-[135px] w-full shrink-0 overflow-hidden rounded-[4px]">
                       <Image
