@@ -1,9 +1,10 @@
 "use client";
+import React, { useRef, useState } from "react";
+
+import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
-import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
-import Image from "next/image";
-import React, { useRef, useState } from "react";
+import GitterImage from "@/shared/ui/GitterImg";
 
 const testimonials = [
   {
@@ -65,12 +66,7 @@ export default function Infrastructure() {
 
   return (
     <section className="relative w-full bg-[#EDF4FF47] pt-16 lg:pt-30 pb-16 lg:pb-20 overflow-hidden">
-      <Image
-        alt="gitter"
-        fill
-        className="w-full h-full absolute pointer-events-none object-cover z-0"
-        src={"/gitter.png"}
-      />
+     <GitterImage/>
       
       <div className="relative z-10">
         <LayoutWrapper>

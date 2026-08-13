@@ -93,13 +93,11 @@ export default function MainNavigation({ children }: MainNavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Country Selector Dropdown State
   const [countryDropdownOpen, setCountryDropdownOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<CountryOption>(
     countries[0],
   );
 
-  // Explicitly listen to window scroll
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
