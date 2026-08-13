@@ -79,16 +79,15 @@ export default function StickyProductSection() {
     >
       <LayoutWrapper>
         <div className="relative flex w-full flex-col justify-between gap-10 lg:flex-row lg:gap-12">
-          {/* Sticky Header / Controls Container */}
           <div className="top-10 flex w-full flex-col lg:sticky lg:h-full lg:max-w-[562px]">
             <h3
               ref={titleRef}
-              className="max-w-[498px] text-[28px] font-medium leading-[1.2] tracking-[-0.3px] text-black transition-all duration-300 sm:text-[36px] lg:text-[42px]"
+              className="max-w-[498px] text-[28px] font-medium leading-[1.2] tracking-[-0.3px] text-black transition-all duration-300  lg:text-[42px]"
             >
               {FEATURES[activeIndex].title}
             </h3>
 
-            {/* Pills Nav (Horizontal Scroll on Mobile / Wrap on Desktop) */}
+            
             <div className="mt-6 flex w-full gap-2 overflow-x-auto pb-2 scrollbar-none md:mt-8 lg:mt-[48px] lg:flex-wrap lg:overflow-visible lg:pb-0">
               {FEATURES.map((feature, idx) => {
                 const isActive = activeIndex === idx;
@@ -113,7 +112,6 @@ export default function StickyProductSection() {
             </div>
           </div>
 
-          {/* Cards Block Section */}
           <div className="flex w-full flex-col gap-6 sm:gap-8 lg:w-auto lg:gap-10">
             {FEATURES.map((feature, idx) => (
               <div

@@ -8,24 +8,27 @@ interface CardProps {
   description: string;
   className?: string;
   titleMaxWidth?: string;
+  descriptionMaxWidth?: string;
 }
 
-// Reusable Card Component
 const BacklogCard = ({
   title,
   description,
   className = "",
   titleMaxWidth = "",
+  descriptionMaxWidth = "",
 }: CardProps) => (
   <div
-    className={`flex  flex-col gap-5 rounded-[8px] border-[0.94px] border-slate-200 bg-white p-8 ${className}`}
+    className={`flex flex-col gap-5 rounded-[8px] border-[0.94px] border-slate-200 bg-white p-8 ${className} `}
   >
     <h4
-      className={`font-geist text-[24px] font-medium leading-[110%] text-black ${titleMaxWidth}`}
+      className={`font-geist text-[24px] leading-[110%] font-medium text-black ${titleMaxWidth}`}
     >
       {title}
     </h4>
-    <p className="font-inter text-alpha-light-800 max-w-[258px] text-[14px] leading-[130%] tracking-[-0.15px]">
+    <p
+      className={` ${descriptionMaxWidth} font-inter text-alpha-light-800 max-w-[258px] text-[14px] leading-[130%] tracking-[-0.15px]`}
+    >
       {description}
     </p>
   </div>
@@ -63,33 +66,34 @@ export default function BacklogsSection() {
     <div className="relative min-h-screen w-full py-12 md:py-16 lg:py-[120px]">
       <GitterImage />
       <LayoutWrapper>
-        <div className="flex w-full flex-col justify-between gap-6 sm:flex-row sm:items-end">
-          <h3 className="max-w-[498px] text-[28px] font-medium leading-[1.2] tracking-[-0.3px] text-black transition-all duration-300 sm:text-[36px] lg:text-[42px]">
-            Clear KYC backlogs with AI-assisted review
-          </h3>
-          <Button>Agentic AML Ops</Button>
-        </div>
+      <div className="flex lg:flex-row flex-col items-start  lg:justify-between  lg:items-end gap-6 ">
+  <h3 className="w-full text-[28px] font-medium leading-[1.2] tracking-[-0.3px] text-black lg:max-w-[498px] lg:text-[42px]">
+    Clear KYC backlogs with AI-assisted review
+  </h3>
+  <Button >Agentic AML Ops</Button>
+</div>
 
-     
         <div className="mt-12 flex w-full flex-col gap-5 lg:flex-row lg:gap-2">
-      
           <BacklogCard
             title={cards[0].title}
             description={cards[0].description}
-            titleMaxWidth=""
+            titleMaxWidth="max-w-[203px]"
             className="lg:h-[420px]"
           />
 
-          <div className="flex flex-col flex-1 gap-2">
+          <div className="flex flex-1 flex-col gap-2">
             <BacklogCard
               title={cards[1].title}
               description={cards[1].description}
+              titleMaxWidth="max-w-[203px]"
               className="lg:h-[206px]"
+              descriptionMaxWidth="lg:max-w-[365px]"
             />
             <BacklogCard
               title={cards[2].title}
               description={cards[2].description}
               className="lg:h-[206px]"
+              descriptionMaxWidth="lg:max-w-[315px]"
             />
           </div>
 
