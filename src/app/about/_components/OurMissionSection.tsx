@@ -64,7 +64,7 @@ export default function OurMission() {
                   delay: 0.2,
                   ease: [0.25, 1, 0.5, 1],
                 }}
-                className="relative h-[137px] w-[243px] w-full overflow-hidden rounded-lg lg:h-[356px]"
+                className="relative h-[137px]  w-[243px] overflow-hidden rounded-lg lg:h-[356px]"
               >
                 <Image
                   src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg"
@@ -77,7 +77,7 @@ export default function OurMission() {
           </div>
 
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center lg:gap-10">
-            <div className="flex max-w-[540px] flex-col gap-4">
+            <div className="flex max-w-[540px] flex-col gap-4  relative">
               <h2 className="font-geist text-[32px] leading-[115%] font-medium tracking-[-0.3px] text-slate-900">
                 Our Vision
               </h2>
@@ -102,7 +102,7 @@ export default function OurMission() {
               }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-              className="relative h-[240px] w-full shrink-0 overflow-hidden rounded-lg bg-[#FF62DC] md:w-[320px]"
+              className="relative h-[240px] w-[283px] shrink-0 overflow-hidden rounded-lg bg-[#FF62DC] md:w-[320px] max-md:left-25"
             >
               <Image
                 src="https://images.pexels.com/photos/1092671/pexels-photo-1092671.jpeg"
