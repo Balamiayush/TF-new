@@ -15,6 +15,7 @@ const CATEGORIES: Category[] = [
   { id: 4, name: "AI", count: 10 },
   { id: 5, name: "Security", count: 10 },
   { id: 6, name: "Product", count: 10 },
+  { id: 7, name: "Case Studies", count: 10 },
 ];
 
 const BLOG_POSTS: BlogPost[] = [

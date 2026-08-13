@@ -45,15 +45,15 @@ export default function ProductionHero() {
                 </p>
               </div>
             </div>
-            <div className="email-address mt-12 flex h-[52px] w-full max-w-[442px] items-center justify-between bg-white p-1.5 pl-6 shadow-[inset_0px_4px_8px_0px_#FFFFFF33]">
+           <div className="email-address mt-12 flex h-[52px] w-full max-w-[442px] items-center justify-between bg-white p-1.5 pl-6 shadow-[inset_0px_4px_8px_0px_#FFFFFF33]">
               <input
                 type="email"
                 placeholder="Your email address"
-                className="w-full bg-transparent text-[14px] font-medium text-slate-400 placeholder:text-[#94A3B8] focus:outline-none"
+                className="w-full bg-transparent text-[14px] font-medium text-slate-950 placeholder:text-[#94A3B8] focus:outline-none"
               />
               <Button>Contact us</Button>
             </div>
-            <div className="mt-10 flex flex-col gap-4 lg:mt-30">
+            <div className="mt-10 flex flex-col gap-4 lg:mt-40">
               <p className="text-[15px] font-medium text-slate-600">
                 Trusted by
               </p>
