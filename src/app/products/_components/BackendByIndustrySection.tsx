@@ -100,10 +100,9 @@ export default function BackendByIndustrySection() {
   const currentData = PLATFORM_STEPS[activeStep];
   const totalSteps = PLATFORM_STEPS.length;
 
-  // Smooth Auto Progress Timer
   useEffect(() => {
-    const intervalTime = 50; // Update step resolution
-    const duration = 5000; // 5s per step
+    const intervalTime = 50;
+    const duration = 5000;
     const increment = (intervalTime / duration) * 100;
 
     const timer = setInterval(() => {
@@ -129,17 +128,13 @@ export default function BackendByIndustrySection() {
       <GitterImage />
       <div className="relative z-100 py-30">
         <LayoutWrapper>
-          {/* Header */}
-          <h3 className="w-full text-[28px] font-medium leading-[1.2] tracking-[-0.3px] text-black">
+          <h3 className="w-full text-[28px] leading-[1.2] font-medium tracking-[-0.3px] text-black lg:w-[574px]">
             Backed by the industry’s leading{" "}
             <span className="text-[#00000066]">agentic risk platform</span>
           </h3>
 
-          {/* Main Layout Container */}
           <div className="mt-24.5 flex flex-wrap gap-23">
-            {/* Left Controls & Counter */}
             <div className="flex h-auto min-w-[280px] flex-1 flex-col justify-between gap-12">
-              {/* Step Counter & Progress Bar */}
               <div className="flex items-center gap-2.5">
                 <div className="font-geist-pixel-circle flex gap-1 text-[16px]">
                   <p className="text-[#E18CFF]">
@@ -157,7 +152,6 @@ export default function BackendByIndustrySection() {
                 </div>
               </div>
 
-              {/* Interactive Navigation Items */}
               <div className="flex flex-col items-start gap-[48px]">
                 {PLATFORM_STEPS.map((step, idx) => {
                   const isActive = activeStep === idx;
@@ -182,14 +176,12 @@ export default function BackendByIndustrySection() {
               </div>
             </div>
 
-            {/* Right Dynamic Content Section */}
             <div className="flex w-full min-w-[320px] flex-[2] flex-col">
               <p className="font-inter pb-8 text-[12px] text-[#0B0F0C94]">
                 {currentData.subLabel}
               </p>
 
               <div className="flex flex-col gap-[48px]">
-                {/* Image / Graphic Visual Container with Fade Animation */}
                 <div className="relative h-[302px] w-full overflow-hidden rounded-xl bg-slate-100">
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -209,7 +201,6 @@ export default function BackendByIndustrySection() {
                   </AnimatePresence>
                 </div>
 
-                {/* Animated Section Headline */}
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={currentData.id + "-title"}
@@ -217,13 +208,12 @@ export default function BackendByIndustrySection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.3 }}
-                    className="max-w-[480px] text-[32px] font-medium leading-[120%] tracking-[-0.32px] text-[#0B0F0C]"
+                    className="max-w-[480px] text-[32px] leading-[120%] font-medium tracking-[-0.32px] text-[#0B0F0C]"
                   >
                     {currentData.title}
                   </motion.p>
                 </AnimatePresence>
 
-                {/* Animated Features Row */}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentData.id + "-features"}
@@ -236,7 +226,7 @@ export default function BackendByIndustrySection() {
                     {currentData.features.map((feature, i) => (
                       <div
                         key={i}
-                        className="flex min-w-[220px] flex-1 flex-col gap-2 rounded-lg bg-white px-4 py-3 shadow-xs border border-slate-100"
+                        className="flex min-w-[220px] flex-1 flex-col gap-2 rounded-lg border border-slate-100 bg-white px-4 py-3 shadow-xs"
                       >
                         <p className="text-[16px] font-medium text-slate-900">
                           {feature.title}
