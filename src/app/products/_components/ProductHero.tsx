@@ -28,7 +28,7 @@ export default function ProductionHero() {
                 <span>/</span>
                 <span>Onboarding</span>
                 <span>/</span>
-                <button className="flex items-center gap-1 font-semibold text-slate-900">
+                <button className="flex items-center gap-1 font-semibold text-slate-900 bg-[#FFFFFF7A] px-2 py-1 rounded-sm">
                   KYC Onboarding
                   <DropdownArrow />
                 </button>

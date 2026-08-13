@@ -44,20 +44,18 @@ export default function StickyProductSection() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Execute ScrollTrigger active tab updates strictly on desktop viewports
-      ScrollTrigger.matchMedia({
-        "(min-width: 1024px)": function () {
-          blockRefs.current.forEach((block, index) => {
-            if (!block) return;
-            ScrollTrigger.create({
-              trigger: block,
-              start: "top 20%",
-              end: "bottom 20%",
-              onEnter: () => setActiveIndex(index),
-              onEnterBack: () => setActiveIndex(index),
-            });
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        blockRefs.current.forEach((block, index) => {
+          if (!block) return;
+          ScrollTrigger.create({
+            trigger: block,
+            start: "top 30%",
+            end: "bottom 30%",
+            onEnter: () => setActiveIndex(index),
+            onEnterBack: () => setActiveIndex(index),
           });
-        },
+        });
       });
     }, containerRef);
 
@@ -79,15 +77,14 @@ export default function StickyProductSection() {
     >
       <LayoutWrapper>
         <div className="relative flex w-full flex-col justify-between gap-10 lg:flex-row lg:gap-12">
-          <div className="top-10 flex w-full flex-col lg:sticky lg:h-full lg:max-w-[562px]">
+          <div className="top-40 flex w-full flex-col lg:sticky lg:h-full lg:max-w-[562px]">
             <h3
               ref={titleRef}
-              className="max-w-[498px] text-[28px] font-medium leading-[1.2] tracking-[-0.3px] text-black transition-all duration-300  lg:text-[42px]"
+              className="max-w-[498px] text-[28px] font-medium leading-[1.2] tracking-[-0.3px] text-black transition-all duration-300 lg:text-[42px]"
             >
               {FEATURES[activeIndex].title}
             </h3>
 
-            
             <div className="mt-6 flex w-full gap-2 overflow-x-auto pb-2 scrollbar-none md:mt-8 lg:mt-[48px] lg:flex-wrap lg:overflow-visible lg:pb-0">
               {FEATURES.map((feature, idx) => {
                 const isActive = activeIndex === idx;
