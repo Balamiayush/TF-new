@@ -102,7 +102,7 @@ export default function OurMission() {
               }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-              className="relative h-[240px] w-[283px] shrink-0 overflow-hidden rounded-lg bg-[#FF62DC] md:w-[320px] max-md:left-25"
+              className="relative h-[240px] w-[283px] shrink-0 overflow-hidden rounded-lg bg-[#FF62DC] md:w-[320px] max-md:left-18"
             >
               <Image
                 src="https://images.pexels.com/photos/1092671/pexels-photo-1092671.jpeg"
