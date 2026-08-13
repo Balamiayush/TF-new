@@ -1,0 +1,48 @@
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { FeaturedCardProps } from "../type";
+
+export default function FeaturedCard({
+  post,
+  reversed = false,
+  className = "",
+}: FeaturedCardProps) {
+  return (
+    <Link
+      href={"/blog-page"}
+      className={`group flex cursor-pointer flex-col justify-between rounded-[8px] border border-slate-200 bg-slate-50 p-2 transition-all duration-300 hover:translate-y-[-2.5%] hover:bg-slate-100 md:col-span-2 md:flex-row md:gap-6 ${className}`}
+    >
+      <div
+        className={`relative h-[240px] w-full overflow-hidden rounded-[6px] border border-black/5 md:h-full md:w-1/2 ${
+          reversed ? "max-md:order-1" : ""
+        }`}
+      >
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+
+      <div
+        className={`flex flex-1 flex-col justify-between p-4 max-md:mt-4 ${
+          reversed ? "max-md:order-2" : ""
+        }`}
+      >
+        <div>
+          <div className="font-inter text-[14px] font-medium text-slate-500">
+            {post.category}
+          </div>
+          <h3 className="font-geist mt-3 text-[20px] leading-[130%] font-medium tracking-[-0.3px] text-slate-900 transition-colors lg:text-[22px]">
+            {post.title}
+          </h3>
+          <div className="font-inter mt-6 flex items-center gap-2 text-[12px] font-medium text-slate-800">
+            <span>{post.date}</span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}

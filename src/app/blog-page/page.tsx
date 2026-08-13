@@ -2,6 +2,7 @@ import ArrowIcon from "@/shared/icons/ArrowIcon";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import Button from "@/shared/ui/buttons/Button";
 import CardCom from "@/shared/ui/card/CardCom";
+import GitterImage from "@/shared/ui/GitterImg";
 import Image from "next/image";
 import React from "react";
 
@@ -31,65 +32,119 @@ export default function page() {
   ];
 
   const exploreArticles = [
-    {
-      id: 1,
-      category: "Marketing",
-      title:
-        "Fraudology: Closing the chargeback representment gap between issuers and",
-      date: "JUL 7, 2026",
-      image:
-        "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=1170&auto=format&fit=crop",
-    },
-    {
-      id: 2,
-      category: "Marketing",
-      title:
-        "Fraudology: Closing the chargeback representment gap between issuers and",
-      date: "JUL 7, 2026",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1170&auto=format&fit=crop",
-    },
-    {
-      id: 3,
-      category: "Marketing",
-      title:
-        "Fraudology: Closing the chargeback representment gap between issuers and",
-      date: "JUL 7, 2026",
-      image:
-        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1170&auto=format&fit=crop",
-    },
-    {
-      id: 4,
-      category: "Marketing",
-      title:
-        "Fraudology: Closing the chargeback representment gap between issuers and",
-      date: "JUL 7, 2026",
-      image:
-        "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1170&auto=format&fit=crop",
-    },
-    {
-      id: 5,
-      category: "Marketing",
-      title:
-        "Fraudology: Closing the chargeback representment gap between issuers and",
-      date: "JUL 7, 2026",
-      image:
-        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1170&auto=format&fit=crop",
-    },
-    {
-      id: 6,
-      category: "Marketing",
-      title:
-        "Fraudology: Closing the chargeback representment gap between issuers and",
-      date: "JUL 7, 2026",
-      image:
-        "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1170&auto=format&fit=crop",
-    },
+     {
+    id: 1,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-5_l5etry.png",
+  },
+  {
+    id: 2,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-4_dwkcl2.png",
+  },
+  {
+    id: 3,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-3_oqvwkv.png",
+  },
+  {
+    id: 4,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-2_vn1r0l.png",
+  },
+  {
+    id: 5,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-4_dwkcl2.png",
+  },
+  {
+    id: 6,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-1_prgxtp.png",
+  },
+  {
+    id: 7,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container_xcsols.png",
+  },
+  {
+    id: 8,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-4_dwkcl2.png",
+  },
+  {
+    id: 9,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-4_dwkcl2.png",
+  },
+  {
+    id: 10,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-5_l5etry.png",
+  },
+  {
+    id: 11,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-5_l5etry.png",
+  },
+  {
+    id: 12,
+    category: "Marketing",
+    title:
+      "Fraudology: Closing the chargeback representment gap between issuers and",
+    date: "JUL 7, 2026",
+    image:
+      "https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-4_dwkcl2.png",
+  },
   ];
 
   return (
-    <div className="relative min-h-screen w-full bg-white text-slate-900 py-21">
-      {/* Main Post Section */}
+    <div className="relative min-h-screen w-full bg-white text-slate-900 pt-21">
+  
       <LayoutWrapper>
         {/* Header Content */}
         <div className="flex flex-col items-start gap-[32px] pt-6 pb-8">
@@ -116,15 +171,15 @@ export default function page() {
           </div>
         </div>
 
-        {/* Main Hero Image */}
+        
         <div className="py-8">
-          <div className="relative h-[240px] w-full max-w-[834px] overflow-hidden rounded-lg bg-pink-300 sm:h-[320px] md:h-[437px]">
+          <div className="relative h-[240px] w-full max-w-[834px] overflow-hidden rounded-lg bg-[#C5ADEC]  md:h-[437px] ">
             <Image
-              src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1170&auto=format&fit=crop"
+              src="https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container-5_l5etry.png"
               alt="AI Fraud Detection Hero"
               fill
               priority
-              className="h-full w-full object-cover"
+              className="object-fill"
             />
           </div>
         </div>
@@ -231,14 +286,21 @@ export default function page() {
         </div>
       </LayoutWrapper>
 
-      <section className="w-full bg-slate-50 py-16">
+      <section className="w-full bg-slate-50 pt-16 relative z-[1000]">
         <LayoutWrapper>
-          <div className="mb-15 flex flex-col gap-21">
-            <h3 className="font-geist text-[28px] font-medium text-slate-900 md:text-[48px]">
+
+           <h3 className="font-geist text-[28px] font-medium text-slate-900 md:text-[48px] mb-4.5">
               Explore more articles
             </h3>
+        </LayoutWrapper>
+       
 
-            <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className=" relative  py-12 lg:py-21 flex flex-col gap-21">
+            <GitterImage/>
+        <LayoutWrapper>
+           
+
+            <div className="grid relative z-[1000] w-full grid-cols-1 gap-6 grid lg:grid-cols-3">
               {exploreArticles.map((article) => (
                 <CardCom
                   key={article.id}
@@ -252,8 +314,8 @@ export default function page() {
                 />
               ))}
             </div>
-          </div>
         </LayoutWrapper>
+          </div>
       </section>
     </div>
   );

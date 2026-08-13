@@ -1,10 +1,5 @@
 "use client";
 
-import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
-import GitterImage from "@/shared/ui/GitterImg";
-import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
-
 const PLATFORM_STEPS = [
   {
     id: "data-consortium",
@@ -92,6 +87,11 @@ const PLATFORM_STEPS = [
     bgGradient: "from-amber-100 to-orange-200",
   },
 ];
+import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
+import GitterImage from "@/shared/ui/GitterImg";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+
 
 export default function BackendByIndustrySection() {
   const [activeStep, setActiveStep] = useState(0);
