@@ -3,6 +3,7 @@ import ProductionHero from "./_components/ProductHero";
 import ResolveSection from "./_components/ResolveSection";
 import StickyProductSection from "./_components/StickyProductSection";
 import BacklogsSection from "./_components/BacklogsSection";
+import BackendByIndustrySection from "./_components/BackendByIndustrySection";
 
 export default function page() {
   return (
@@ -11,6 +12,7 @@ export default function page() {
       <ResolveSection />
       <StickyProductSection/>
       <BacklogsSection/>
+      <BackendByIndustrySection/>
     </div>
   );
 }

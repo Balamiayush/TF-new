@@ -19,7 +19,7 @@ const BacklogCard = ({
   descriptionMaxWidth = "",
 }: CardProps) => (
   <div
-    className={`flex flex-col gap-5 rounded-[8px] border-[0.94px] border-slate-200 bg-white p-8 ${className} `}
+    className={`flex flex-col gap-5 rounded-[8px] border-[0.94px] border-slate-200 bg-white relative z-100 p-8 ${className} `}
   >
     <h4
       className={`font-geist text-[24px] leading-[110%] font-medium text-black ${titleMaxWidth}`}
@@ -66,12 +66,12 @@ export default function BacklogsSection() {
     <div className="relative min-h-screen w-full py-12 md:py-16 lg:py-[120px]">
       <GitterImage />
       <LayoutWrapper>
-      <div className="flex lg:flex-row flex-col items-start  lg:justify-between  lg:items-end gap-6 ">
-  <h3 className="w-full text-[28px] font-medium leading-[1.2] tracking-[-0.3px] text-black lg:max-w-[498px] lg:text-[42px]">
-    Clear KYC backlogs with AI-assisted review
-  </h3>
-  <Button >Agentic AML Ops</Button>
-</div>
+        <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between relative z-100">
+          <h3 className="w-full text-[28px] leading-[1.2] font-medium tracking-[-0.3px] text-black lg:max-w-[498px] lg:text-[42px]">
+            Clear KYC backlogs with AI-assisted review
+          </h3>
+          <Button>Agentic AML Ops</Button>
+        </div>
 
         <div className="mt-12 flex w-full flex-col gap-5 lg:flex-row lg:gap-2">
           <BacklogCard
