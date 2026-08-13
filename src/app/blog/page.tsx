@@ -19,8 +19,10 @@ interface FeaturedCardProps {
 
 function FeaturedCard({ post, reversed = false }: FeaturedCardProps) {
   return (
-    <Link href={'/blog-page'} className="group flex cursor-pointer flex-col justify-between rounded-[8px] border border-slate-200 bg-white p-2 transition-all duration-300 hover:bg-slate-100 hover:translate-y-[-2.5%] md:col-span-2 md:flex-row md:gap-6">
-
+    <Link
+      href={"/blog-page"}
+      className="group flex cursor-pointer flex-col justify-between rounded-[8px] border border-slate-200 bg-slate-50 p-2 transition-all duration-300 hover:translate-y-[-2.5%] hover:bg-slate-100 md:col-span-2 md:flex-row md:gap-6"
+    >
       <div
         className={`relative h-[240px] w-full overflow-hidden rounded-[6px] border border-black/5 md:h-full md:w-1/2 ${
           reversed ? "max-md:order-1" : ""
@@ -43,18 +45,14 @@ function FeaturedCard({ post, reversed = false }: FeaturedCardProps) {
           <div className="font-inter text-[14px] font-medium text-slate-500">
             {post.category}
           </div>
-          <h3 className="font-geist mt-3 text-[20px] font-medium leading-[130%] tracking-[-0.3px] text-slate-900 transition-colors  lg:text-[22px]">
+          <h3 className="font-geist mt-3 text-[20px] leading-[130%] font-medium tracking-[-0.3px] text-slate-900 transition-colors lg:text-[22px]">
             {post.title}
           </h3>
-        </div>
-        <div className="font-inter mt-6 flex items-center gap-2 text-[12px] font-medium text-slate-500">
-          <div className="font-inter mt-6 flex items-center gap-2 text-[13px] font-medium text-slate-500">
-              <span className="text-[10px] text-slate-700">•</span>
-              <span>{post.date}</span>
-            </div>
+          <div className="font-inter mt-6 flex items-center gap-2 text-[12px] font-medium text-slate-800">
+            <span>{post.date}</span>
+          </div>
         </div>
       </div>
-   
     </Link>
   );
 }
@@ -181,14 +179,14 @@ export default function page() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50/50 pb-20">
+    <div className="min-h-screen bg-slate-50/50 pt-[120px] pb-20 lg:pt-[188px]">
       <LayoutWrapper>
-        <div className="flex flex-col gap-12 pt-[120px]">
-          <h2 className="text-[26px] font-medium leading-[1.2] text-black max-md:max-w-[201px] lg:text-[48px]">
+        <div className="flex flex-col gap-12">
+          <h2 className="text-[26px] leading-[1.2] font-medium text-black max-md:max-w-[201px] lg:text-[48px]">
             The Thirdfactor Blogs
           </h2>
 
-          <div className="flex w-full items-center gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] max-md:[&::-webkit-scrollbar]:hidden md:flex-wrap md:overflow-visible md:pb-0">
+          <div className="flex w-full items-center gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] md:flex-wrap md:overflow-visible md:pb-0 max-md:[&::-webkit-scrollbar]:hidden">
             {categories.map((category) => (
               <div key={category.name} className="group shrink-0">
                 <Button variant="tertiary">
@@ -233,7 +231,6 @@ export default function page() {
             />
           )}
 
-          {/* Grid standard items using CardCom */}
           {blogPosts.slice(4).map((post) => (
             <CardCom
               key={post.id}

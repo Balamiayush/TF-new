@@ -18,9 +18,9 @@ export default function ProductionHero() {
   ];
 
   return (
-    <div className="bg-brand-50 lg:h-[850px] w-full lg:h-full overflow-clip">
+    <div className="bg-brand-50 lg:h-[850px] w-full h-full overflow-clip lg:pt-[168px] pt-[120px]">
       <LayoutWrapper>
-        <div className="flex justify-between max-lg:flex-col pt-[120px] lg:pt-[120px]">
+        <div className="flex justify-between max-lg:flex-col ">
           <div className="lg:pb-[69px]">
             <div className="flex flex-col items-start gap-4">
               <div className="flex items-center gap-2 text-sm font-medium text-slate-500">

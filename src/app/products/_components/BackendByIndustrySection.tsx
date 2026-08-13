@@ -128,7 +128,7 @@ export default function BackendByIndustrySection() {
       <GitterImage />
       <div className="relative z-100 py-30">
         <LayoutWrapper>
-          <h3 className="w-full text-[28px] leading-[1.2] font-medium tracking-[-0.3px] text-black lg:w-[574px]">
+          <h3 className="w-full text-[28px] leading-[1.2] font-medium tracking-[-0.3px] text-black lg:w-[400px]">
             Backed by the industry’s leading{" "}
             <span className="text-[#00000066]">agentic risk platform</span>
           </h3>

@@ -92,7 +92,8 @@ export default function BacklogsSection() {
             <BacklogCard
               title={cards[2].title}
               description={cards[2].description}
-              className="lg:h-[206px]"
+              className="lg:h-[206px]"              titleMaxWidth="max-w-[203px]"
+
               descriptionMaxWidth="lg:max-w-[315px]"
             />
           </div>

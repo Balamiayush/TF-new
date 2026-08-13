@@ -43,8 +43,7 @@ export default function CardCom({ story, className = "" }: CardComProps) {
           </h3>
 
           {story?.date && (
-            <div className="font-inter mt-6 flex items-center gap-2 text-[13px] font-medium text-slate-500">
-              <span className="text-[10px] text-slate-700">•</span>
+            <div className="font-inter mt-6 flex items-center gap-2 text-[12px] font-medium text-slate-800">
               <span>{story.date}</span>
             </div>
           )}

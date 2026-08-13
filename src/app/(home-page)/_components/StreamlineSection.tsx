@@ -58,7 +58,7 @@ export default function Streamline() {
    </LayoutWrapper>
    <LayoutWrapper className="pr-0! lg:pr-8! ">
 
-        <div className="mt-12 lg:mt-21 flex overflow-x-auto lg:overflow-x-visible space-x-3 lg:space-x-0 lg:flex-col lg:gap-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing pb-4 lg:pb-0">
+        <div className="mt-12 lg:mt-21 flex overflow-x-auto lg:overflow-x-visible space-x-3 lg:space-x-0 lg:flex-col lg:gap-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing pb-8 lg:pb-0">
         
           <div className="flex flex-row gap-3 lg:flex-row shrink-0 lg:shrink">
             {streamlineData.slice(0, 2).map((card, index) => (

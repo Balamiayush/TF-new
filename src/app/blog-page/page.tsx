@@ -88,7 +88,7 @@ export default function page() {
   ];
 
   return (
-    <div className="relative min-h-screen w-full bg-white text-slate-900">
+    <div className="relative min-h-screen w-full bg-white text-slate-900 py-21">
       {/* Main Post Section */}
       <LayoutWrapper>
         {/* Header Content */}

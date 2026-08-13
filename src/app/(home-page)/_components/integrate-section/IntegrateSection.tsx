@@ -29,21 +29,37 @@ export default function Integrate({ stepsData }: IntegrateProps) {
   ];
 
   const virtualActiveIndex = activeTab + 1;
-  const precedingWidth = virtualActiveIndex * (inactiveCardWidth + cardGap);
+
+  // FIX: Accurately calculate width of preceding cards to center the active card
+  const precedingWidth = displayItems
+    .slice(0, virtualActiveIndex)
+    .reduce((acc, _, idx) => {
+      const isCardActive = displayItems[idx].originalIndex === activeTab;
+      const width = isCardActive ? activeCardWidth : inactiveCardWidth;
+      return acc + width + cardGap;
+    }, 0);
+
   const trackOffset = containerWidth / 2 - activeCardWidth / 2 - precedingWidth;
 
+  const springTransition = {
+    type: "spring" as const,
+    stiffness: 300,
+    damping: 30,
+    mass: 0.8,
+  };
+
   return (
-    <section className="min-h-screen w-full py-21 pb-30 lg:block hidden">
+    <section className="hidden min-h-screen w-full py-21 pb-30 lg:block">
       <LayoutWrapper>
         <div className="flex min-h-[753px] w-full flex-col justify-between rounded-xl bg-gradient-to-br from-[#FBEAF9] to-[#E8B9E5] p-12 lg:flex-row lg:items-center">
-          <div className="flex lg:max-w-[430px] w-full flex-col justify-between self-stretch">
-            <h2 className="font-geist text-[26px] lg:text-[48px] leading-[115%] font-medium tracking-tight text-[#1A1A1A]">
-              Integrate in
+          <div className="flex w-full flex-col justify-between self-stretch lg:max-w-[430px]">
+            <h2 className="font-geist text-[26px] leading-[115%] font-medium tracking-tight text-[#1A1A1A] lg:text-[48px]">
+              Integrate in Days,
               <br />
-              Days, Not Weeks
+              Not Weeks
             </h2>
 
-            <div className="lg:mt-12 mt-8 flex flex-col">
+            <div className="mt-8 flex flex-col lg:mt-12">
               {stepsData.map((step, index) => {
                 const isActive = activeTab === index;
                 return (
@@ -62,7 +78,6 @@ export default function Integrate({ stepsData }: IntegrateProps) {
                       {step.title}
                     </h3>
 
-                    {/* Animated accordion description */}
                     <AnimatePresence initial={false}>
                       {isActive && (
                         <motion.div
@@ -88,12 +103,31 @@ export default function Integrate({ stepsData }: IntegrateProps) {
             </div>
           </div>
 
-          {/* Right Side: Sliding Carousel Container */}
-          <div className="relative mt-8 flex h-[580px] w-full items-center overflow-hidden rounded-2xl bg-[#E08EF8] lg:mt-0 lg:w-[580px]">
+          <div className="relative mt-8 flex min-h-[657px] w-full items-center overflow-hidden rounded-2xl bg-[#E08EF8] lg:mt-0 lg:w-[580px]">
+            <div className="absolute right-0 bottom-1 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 z-10">
+              {stepsData.map((_, idx) => {
+                const isActive = activeTab === idx;
+                return (
+                  <motion.div
+                    key={idx}
+                    onClick={() => setActiveTab(idx)}
+                    className="h-2 w-2 bg-white rounded-full cursor-pointer"
+                    initial={false}
+                    animate={{
+                      opacity: isActive ? 1 : 0.4,
+                      scale: isActive ? 1.25 : 1,
+                    }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                  />
+                );
+              })}
+            </div>
+
             <motion.div
               className="absolute left-0 flex items-center gap-[20px]"
               animate={{ x: trackOffset }}
-              transition={{ type: "spring", stiffness: 260, damping: 28 }}
+              transition={springTransition}
+              style={{ willChange: "transform" }}
             >
               {displayItems.map((step) => {
                 const isActive = activeTab === step.originalIndex;
@@ -104,13 +138,12 @@ export default function Integrate({ stepsData }: IntegrateProps) {
                     layout
                     animate={{
                       width: isActive ? activeCardWidth : inactiveCardWidth,
-                      height: isActive ? 500 : 438,
+                      height: isActive ? 610 : 438,
                     }}
-                    transition={{ type: "spring", stiffness: 260, damping: 28 }}
-                    className={`relative shrink-0 cursor-pointer overflow-hidden rounded-2xl shadow-lg transition-opacity duration-300 ${
-                      isActive
-                        ? "bg-red-500 opacity-100"
-                        : "bg-red-500/80 opacity-70 hover:opacity-90"
+                    transition={springTransition}
+                    style={{ willChange: "width, height, transform" }}
+                    className={`relative shrink-0 cursor-pointer overflow-hidden transition-opacity duration-300 ${
+                      isActive ? "opacity-100" : "opacity-70 hover:opacity-90"
                     }`}
                   >
                     {step.imgSrc && (
@@ -123,6 +156,7 @@ export default function Integrate({ stepsData }: IntegrateProps) {
                   </motion.div>
                 );
               })}
+              <div></div>
             </motion.div>
           </div>
         </div>

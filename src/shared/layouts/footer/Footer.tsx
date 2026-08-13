@@ -26,7 +26,7 @@ const NAV_SECTIONS = [
       { label: "Blog", href: "/blog" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Changelog", href: "/changelog" },
-      { label: "Docs", href: "/docs" },
+      { label: "Docs", href: "https://docs.v3.thirdfactor.ai/docs" },
     ],
   },
   {

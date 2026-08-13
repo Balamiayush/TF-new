@@ -5,14 +5,13 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IntegrateProps } from "./type";
 
-
 export default function IntegrateMobile({ stepsData }: IntegrateProps) {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div className="block min-h-screen w-full bg-gradient-to-b from-[#FBEAF9] to-[#E8B9E5] py-12 lg:hidden">
       <LayoutWrapper>
-        <h2 className="text-[26px] leading-[115%] font-medium tracking-tight text-alpha-light-1000 lg:text-[48px]">
+        <h2 className="text-alpha-light-1000 text-[26px] leading-[115%] font-medium tracking-tight lg:text-[48px]">
           Integrate in
           <br />
           Days, Not Weeks
@@ -25,26 +24,24 @@ export default function IntegrateMobile({ stepsData }: IntegrateProps) {
             return (
               <div
                 key={step.id}
-                className="border-t border-alpha-light-100 py-4 transition-colors last:border-b"
+                className="border-alpha-light-100 border-t py-4 transition-colors last:border-b"
               >
-                {/* Accordion Title Header */}
                 <button
                   type="button"
                   onClick={() => setActiveTab(index)}
                   className="w-full text-left focus:outline-none"
                 >
                   <p
-                    className={`text-[20px] font-medium leading-[110%] transition-colors duration-200 ${
+                    className={`text-[20px] leading-[110%] font-medium transition-colors duration-200 ${
                       isActive
                         ? "text-alpha-light-1000"
-                        : "text-[#1A1A1AB2] hover:text-alpha-light-1000"
+                        : "hover:text-alpha-light-1000 text-[#1A1A1AB2]"
                     }`}
                   >
                     {step.title}
                   </p>
                 </button>
 
-                {/* Animated Collapsible Content */}
                 <AnimatePresence initial={false}>
                   {isActive && (
                     <motion.div
@@ -58,19 +55,17 @@ export default function IntegrateMobile({ stepsData }: IntegrateProps) {
                       className="overflow-hidden"
                     >
                       <div className="mt-4 flex flex-col gap-[20px]">
-                        {/* Image Container */}
-                        <div className="img-container relative h-[370px] w-full overflow-clip rounded-md bg-[#E18CFF]">
+                        <div className="img-container relative h-[370px] w-full overflow-clip flex items-center justify-center rounded-md bg-[#E18CFF]">
                           {step.imgSrc && (
                             <img
                               src={step.imgSrc}
                               alt={step.title}
-                              className="h-full w-full object-cover"
+                              className=" object-cover w-[170px]"
                             />
                           )}
                         </div>
 
-                        {/* Step Description */}
-                        <p className="font-geist text-[16px] leading-[135%] tracking-tight text-alpha-light-1000">
+                        <p className="font-geist text-alpha-light-1000 text-[16px] leading-[135%] tracking-tight">
                           {step.description}
                         </p>
                       </div>

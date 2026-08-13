@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, Phone } from "lucide-react";
 
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
-import LablesButton from "@/shared/ui/LablesButton";
 
 import {
   DEFAULT_DITHER_SETTINGS,
@@ -19,6 +17,7 @@ import Button from "@/shared/ui/buttons/Button";
 import { motion, AnimatePresence } from "framer-motion";
 import ArrowIcon from "@/shared/icons/ArrowIcon";
 import PhoneIcon from "@/shared/icons/PhoneIcon";
+
 import HeroSectionDashboardCard from "./HeroSectionDashboardCard";
 
 export default function HeroSection() {
@@ -52,7 +51,7 @@ export default function HeroSection() {
   };
 
   return (
-<div className="relative isolate min-h-screen w-full overflow-hidden bg-[#fafcff] pt-12">
+<div className="relative isolate min-h-screen w-full overflow-hidden bg-[#fafcff] lg:pt-[168px] pt-[120px]  ">
   <div
     aria-hidden
     className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[820px] lg:block"
@@ -96,7 +95,7 @@ export default function HeroSection() {
   <DitherControls value={dither} onChange={setDither} />
 
   <LayoutWrapper>
-    <div className="relative mt-15 md:mt-20 lg:mt-26.5">
+    <div className="relative ">
       {/* Show category labels on tablets and up */}
       <div className="hidden gap-1 md:flex">
         {labels.map((label, index) => (
@@ -167,7 +166,6 @@ export default function HeroSection() {
       </div>
     </div>
 
-    {/* Bottom Cards: Display FingerprintCard in tablet mode as well */}
     <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-[280px_1fr] lg:grid-cols-[328px_1fr]">
       <div className="hidden md:block">
         <FingerprintCard />

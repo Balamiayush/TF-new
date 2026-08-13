@@ -1,59 +1,60 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "@/shared/ui/buttons/Button";
-
+import { DitherHoverBackground } from "@/shared/ui/DitherHoverBackground";
+import {
+  DEFAULT_DITHER_SETTINGS,
+  DitherControls,
+  hexToRgba,
+  type DitherSettings,
+} from "@/shared/ui/DitherControls";
 gsap.registerPlugin(ScrollTrigger);
 
 const floatingImages = [
   {
     id: 1,
-    src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
+    src: "https://res.cloudinary.com/dfajjqglx/image/upload/v1786618591/Frame_1618874835_rgg1pu.png",
     alt: "KYC Mobile Screen",
     className: "top-[10%] left-[8%] w-[150px] h-[100px] lg:w-[307px] lg:h-[203px] ",
     speed: 25,
-   
   },
   {
     id: 2,
-    src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
+    src: "https://res.cloudinary.com/dfajjqglx/image/upload/v1786618591/Frame_1618874837_tbygvv.png",
     alt: "Document Verification",
     className: "top-[15%] right-[6%] w-[150px] h-[100px] lg:w-[305px] lg:h-[200px]",
     speed: 30,
-   
   },
   {
     id: 3,
-    src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
+    src: "https://res.cloudinary.com/dfajjqglx/image/upload/v1786618591/Frame_1618874836_qb4s6w.png",
     alt: "Liveness Capture",
     className: "bottom-[12%] left-[6%] w-[150px] h-[100px] lg:w-[197px] lg:h-[138px]",
     speed: 35,
-  
   },
   {
     id: 4,
-    src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
+    src: "https://res.cloudinary.com/dfajjqglx/image/upload/v1786618591/Frame_1618874840_hmcnoc.png",
     alt: "Face Verification",
     className: "bottom-[0%] left-[45%] hidden lg:block -translate-x-1/2 w-[157px] h-[100px] lg:w-[197px] lg:h-[138px]",
     speed: 30,
-    
   },
   {
     id: 5,
-    src: "https://images.pexels.com/photos/38809716/pexels-photo-38809716.jpeg",
+    src: "https://res.cloudinary.com/dfajjqglx/image/upload/v1786618591/Frame_1618874837_tbygvv.png",
     alt: "Dashboard Verification Stream",
-        className: "bottom-[0%] right-3  w-[157px] h-[100px] lg:w-[217px] lg:h-[202px]",
-
+    className: "bottom-[0%] right-3  w-[157px] h-[100px] lg:w-[217px] lg:h-[202px]",
     speed: 25,
-  
   },
 ];
 
 export default function StartVerifyingSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -83,22 +84,63 @@ export default function StartVerifyingSection() {
       ref={containerRef}
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#2262EC] px-4 py-32"
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[820px] lg:block"
+      >
+        <div className="absolute -top-14 -left-16 flex h-[812px] w-[454px] items-center justify-center">
+          <div className="h-[832px] w-[127px] -rotate-[24deg] rounded-[130px] mix-blend-difference bg-[#95c5ff]/60 blur-[140px]" />
+        </div>
+        <div className="absolute -top-40 left-[27%] flex h-[838px] w-[363px] items-center justify-center">
+          <div className="h-[832px] w-[139px] -rotate-[16deg] rounded-[130px] mix-blend-difference bg-[#95c5ff]/60 blur-[140px]" />
+        </div>
+        <div className="absolute -top-48 left-[55%] flex h-[834px] w-[351px] items-center justify-center">
+          <div className="h-[832px] w-[127px] rotate-[16deg] rounded-[130px] mix-blend-differenc bg-[#95c5ff]/60 blur-[140px]" />
+        </div>
+        <div className="absolute -top-24 right-[-6%] flex h-[798px] w-[425px] items-center justify-center">
+          <div className="h-[832px] w-[95px] rotate-[24deg] rounded-[130px] mix-blend-difference bg-[#95c5ff]/60 blur-[140px]" />
+        </div>
+      </div>
+      <DitherHoverBackground
+        baseColor="transparent"
+        gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}
+        gridSize={dither.gridSize}
+        dotRadius={dither.dotRadius}
+        ditherColor={hexToRgba(dither.ditherColor, dither.ditherAlpha)}
+        radiusPercent={dither.radiusPercent}
+        followDurationMs={dither.followDurationMs}
+        fadeDurationMs={dither.fadeDurationMs}
+        intensity={dither.intensity}
+        ditherDotSize={dither.ditherDotSize}
+        jitter={dither.jitter}
+        opacity={dither.opacity}
+        blobWobble={dither.blobWobble}
+        blobLobes={dither.blobLobes}
+        blobMorphMs={dither.blobMorphMs}
+        velocitySaturation={dither.velocitySaturation}
+        velocityDecayMs={dither.velocityDecayMs}
+        imageSource={dither.imageSource}
+        imageInvert={dither.imageInvert}
+        imageFit={dither.imageFit}
+        className="mix-blend-multiply"
+      />
+      <DitherControls value={dither} onChange={setDither} />
+
       {floatingImages.map((img) => (
         <div
           key={img.id}
           data-speed={img.speed}
-          className={`parallax-card absolute z-0 overflow-hidden  transition-shadow duration-300 ${img.className}`}
+          className={`parallax-card absolute z-0 overflow-hidden transition-shadow duration-300 ${img.className}`}
         >
-          <div className={`${img.className} relative`}>
-
-          <Image
-            src={img.src}
-            alt={img.alt}
-            fill
-            className="object-cover w-full h-full"
-            priority
+          <div className="relative h-full w-full">
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              className="object-contain"
+              priority
             />
-            </div>
+          </div>
         </div>
       ))}
 
