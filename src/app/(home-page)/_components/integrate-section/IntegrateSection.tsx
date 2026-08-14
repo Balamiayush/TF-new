@@ -1,13 +1,22 @@
 "use client";
 
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IntegrateProps } from "./type";
 
 
 export default function Integrate({ stepsData }: IntegrateProps) {
   const [activeTab, setActiveTab] = useState(0);
+
+  // Auto-advance progress and change active image/tab every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % stepsData.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [stepsData.length]);
 
   const cardGap = 20;
   const inactiveCardWidth = 218;
@@ -104,21 +113,27 @@ export default function Integrate({ stepsData }: IntegrateProps) {
           </div>
 
           <div className="relative mt-8 flex min-h-[657px] w-full items-center overflow-hidden rounded-2xl bg-[#E08EF8] lg:mt-0 lg:w-[580px]">
-            <div className="absolute right-0 bottom-1 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 z-10">
+         <div className="absolute right-0 bottom-1 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 z-10">
               {stepsData.map((_, idx) => {
                 const isActive = activeTab === idx;
                 return (
-                  <motion.div
+                  <div
                     key={idx}
                     onClick={() => setActiveTab(idx)}
-                    className="h-2 w-2 bg-white rounded-full cursor-pointer"
-                    initial={false}
-                    animate={{
-                      opacity: isActive ? 1 : 0.4,
-                      scale: isActive ? 1.25 : 1,
-                    }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                  />
+                    className="h-1.5 w-[100px] bg-white/40 rounded-full cursor-pointer overflow-hidden"
+                  >
+                    <motion.div
+                      className="h-full bg-white"
+                      initial={{ width: "0%" }}
+                      animate={{
+                        width: isActive ? "100%" : "0%",
+                      }}
+                      transition={{
+                        duration: isActive ? 5 : 0.2,
+                        ease: isActive ? "linear" : "easeOut",
+                      }}
+                    />
+                  </div>
                 );
               })}
             </div>
