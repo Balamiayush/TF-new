@@ -19,6 +19,7 @@ import ArrowIcon from "@/shared/icons/ArrowIcon";
 import PhoneIcon from "@/shared/icons/PhoneIcon";
 
 import HeroSectionDashboardCard from "./HeroSectionDashboardCard";
+import GitterImage from "@/shared/ui/GitterImg";
 
 export default function HeroSection() {
   const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
@@ -51,7 +52,9 @@ export default function HeroSection() {
   };
 
   return (
-<div className="relative isolate min-h-screen w-full overflow-hidden bg-[#fafcff] lg:pt-[168px] pt-[120px]  ">
+<div className="relative isolate min-h-screen w-full overflow-hidden  bg-[#fafcff] lg:pt-[168px] pt-[120px]  ">
+  <GitterImage/>
+  <div className="  bg-[#95C5FF]/64  w-[2000px] right-0  lg:hidden rotate-10 absolute top-0 h-[30vh] blur-[500px] "/>
   <div
     aria-hidden
     className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[820px] lg:block"
@@ -96,7 +99,6 @@ export default function HeroSection() {
 
   <LayoutWrapper>
     <div className="relative ">
-      {/* Show category labels on tablets and up */}
       <div className="hidden gap-1 md:flex">
         {labels.map((label, index) => (
           <div key={index} className="flex items-center gap-1">
@@ -106,7 +108,6 @@ export default function HeroSection() {
         ))}
       </div>
       
-      {/* Hero Content: Switch to side-by-side or balanced layout on tablet */}
       <div className="mt-4 flex w-full flex-col items-start justify-between gap-6 md:flex-row md:items-center lg:flex-row">
         <h1 className="max-w-[680px] text-[32px] leading-[110%] font-medium tracking-[-0.6px] md:text-[40px] lg:text-[48px]">
           AI native trust infrastructure for{" "}

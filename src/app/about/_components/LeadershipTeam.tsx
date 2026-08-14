@@ -51,7 +51,7 @@ export default function LeadershipTeam() {
     <section className="w-full bg-white py-12 md:py-[84px]">
       <LayoutWrapper>
         <div className="flex flex-col gap-6 md:gap-10">
-          <h3 className="font-geist text-[28px] font-medium leading-[114%] tracking-[-0.3px] text-slate-900 md:text-[48px]">
+          <h3 className="font-geist text-[28px] leading-[114%] font-medium tracking-[-0.3px] text-slate-900 md:text-[48px]">
             Leadership Team
           </h3>
 
@@ -118,7 +118,7 @@ export default function LeadershipTeam() {
 
                   <div className="relative z-10 flex h-full w-full flex-col justify-between p-6">
                     <div className="flex flex-col items-start gap-2 pr-10">
-                      <h4 className="font-geist text-[22px] font-medium leading-tight text-white">
+                      <h4 className="font-geist text-[22px] leading-tight font-medium text-white">
                         {member.name}
                       </h4>
                       <span className="inline-flex items-center rounded-[4px] bg-white/20 px-2.5 py-1 text-[12px] font-medium tracking-wider text-white uppercase backdrop-blur-md">
