@@ -80,7 +80,7 @@ export default function ResolveSection() {
   return (
     <div className="w-full py-12 md:py-16 lg:pt-[120px] lg:pb-[95px]">
       <LayoutWrapper>
-        <h3 className="max-w-[620px] text-[28px] sm:text-[36px] lg:text-[42px] leading-[1.2] font-medium tracking-[-0.3px] text-black">
+        <h3 className="xl:max-w-[620px] max-w-[400px] text-[28px] sm:text-[36px] lg:text-[42px] leading-[1.2] font-medium tracking-[-0.3px] text-black">
           Resolve risk early, keep onboarding flowing
         </h3>
 
@@ -100,8 +100,8 @@ export default function ResolveSection() {
           ))}
         </div>
 
-        {/* Feature Cards Grid */}
-        <div className="mt-10 md:mt-16 lg:mt-21 flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap w-full items-stretch gap-4 md:gap-6 lg:gap-3">
+  
+        <div className="mt-10 md:mt-16 lg:mt-21 flex flex-col lg:flex-row md:flex-wrap lg:flex-nowrap w-full items-stretch gap-4 md:gap-6 lg:gap-3">
           {FEATURES.map((feature) => {
             const isActive = activeCard === feature.id;
 

@@ -43,84 +43,85 @@ const streamlineData = [
 
 export default function Streamline() {
   return (
-    <div className="relative w-full bg-white lg:py-21">
-      <LayoutWrapper className="">
-        <div className="flex flex-col gap-6">
-          <h1 className="lg:max-w-[620px] text-[26px] max-w-[230px] lg:text-[48px] leading-[110%] font-medium tracking-[-0.6px] text-black">
-            Streamline user verification from one dashboard.
-          </h1>
-          <p className="max-w-[554px] text-[16px] leading-[1.4] tracking-[-0.3px] text-gray-500">
-            Identity events like onboarding and screening rely on separate
-            tools. Third Factor unifies them into one platform with a single
-            integration and audit trail.
-          </p>
-        </div>
-   </LayoutWrapper>
-   <LayoutWrapper className="pr-0! lg:pr-8! ">
-
-        <div className="mt-12 lg:mt-21 flex overflow-x-auto lg:overflow-x-visible space-x-3 lg:space-x-0 lg:flex-col lg:gap-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing pb-8 lg:pb-0">
-        
-          <div className="flex flex-row gap-3 lg:flex-row shrink-0 lg:shrink">
-            {streamlineData.slice(0, 2).map((card, index) => (
-              <div
-                key={index}
-                className="relative flex w-[326px] h-[335px] shrink-0 flex-col justify-between overflow-hidden rounded-[8px] bg-[#F1F5F9] p-[16px] lg:w-auto lg:h-[266px] lg:flex-1 lg:flex-row lg:p-8 lg:shrink"
-              >
-                <div className="z-10 flex flex-col justify-start">
-                  <h3 className="font-geist text-[22px] lg:text-[24px] leading-[100%] font-medium tracking-[0.6px] text-[#1A1A1A]">
-                    {card.title}
-                  </h3>
-                  <p
-                    className={`font-inter mt-3 lg:mt-[22px] ${card.maxwidth} text-[14px] leading-[130%] tracking-[-0.15px] text-[#1A1A1ABF]`}
-                  >
-                    {card.desc}
-                  </p>
-                </div>
-
-                <div className="relative mt-4 flex h-[200px] items-center justify-center self-center lg:absolute lg:right-6 lg:top-4 lg:bottom-4 lg:mt-0 lg:h-auto lg:w-[208px]">
-                  <Lottie
-                    animationData={card.lottie}
-                    loop={true}
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-
-    
-          <div className="flex flex-row gap-3 lg:flex-row shrink-0 lg:shrink">
-            {streamlineData.slice(2, 5).map((card, index) => (
-              <div
-                key={index}
-                className={`relative flex w-[326px] h-[335px] shrink-0 flex-col justify-between overflow-hidden rounded-[8px] bg-[#F1F5F9] p-[16px] lg:h-[266px] lg:flex-row lg:p-8 lg:shrink ${
-                  index === 0 ? "lg:w-[504px]" : "lg:flex-1"
-                }`}
-              >
-                <div className="z-10 flex flex-col justify-start">
-                  <h3 className="font-geist text-[24px] leading-[100%] font-medium tracking-[0.6px] text-[#1A1A1A]">
-                    {card.title}
-                  </h3>
-                  <p
-                    className={`font-inter mt-3 lg:mt-[22px] ${card.maxwidth} text-[14px] leading-[130%] tracking-[-0.15px] text-[#1A1A1ABF]`}
-                  >
-                    {card.desc}
-                  </p>
-                </div>
-
-                <div className="relative mt-4 flex h-[160px] w-full items-center justify-center self-center lg:absolute lg:right-6 lg:top-4 lg:bottom-4 lg:mt-0 lg:h-auto lg:w-[208px]">
-                  <Lottie
-                    animationData={card.lottie}
-                    loop={true}
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-   
-   </LayoutWrapper>
+ <div className="relative w-full bg-white xl:py-21">
+  <LayoutWrapper className="">
+    <div className="flex flex-col gap-6">
+      <h1 className="xl:max-w-[620px] text-[26px] max-w-[230px] xl:text-[48px] leading-[110%] font-medium tracking-[-0.6px] text-black">
+        Streamline user verification from one dashboard.
+      </h1>
+      <p className="max-w-[554px] text-[16px] leading-[1.4] tracking-[-0.3px] text-gray-500">
+        Identity events like onboarding and screening rely on separate
+        tools. Third Factor unifies them into one platform with a single
+        integration and audit trail.
+      </p>
     </div>
+  </LayoutWrapper>
+
+  <LayoutWrapper className="pr-0! xl:pr-8!">
+    <div className="mt-12 xl:mt-21 flex overflow-x-auto xl:overflow-x-visible space-x-3 xl:space-x-0 xl:flex-col xl:gap-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing pb-8 xl:pb-0">
+      
+      {/* Row 1 */}
+      <div className="flex flex-row gap-3 xl:flex-row shrink-0 xl:shrink">
+        {streamlineData.slice(0, 2).map((card, index) => (
+          <div
+            key={index}
+            className="relative flex w-[326px] h-[335px] shrink-0 flex-col justify-between overflow-hidden rounded-[8px] bg-[#F1F5F9] p-[16px] xl:w-auto xl:h-[266px] xl:flex-1 xl:flex-row xl:p-8 xl:shrink"
+          >
+            <div className="z-10 flex flex-col justify-start">
+              <h3 className="font-geist text-[22px] xl:text-[24px] leading-[100%] font-medium tracking-[0.6px] text-[#1A1A1A]">
+                {card.title}
+              </h3>
+              <p
+                className={`font-inter mt-3 xl:mt-[22px] ${card.maxwidth} text-[14px] leading-[130%] tracking-[-0.15px] text-[#1A1A1ABF]`}
+              >
+                {card.desc}
+              </p>
+            </div>
+
+            <div className="relative mt-4 flex h-[200px] items-center justify-center self-center xl:absolute xl:right-6 xl:top-4 xl:bottom-4 xl:mt-0 xl:h-auto xl:w-[208px]">
+              <Lottie
+                animationData={card.lottie}
+                loop={true}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Row 2 */}
+      <div className="flex flex-row gap-3 xl:flex-row shrink-0 xl:shrink">
+        {streamlineData.slice(2, 5).map((card, index) => (
+          <div
+            key={index}
+            className={`relative flex w-[326px] h-[335px] shrink-0 flex-col justify-between overflow-hidden rounded-[8px] bg-[#F1F5F9] p-[16px] xl:h-[266px] xl:flex-row xl:p-8 xl:shrink ${
+              index === 0 ? "xl:w-[504px]" : "xl:flex-1"
+            }`}
+          >
+            <div className="z-10 flex flex-col justify-start">
+              <h3 className="font-geist text-[24px] leading-[100%] font-medium tracking-[0.6px] text-[#1A1A1A]">
+                {card.title}
+              </h3>
+              <p
+                className={`font-inter mt-3 xl:mt-[22px] ${card.maxwidth} text-[14px] leading-[130%] tracking-[-0.15px] text-[#1A1A1ABF]`}
+              >
+                {card.desc}
+              </p>
+            </div>
+
+            <div className="relative mt-4 flex h-[160px] w-full items-center justify-center self-center xl:absolute xl:right-6 xl:top-4 xl:bottom-4 xl:mt-0 xl:h-auto xl:w-[208px]">
+              <Lottie
+                animationData={card.lottie}
+                loop={true}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </LayoutWrapper>
+</div>
   );
 }

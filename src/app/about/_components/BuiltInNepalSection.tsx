@@ -17,7 +17,7 @@ export default function BuiltInNepalSection() {
             />
           </div>
 
-          <div className="mt-4 flex flex-col  gap-5 lg:gap-6 lg:flex-row  lg:items-end lg:justify-between">
+          <div className="mt-4 flex flex-col  gap-5 lg:gap-6 xl:flex-row  xl:items-end lg:justify-between">
             <h2 className="font-geist max-w-[580px] text-[26px] leading-[110%] font-medium tracking-[-0.3px] lg:text-[48px]">
               Built in Nepal. <br />
               Trusted at national scale.

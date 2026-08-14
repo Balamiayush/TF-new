@@ -9,7 +9,7 @@ export default function IntegrateMobile({ stepsData }: IntegrateProps) {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="block min-h-screen w-full bg-gradient-to-b from-[#FBEAF9] to-[#E8B9E5] py-12 lg:hidden">
+    <div className="block min-h-screen w-full bg-gradient-to-b from-[#FBEAF9] to-[#E8B9E5] py-12 xl:hidden">
       <LayoutWrapper>
         <h2 className="text-alpha-light-1000 text-[26px] leading-[115%] font-medium tracking-tight lg:text-[48px]">
           Integrate in

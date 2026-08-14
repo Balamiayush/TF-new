@@ -39,7 +39,7 @@ export default function TimelineSection({
         tl.fromTo(
           trackRef.current,
           { xPercent: 0 },
-          { xPercent: -50, duration: 1 },
+          { xPercent: -60, duration: 1 },
           0,
         );
 

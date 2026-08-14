@@ -42,9 +42,9 @@ export default function ProductionHero() {
   }, []);
 
   return (
-    <div className="bg-brand-50 h-full w-full overflow-clip pt-[120px] lg:h-[850px] lg:pt-[168px]">
+    <div className="bg-brand-50 h-full w-full overflow-clip pt-[120px] xl:h-[850px] lg:pt-[168px]">
       <LayoutWrapper>
-        <div className="flex justify-between max-lg:flex-col">
+        <div className="flex justify-between xl:flex-row flex-col">
           <div className="lg:pb-[69px]">
             <div className="flex flex-col items-start gap-4">
               <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
@@ -121,7 +121,7 @@ export default function ProductionHero() {
               <Button>Contact us</Button>
             </div>
 
-            <div className="mt-10 flex flex-col gap-4 lg:mt-40">
+            <div className="mt-10 flex flex-col gap-4 xl:mt-40">
               <p className="text-[15px] font-medium text-slate-600">
                 Trusted by
               </p>

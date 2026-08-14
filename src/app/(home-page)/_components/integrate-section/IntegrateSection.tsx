@@ -58,7 +58,7 @@ export default function Integrate({ stepsData }: IntegrateProps) {
   };
 
   return (
-    <section className="hidden min-h-screen w-full py-21 pb-30 lg:block">
+    <section className="hidden min-h-screen w-full py-21 pb-30 lg:hidden xl:block">
       <LayoutWrapper>
         <div className="flex min-h-[753px] w-full flex-col justify-between rounded-xl bg-gradient-to-br from-[#FBEAF9] to-[#E8B9E5] p-12 lg:flex-row lg:items-center">
           <div className="flex w-full flex-col justify-between self-stretch lg:max-w-[430px]">

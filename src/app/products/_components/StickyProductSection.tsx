@@ -80,7 +80,7 @@ export default function StickyProductSection() {
           <div className="top-40 flex w-full flex-col lg:sticky lg:h-full lg:max-w-[562px]">
             <h3
               ref={titleRef}
-              className="max-w-[498px] text-[28px] font-medium leading-[1.2] tracking-[-0.3px] text-black transition-all duration-300 lg:text-[42px]"
+              className="max-w-[498px] text-[28px] font-medium leading-[1.2] tracking-[-0.3px] text-black transition-all duration-300 xl:text-[42px]"
             >
               {FEATURES[activeIndex].title}
             </h3>
@@ -92,7 +92,7 @@ export default function StickyProductSection() {
                   <button
                     key={feature.id}
                     onClick={() => handleTabClick(idx)}
-                    className={`shrink-0 whitespace-nowrap px-4 py-2 text-[14px] font-medium transition-all duration-200 sm:text-[16px] ${
+                    className={`shrink-0 whitespace-nowrap px-4 py-2 text-[14px] font-medium transition-all duration-200 text-[14px] xl:text-[16px] ${
                       isActive
                         ? "text-alpha-light-1000 bg-white shadow-xs"
                         : "bg-alpha-dark-400 text-alpha-light-1000"
