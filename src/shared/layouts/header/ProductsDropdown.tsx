@@ -12,10 +12,7 @@ interface ProductsDropdownProps {
   onClose: () => void;
 }
 
-export const ProductsDropdown: React.FC<ProductsDropdownProps> = ({
-  isOpen,
-  onClose,
-}) => {
+function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -90,7 +87,12 @@ export const ProductsDropdown: React.FC<ProductsDropdownProps> = ({
                     </div>
                   </div>
                   <div className="w-[40%] h-[500px] overflow-hidden rounded-lg shrink-0 relative bg-blue-600">
-                    <Image src={'https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container_xcsols.png'} alt="" fill className="object-cover"/>
+                    <Image
+                      src="https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container_xcsols.png"
+                      alt=""
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                 </div>
               </div>
@@ -100,4 +102,6 @@ export const ProductsDropdown: React.FC<ProductsDropdownProps> = ({
       )}
     </AnimatePresence>
   );
-};
+}
+
+export const ProductsDropdown = React.memo(ProductsDropdownComponent);

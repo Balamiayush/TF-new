@@ -1,6 +1,7 @@
+// DesktopNav.tsx
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import Link from "next/link";
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
 
@@ -13,17 +14,25 @@ interface NavLinkItem {
 
 interface DesktopNavProps {
   links: NavLinkItem[];
-  onProductsHover: () => void;
-  onOtherHover: () => void;
+  onProductsClick: () => void;
+  onOtherClick: () => void;
   isProductsOpen?: boolean;
 }
 
-export const DesktopNav: React.FC<DesktopNavProps> = ({ 
-  links, 
-  onProductsHover,
-  onOtherHover,
-  isProductsOpen
-}) => {
+function DesktopNavComponent({
+  links,
+  onProductsClick,
+  onOtherClick,
+  isProductsOpen,
+}: DesktopNavProps) {
+  const handleProductsClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onProductsClick();
+    },
+    [onProductsClick],
+  );
+
   return (
     <ul className="hidden items-center gap-8 lg:flex">
       {links.map((link) => {
@@ -31,22 +40,26 @@ export const DesktopNav: React.FC<DesktopNavProps> = ({
           return (
             <li
               key={link.id}
-              onMouseEnter={onProductsHover}
-              className="py-2 cursor-pointer"
+              onClick={handleProductsClick}
+              className="cursor-pointer py-2"
             >
-              <span className="flex items-center gap-1.5 text-sm font-medium text-slate-800 hover:text-blue-600 transition-colors group/products">
+              <span className="group/products flex items-center gap-1.5 text-sm font-medium text-slate-800 transition-colors hover:text-blue-600">
                 {link.label}
-                <DropdownArrow  className={`transition-transform duration-300 ${isProductsOpen ? "rotate-180" : "group-hover/products:rotate-180"}`}/>
+                <DropdownArrow
+                  className={`transition-transform duration-300 ${
+                    isProductsOpen ? "rotate-180" : ""
+                  }`}
+                />
               </span>
             </li>
           );
         }
 
         return (
-          <li key={link.id} onMouseEnter={onOtherHover}>
+          <li key={link.id} onClick={onOtherClick}>
             <Link
               href={link.href ?? "/"}
-              className="text-sm font-medium text-slate-800 hover:text-blue-600 transition-colors"
+              className="text-sm font-medium text-slate-800 transition-colors hover:text-blue-600"
             >
               {link.label}
             </Link>
@@ -55,4 +68,6 @@ export const DesktopNav: React.FC<DesktopNavProps> = ({
       })}
     </ul>
   );
-};
+}
+
+export const DesktopNav = React.memo(DesktopNavComponent);

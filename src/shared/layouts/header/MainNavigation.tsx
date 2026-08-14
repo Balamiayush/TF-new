@@ -1,3 +1,4 @@
+// MainNavigation.tsx
 "use client";
 
 import { useState, useCallback } from "react";
@@ -50,6 +51,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
 
   const toggleCountryDropdown = useCallback(() => {
     setCountryDropdownOpen((prev) => !prev);
+    setProductsMenuOpen(false);
   }, []);
 
   const closeCountryDropdown = useCallback(() => {
@@ -64,12 +66,19 @@ export default function MainNavigation({ children }: MainNavigationProps) {
     setMobileMenuOpen(false);
   }, []);
 
+  // Products menu now opens/closes on click (was hover-based).
+  const toggleProductsMenu = useCallback(() => {
+    setProductsMenuOpen((prev) => !prev);
+    setCountryDropdownOpen(false);
+  }, []);
+
+  const closeProductsMenu = useCallback(() => {
+    setProductsMenuOpen(false);
+  }, []);
+
   return (
     <>
-      <div 
-        className="fixed top-0 right-0 left-0 z-[10000] w-full"
-        onMouseLeave={() => setProductsMenuOpen(false)}
-      >
+      <div className="fixed top-0 right-0 left-0 z-[10000] w-full">
         <motion.header
           variants={headerVariants}
           animate={hidden ? "hidden" : "visible"}
@@ -94,10 +103,10 @@ export default function MainNavigation({ children }: MainNavigationProps) {
                   />
                 </Link>
 
-                <DesktopNav 
-                  links={navLinks} 
-                  onProductsHover={() => setProductsMenuOpen(true)} 
-                  onOtherHover={() => setProductsMenuOpen(false)}
+                <DesktopNav
+                  links={navLinks}
+                  onProductsClick={toggleProductsMenu}
+                  onOtherClick={closeProductsMenu}
                   isProductsOpen={productsMenuOpen}
                 />
               </div>
@@ -151,18 +160,11 @@ export default function MainNavigation({ children }: MainNavigationProps) {
             </nav>
           </LayoutWrapper>
 
-          <ProductsDropdown
-            isOpen={productsMenuOpen}
-            onClose={() => setProductsMenuOpen(false)}
-          />
+          <ProductsDropdown isOpen={productsMenuOpen} onClose={closeProductsMenu} />
         </motion.header>
       </div>
 
-      <MobileMenu
-        isOpen={mobileMenuOpen}
-        links={navLinks}
-        onClose={closeMobileMenu}
-      />
+      <MobileMenu isOpen={mobileMenuOpen} links={navLinks} onClose={closeMobileMenu} />
 
       {children}
     </>

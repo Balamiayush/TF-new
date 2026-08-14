@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
@@ -45,8 +45,10 @@ export const MobileMenu = React.memo(function MobileMenu({
   links,
   onClose,
 }: MobileMenuProps) {
-  // Default to null so it opens collapsed initially
   const [expandedDropdown, setExpandedDropdown] = useState<string | number | null>(null);
+  // Drawer-inside-drawer: which product category is open. Defaults to the
+  // first category (0) whenever the Products drawer is opened.
+  const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
 
   useEffect(() => {
     if (isOpen) {
@@ -54,21 +56,30 @@ export const MobileMenu = React.memo(function MobileMenu({
     } else {
       document.body.style.overflow = "";
       setExpandedDropdown(null);
+      setExpandedCategory(0);
     }
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
 
-  const toggleDropdown = (id: string | number) => {
-    setExpandedDropdown((prev) => (prev === id ? null : id));
-  };
+  const toggleDropdown = useCallback((id: string | number) => {
+    setExpandedDropdown((prev) => {
+      const next = prev === id ? null : id;
+      // Reset to first category open every time Products is (re)expanded
+      if (next !== null) setExpandedCategory(0);
+      return next;
+    });
+  }, []);
+
+  const toggleCategory = useCallback((idx: number) => {
+    setExpandedCategory((prev) => (prev === idx ? null : idx));
+  }, []);
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
- 
           <motion.div
             initial="closed"
             animate="open"
@@ -78,7 +89,6 @@ export const MobileMenu = React.memo(function MobileMenu({
             className="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-md lg:hidden"
           />
 
-          
           <motion.div
             initial="closed"
             animate="open"
@@ -118,26 +128,58 @@ export const MobileMenu = React.memo(function MobileMenu({
                             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                             className="overflow-hidden pl-2 pb-4"
                           >
-                            <div className="flex flex-col gap-6 pt-2">
-                              {productsMenuData.categories.map((category, idx) => (
-                                <div key={idx} className="flex flex-col gap-2.5">
-                                  <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                                    {category.title}
-                                  </span>
-                                  <div className="flex flex-col gap-2.5 pl-1">
-                                    {category.items.map((item, itemIdx) => (
-                                      <Link
-                                        key={itemIdx}
-                                        href={item.href}
-                                        onClick={onClose}
-                                        className="text-base font-normal text-slate-700 hover:text-blue-600 transition-colors"
+                            <div className="flex flex-col gap-2 pt-2">
+                              {productsMenuData.categories.map((category, idx) => {
+                                const isCategoryOpen = expandedCategory === idx;
+
+                                return (
+                                  <div key={idx} className="flex flex-col">
+                                    <button
+                                      type="button"
+                                      onClick={() => toggleCategory(idx)}
+                                      className="flex w-full items-center justify-between py-2 text-left"
+                                    >
+                                      <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                                        {category.title}
+                                      </span>
+                                      <motion.div
+                                        animate={{ rotate: isCategoryOpen ? 180 : 0 }}
+                                        transition={{ duration: 0.2 }}
                                       >
-                                        {item.label}
-                                      </Link>
-                                    ))}
+                                        <DropdownArrow className="h-3 w-3" />
+                                      </motion.div>
+                                    </button>
+
+                                    <AnimatePresence initial={false}>
+                                      {isCategoryOpen && (
+                                        <motion.div
+                                          initial={{ opacity: 0, height: 0 }}
+                                          animate={{ opacity: 1, height: "auto" }}
+                                          exit={{ opacity: 0, height: 0 }}
+                                          transition={{
+                                            duration: 0.25,
+                                            ease: [0.16, 1, 0.3, 1],
+                                          }}
+                                          className="overflow-hidden"
+                                        >
+                                          <div className="flex flex-col gap-2.5 pl-1 pb-3">
+                                            {category.items.map((item, itemIdx) => (
+                                              <Link
+                                                key={itemIdx}
+                                                href={item.href}
+                                                onClick={onClose}
+                                                className="text-base font-normal text-slate-700 hover:text-blue-600 transition-colors"
+                                              >
+                                                {item.label}
+                                              </Link>
+                                            ))}
+                                          </div>
+                                        </motion.div>
+                                      )}
+                                    </AnimatePresence>
                                   </div>
-                                </div>
-                              ))}
+                                );
+                              })}
                             </div>
                           </motion.div>
                         )}
