@@ -54,7 +54,7 @@ export default function HeroSection() {
   return (
 <div className="relative isolate min-h-screen w-full overflow-hidden  bg-[#fafcff] lg:pt-[168px] pt-[120px]  ">
   <GitterImage/>
-  <div className="  bg-[#95C5FF]/64  w-[2000px] right-0  lg:hidden rotate-10 absolute top-0 h-[30vh] blur-[500px] "/>
+  <div className="  bg-[#95C5FF]/64  w-[2000px] right-0  lg:hidden rotate-10 absolute top-0 h-[200px] blur-[500px] "/>
   <div
     aria-hidden
     className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[820px] lg:block"
