@@ -60,6 +60,7 @@ export default function ReadAllStories() {
             <CardCom
               key={story.id}
               story={story}
+              className=""
             />
           ))}
         </div>
