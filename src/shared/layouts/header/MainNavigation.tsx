@@ -11,6 +11,7 @@ import Button from "@/shared/ui/buttons/Button";
 import { CountrySelector } from "./CountrySelector";
 import { DesktopNav } from "./DesktopNav";
 import { MobileMenu } from "./MobileMenu";
+import { ProductsDropdown } from "./ProductsDropdown";
 
 interface MainNavigationProps {
   children?: React.ReactNode;
@@ -26,6 +27,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [countryDropdownOpen, setCountryDropdownOpen] = useState(false);
+  const [productsMenuOpen, setProductsMenuOpen] = useState(false);
 
   const { scrollY } = useScroll();
 
@@ -40,6 +42,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
     if (latest > previous && latest > 150 && !mobileMenuOpen) {
       if (!hidden) setHidden(true);
       if (countryDropdownOpen) setCountryDropdownOpen(false);
+      if (productsMenuOpen) setProductsMenuOpen(false);
     } else {
       if (hidden) setHidden(false);
     }
@@ -63,14 +66,17 @@ export default function MainNavigation({ children }: MainNavigationProps) {
 
   return (
     <>
-      <div className="fixed top-0 right-0 left-0 z-[10000] w-full">
+      <div 
+        className="fixed top-0 right-0 left-0 z-[10000] w-full"
+        onMouseLeave={() => setProductsMenuOpen(false)}
+      >
         <motion.header
           variants={headerVariants}
           animate={hidden ? "hidden" : "visible"}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className={`pointer-events-auto w-full py-4.5 transition-colors duration-300 ${
-            isScrolled
-              ? "bg-white shadow-xs backdrop-blur-md"
+            isScrolled || productsMenuOpen
+              ? "bg-white shadow-xs"
               : "bg-transparent"
           }`}
         >
@@ -88,7 +94,12 @@ export default function MainNavigation({ children }: MainNavigationProps) {
                   />
                 </Link>
 
-                <DesktopNav links={navLinks} />
+                <DesktopNav 
+                  links={navLinks} 
+                  onProductsHover={() => setProductsMenuOpen(true)} 
+                  onOtherHover={() => setProductsMenuOpen(false)}
+                  isProductsOpen={productsMenuOpen}
+                />
               </div>
 
               <div className="flex items-center gap-2">
@@ -139,6 +150,11 @@ export default function MainNavigation({ children }: MainNavigationProps) {
               </div>
             </nav>
           </LayoutWrapper>
+
+          <ProductsDropdown
+            isOpen={productsMenuOpen}
+            onClose={() => setProductsMenuOpen(false)}
+          />
         </motion.header>
       </div>
 
