@@ -64,7 +64,7 @@ export default function OurMission() {
                   delay: 0.2,
                   ease: [0.25, 1, 0.5, 1],
                 }}
-                className="relative h-[137px]  w-[243px] overflow-hidden rounded-lg lg:h-[356px]"
+                className="relative h-[137px]  w-[243px] overflow-hidden rounded-lg lg:h-[356px] lg:w-full"
               >
                 <Image
                   src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg"
