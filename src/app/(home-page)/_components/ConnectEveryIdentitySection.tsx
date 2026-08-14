@@ -1,14 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useRef, useState, ReactNode } from "react";
-import { Fingerprint, ScanFace, Smartphone } from "lucide-react";
-
-import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
-import FeatureAccordion from "./FeatureAccordion";
-import Button from "@/shared/ui/buttons/Button";
-import PhoneIcon from "@/shared/icons/PhoneIcon";
-
 type AccordionItem = {
   id: number;
   title: string;
@@ -120,6 +111,16 @@ const FEATURES_DATA: FeatureItem[] = [
     ],
   },
 ];
+
+import Image from "next/image";
+import { useEffect, useRef, useState, ReactNode } from "react";
+import { Fingerprint, ScanFace, Smartphone } from "lucide-react";
+
+import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
+import FeatureAccordion from "./FeatureAccordion";
+import Button from "@/shared/ui/buttons/Button";
+import PhoneIcon from "@/shared/icons/PhoneIcon";
+
 
 export default function ConnectEveryIdentitySection() {
   const [activeImage, setActiveImage] = useState(FEATURES_DATA[0].imgSrc);

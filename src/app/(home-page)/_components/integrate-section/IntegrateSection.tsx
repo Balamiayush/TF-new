@@ -1,61 +1,74 @@
 "use client";
 
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IntegrateProps } from "./type";
 
+// Hoisted outside the component — these never change between renders.
+const CARD_GAP = 20;
+const INACTIVE_CARD_WIDTH = 218;
+const ACTIVE_CARD_WIDTH = 302;
+const CONTAINER_WIDTH = 580;
+const AUTO_ADVANCE_MS = 5000;
+
+const SPRING_TRANSITION = {
+  type: "spring" as const,
+  stiffness: 300,
+  damping: 30,
+  mass: 0.8,
+};
 
 export default function Integrate({ stepsData }: IntegrateProps) {
   const [activeTab, setActiveTab] = useState(0);
 
-  // Auto-advance progress and change active image/tab every 5 seconds
+  // Auto-advance every 5s. Restarts whenever activeTab changes (including
+  // manual selection), so a manual click doesn't leave a stale timer that
+  // fires early/late.
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveTab((prev) => (prev + 1) % stepsData.length);
-    }, 5000);
+    }, AUTO_ADVANCE_MS);
 
     return () => clearInterval(timer);
-  }, [stepsData.length]);
+  }, [activeTab, stepsData.length]);
 
-  const cardGap = 20;
-  const inactiveCardWidth = 218;
-  const activeCardWidth = 302;
-  const containerWidth = 580;
+  const handleSelectTab = useCallback((index: number) => {
+    setActiveTab(index);
+  }, []);
 
-  const displayItems = [
-    {
-      ...stepsData[stepsData.length - 1],
-      originalIndex: stepsData.length - 1,
-      key: "clone-prev",
-    },
-    ...stepsData.map((item, idx) => ({
-      ...item,
-      originalIndex: idx,
-      key: item.id,
-    })),
-    { ...stepsData[0], originalIndex: 0, key: "clone-next" },
-  ];
+  const displayItems = useMemo(
+    () => [
+      {
+        ...stepsData[stepsData.length - 1],
+        originalIndex: stepsData.length - 1,
+        key: "clone-prev",
+      },
+      ...stepsData.map((item, idx) => ({
+        ...item,
+        originalIndex: idx,
+        key: item.id,
+      })),
+      { ...stepsData[0], originalIndex: 0, key: "clone-next" },
+    ],
+    [stepsData]
+  );
 
   const virtualActiveIndex = activeTab + 1;
 
-  // FIX: Accurately calculate width of preceding cards to center the active card
-  const precedingWidth = displayItems
-    .slice(0, virtualActiveIndex)
-    .reduce((acc, _, idx) => {
+  // Accurately calculate width of preceding cards to center the active card
+  const precedingWidth = useMemo(() => {
+    return displayItems.slice(0, virtualActiveIndex).reduce((acc, _, idx) => {
       const isCardActive = displayItems[idx].originalIndex === activeTab;
-      const width = isCardActive ? activeCardWidth : inactiveCardWidth;
-      return acc + width + cardGap;
+      const width = isCardActive ? ACTIVE_CARD_WIDTH : INACTIVE_CARD_WIDTH;
+      return acc + width + CARD_GAP;
     }, 0);
+  }, [displayItems, virtualActiveIndex, activeTab]);
 
-  const trackOffset = containerWidth / 2 - activeCardWidth / 2 - precedingWidth;
-
-  const springTransition = {
-    type: "spring" as const,
-    stiffness: 300,
-    damping: 30,
-    mass: 0.8,
-  };
+  const trackOffset = useMemo(
+    () => CONTAINER_WIDTH / 2 - ACTIVE_CARD_WIDTH / 2 - precedingWidth,
+    [precedingWidth]
+  );
 
   return (
     <section className="hidden min-h-screen w-full py-21 pb-30 lg:hidden xl:block">
@@ -74,7 +87,7 @@ export default function Integrate({ stepsData }: IntegrateProps) {
                 return (
                   <div
                     key={step.id}
-                    onClick={() => setActiveTab(index)}
+                    onClick={() => handleSelectTab(index)}
                     className="cursor-pointer border-t border-[#1A1A1A]/10 py-4 transition-colors"
                   >
                     <h3
@@ -112,15 +125,15 @@ export default function Integrate({ stepsData }: IntegrateProps) {
             </div>
           </div>
 
-          <div className="relative mt-8 flex min-h-[657px] w-full items-center overflow-hidden rounded-2xl bg-[#E08EF8] lg:mt-0 lg:w-[580px]">
-         <div className="absolute right-0 bottom-1 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 z-10">
+          <div className="relative mt-8 flex min-h-[657px] w-full items-center overflow-hidden rounded-xl bg-[#E08EF8] lg:mt-0 lg:w-[580px]">
+            <div className="absolute right-0 bottom-2 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 z-10 w-full ">
               {stepsData.map((_, idx) => {
                 const isActive = activeTab === idx;
                 return (
                   <div
                     key={idx}
-                    onClick={() => setActiveTab(idx)}
-                    className="h-1.5 w-[100px] bg-white/40 rounded-full cursor-pointer overflow-hidden"
+                    onClick={() => handleSelectTab(idx)}
+                    className="h-1.5 w-[125px] bg-white/40 rounded-full cursor-pointer overflow-hidden"
                   >
                     <motion.div
                       className="h-full bg-white"
@@ -141,7 +154,7 @@ export default function Integrate({ stepsData }: IntegrateProps) {
             <motion.div
               className="absolute left-0 flex items-center gap-[20px]"
               animate={{ x: trackOffset }}
-              transition={springTransition}
+              transition={SPRING_TRANSITION}
               style={{ willChange: "transform" }}
             >
               {displayItems.map((step) => {
@@ -149,13 +162,13 @@ export default function Integrate({ stepsData }: IntegrateProps) {
                 return (
                   <motion.div
                     key={step.key}
-                    onClick={() => setActiveTab(step.originalIndex)}
+                    onClick={() => handleSelectTab(step.originalIndex)}
                     layout
                     animate={{
-                      width: isActive ? activeCardWidth : inactiveCardWidth,
+                      width: isActive ? ACTIVE_CARD_WIDTH : INACTIVE_CARD_WIDTH,
                       height: isActive ? 610 : 438,
                     }}
-                    transition={springTransition}
+                    transition={SPRING_TRANSITION}
                     style={{ willChange: "width, height, transform" }}
                     className={`relative shrink-0 cursor-pointer overflow-hidden transition-opacity duration-300 ${
                       isActive ? "opacity-100" : "opacity-70 hover:opacity-90"
@@ -166,12 +179,13 @@ export default function Integrate({ stepsData }: IntegrateProps) {
                         src={step.imgSrc}
                         alt={step.title}
                         className="h-full w-full object-cover"
+                        loading={isActive ? "eager" : "lazy"}
+                        decoding="async"
                       />
                     )}
                   </motion.div>
                 );
               })}
-              <div></div>
             </motion.div>
           </div>
         </div>

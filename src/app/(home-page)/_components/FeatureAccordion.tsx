@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface AccordionItem {
@@ -25,6 +25,8 @@ export default function FeatureAccordion({
   const [accordion, setAccordion] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  const wasActiveRef = useRef(false);
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
@@ -35,21 +37,32 @@ export default function FeatureAccordion({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // When this card becomes active (scrolls into view), always restart the
+  // accordion from the first item — never resume from wherever it was.
+  useEffect(() => {
+    if (isParentActive && !wasActiveRef.current) {
+      setAccordion(0);
+    }
+    wasActiveRef.current = isParentActive;
+  }, [isParentActive]);
+
   useEffect(() => {
     if (isParentActive) {
       onAccordionChange(accordion);
     }
   }, [accordion, isParentActive, onAccordionChange]);
 
+  // Auto-advance only while this card is the active/visible one.
+  // Off-screen cards no longer tick in the background.
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile || !isParentActive) return;
 
     const interval = setInterval(() => {
       setAccordion((prev) => (prev + 1) % accordionData.length);
     }, 6000);
 
     return () => clearInterval(interval);
-  }, [accordionData.length, isMobile]);
+  }, [accordionData.length, isMobile, isParentActive]);
 
   return (
     <div className="flex w-full flex-col gap-2.5">
