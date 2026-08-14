@@ -4,7 +4,7 @@ import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 
 export default function BuiltInNepalSection() {
   return (
-    <section className="h-full w-full lg:py-[84px]">
+    <section className="h-full w-full lg:py-[84px] py-[48px]">
       <LayoutWrapper>
         <div className="flex flex-col gap-12">
           <div className="relative hidden aspect-square w-full overflow-hidden rounded-2xl bg-slate-900 md:block lg:h-[718px]">
@@ -22,7 +22,7 @@ export default function BuiltInNepalSection() {
               Built in Nepal. <br />
               Trusted at national scale.
             </h2>
-            <div className="relative block aspect-square w-full overflow-hidden rounded-2xl bg-slate-900 md:hidden lg:h-[752px]">
+            <div className="relative block aspect-square w-full overflow-hidden rounded-lg bg-slate-900 md:hidden lg:h-[752px]">
               <Image
                 alt="Third Factor AI Team - Built in Nepal"
                 fill

@@ -214,12 +214,12 @@ export default function ScaleSection() {
               <span className="animated-heading-dark text-[#0F172A]">
                 Run at any scale.{" "}
               </span>
-              <span className="animated-heading-light text-[#64748B]">
+              <span className="animated-heading-light text-[#6F7988CC]">
                 Production-grade for your team and agents.
               </span>
             </h2>
 
-            <div className="mt-14 sm:mt-12 lg:mt-16 grid lg:grid-cols-2 gap-y-6 gap-x-12">
+            <div className="mt-14  lg:mt-[120px] grid lg:grid-cols-2 gap-y-6 gap-x-12">
               {statsData.map((stat, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="animated-indicator h-full w-[2px] shrink-0 bg-[#0088D4]" />
