@@ -1,16 +1,12 @@
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import Button from "@/shared/ui/buttons/Button";
+import GitterImage from "@/shared/ui/GitterImg";
 import Image from "next/image";
 
 export default function AboutHeroSection() {
   return (
     <div className="relative min-h-screen w-full bg-[#EDF4FF] lg:min-h-[800px]">
-      <Image
-        alt="gitter"
-        fill
-        className="pointer-events-none absolute z-[-1] h-full w-full object-cover"
-        src={"/gitter.png"}
-      />
+    <GitterImage/>
       <LayoutWrapper>
         <div className="flex h-full w-full flex-col-reverse justify-between py-21 lg:flex-row lg:items-end lg:py-12">
           <div className="flex flex-col gap-4 lg:gap-8">

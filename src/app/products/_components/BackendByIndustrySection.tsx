@@ -124,7 +124,7 @@ export default function BackendByIndustrySection() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-white">
+    <div className="relative min-h-screen w-full bg-white lg:pb-[120px] pb-12">
       <GitterImage />
       <div className="relative z-100 py-10">
         <LayoutWrapper>
