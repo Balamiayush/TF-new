@@ -50,7 +50,7 @@ export default function ContactForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`flex w-full max-w-[584px] flex-col gap-6 ${className}`}
+      className={`flex w-full max-w-[584px] flex-col gap-4 md:gap-6 ${className}`}
     >
       {/* Name Field */}
       <FormField
@@ -62,7 +62,8 @@ export default function ContactForm({
         onChange={handleChange}
       />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {/* Email & Phone - Stacked on Mobile, 2-Cols on Desktop */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <FormField
           label="Work email"
           type="email"
@@ -82,7 +83,8 @@ export default function ContactForm({
         />
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {/* Company & Industry - Stacked on Mobile, 2-Cols on Desktop */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <FormField
           label="Company Name"
           type="text"
@@ -93,7 +95,7 @@ export default function ContactForm({
         />
 
         <div className="flex flex-col gap-2">
-          <label className="font-geist text-[18px] leading-[20px] font-medium tracking-[-0.1px] text-slate-900">
+          <label className="font-geist text-[16px] leading-[20px] font-medium tracking-[-0.1px] text-slate-900 md:text-[18px]">
             Industry
           </label>
           <div className="relative w-full">
@@ -136,7 +138,7 @@ export default function ContactForm({
 
       {/* Textarea Field */}
       <div className="flex flex-col gap-2">
-        <label className="font-geist text-[18px] leading-[20px] font-medium tracking-[-0.1px] text-slate-900">
+        <label className="font-geist text-[16px] leading-[20px] font-medium tracking-[-0.1px] text-slate-900 md:text-[18px]">
           How can we help?
         </label>
         <textarea
@@ -145,7 +147,7 @@ export default function ContactForm({
           placeholder="Tell us about your product, existing content, goals, team size, or anything else you'd like to go over in the call."
           value={formData.message}
           onChange={handleChange}
-          className="font-inter w-full resize-none border border-slate-100 bg-[#F8FAFC] p-4 text-[15px] leading-[150%] text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none"
+          className="font-inter w-full resize-none border border-slate-100 bg-[#F8FAFC] p-4 text-[14px] leading-[150%] text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none md:text-[15px]"
         />
       </div>
 
@@ -159,7 +161,7 @@ export default function ContactForm({
           Book a call
         </Button>
 
-        <p className="font-inter text-[14px] leading-[140%] text-slate-700">
+        <p className="font-inter text-[13px] leading-[140%] text-slate-700 md:text-[14px]">
           By submitting this form, you confirm that you have read and understand
           thirdfactor’s{" "}
           <a

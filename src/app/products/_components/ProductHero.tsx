@@ -1,9 +1,19 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import Button from "@/shared/ui/buttons/Button";
-import Image from "next/image";
+import { productsMenuData } from "@/shared/data/products-menu";
 
 export default function ProductionHero() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const labels = ["NRB Compliant", "VAPT Certified", "Sub-0.1ms 1:N Search"];
 
   const trustedLogos = [
@@ -17,10 +27,24 @@ export default function ProductionHero() {
     },
   ];
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="bg-brand-50 lg:h-[850px] w-full h-full overflow-clip lg:pt-[168px] pt-[120px]">
+    <div className="bg-brand-50 h-full w-full overflow-clip pt-[120px] lg:h-[850px] lg:pt-[168px]">
       <LayoutWrapper>
-        <div className="flex justify-between max-lg:flex-col ">
+        <div className="flex justify-between max-lg:flex-col">
           <div className="lg:pb-[69px]">
             <div className="flex flex-col items-start gap-4">
               <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
@@ -28,10 +52,52 @@ export default function ProductionHero() {
                 <span>/</span>
                 <span>Onboarding</span>
                 <span>/</span>
-                <button className="flex items-center gap-1 font-semibold text-slate-900 bg-[#FFFFFF7A] px-2 py-1 rounded-sm">
-                  KYC Onboarding
-                  <DropdownArrow />
-                </button>
+
+                <div className="relative" ref={dropdownRef}>
+                  <button
+                    onClick={() => setDropdownOpen((prev) => !prev)}
+                    className="flex items-center gap-1 rounded-sm bg-[#FFFFFF7A] px-2 py-1 text-slate-900 transition-colors hover:bg-white focus:outline-none"
+                  >
+                    KYC Onboarding
+                    <motion.div
+                      animate={{ rotate: dropdownOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="flex items-center justify-center"
+                    >
+                      <DropdownArrow />
+                    </motion.div>
+                  </button>
+
+                  <AnimatePresence>
+                    {dropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 6, scale: 0.96 }}
+                        transition={{ duration: 0.18, ease: "easeOut" }}
+                        className="absolute top-full -right-2 md:left-0 z-50 mt-2 w-[320px] rounded-xs border border-slate-200 bg-white p-1 shadow-xl "
+                      >
+                        <div className="no-scrollbar flex max-h-[380px] flex-col gap-4 overflow-y-auto">
+                          <ul className="flex flex-col gap-1">
+                            {productsMenuData.categories[0]?.items.map(
+                              (item, itemIdx) => (
+                                <li key={itemIdx}>
+                                  <Link
+                                    href={item.href}
+                                    onClick={() => setDropdownOpen(false)}
+                                    className="block rounded-xs px-2 py-1.5 text-[14px] text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                                  >
+                                    {item.label}
+                                  </Link>
+                                </li>
+                              ),
+                            )}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
 
               <div className="flex flex-col gap-6">
@@ -45,7 +111,8 @@ export default function ProductionHero() {
                 </p>
               </div>
             </div>
-           <div className="email-address mt-12 flex h-[52px] w-full max-w-[442px] items-center justify-between bg-white p-1.5 pl-6 shadow-[inset_0px_4px_8px_0px_#FFFFFF33]">
+
+            <div className="email-address mt-12 flex h-[52px] w-full max-w-[442px] items-center justify-between bg-white p-1.5 pl-6 shadow-[inset_0px_4px_8px_0px_#FFFFFF33]">
               <input
                 type="email"
                 placeholder="Your email address"
@@ -53,6 +120,7 @@ export default function ProductionHero() {
               />
               <Button>Contact us</Button>
             </div>
+
             <div className="mt-10 flex flex-col gap-4 lg:mt-40">
               <p className="text-[15px] font-medium text-slate-600">
                 Trusted by
@@ -74,12 +142,13 @@ export default function ProductionHero() {
               </div>
             </div>
           </div>
-          <div className="relative h-[400px] max-lg:mt-10 lg:h-[765px] w-[600px] lg:w-[850px] shrink-0 -mr-20 top-2">
+
+          <div className="relative top-2 -mr-20 h-[400px] w-[600px] shrink-0 max-lg:mt-10 lg:h-[765px] lg:w-[850px]">
             <Image
               alt="Dashboard Preview"
               fill
               src="https://tf-new.vercel.app/_next/image?url=%2Fimages%2Fhero%2Fdashboard-preview.png&w=1200&q=75"
-              className="object-cover object-left-top rounded-tl-2xl shadow-2xl"
+              className="rounded-tl-2xl object-cover object-left-top shadow-2xl"
               priority
             />
           </div>
