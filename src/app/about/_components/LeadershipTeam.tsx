@@ -136,7 +136,7 @@ export default function LeadershipTeam() {
                               duration: 0.35,
                               ease: [0.16, 1, 0.3, 1],
                             }}
-                            className="flex h-full w-full flex-col justify-between gap-3 overflow-hidden pt-4"
+                            className="flex h-full w-full flex-col jusetify-btween gap-3 overflow-hidden pt-4"
                           >
                             <p className="font-geist text-alpha-dark-900 text-[14px] leading-[130%]">
                               {member.bio}

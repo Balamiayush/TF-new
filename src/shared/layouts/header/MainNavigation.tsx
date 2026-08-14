@@ -1,10 +1,14 @@
-// MainNavigation.tsx
 "use client";
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useMotionValueEvent, Variants } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  Variants,
+} from "framer-motion";
 
 import LayoutWrapper from "../wrapper/LayoutWrapper";
 import { navLinks } from "@/shared/data";
@@ -84,7 +88,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
           animate={hidden ? "hidden" : "visible"}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className={`pointer-events-auto w-full py-4.5 transition-colors duration-300 ${
-            isScrolled || productsMenuOpen
+            isScrolled || productsMenuOpen || mobileMenuOpen
               ? "bg-white shadow-xs"
               : "bg-transparent"
           }`}
@@ -160,11 +164,18 @@ export default function MainNavigation({ children }: MainNavigationProps) {
             </nav>
           </LayoutWrapper>
 
-          <ProductsDropdown isOpen={productsMenuOpen} onClose={closeProductsMenu} />
+          <ProductsDropdown
+            isOpen={productsMenuOpen}
+            onClose={closeProductsMenu}
+          />
         </motion.header>
       </div>
 
-      <MobileMenu isOpen={mobileMenuOpen} links={navLinks} onClose={closeMobileMenu} />
+      <MobileMenu
+        isOpen={mobileMenuOpen}
+        links={navLinks}
+        onClose={closeMobileMenu}
+      />
 
       {children}
     </>
