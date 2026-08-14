@@ -11,13 +11,12 @@ import Twitter from "@/shared/icons/Twitter";
 import Insta from "@/shared/icons/Insta";
 import LayoutWrapper from "../wrapper/LayoutWrapper";
 
-// Data config for navigation links
 const NAV_SECTIONS = [
   {
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Career", href: "/careers" },
+      { label: "Career", href: "https://www.linkedin.com/company/thirdfactor-ai/posts/?feedView=all" },
     ],
   },
   {
@@ -38,12 +37,11 @@ const NAV_SECTIONS = [
   },
 ];
 
-// Data config for social icons
 const SOCIAL_LINKS = [
-  { name: "Twitter", href: "https://twitter.com", Icon: Twitter },
-  { name: "LinkedIn", href: "https://linkedin.com", Icon: Linkdin },
-  { name: "Facebook", href: "https://facebook.com", Icon: Facebook },
-  { name: "Instagram", href: "https://instagram.com", Icon: Insta },
+  { name: "Twitter", href: "https://x.com/thirdfactor_ai", Icon: Twitter },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/thirdfactor-ai/posts/?feedView=all", Icon: Linkdin },
+  { name: "Facebook", href: "https://www.facebook.com/ThirdfactorAI/", Icon: Facebook },
+  { name: "Instagram", href: "https://www.instagram.com/thirdfactorai/", Icon: Insta },
 ];
 
 export default function Footer() {
