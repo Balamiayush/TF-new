@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
-import FormField from "./FormField"; // adjust import path as needed
+import FormField from "./FormField"; 
+import { DropDown } from "@/shared/ui/DropDown";
 
 export interface ContactFormData {
   name: string;
@@ -18,6 +19,14 @@ interface ContactFormProps {
   className?: string;
 }
 
+const INDUSTRY_OPTIONS = [
+  { label: "Fintech", href: "#" },
+  { label: "Banking", href: "#" },
+  { label: "E-commerce", href: "#" },
+  { label: "SaaS", href: "#" },
+  { label: "Healthcare", href: "#" },
+];
+
 export default function ContactForm({
   onSubmit,
   className = "",
@@ -32,9 +41,7 @@ export default function ContactForm({
   });
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -52,7 +59,6 @@ export default function ContactForm({
       onSubmit={handleSubmit}
       className={`flex w-full max-w-[584px] flex-col gap-4 md:gap-6 ${className}`}
     >
-      {/* Name Field */}
       <FormField
         label="Name"
         type="text"
@@ -62,7 +68,6 @@ export default function ContactForm({
         onChange={handleChange}
       />
 
-      {/* Email & Phone - Stacked on Mobile, 2-Cols on Desktop */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <FormField
           label="Work email"
@@ -83,7 +88,6 @@ export default function ContactForm({
         />
       </div>
 
-      {/* Company & Industry - Stacked on Mobile, 2-Cols on Desktop */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <FormField
           label="Company Name"
@@ -98,45 +102,20 @@ export default function ContactForm({
           <label className="font-geist text-[16px] leading-[20px] font-medium tracking-[-0.1px] text-slate-900 md:text-[18px]">
             Industry
           </label>
-          <div className="relative w-full">
-            <select
-              name="industry"
-              value={formData.industry}
-              onChange={handleChange}
-              className="font-inter h-[48px] w-full appearance-none border border-slate-100 bg-[#F8FAFC] px-4 text-[15px] text-slate-900 focus:border-blue-500 focus:bg-white focus:outline-none"
-            >
-              <option value="" disabled hidden>
-                Please Select
-              </option>
-              <option value="Fintech">Fintech</option>
-              <option value="Banking">Banking</option>
-              <option value="E-commerce">E-commerce</option>
-              <option value="SaaS">SaaS</option>
-              <option value="Healthcare">Healthcare</option>
-            </select>
-            {/* Custom Caret Arrow */}
-            <div className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2">
-              <svg
-                width="12"
-                height="8"
-                viewBox="0 0 12 8"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 1.5L6 6.5L11 1.5"
-                  stroke="#0F172A"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
+          <div className="w-full">
+         <DropDown
+  label={formData.industry || "Please Select"}
+  items={INDUSTRY_OPTIONS}
+  onSelect={(selectedIndustry) =>
+    setFormData((prev) => ({ ...prev, industry: selectedIndustry }))
+  }
+  buttonClassName="font-inter flex h-[48px] w-full items-center justify-between border border-slate-100 bg-[#F8FAFC] px-4 text-[15px] text-slate-900 focus:border-blue-500 focus:bg-white focus:outline-none"
+  menuClassName="absolute top-full left-0 z-50 mt-2 w-full rounded-xs border border-slate-200 bg-white p-1 shadow-xl"
+/>
           </div>
         </div>
       </div>
 
-      {/* Textarea Field */}
       <div className="flex flex-col gap-2">
         <label className="font-geist text-[16px] leading-[20px] font-medium tracking-[-0.1px] text-slate-900 md:text-[18px]">
           How can we help?
@@ -151,7 +130,6 @@ export default function ContactForm({
         />
       </div>
 
-      {/* Submit Button & Disclaimer */}
       <div className="flex flex-col gap-3 pt-2">
         <Button
           type="submit"

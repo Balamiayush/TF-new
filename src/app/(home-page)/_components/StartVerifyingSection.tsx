@@ -82,26 +82,10 @@ export default function StartVerifyingSection() {
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#2262EC] px-4 py-32"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#2563EB] px-4 py-32"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[820px] lg:block"
-      >
-        <div className="absolute -top-14 -left-16 flex h-[812px] w-[454px] items-center justify-center">
-          <div className="h-[832px] w-[127px] -rotate-[24deg] rounded-[130px] mix-blend-difference bg-[#95c5ff]/60 blur-[140px]" />
-        </div>
-        <div className="absolute -top-40 left-[27%] flex h-[838px] w-[363px] items-center justify-center">
-          <div className="h-[832px] w-[139px] -rotate-[16deg] rounded-[130px] mix-blend-difference bg-[#95c5ff]/60 blur-[140px]" />
-        </div>
-        <div className="absolute -top-48 left-[55%] flex h-[834px] w-[351px] items-center justify-center">
-          <div className="h-[832px] w-[127px] rotate-[16deg] rounded-[130px] mix-blend-differenc bg-[#95c5ff]/60 blur-[140px]" />
-        </div>
-        <div className="absolute -top-24 right-[-6%] flex h-[798px] w-[425px] items-center justify-center">
-          <div className="h-[832px] w-[95px] rotate-[24deg] rounded-[130px] mix-blend-difference bg-[#95c5ff]/60 blur-[140px]" />
-        </div>
-      </div>
       <DitherHoverBackground
+      
         baseColor="transparent"
         gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}
         gridSize={dither.gridSize}

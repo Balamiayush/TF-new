@@ -63,7 +63,7 @@ export default function BacklogsSection() {
   ];
 
   return (
-    <div className="relative min-h-screen w-full py-12 md:py-16 ">
+    <div className="relative min-h-screen w-full py-12 md:py-16 lg:py-[84px] ">
       <GitterImage />
       <LayoutWrapper>
         <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between relative z-100">

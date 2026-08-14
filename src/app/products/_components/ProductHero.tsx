@@ -1,45 +1,24 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-
-import { DropdownArrow } from "@/shared/icons/DropdownArrow";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import Button from "@/shared/ui/buttons/Button";
 import { productsMenuData } from "@/shared/data/products-menu";
+import { DropDown } from "@/shared/ui/DropDown";
+
+const TRUSTED_LOGOS = [
+  { name: "esewa", image: "/images/trused-by-imgs/esewa.webp" },
+  { name: "everest", image: "/images/trused-by-imgs/everest.webp" },
+  { name: "laxmi", image: "/images/trused-by-imgs/laxmi.webp" },
+  { name: "sagilo", image: "/images/trused-by-imgs/sagilo.webp" },
+  {
+    name: "siddhartha-bank",
+    image: "/images/trused-by-imgs/siddhartha-bank.webp",
+  },
+];
 
 export default function ProductionHero() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const labels = ["NRB Compliant", "VAPT Certified", "Sub-0.1ms 1:N Search"];
-
-  const trustedLogos = [
-    { name: "esewa", image: "/images/trused-by-imgs/esewa.webp" },
-    { name: "everest", image: "/images/trused-by-imgs/everest.webp" },
-    { name: "laxmi", image: "/images/trused-by-imgs/laxmi.webp" },
-    { name: "sagilo", image: "/images/trused-by-imgs/sagilo.webp" },
-    {
-      name: "siddhartha-bank",
-      image: "/images/trused-by-imgs/siddhartha-bank.webp",
-    },
-  ];
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const onboardingItems = productsMenuData.categories[0]?.items ?? [];
 
   return (
     <div className="bg-brand-50 h-full w-full overflow-clip pt-[120px] xl:h-[850px] lg:pt-[168px]">
@@ -53,51 +32,10 @@ export default function ProductionHero() {
                 <span>Onboarding</span>
                 <span>/</span>
 
-                <div className="relative" ref={dropdownRef}>
-                  <button
-                    onClick={() => setDropdownOpen((prev) => !prev)}
-                    className="flex items-center gap-1 rounded-sm bg-[#FFFFFF7A] px-2 py-1 text-slate-900 transition-colors hover:bg-white focus:outline-none"
-                  >
-                    KYC Onboarding
-                    <motion.div
-                      animate={{ rotate: dropdownOpen ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex items-center justify-center"
-                    >
-                      <DropdownArrow />
-                    </motion.div>
-                  </button>
-
-                  <AnimatePresence>
-                    {dropdownOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 6, scale: 0.96 }}
-                        transition={{ duration: 0.18, ease: "easeOut" }}
-                        className="absolute top-full -right-2 md:left-0 z-50 mt-2 w-[320px] rounded-xs border border-slate-200 bg-white p-1 shadow-xl "
-                      >
-                        <div className="no-scrollbar flex max-h-[380px] flex-col gap-4 overflow-y-auto">
-                          <ul className="flex flex-col gap-1">
-                            {productsMenuData.categories[0]?.items.map(
-                              (item, itemIdx) => (
-                                <li key={itemIdx}>
-                                  <Link
-                                    href={item.href}
-                                    onClick={() => setDropdownOpen(false)}
-                                    className="block rounded-xs px-2 py-1.5 text-[14px] text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-900"
-                                  >
-                                    {item.label}
-                                  </Link>
-                                </li>
-                              ),
-                            )}
-                          </ul>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                <DropDown
+                  label="KYC Onboarding"
+                  items={onboardingItems}
+                />
               </div>
 
               <div className="flex flex-col gap-6">
@@ -126,7 +64,7 @@ export default function ProductionHero() {
                 Trusted by
               </p>
               <div className="flex flex-wrap items-center gap-3">
-                {trustedLogos.map((logo, index) => (
+                {TRUSTED_LOGOS.map((logo, index) => (
                   <div
                     key={index}
                     className="relative flex h-[38px] w-[100px] items-center"

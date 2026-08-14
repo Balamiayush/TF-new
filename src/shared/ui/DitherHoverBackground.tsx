@@ -415,7 +415,7 @@ export function DitherHoverBackground({
       <canvas
         ref={canvasRef}
         aria-hidden
-        className={cn('pointer-events-none absolute inset-0 z-[] h-full w-full', className)}
+        className={cn('pointer-events-none absolute inset-0  h-full w-full', className)}
         style={{ opacity }}
       />
     </>

@@ -167,7 +167,7 @@ export default function ConnectEveryIdentitySection() {
       <div className="py-8 lg:py-30">
         <LayoutWrapper>
           <div className="flex w-full flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-6">
-            <h2 className="font-geist max-w-[660px] text-[24px] leading-[115%] font-medium tracking-tight text-black sm:text-[28px] lg:text-[48px]">
+            <h2 className="font-geist max-w-[660px] text-[24px] leading-[115%] font-medium tracking-tight text-black sm:text-[28px] lg:text-[42px]">
               Connect every identity signal to one governed trust layer.
             </h2>
             <Button variant="contactus">

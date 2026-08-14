@@ -46,7 +46,7 @@ export default function Streamline() {
  <div className="relative w-full bg-white xl:py-21">
   <LayoutWrapper className="">
     <div className="flex flex-col gap-6">
-      <h1 className="xl:max-w-[620px] text-[26px] max-w-[230px] xl:text-[48px] leading-[110%] font-medium tracking-[-0.6px] text-black">
+      <h1 className="xl:max-w-[620px] text-[26px] max-w-[230px] xl:text-[42px] leading-[110%] font-medium tracking-[-0.6px] text-black">
         Streamline user verification from one dashboard.
       </h1>
       <p className="max-w-[554px] text-[16px] leading-[1.4] tracking-[-0.3px] text-gray-500">

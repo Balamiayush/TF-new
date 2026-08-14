@@ -222,19 +222,19 @@ export default function ScaleSection() {
             <div className="mt-14  lg:mt-[120px] grid lg:grid-cols-2 gap-y-6 gap-x-12">
               {statsData.map((stat, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <div className="animated-indicator h-full w-[2px] shrink-0 bg-[#0088D4]" />
+                  <div className="animated-indicator h-full w-[4px] shrink-0 bg-brand-400" />
 
                   <div>
                     <span
                       ref={(el) => {
                         numbersRef.current[index] = el;
                       }}
-                      className="animated-stat-title font-geist block text-[24px] lg:text-[32px] leading-[100%] font-medium text-[#0F172A]"
+                      className="animated-stat-title font-geist block text-[24px] lg:text-[32px] leading-[100%] font-medium text-[#1C1D1F]"
                     >
                       0{stat.suffix}
                     </span>
 
-                    <p className="animated-stat-sub font-inter mt-1.5 text-[14px] leading-[120%] text-[#64748B]">
+                    <p className="animated-stat-sub font-inter mt-1.5 text-[14px] leading-[120%] text-[#505967]">
                       {stat.label}
                     </p>
                   </div>

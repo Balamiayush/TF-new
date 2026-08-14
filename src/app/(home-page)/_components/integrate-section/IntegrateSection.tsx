@@ -62,7 +62,7 @@ export default function Integrate({ stepsData }: IntegrateProps) {
       <LayoutWrapper>
         <div className="flex min-h-[753px] w-full flex-col justify-between rounded-xl bg-gradient-to-br from-[#FBEAF9] to-[#E8B9E5] p-12 lg:flex-row lg:items-center">
           <div className="flex w-full flex-col justify-between self-stretch lg:max-w-[430px]">
-            <h2 className="font-geist text-[26px] leading-[115%] font-medium tracking-tight text-[#1A1A1A] lg:text-[48px]">
+            <h2 className="font-geist text-[26px] leading-[115%] font-medium tracking-tight text-[#1A1A1A] lg:text-[42px]">
               Integrate in Days,
               <br />
               Not Weeks

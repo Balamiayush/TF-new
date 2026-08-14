@@ -71,7 +71,7 @@ export default function Infrastructure() {
       <div className="relative z-10">
         <LayoutWrapper>
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-            <h2 className="text-[26px] lg:max-w-[732px] max-w-[358px] lg:text-[48px] leading-[115%] font-medium tracking-tight text-black">
+            <h2 className="text-[26px] lg:max-w-[732px] max-w-[358px] lg:text-[42px] leading-[115%] font-medium tracking-tight text-black">
               Infrastructure trusted in high volume, regulated environments.
             </h2>
 

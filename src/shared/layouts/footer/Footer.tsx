@@ -16,7 +16,11 @@ const NAV_SECTIONS = [
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Career", href: "https://www.linkedin.com/company/thirdfactor-ai/posts/?feedView=all" },
+      { 
+        label: "Career", 
+        href: "https://www.linkedin.com/company/thirdfactor-ai/posts/?feedView=all",
+        target: "_blank"
+      },
     ],
   },
   {
@@ -25,14 +29,26 @@ const NAV_SECTIONS = [
       { label: "Blog", href: "/blog" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Changelog", href: "/changelog" },
-      { label: "Docs", href: "https://docs.v3.thirdfactor.ai/docs" },
+      { 
+        label: "Docs", 
+        href: "https://docs.v3.thirdfactor.ai/docs",
+        target: "_blank"
+      },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Terms of Service", href: "/terms-and-conditions" },
-      { label: "Privacy Policy", href: "/privacy-policy" },
+      { 
+        label: "Terms of Service", 
+        href: "/terms-and-conditions",
+        target: "_blank"
+      },
+      { 
+        label: "Privacy Policy", 
+        href: "/privacy-policy",
+        target: "_blank"
+      },
     ],
   },
 ];
@@ -46,13 +62,13 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="relative mx-auto flex w-full flex-col justify-between overflow-hidden bg-[#2563EB] pt-12 lg:pt-[120px] pb-10 lg:pb-[60px] text-white">
+    <footer className="relative mx-auto flex w-full flex-col justify-between overflow-hidden bg-[#2563EB] pt-12 pb-10 text-white lg:pt-[120px] lg:pb-[60px]">
       <LayoutWrapper>
         <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-0">
           {/* Left Column (Brand Statement & Socials) */}
           <div className="flex w-full flex-col justify-between gap-6 lg:h-[160px] lg:w-[421px] lg:gap-[24px]">
             <div>
-              <h2 className="text-[24px] sm:text-[28px] leading-[1.2] font-normal">
+              <h2 className="text-[24px] font-normal leading-[1.2] sm:text-[28px]">
                 Instant <span className="font-geist-pixel-circle">Identity Verification</span>
                 <br />
                 for regulated markets.
@@ -81,7 +97,7 @@ export default function Footer() {
           </div>
 
           {/* Right Navigation Links: Grid 2-cols on mobile, 4-cols on desktop */}
-          <div className="grid w-full grid-cols-2 gap-y-8 gap-x-4 text-[14px] lg:h-[126px] lg:w-[709px] lg:grid-cols-4 lg:gap-8">
+          <div className="grid w-full grid-cols-2 gap-x-4 gap-y-8 text-[14px] lg:h-[126px] lg:w-[709px] lg:grid-cols-4 lg:gap-8">
             {/* Dynamic Columns */}
             {NAV_SECTIONS.map((section) => (
               <div key={section.title} className="flex flex-col gap-3">
@@ -89,7 +105,12 @@ export default function Footer() {
                 <ul className="flex flex-col gap-2 font-normal text-white/90">
                   {section.links.map((link) => (
                     <li key={link.label}>
-                      <Link href={link.href} className="hover:underline">
+                      <Link
+                        href={link.href}
+                        target={link.target}
+                        rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
+                        className="hover:underline"
+                      >
                         {link.label}
                       </Link>
                     </li>

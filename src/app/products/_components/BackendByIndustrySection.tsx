@@ -126,7 +126,7 @@ export default function BackendByIndustrySection() {
   return (
     <div className="relative min-h-screen w-full bg-white">
       <GitterImage />
-      <div className="relative z-100 xl:py-30 py-10">
+      <div className="relative z-100 py-10">
         <LayoutWrapper>
           <h3 className="w-full text-[28px] leading-[1.2] font-medium tracking-[-0.3px] text-black lg:w-[400px]">
             Backed by the industry’s leading{" "}
