@@ -3,8 +3,9 @@
 import Image from "next/image";
 import React, { useRef, useState } from "react";
 import { Fingerprint } from "lucide-react";
+import { motion, PanInfo } from "framer-motion";
 
-export  function FingerprintCard() {
+export function FingerprintCard() {
   const globeRings = [
     { w: 302, h: 302 },
     { w: 302, h: 244.5 },
@@ -14,7 +15,9 @@ export  function FingerprintCard() {
     { w: 302, h: 41.09 },
   ];
   const eyeRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const [pupilOffset, setPupilOffset] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState<"right" | "left">("right");
 
   const followPointer = (event: React.PointerEvent<HTMLDivElement>) => {
     const eyeBounds = eyeRef.current?.getBoundingClientRect();
@@ -33,6 +36,17 @@ export  function FingerprintCard() {
       x: horizontal * limit * 14,
       y: vertical * limit * 14,
     });
+  };
+
+  const handleDragEnd = (_: any, info: PanInfo) => {
+    // If dragged left past -30px or swiped left quickly, snap to the left side
+    if (info.offset.x < -30 || info.velocity.x < -200) {
+      setPosition("left");
+    } 
+    // If dragged right past 30px or swiped right quickly, snap to the right side
+    else if (info.offset.x > 30 || info.velocity.x > 200) {
+      setPosition("right");
+    }
   };
 
   return (
@@ -79,12 +93,26 @@ export  function FingerprintCard() {
         </div>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 flex h-[109px] w-[306px] -translate-x-1/2 items-center justify-end rounded-full border-[1.2px] border-slate-200 bg-white/70 py-1.5 pr-[7px] pl-[196px] backdrop-blur-xl">
-        <div className="flex h-[97px] w-[127px] items-center justify-center rounded-full border border-slate-200 bg-white">
-          <Fingerprint className="h-16 w-16 text-slate-700" strokeWidth={1.5} />
-        </div>
+      <div
+        ref={trackRef}
+        className="absolute bottom-6 left-1/2 flex h-[109px] w-[306px] -translate-x-1/2 items-center justify-end rounded-full border-[1.2px] border-slate-200 bg-white/70 py-1.5 pr-[7px] pl-[196px] backdrop-blur-xl"
+      >
+        <motion.div
+          drag="x"
+          dragConstraints={{ left: -189, right: 0 }}
+          dragElastic={0.05}
+          animate={{ x: position === "left" ? -189 : 0 }}
+          onDragEnd={handleDragEnd}
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 30,
+          }}
+          className="flex h-[97px] w-[127px] items-center justify-center rounded-full border border-slate-200 bg-white cursor-grab active:cursor-grabbing select-none touch-none"
+        >
+          <Fingerprint className="h-16 w-16 text-slate-700 pointer-events-none" strokeWidth={1.5} />
+        </motion.div>
       </div>
     </div>
   );
 }
-

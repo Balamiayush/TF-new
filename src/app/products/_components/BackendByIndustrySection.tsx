@@ -88,7 +88,8 @@ const PLATFORM_STEPS = [
   },
 ];
 
-import React, { useEffect, useRef } from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import GitterImage from "@/shared/ui/GitterImg";
@@ -99,7 +100,7 @@ function styleForDistance(distance: number, yStep = 60) {
 
   const scale = gsap.utils.interpolate(
     1,
-    0.72,
+    0.6,
     gsap.parseEase("power2.out")(clampedT / 2),
   );
   const opacity = gsap.utils.interpolate(
@@ -129,7 +130,18 @@ export default function BackendByIndustrySection() {
 
   const CHILD_OFFSETS = [0, 0.14, 0.24, 0.34, 0.42, 0.5];
 
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1440);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+
     let raf = 0;
     let lastTime = performance.now();
     let currentRail = -1;
@@ -250,7 +262,6 @@ export default function BackendByIndustrySection() {
       const clamped = Math.min(Math.max(raw, 0), 0.9999);
       const continuous = clamped * (totalSteps - 1);
 
-      // Plateau reading window: holds content steady, transitions near scroll boundaries
       const base = Math.floor(continuous);
       const frac = continuous - base;
       const READ_WINDOW = 0.68;
@@ -272,7 +283,6 @@ export default function BackendByIndustrySection() {
 
       const { rail, step } = readProgress();
 
-      // Delta-time based smooth dampening
       if (currentRail < 0) currentRail = rail;
       const railDecay = 1 - Math.exp(-6.5 * dt);
       currentRail += (rail - currentRail) * railDecay;
@@ -290,7 +300,7 @@ export default function BackendByIndustrySection() {
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [totalSteps]);
+  }, [totalSteps, isMobile]);
 
   const handleStepClick = (index: number) => {
     const host = scrollHostRef.current;
@@ -308,18 +318,18 @@ export default function BackendByIndustrySection() {
     <div
       ref={scrollHostRef}
       className="relative w-full bg-white"
-      style={{ height: `${PLATFORM_STEPS.length * 135}vh` }}
+      style={{ height: isMobile ? "auto" : `${PLATFORM_STEPS.length * 135}vh` }}
     >
-      <div className="sticky top-0 min-h-screen w-full overflow-hidden pb-12 lg:pb-[120px]">
+      <div className="sticky top-0 min-h-screen w-full overflow-hidden pb-12 xl:pb-[120px] xl:sticky xl:top-0 xl:min-h-screen">
         <GitterImage />
         <div className="relative z-10 py-10">
           <LayoutWrapper>
-            <h3 className="w-full text-[28px] leading-[1.2] font-medium tracking-[-0.3px] text-black lg:w-[400px]">
+            <h3 className="w-full text-[28px] leading-[1.2] font-medium tracking-[-0.3px] text-black xl:w-[400px]">
               Backed by the industry’s leading{" "}
               <span className="text-[#00000066]">agentic risk platform</span>
             </h3>
 
-            <div className="mt-24.5 flex flex-wrap gap-23">
+            <div className="mt-24.5 hidden flex-wrap gap-23 xl:flex">
               {/* Left Nav Column */}
               <div className="flex h-auto min-w-[280px] flex-1 flex-col justify-between gap-12">
                 <div className="flex items-center gap-2.5">
@@ -390,7 +400,7 @@ export default function BackendByIndustrySection() {
                         <div
                           className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${step.bgGradient} p-6`}
                         >
-                          <div className="rounded-lg bg-white/80 p-4 shadow-sm backdrop-blur-xs">
+                          <div className="rounded-xl bg-white/80 p-4 shadow-sm backdrop-blur-xs">
                             <p className="font-mono text-sm font-semibold text-slate-700">
                               Interactive Preview: {step.label}
                             </p>
@@ -417,7 +427,7 @@ export default function BackendByIndustrySection() {
                             ref={(el) => {
                               childRefs.current[i][2 + fi] = el;
                             }}
-                            className="flex min-w-[220px] flex-1 flex-col gap-2 rounded-lg border border-slate-100 bg-white px-4 py-3 shadow-xs"
+                            className="flex min-w-[220px] flex-1 flex-col gap-2 rounded-xl border border-slate-100 bg-white px-4 py-3 shadow-xs"
                             style={{ willChange: "transform, opacity" }}
                           >
                             <p className="text-[16px] font-medium text-slate-900">
@@ -433,6 +443,58 @@ export default function BackendByIndustrySection() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Mobile View (Standard clean stacked layout without sticky scroll bounds) */}
+            <div className="mt-12 flex flex-col gap-16 xl:hidden">
+              {PLATFORM_STEPS.map((step, idx) => (
+                <div key={step.id} className="flex flex-col gap-6">
+                  <div className="flex items-center gap-2">
+                    <span className="font-geist-pixel-circle text-[14px] text-[#E18CFF]">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <h4 className="text-[24px] font-medium tracking-[-0.3px] text-[#0B0F0C]">
+                      {step.label}
+                    </h4>
+                  </div>
+
+                  <p className="font-inter text-[12px] text-[#0B0F0C94]">
+                    {step.subLabel}
+                  </p>
+
+                  <div className="relative h-[240px] w-full overflow-hidden rounded-xl bg-slate-100 shadow-sm">
+                    <div
+                      className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${step.bgGradient} p-6`}
+                    >
+                      <div className="rounded-xl bg-white/80 p-4 shadow-sm backdrop-blur-xs">
+                        <p className="font-mono text-sm font-semibold text-slate-700">
+                          Interactive Preview: {step.label}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-[24px] leading-[120%] font-medium tracking-[-0.32px] text-[#0B0F0C]">
+                    {step.title}
+                  </p>
+
+                  <div className="flex flex-col gap-3">
+                    {step.features.map((feature) => (
+                      <div
+                        key={feature.title}
+                        className="flex flex-col gap-1 rounded-xl border border-slate-100 bg-white px-4 py-3 shadow-xs"
+                      >
+                        <p className="text-[15px] font-medium text-slate-900">
+                          {feature.title}
+                        </p>
+                        <p className="font-inter text-[13px] leading-[1.3] text-slate-500">
+                          {feature.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </LayoutWrapper>
         </div>
