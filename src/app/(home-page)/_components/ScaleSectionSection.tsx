@@ -4,10 +4,13 @@ import React, { useRef } from "react";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CustomEase } from "gsap/CustomEase";
 import { useGSAP } from "@gsap/react";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, CustomEase);
+  CustomEase.create("punch", "M0,0 C0.7,0 0.16,1 1,1");
+  gsap.defaults({ ease: "punch" });
 }
 
 const PixelGridSvg = (props: React.SVGProps<SVGSVGElement>) => (

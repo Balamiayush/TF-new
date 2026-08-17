@@ -4,11 +4,16 @@ import React, { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CustomEase } from "gsap/CustomEase";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 
 import { TimelineProps } from "./type";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, CustomEase);
+if (typeof window !== "undefined") {
+  CustomEase.create("punch", "M0,0 C0.7,0 0.16,1 1,1");
+  gsap.defaults({ ease: "punch" });
+}
 
 export default function TImelineMobile({
   timelineData = [],

@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CustomEase } from "gsap/CustomEase";
 import Button from "@/shared/ui/buttons/Button";
 import { DitherHoverBackground } from "@/shared/ui/DitherHoverBackground";
 import {
@@ -12,7 +13,11 @@ import {
   hexToRgba,
   type DitherSettings,
 } from "@/shared/ui/DitherControls";
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, CustomEase);
+if (typeof window !== "undefined") {
+  CustomEase.create("punch", "M0,0 C0.7,0 0.16,1 1,1");
+  gsap.defaults({ ease: "punch" });
+}
 
 const floatingImages = [
   {
