@@ -87,161 +87,355 @@ const PLATFORM_STEPS = [
     bgGradient: "from-amber-100 to-orange-200",
   },
 ];
+
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import GitterImage from "@/shared/ui/GitterImg";
-import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
 
+function styleForDistance(distance: number, yStep = 60) {
+  const abs = Math.abs(distance);
+  const clampedT = Math.min(abs, 2);
+
+  const scale = gsap.utils.interpolate(
+    1,
+    0.72,
+    gsap.parseEase("power2.out")(clampedT / 2),
+  );
+  const opacity = gsap.utils.interpolate(
+    1,
+    0.28,
+    gsap.parseEase("power2.out")(Math.min(clampedT, 1.3) / 1.3),
+  );
+  const y = distance * yStep;
+  const x = gsap.utils.interpolate(6, 0, Math.min(abs, 1));
+
+  return { scale, opacity, y, x };
+}
 
 export default function BackendByIndustrySection() {
-  const [activeStep, setActiveStep] = useState(0);
-  const [progress, setProgress] = useState(0);
-
-  const currentData = PLATFORM_STEPS[activeStep];
   const totalSteps = PLATFORM_STEPS.length;
+  const scrollHostRef = useRef<HTMLDivElement>(null);
+
+  // Element Refs
+  const navItemRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const contentLayerRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const imageRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const childRefs = useRef<Array<Array<HTMLElement | null>>>(
+    PLATFORM_STEPS.map(() => []),
+  );
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const stepNumberRef = useRef<HTMLParagraphElement>(null);
+
+  const CHILD_OFFSETS = [0, 0.14, 0.24, 0.34, 0.42, 0.5];
 
   useEffect(() => {
-    const intervalTime = 50;
-    const duration = 5000;
-    const increment = (intervalTime / duration) * 100;
+    let raf = 0;
+    let lastTime = performance.now();
+    let currentRail = -1;
+    let currentStep = -1;
 
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          setActiveStep((nextStep) => (nextStep + 1) % totalSteps);
-          return 0;
-        }
-        return prev + increment;
+    const applyRail = (progress: number) => {
+      navItemRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const { scale, opacity, y, x } = styleForDistance(i - progress, 56);
+        gsap.set(el, {
+          y,
+          x,
+          scale,
+          opacity,
+          transformOrigin: "top top",
+          force3D: true,
+          willChange: "transform, opacity",
+        });
       });
-    }, intervalTime);
+    };
 
-    return () => clearInterval(timer);
-  }, [activeStep, totalSteps]);
+    const applyContent = (progress: number) => {
+      const base = Math.floor(progress);
+      const frac = progress - base;
+      const easeInOut = gsap.parseEase("power2.inOut");
+      const easeOut = gsap.parseEase("power3.out");
+
+      const outT = Math.min(frac / 0.48, 1);
+      const outOpacity = 1 - easeInOut(outT);
+      const inT = Math.max(0, (frac - 0.42) / 0.58);
+
+      contentLayerRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const isVisible = i === base || i === base + 1;
+        gsap.set(el, {
+          opacity: isVisible ? 1 : 0,
+          pointerEvents: i === base && outOpacity > 0.5 ? "auto" : "none",
+        });
+      });
+
+      childRefs.current.forEach((children, i) => {
+        children.forEach((child, ci) => {
+          if (!child) return;
+          const offset = CHILD_OFFSETS[ci] ?? 0;
+          const span = 1 - offset;
+
+          if (i === base + 1) {
+            const t = Math.max(0, Math.min(1, (inT - offset) / span));
+            const eased = easeOut(t);
+            gsap.set(child, {
+              y: (1 - eased) * 25,
+              opacity: eased,
+              force3D: true,
+            });
+          } else if (i === base) {
+            const outOffset = CHILD_OFFSETS[CHILD_OFFSETS.length - 1 - ci] ?? 0;
+            const outSpan = 1 - outOffset;
+            const t = Math.max(0, Math.min(1, (outT - outOffset) / outSpan));
+            const eased = easeInOut(t);
+            gsap.set(child, {
+              y: -eased * 12,
+              opacity: 1 - eased,
+              force3D: true,
+            });
+          } else {
+            gsap.set(child, { y: 20, opacity: 0 });
+          }
+        });
+      });
+
+      imageRefs.current.forEach((el, i) => {
+        if (!el) return;
+        if (i === base + 1) {
+          const offset = 0.06;
+          const t = Math.max(0, Math.min(1, (inT - offset) / (1 - offset)));
+          const eased = easeOut(t);
+          gsap.set(el, {
+            y: (1 - eased) * 36,
+            scale: 0.96 + eased * 0.04,
+            opacity: eased,
+            force3D: true,
+          });
+        } else if (i === base) {
+          const eased = easeInOut(outT);
+          gsap.set(el, {
+            y: -eased * 20,
+            scale: 1 - eased * 0.03,
+            opacity: 1 - eased,
+            force3D: true,
+          });
+        } else {
+          gsap.set(el, { y: 36, scale: 0.96, opacity: 0 });
+        }
+      });
+
+      const pct = ((progress + 1) / totalSteps) * 100;
+      if (progressBarRef.current) {
+        gsap.set(progressBarRef.current, { width: `${Math.min(pct, 100)}%` });
+      }
+
+      const activeI = Math.min(Math.round(progress), totalSteps - 1);
+      if (stepNumberRef.current) {
+        stepNumberRef.current.textContent = String(activeI + 1).padStart(
+          2,
+          "0",
+        );
+      }
+    };
+
+    const readProgress = () => {
+      const host = scrollHostRef.current;
+      if (!host) return { rail: 0, step: 0 };
+
+      const rect = host.getBoundingClientRect();
+      const scrolled = -rect.top;
+      const totalScroll = rect.height - window.innerHeight;
+      const raw = scrolled / Math.max(totalScroll, 1);
+      const clamped = Math.min(Math.max(raw, 0), 0.9999);
+      const continuous = clamped * (totalSteps - 1);
+
+      // Plateau reading window: holds content steady, transitions near scroll boundaries
+      const base = Math.floor(continuous);
+      const frac = continuous - base;
+      const READ_WINDOW = 0.68;
+      let stepFrac: number;
+
+      if (frac < READ_WINDOW) {
+        stepFrac = 0;
+      } else {
+        const t = (frac - READ_WINDOW) / (1 - READ_WINDOW);
+        stepFrac = gsap.parseEase("power2.inOut")(t);
+      }
+
+      return { rail: continuous, step: base + stepFrac };
+    };
+
+    const tick = (now: number) => {
+      const dt = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+
+      const { rail, step } = readProgress();
+
+      // Delta-time based smooth dampening
+      if (currentRail < 0) currentRail = rail;
+      const railDecay = 1 - Math.exp(-6.5 * dt);
+      currentRail += (rail - currentRail) * railDecay;
+      if (Math.abs(rail - currentRail) < 0.0001) currentRail = rail;
+      applyRail(currentRail);
+
+      if (currentStep < 0) currentStep = step;
+      const stepDecay = 1 - Math.exp(-12 * dt);
+      currentStep += (step - currentStep) * stepDecay;
+      if (Math.abs(step - currentStep) < 0.0001) currentStep = step;
+      applyContent(currentStep);
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [totalSteps]);
 
   const handleStepClick = (index: number) => {
-    setActiveStep(index);
-    setProgress(0);
+    const host = scrollHostRef.current;
+    if (!host) return;
+    const totalScroll = host.offsetHeight - window.innerHeight;
+    const targetScroll = (index / (totalSteps - 1)) * totalScroll;
+
+    const scrollTarget = host.offsetTop + targetScroll;
+    window.scrollTo({
+      top: scrollTarget,
+    });
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-white lg:pb-[120px] pb-12">
-      <GitterImage />
-      <div className="relative z-100 py-10">
-        <LayoutWrapper>
-          <h3 className="w-full text-[28px] leading-[1.2] font-medium tracking-[-0.3px] text-black lg:w-[400px]">
-            Backed by the industry’s leading{" "}
-            <span className="text-[#00000066]">agentic risk platform</span>
-          </h3>
+    <div
+      ref={scrollHostRef}
+      className="relative w-full bg-white"
+      style={{ height: `${PLATFORM_STEPS.length * 135}vh` }}
+    >
+      <div className="sticky top-0 min-h-screen w-full overflow-hidden pb-12 lg:pb-[120px]">
+        <GitterImage />
+        <div className="relative z-10 py-10">
+          <LayoutWrapper>
+            <h3 className="w-full text-[28px] leading-[1.2] font-medium tracking-[-0.3px] text-black lg:w-[400px]">
+              Backed by the industry’s leading{" "}
+              <span className="text-[#00000066]">agentic risk platform</span>
+            </h3>
 
-          <div className="mt-24.5 flex flex-wrap gap-23">
-            <div className="flex h-auto min-w-[280px] flex-1 flex-col justify-between gap-12">
-              <div className="flex items-center gap-2.5">
-                <div className="font-geist-pixel-circle flex gap-1 text-[16px]">
-                  <p className="text-[#E18CFF]">
-                    {String(activeStep + 1).padStart(2, "0")}
-                  </p>
-                  <p>/</p>
-                  <p>{String(totalSteps).padStart(2, "0")}</p>
+            <div className="mt-24.5 flex flex-wrap gap-23">
+              {/* Left Nav Column */}
+              <div className="flex h-auto min-w-[280px] flex-1 flex-col justify-between gap-12">
+                <div className="flex items-center gap-2.5">
+                  <div className="font-geist-pixel-circle flex gap-1 text-[16px]">
+                    <p ref={stepNumberRef} className="text-[#E18CFF]">
+                      01
+                    </p>
+                    <p>/</p>
+                    <p>{String(totalSteps).padStart(2, "0")}</p>
+                  </div>
+                  <div className="relative h-[6px] w-[96px] overflow-clip rounded-xs bg-[#0B0F0C1A]">
+                    <div
+                      ref={progressBarRef}
+                      className="absolute h-full bg-[#E18CFF]"
+                      style={{ width: `${(1 / totalSteps) * 100}%` }}
+                    />
+                  </div>
                 </div>
-                <div className="relative h-[6px] w-[96px] overflow-clip rounded-xs bg-[#0B0F0C1A]">
-                  <motion.div
-                    className="absolute h-full bg-[#E18CFF]"
-                    style={{ width: `${progress}%` }}
-                    transition={{ ease: "linear", duration: 0.05 }}
-                  />
-                </div>
-              </div>
 
-              <div className="flex flex-col items-start gap-[48px]">
-                {PLATFORM_STEPS.map((step, idx) => {
-                  const isActive = activeStep === idx;
-                  return (
+                <div className="relative flex h-[340px] flex-col items-start">
+                  {PLATFORM_STEPS.map((step, idx) => (
                     <button
                       key={step.id}
+                      ref={(el) => {
+                        navItemRefs.current[idx] = el;
+                      }}
                       onClick={() => handleStepClick(idx)}
-                      className="cursor-pointer text-left transition-all duration-300"
+                      className="group absolute top-1/2 left-0 -translate-y-1/2 cursor-pointer text-left focus:outline-none"
                     >
-                      <p
-                        className={`font-medium transition-all duration-300 ${
-                          isActive
-                            ? "text-[24px] text-[#0B0F0C]"
-                            : "text-[16px] text-[#0B0F0C]/50 hover:text-[#0B0F0C]/80"
-                        }`}
-                      >
+                      <p className="text-[32px] font-medium tracking-[-0.3px] text-[#0B0F0C]">
                         {step.label}
                       </p>
                     </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="flex w-full min-w-[320px] flex-[2] flex-col">
-              <p className="font-inter pb-8 text-[12px] text-[#0B0F0C94]">
-                {currentData.subLabel}
-              </p>
-
-              <div className="flex flex-col gap-[48px]">
-                <div className="relative h-[302px] w-full overflow-hidden rounded-xl bg-slate-100">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentData.id}
-                      initial={{ opacity: 0, scale: 0.98 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className={`h-full w-full bg-gradient-to-br ${currentData.bgGradient} flex items-center justify-center p-6`}
-                    >
-                      <div className="rounded-lg bg-white/80 p-4 shadow-sm backdrop-blur-xs">
-                        <p className="font-mono text-sm font-semibold text-slate-700">
-                          Interactive Preview: {currentData.label}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
+                  ))}
                 </div>
+              </div>
 
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={currentData.id + "-title"}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.3 }}
-                    className="max-w-[480px] text-[32px] leading-[120%] font-medium tracking-[-0.32px] text-[#0B0F0C]"
+              {/* Right Visual Stack Column */}
+              <div className="relative min-h-[580px] w-full min-w-[320px] flex-[2]">
+                {PLATFORM_STEPS.map((step, i) => (
+                  <div
+                    key={step.id}
+                    ref={(el) => {
+                      contentLayerRefs.current[i] = el;
+                    }}
+                    className="absolute inset-0 flex flex-col"
+                    style={{ willChange: "opacity" }}
                   >
-                    {currentData.title}
-                  </motion.p>
-                </AnimatePresence>
+                    <p
+                      ref={(el) => {
+                        childRefs.current[i][0] = el;
+                      }}
+                      className="font-inter pb-8 text-[12px] text-[#0B0F0C94]"
+                      style={{ willChange: "transform, opacity" }}
+                    >
+                      {step.subLabel}
+                    </p>
 
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentData.id + "-features"}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.3, delay: 0.1 }}
-                    className="flex flex-wrap gap-4"
-                  >
-                    {currentData.features.map((feature, i) => (
+                    <div className="flex flex-col gap-[32px]">
+                      {/* Interactive Visual Frame */}
                       <div
-                        key={i}
-                        className="flex min-w-[220px] flex-1 flex-col gap-2 rounded-lg border border-slate-100 bg-white px-4 py-3 shadow-xs"
+                        ref={(el) => {
+                          imageRefs.current[i] = el;
+                        }}
+                        className="relative h-[302px] w-full overflow-hidden rounded-xl bg-slate-100 shadow-sm"
+                        style={{ willChange: "transform, opacity" }}
                       >
-                        <p className="text-[16px] font-medium text-slate-900">
-                          {feature.title}
-                        </p>
-                        <p className="font-inter text-[14px] leading-[1.3] text-slate-500">
-                          {feature.desc}
-                        </p>
+                        <div
+                          className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${step.bgGradient} p-6`}
+                        >
+                          <div className="rounded-lg bg-white/80 p-4 shadow-sm backdrop-blur-xs">
+                            <p className="font-mono text-sm font-semibold text-slate-700">
+                              Interactive Preview: {step.label}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    ))}
-                  </motion.div>
-                </AnimatePresence>
+
+                      {/* Dynamic Title */}
+                      <p
+                        ref={(el) => {
+                          childRefs.current[i][1] = el;
+                        }}
+                        className="max-w-[480px] text-[32px] leading-[120%] font-medium tracking-[-0.32px] text-[#0B0F0C]"
+                        style={{ willChange: "transform, opacity" }}
+                      >
+                        {step.title}
+                      </p>
+
+                      {/* Feature Badges */}
+                      <div className="flex flex-wrap gap-4">
+                        {step.features.map((feature, fi) => (
+                          <div
+                            key={feature.title}
+                            ref={(el) => {
+                              childRefs.current[i][2 + fi] = el;
+                            }}
+                            className="flex min-w-[220px] flex-1 flex-col gap-2 rounded-lg border border-slate-100 bg-white px-4 py-3 shadow-xs"
+                            style={{ willChange: "transform, opacity" }}
+                          >
+                            <p className="text-[16px] font-medium text-slate-900">
+                              {feature.title}
+                            </p>
+                            <p className="font-inter text-[14px] leading-[1.3] text-slate-500">
+                              {feature.desc}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-        </LayoutWrapper>
+          </LayoutWrapper>
+        </div>
       </div>
     </div>
   );

@@ -30,22 +30,22 @@ export type DitherSettings = {
 export const DEFAULT_DITHER_SETTINGS: DitherSettings = {
   gridSize: 9,
   dotRadius: 0.9,
-  radiusPercent: 0.13,
-  followDurationMs: 320,
-  fadeDurationMs: 100,
+  radiusPercent: 0.14,
+  followDurationMs: 660,
+  fadeDurationMs: 360,
   gridColor: "#a3bfff",
   gridAlpha: 0.12,
   ditherColor: "#a2bdfb",
   ditherAlpha: 0.27,
-  ditherDotSize: 3.4,
+  ditherDotSize: 3.1,
   intensity: 1,
-  jitter: 0.2,
-  opacity: 1,
-  blobWobble: 0.26,
+  jitter: 0.03,
+  opacity: 0.84,
+  blobWobble: 0.18,
   blobLobes: 3,
   blobMorphMs: 4200,
-  velocitySaturation: 1.6,
-  velocityDecayMs: 380,
+  velocitySaturation: 1.5,
+  velocityDecayMs: 320,
   imageSource: null,
   imageInvert: false,
   imageFit: "contain",
@@ -81,7 +81,7 @@ export function DitherControls({ value, onChange }: DitherControlsProps) {
   ) => onChange({ ...value, [key]: next });
 
   return (
-    <div className="font-inter fixed right-4 hidden bottom-4 z-50 w-[300px] text-[12px] text-slate-900">
+    <div className="font-inter fixed right-4  bottom-4 z-50 w-[300px] text-[12px] text-slate-900">
       <div className="max-h-[calc(100vh-2rem)] overflow-hidden rounded-lg border border-slate-200 bg-white/95 shadow-lg backdrop-blur-md">
         <button
           type="button"
