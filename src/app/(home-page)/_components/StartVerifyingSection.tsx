@@ -95,7 +95,7 @@ export default function StartVerifyingSection() {
         gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}
         gridSize={dither.gridSize}
         dotRadius={dither.dotRadius}
-        ditherColor={hexToRgba(dither.ditherColor, dither.ditherAlpha)}
+        ditherColor={hexToRgba("#fff", 0.1)}
         radiusPercent={dither.radiusPercent}
         followDurationMs={dither.followDurationMs}
         fadeDurationMs={dither.fadeDurationMs}
@@ -111,7 +111,7 @@ export default function StartVerifyingSection() {
         imageSource={dither.imageSource}
         imageInvert={dither.imageInvert}
         imageFit={dither.imageFit}
-        className="mix-blend-multiply"
+     
       />
       <DitherControls value={dither} onChange={setDither} />
 
@@ -119,7 +119,7 @@ export default function StartVerifyingSection() {
         <div
           key={img.id}
           data-speed={img.speed}
-          className={`parallax-card absolute z-0 overflow-hidden transition-shadow duration-300 ${img.className}`}
+          className={`parallax-card absolute z-100 overflow-hidden transition-shadow duration-300 ${img.className}`}
         >
           <div className="relative h-full w-full">
             <Image

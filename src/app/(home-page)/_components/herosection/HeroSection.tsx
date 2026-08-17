@@ -98,7 +98,7 @@ export default function HeroSection() {
   <DitherControls value={dither} onChange={setDither} />
 
   <LayoutWrapper>
-    <div className="relative ">
+    <div className="relative z-100 ">
       <div className="hidden gap-1 md:flex">
         {labels.map((label, index) => (
           <div key={index} className="flex items-center gap-1">

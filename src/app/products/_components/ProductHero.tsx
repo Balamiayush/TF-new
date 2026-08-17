@@ -1,10 +1,21 @@
 "use client";
-
+import { useState } from "react";
 import Image from "next/image";
-import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
-import Button from "@/shared/ui/buttons/Button";
+
 import { productsMenuData } from "@/shared/data/products-menu";
+
+import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
+
+import Button from "@/shared/ui/buttons/Button";
 import { DropDown } from "@/shared/ui/DropDown";
+
+import { DitherHoverBackground } from "@/shared/ui/DitherHoverBackground";
+import {
+  DEFAULT_DITHER_SETTINGS,
+  DitherControls,
+  hexToRgba,
+  type DitherSettings,
+} from "@/shared/ui/DitherControls";
 
 const TRUSTED_LOGOS = [
   { name: "esewa", image: "/images/trused-by-imgs/esewa.webp" },
@@ -19,11 +30,36 @@ const TRUSTED_LOGOS = [
 
 export default function ProductionHero() {
   const onboardingItems = productsMenuData.categories[0]?.items ?? [];
+  const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
 
   return (
-    <div className="bg-brand-50 h-full w-full overflow-clip pt-[120px] xl:h-[850px] lg:pt-[168px]">
+    <div className="bg-brand-50 h-full relative w-full overflow-clip pt-[120px] lg:pt-[168px] xl:h-[850px]">
+      <DitherHoverBackground
+        baseColor="transparent"
+        gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}
+        gridSize={dither.gridSize}
+        dotRadius={dither.dotRadius}
+        ditherColor={hexToRgba(dither.ditherColor, dither.ditherAlpha)}
+        radiusPercent={dither.radiusPercent}
+        followDurationMs={dither.followDurationMs}
+        fadeDurationMs={dither.fadeDurationMs}
+        intensity={dither.intensity}
+        ditherDotSize={dither.ditherDotSize}
+        jitter={dither.jitter}
+        opacity={dither.opacity}
+        blobWobble={dither.blobWobble}
+        blobLobes={dither.blobLobes}
+        blobMorphMs={dither.blobMorphMs}
+        velocitySaturation={dither.velocitySaturation}
+        velocityDecayMs={dither.velocityDecayMs}
+        imageSource={dither.imageSource}
+        imageInvert={dither.imageInvert}
+        imageFit={dither.imageFit}
+      />
+      <DitherControls value={dither} onChange={setDither} />
+
       <LayoutWrapper>
-        <div className="flex justify-between xl:flex-row flex-col">
+        <div className="relative z-100 flex flex-col justify-between xl:flex-row">
           <div className="lg:pb-[69px]">
             <div className="flex flex-col items-start gap-4">
               <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
@@ -32,10 +68,7 @@ export default function ProductionHero() {
                 <span>Onboarding</span>
                 <span>/</span>
 
-                <DropDown
-                  label="KYC Onboarding"
-                  items={onboardingItems}
-                />
+                <DropDown label="KYC Onboarding" items={onboardingItems} />
               </div>
 
               <div className="flex flex-col gap-6">

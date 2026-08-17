@@ -320,7 +320,7 @@ export default function BackendByIndustrySection() {
       className="relative w-full bg-white"
       style={{ height: isMobile ? "auto" : `${PLATFORM_STEPS.length * 135}vh` }}
     >
-      <div className="sticky top-0 min-h-screen w-full overflow-hidden pb-12 xl:pb-[120px] xl:sticky xl:top-0 xl:min-h-screen">
+      <div className="sticky top-10 min-h-screen w-full overflow-hidden pb-12 xl:pb-[120px] xl:sticky xl:top-[-50px] 2xl:top-0 xl:min-h-screen ">
         <GitterImage />
         <div className="relative z-10 py-10">
           <LayoutWrapper>
