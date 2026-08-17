@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
-import FormField from "./FormField"; 
+
 import { DropDown } from "@/shared/ui/DropDown";
+import FormField from "@/shared/ui/FormField";
 
 export interface ContactFormData {
   name: string;
@@ -41,7 +42,7 @@ export default function ContactForm({
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -103,15 +104,15 @@ export default function ContactForm({
             Industry
           </label>
           <div className="w-full">
-         <DropDown
-  label={formData.industry || "Please Select"}
-  items={INDUSTRY_OPTIONS}
-  onSelect={(selectedIndustry) =>
-    setFormData((prev) => ({ ...prev, industry: selectedIndustry }))
-  }
-  buttonClassName="font-inter flex h-[48px] w-full items-center justify-between border border-slate-100 bg-[#F8FAFC] px-4 text-[15px] text-slate-900 focus:border-blue-500 focus:bg-white focus:outline-none"
-  menuClassName="absolute top-full left-0 z-50 mt-2 w-full rounded-xs border border-slate-200 bg-white p-1 shadow-xl"
-/>
+            <DropDown
+              label={formData.industry || "Please Select"}
+              items={INDUSTRY_OPTIONS}
+              onSelect={(selectedIndustry) =>
+                setFormData((prev) => ({ ...prev, industry: selectedIndustry }))
+              }
+              buttonClassName="font-inter flex h-[48px] w-full items-center justify-between border border-slate-100 bg-[#F8FAFC] px-4 text-[15px] text-slate-900 focus:border-blue-500 focus:bg-white focus:outline-none"
+              menuClassName="absolute top-full left-0 z-50 mt-2 w-full rounded-xs border border-slate-200 bg-white p-1 shadow-xl"
+            />
           </div>
         </div>
       </div>

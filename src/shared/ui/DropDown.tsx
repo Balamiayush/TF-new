@@ -21,8 +21,8 @@ interface BreadcrumbDropdownProps {
 export function DropDown({
   label,
   items = [],
-  buttonClassName = "flex items-center gap-1 rounded-sm bg-[#FFFFFF7A] px-2 py-1 text-slate-900 transition-colors hover:bg-white focus:outline-none",
-  menuClassName = "absolute top-full -right-2 md:left-0 z-50 mt-2 w-[320px] rounded-xs border border-slate-200 bg-white p-1 shadow-xl",
+  buttonClassName = "flex items-center gap-1 rounded-sm bg-[#FFFFFFCC] px-2 py-1 text-slate-900 transition-colors hover:bg-white focus:outline-none",
+  menuClassName = "absolute top-full -right-2 md:left-0 z-50 mt-2 w-[250px] rounded-xs  bg-white p-1 ",
   onSelect, // Destructured here
 }: BreadcrumbDropdownProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -75,14 +75,14 @@ export function DropDown({
             transition={{ duration: 0.18, ease: "easeOut" }}
             className={menuClassName}
           >
-            <div className="no-scrollbar flex max-h-[380px] flex-col gap-4 overflow-y-auto">
+            <div className="no-scrollbar  flex max-h-[380px] flex-col gap-4 overflow-y-auto">
               <ul className="flex flex-col gap-1">
                 {items.map((item, itemIdx) => (
                   <li key={itemIdx}>
                     <Link
                       href={item.href || "#"}
                       onClick={() => handleItemClick(item.label)}
-                      className="block rounded-xs px-2 py-1.5 text-[14px] text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                      className="block rounded-xs px-2 py-1.5 text-[14px] font-medium text-slate-700 transition-colors hover:bg-slate-200 hover:text-slate-900"
                     >
                       {item.label}
                     </Link>

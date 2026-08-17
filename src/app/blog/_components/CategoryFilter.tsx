@@ -23,10 +23,10 @@ export default function CategoryFilter({
             >
               {category.name}{" "}
               <span
-                className={`font-geist-pixel-circle ${
+                className={`font-geist-pixel-square ${
                   isActive
                     ? "text-white"
-                    : "text-[#3B82F6] group-hover:text-white"
+                    : "text-blue-500 group-hover:text-white"
                 }`}
               >
                 [{category.count}]
