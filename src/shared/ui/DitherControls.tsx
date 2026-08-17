@@ -81,7 +81,7 @@ export function DitherControls({ value, onChange }: DitherControlsProps) {
   ) => onChange({ ...value, [key]: next });
 
   return (
-    <div className="font-inter fixed right-4  bottom-4 z-50 w-[300px] text-[12px] text-slate-900">
+    <div className="font-inter fixed right-4  hidden bottom-4 z-50 w-[300px] text-[12px] text-slate-900">
       <div className="max-h-[calc(100vh-2rem)] overflow-hidden rounded-lg border border-slate-200 bg-white/95 shadow-lg backdrop-blur-md">
         <button
           type="button"
