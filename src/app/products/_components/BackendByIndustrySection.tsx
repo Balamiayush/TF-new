@@ -65,27 +65,7 @@ const PLATFORM_STEPS = [
     ],
     bgGradient: "from-emerald-100 to-teal-200",
   },
-  {
-    id: "agentic-ops",
-    label: "Agentic Ops",
-    subLabel: "Agentic Ops",
-    title: "Autonomous investigation assistant for review teams",
-    features: [
-      {
-        title: "Auto Summaries.",
-        desc: "Get instant AI generated case histories for rapid review.",
-      },
-      {
-        title: "OSINT Integration.",
-        desc: "Surface public web risk signals automatically.",
-      },
-      {
-        title: "Audit Trail.",
-        desc: "Document reasoning for every single automated action.",
-      },
-    ],
-    bgGradient: "from-amber-100 to-orange-200",
-  },
+ 
 ];
 
 

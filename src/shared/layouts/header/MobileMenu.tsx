@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
+import UserAddedIcon from "@/shared/icons/UserAddedIcon";
 import Button from "@/shared/ui/buttons/Button";
 import { productsMenuData } from "@/shared/data/products-menu";
 
@@ -23,7 +25,7 @@ interface MobileMenuProps {
 const menuVariants: Variants = {
   closed: {
     opacity: 0,
-    y: "-20px",
+    y: "-15px",
     scale: 0.98,
     transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
   },
@@ -45,9 +47,9 @@ export const MobileMenu = React.memo(function MobileMenu({
   links,
   onClose,
 }: MobileMenuProps) {
-  const [expandedDropdown, setExpandedDropdown] = useState<string | number | null>(null);
-  // Drawer-inside-drawer: which product category is open. Defaults to the
-  // first category (0) whenever the Products drawer is opened.
+  const [expandedDropdown, setExpandedDropdown] = useState<
+    string | number | null
+  >("products");
   const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
 
   useEffect(() => {
@@ -55,7 +57,7 @@ export const MobileMenu = React.memo(function MobileMenu({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
-      setExpandedDropdown(null);
+      setExpandedDropdown("products");
       setExpandedCategory(0);
     }
     return () => {
@@ -66,7 +68,6 @@ export const MobileMenu = React.memo(function MobileMenu({
   const toggleDropdown = useCallback((id: string | number) => {
     setExpandedDropdown((prev) => {
       const next = prev === id ? null : id;
-      // Reset to first category open every time Products is (re)expanded
       if (next !== null) setExpandedCategory(0);
       return next;
     });
@@ -80,40 +81,46 @@ export const MobileMenu = React.memo(function MobileMenu({
     <AnimatePresence>
       {isOpen && (
         <>
+          {/* Backdrop */}
           <motion.div
             initial="closed"
             animate="open"
             exit="closed"
             variants={backdropVariants}
             onClick={onClose}
-            className="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-md lg:hidden"
+            className="fixed inset-0 z-[1000] lg:hidden"
           />
 
+          {/* Mobile Sheet Container */}
           <motion.div
             initial="closed"
             animate="open"
             exit="closed"
             variants={menuVariants}
             data-lenis-prevent
-            className="fixed top-[70px] w-full right-0 left-0 z-[9999] flex h-fit max-h-[calc(100dvh-100px)] w-[calc(100%-32px)] flex-col justify-between overflow-y-auto  bg-white/90 p-6 shadow-2xl backdrop-blur-xl border border-white/20 lg:hidden overscroll-contain transition-[height] duration-300"
+            className="fixed top-[72px] z-[9999] flex h-full flex-col justify-between overflow-y-auto  bg-white p-4 w-full "
             style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
           >
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               {links.map((link) => {
                 const isExpanded = expandedDropdown === link.id;
 
                 if (link.hasDropdown || link.id === "products") {
                   return (
-                    <div key={link.id} className="border-b border-gray-100/80 py-1">
+                    <div
+                      key={link.id}
+                      className="border-b border-slate-200/60 pb-2"
+                    >
                       <button
                         type="button"
                         onClick={() => toggleDropdown(link.id)}
-                        className="flex w-full items-center justify-between py-3 text-lg font-medium text-gray-900 focus:outline-none"
+                        className="flex w-full items-center justify-between py-3 text-[17px] font-medium text-slate-900 focus:outline-none"
                       >
                         <span>{link.label}</span>
                         <motion.div
                           animate={{ rotate: isExpanded ? 180 : 0 }}
                           transition={{ duration: 0.2 }}
+                          className="text-slate-600"
                         >
                           <DropdownArrow />
                         </motion.div>
@@ -125,61 +132,127 @@ export const MobileMenu = React.memo(function MobileMenu({
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                            className="overflow-hidden pl-2 pb-4"
+                            transition={{
+                              duration: 0.3,
+                              ease: [0.16, 1, 0.3, 1],
+                            }}
+                            className="overflow-hidden"
                           >
-                            <div className="flex flex-col gap-2 pt-2">
-                              {productsMenuData.categories.map((category, idx) => {
-                                const isCategoryOpen = expandedCategory === idx;
+                            <div className="flex flex-col gap-3 pt-1 pb-3">
+                              {/* Product Categories */}
+                              {productsMenuData.categories.map(
+                                (category, idx) => {
+                                  const isCategoryOpen =
+                                    expandedCategory === idx;
 
-                                return (
-                                  <div key={idx} className="flex flex-col">
-                                    <button
-                                      type="button"
-                                      onClick={() => toggleCategory(idx)}
-                                      className="flex w-full items-center justify-between py-2 text-left"
+                                  return (
+                                    <div
+                                      key={category.title || idx}
+                                      className="flex flex-col rounded-md border border-slate-200 bg-white p-3 "
                                     >
-                                      <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                                        {category.title}
-                                      </span>
-                                      <motion.div
-                                        animate={{ rotate: isCategoryOpen ? 180 : 0 }}
-                                        transition={{ duration: 0.2 }}
+                                      {/* Category Header */}
+                                      <button
+                                        type="button"
+                                        onClick={() => toggleCategory(idx)}
+                                        className="flex w-full items-center justify-between text-left "
                                       >
-                                        <DropdownArrow className="h-3 w-3" />
-                                      </motion.div>
-                                    </button>
-
-                                    <AnimatePresence initial={false}>
-                                      {isCategoryOpen && (
+                                        <span className="text-[14px] font-medium  text-alpha-light-800">
+                                          {category.title}
+                                        </span>
                                         <motion.div
-                                          initial={{ opacity: 0, height: 0 }}
-                                          animate={{ opacity: 1, height: "auto" }}
-                                          exit={{ opacity: 0, height: 0 }}
-                                          transition={{
-                                            duration: 0.25,
-                                            ease: [0.16, 1, 0.3, 1],
+                                          animate={{
+                                            rotate: isCategoryOpen ? 180 : 0,
                                           }}
-                                          className="overflow-hidden"
+                                          transition={{ duration: 0.2 }}
+                                          className="text-slate-400"
                                         >
-                                          <div className="flex flex-col gap-2.5 pl-1 pb-3">
-                                            {category.items.map((item, itemIdx) => (
-                                              <Link
-                                                key={itemIdx}
-                                                href={item.href}
-                                                onClick={onClose}
-                                                className="text-base font-normal text-slate-700 hover:text-blue-600 transition-colors"
-                                              >
-                                                {item.label}
-                                              </Link>
-                                            ))}
-                                          </div>
+                                          {/* <DropdownArrow /> */}
                                         </motion.div>
-                                      )}
-                                    </AnimatePresence>
-                                  </div>
-                                );
-                              })}
+                                      </button>
+
+                                      {/* Sub-items List */}
+                                      <AnimatePresence initial={false}>
+                                        {isCategoryOpen && (
+                                          <motion.div
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{
+                                              opacity: 1,
+                                              height: "auto",
+                                            }}
+                                            exit={{ opacity: 0, height: 0 }}
+                                            transition={{
+                                              duration: 0.25,
+                                              ease: [0.16, 1, 0.3, 1],
+                                            }}
+                                            className="overflow-hidden"
+                                          >
+                                          <div className="mt-2 flex flex-col gap-1 border-t border-[#1A1A1A17] pt-2">
+                                              {category.items.map(
+                                                (item, itemIdx) => (
+                                                  <Link
+                                                    key={item.href || itemIdx}
+                                                    href={item.href}
+                                                    onClick={onClose}
+                                                    className="group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-slate-50"
+                                                  >
+                                                    <div className="flex items-center gap-2.5">
+                                                      <UserAddedIcon />
+                                                      <span className="text-[14px] font-medium text-[#1A1A1ABF] ">
+                                                        {item.label}
+                                                      </span>
+                                                    </div>
+                                                    <div className="flex -rotate-90 flex-col text-slate-400 opacity-0 transition-opacity group-hover:opacity-100">
+                                                      <DropdownArrow />
+                                                    </div>
+                                                  </Link>
+                                                ),
+                                              )}
+                                            </div>
+                                          </motion.div>
+                                        )}
+                                      </AnimatePresence>
+                                    </div>
+                                  );
+                                },
+                              )}
+
+                              {/* Featured Blue Promo Banner */}
+                              <div
+                                className="relative mt-2 flex flex-col justify-between overflow-hidden rounded-xl p-6 text-white "
+                                style={{
+                                  background:
+                                    "linear-gradient(179.91deg, #3B82F6 0.08%, #60A5FA 54.75%, #2563EB 97.46%)",
+                                }}
+                              >
+                                <span className="text-[14px] font-medium text-blue-100/80">
+                                  Platform
+                                </span>
+                                <h4 className="font-geist-pixel-circle mt-3 text-[22px] leading-[1.2] font-semibold tracking-tight">
+                                  Agentic risk platform to <br /> fight
+                                  financial crime
+                                </h4>
+
+                                <div className="mt-5 grid grid-cols-1 gap-2 text-[14px] text-blue-50/90">
+                                  <Link href="#" className="hover:underline">
+                                    Agentic AML Ops
+                                  </Link>
+                                  <Link href="#" className="hover:underline">
+                                    Transaction Monitoring
+                                  </Link>
+                                  <Link href="#" className="hover:underline">
+                                    Customer Risk Rating
+                                  </Link>
+                                  <Link href="#" className="hover:underline">
+                                    Sanctions Screening
+                                  </Link>
+                                  <Link href="#" className="hover:underline">
+                                    Case Management
+                                  </Link>
+                                  <Link href="#" className="hover:underline">
+                                    Sponsor Monitor
+                                  </Link>
+                                </div>
+                              </div>
                             </div>
                           </motion.div>
                         )}
@@ -193,19 +266,23 @@ export const MobileMenu = React.memo(function MobileMenu({
                     key={link.id}
                     href={link.href ?? "/"}
                     onClick={onClose}
-                    className="flex items-center justify-between border-b border-gray-100/80 py-3 text-lg font-medium text-gray-900"
+                    className="flex items-center justify-between border-b border-slate-200/60 py-3.5 text-[17px] font-medium text-slate-900"
                   >
                     <span>{link.label}</span>
+                    <div className="-rotate-90 text-slate-400">
+                    </div>
                   </Link>
                 );
               })}
             </div>
-
-            <div className="mt-6 flex flex-col gap-3 pt-2">
-              <Button variant="secondary" className="w-full justify-center">
+            <div className=" ">
+              <Button
+                variant="secondary"
+                
+              >
                 Log in
               </Button>
-              <Button link="book-a-demo" className="w-full justify-center">
+              <Button link="book-a-demo" >
                 Book a demo
               </Button>
             </div>

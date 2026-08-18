@@ -3,12 +3,7 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  motion,
-  useScroll,
-  useMotionValueEvent,
-  Variants,
-} from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, Variants } from "framer-motion";
 
 import LayoutWrapper from "../wrapper/LayoutWrapper";
 import { navLinks } from "@/shared/data";
@@ -17,7 +12,6 @@ import { CountrySelector } from "./CountrySelector";
 import { DesktopNav } from "./DesktopNav";
 import { MobileMenu } from "./MobileMenu";
 import { ProductsDropdown } from "./ProductsDropdown";
-import { CrossIcon } from "lucide-react";
 import CloseIcon from "@/shared/icons/CloseIcon";
 
 interface MainNavigationProps {
@@ -83,14 +77,18 @@ export default function MainNavigation({ children }: MainNavigationProps) {
 
   return (
     <>
-      <div className="fixed top-0 right-0 left-0 z-1000 w-full">
+      <div className="fixed top-0 right-0 left-0 z-[1000] w-full">
         <motion.header
           variants={headerVariants}
           animate={hidden ? "hidden" : "visible"}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className={`pointer-events-auto w-full py-4.5 transition-colors duration-300 ${
+          className={`${
+            productsMenuOpen
+              ? "mx-auto rounded-[8px] mt-4 xl:max-w-[95%] 2xl:max-w-[98%] backdrop-blur-2xl"
+              : ""
+          } pointer-events-auto py-4.5 transition-colors duration-300 ${
             isScrolled || productsMenuOpen || mobileMenuOpen
-              ? "bg-white shadow-xs"
+              ? "bg-white"
               : "bg-transparent"
           }`}
         >
@@ -117,7 +115,9 @@ export default function MainNavigation({ children }: MainNavigationProps) {
               </div>
 
               <div
-                className={`items-center gap-2 ${productsMenuOpen ? "hidden" : "flex"}`}
+                className={`items-center gap-2 ${
+                  productsMenuOpen ? "hidden" : "flex"
+                }`}
               >
                 <CountrySelector
                   isOpen={countryDropdownOpen}
@@ -164,9 +164,14 @@ export default function MainNavigation({ children }: MainNavigationProps) {
                   </svg>
                 </button>
               </div>
+
+              {/* Working Close Button */}
               <Button
                 variant="secondary"
-                className={`${productsMenuOpen ? "block" : "hidden"} bg-[#F8FAFC]!`}
+                onClick={closeProductsMenu}
+                className={`${
+                  productsMenuOpen ? "flex" : "hidden"
+                } items-center gap-1.5 bg-[#F8FAFC]`}
               >
                 Close
                 <CloseIcon />

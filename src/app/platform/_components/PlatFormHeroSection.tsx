@@ -28,7 +28,7 @@ export default function PlatFormHeroSection() {
     },
   ];
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#E9F1FF14] py-12 md:py-20 lg:py-0">
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#E9F1FF14] py-21 md:py-20 lg:py-0">
       <DitherHoverBackground
         baseColor="transparent"
         gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}
@@ -54,7 +54,7 @@ export default function PlatFormHeroSection() {
       />
       <DitherControls value={dither} onChange={setDither} />
 
-      <LayoutWrapper className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+      <LayoutWrapper className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12 ">
         {/* Left Column: Hero Content */}
         <div className="flex max-w-[558px] flex-col gap-8 md:gap-10 lg:gap-12">
           <div>

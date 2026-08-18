@@ -7,7 +7,7 @@ export default function BuiltInNepalSection() {
     <section className="h-full w-full lg:py-[84px] py-[48px]">
       <LayoutWrapper>
         <div className="flex flex-col gap-12">
-          <div className="relative hidden aspect-square w-full overflow-hidden rounded-2xl bg-slate-900 md:block lg:h-[718px]">
+          <div className="relative hidden aspect-video w-full overflow-hidden rounded-2xl bg-slate-900 md:block lg:h-[718px]">
             <Image
               alt="Third Factor AI Team - Built in Nepal"
               fill
