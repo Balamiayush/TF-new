@@ -17,6 +17,8 @@ import { CountrySelector } from "./CountrySelector";
 import { DesktopNav } from "./DesktopNav";
 import { MobileMenu } from "./MobileMenu";
 import { ProductsDropdown } from "./ProductsDropdown";
+import { CrossIcon } from "lucide-react";
+import CloseIcon from "@/shared/icons/CloseIcon";
 
 interface MainNavigationProps {
   children?: React.ReactNode;
@@ -114,7 +116,9 @@ export default function MainNavigation({ children }: MainNavigationProps) {
                 />
               </div>
 
-              <div className="flex items-center gap-2">
+              <div
+                className={`items-center gap-2 ${productsMenuOpen ? "hidden" : "flex"}`}
+              >
                 <CountrySelector
                   isOpen={countryDropdownOpen}
                   onToggle={toggleCountryDropdown}
@@ -160,6 +164,13 @@ export default function MainNavigation({ children }: MainNavigationProps) {
                   </svg>
                 </button>
               </div>
+              <Button
+                variant="secondary"
+                className={`${productsMenuOpen ? "block" : "hidden"} bg-[#F8FAFC]!`}
+              >
+                Close
+                <CloseIcon />
+              </Button>
             </nav>
           </LayoutWrapper>
 

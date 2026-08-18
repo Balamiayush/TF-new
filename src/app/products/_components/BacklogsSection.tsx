@@ -19,7 +19,7 @@ const BacklogCard = ({
   descriptionMaxWidth = "",
 }: CardProps) => (
   <div
-    className={`flex flex-col gap-5 rounded-[8px] border-[0.94px] border-slate-200 bg-white relative z-100 p-8 ${className} `}
+    className={`relative z-100 flex flex-col gap-5 rounded-[8px] border-[0.94px] border-slate-200 bg-white p-8 ${className} `}
   >
     <h4
       className={`font-geist text-[24px] leading-[110%] font-medium text-black ${titleMaxWidth}`}
@@ -63,10 +63,10 @@ export default function BacklogsSection() {
   ];
 
   return (
-    <div className="relative min-h-screen w-full py-12 md:py-16 lg:py-[84px] ">
+    <div className="relative min-h-screen w-full py-12 md:py-16 lg:py-[84px]">
       <GitterImage />
       <LayoutWrapper>
-        <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between relative z-100">
+        <div className="relative z-100 flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between">
           <h3 className="w-full text-[28px] leading-[1.2] font-medium tracking-[-0.3px] text-black lg:max-w-[498px] lg:text-[42px]">
             Clear KYC backlogs with AI-assisted review
           </h3>
@@ -92,8 +92,8 @@ export default function BacklogsSection() {
             <BacklogCard
               title={cards[2].title}
               description={cards[2].description}
-              className="lg:h-[206px]"              titleMaxWidth="max-w-[203px]"
-
+              className="lg:h-[206px]"
+              titleMaxWidth="max-w-[203px]"
               descriptionMaxWidth="lg:max-w-[315px]"
             />
           </div>

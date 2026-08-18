@@ -61,7 +61,7 @@ function DesktopNavComponent({
               href={link.href ?? "/"}
               target={link.newTab ? "_blank" : "_self"}
               rel={link.newTab ? "noopener noreferrer" : undefined}
-              className="text-sm font-medium px-3 py-2 text-slate-800 transition-colors hover:text-blue-600"
+              className="px-3 py-2 text-sm font-medium text-slate-800 transition-colors hover:text-blue-600"
             >
               {link.label}
             </Link>
@@ -72,4 +72,4 @@ function DesktopNavComponent({
   );
 }
 
-export const DesktopNav = React.memo(DesktopNavComponent);  
+export const DesktopNav = React.memo(DesktopNavComponent);

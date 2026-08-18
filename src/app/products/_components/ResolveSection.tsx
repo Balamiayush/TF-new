@@ -147,42 +147,42 @@ export default function ResolveSection() {
                   </p>
                 </div>
 
-              <div className="pointer-events-none absolute bottom-0 left-1/2 h-[180px] w-[90%] max-w-[400px] -translate-x-1/2 overflow-hidden sm:h-[200px] md:w-[85%] lg:w-full">
-  {/* Static Image */}
-  <div
-    className={`relative h-full w-full transition-opacity duration-300 ${
-      isActive && isVideoReady ? "opacity-0" : "opacity-100"
-    }`}
-  >
-    <Image
-      className="h-full w-full object-cover object-bottom"
-      fill
-      sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 33vw"
-      src={feature.img}
-      alt={feature.title}
-    />
-  </div>
+                <div className="pointer-events-none absolute bottom-0 left-1/2 h-[180px] w-[90%] max-w-[400px] -translate-x-1/2 overflow-hidden sm:h-[200px] md:w-[85%] lg:w-full">
+                  {/* Static Image */}
+                  <div
+                    className={`relative h-full w-full transition-opacity duration-300 ${
+                      isActive && isVideoReady ? "opacity-0" : "opacity-100"
+                    }`}
+                  >
+                    <Image
+                      className="h-full w-full object-cover object-bottom"
+                      fill
+                      sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 33vw"
+                      src={feature.img}
+                      alt={feature.title}
+                    />
+                  </div>
 
-  {/* Video Layer */}
-  {feature.video && (
-    <div
-      className={`absolute inset-0 h-full w-full bg-[#F7D2E4] transition-opacity duration-300 ${
-        isActive && isVideoReady ? "opacity-100" : "opacity-0"
-      }`}
-    >
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        onLoadedData={() => handleVideoLoaded(feature.id)}
-        className="h-full w-full object-cover object-bottom mix-blend-lighten scale-[1.02] [clip-path:inset(2px_0px_2px_0px)]"
-        src={feature.video}
-      />
-    </div>
-  )}
-</div>
+                  {/* Video Layer */}
+                  {feature.video && (
+                    <div
+                      className={`absolute inset-0 h-full w-full bg-[#F7D2E4] transition-opacity duration-300 ${
+                        isActive && isVideoReady ? "opacity-100" : "opacity-0"
+                      }`}
+                    >
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="auto"
+                        onLoadedData={() => handleVideoLoaded(feature.id)}
+                        className="h-full w-full scale-x-[1.1] object-cover object-bottom mix-blend-lighten [clip-path:inset(2px_0px_2px_0px)]"
+                        src={feature.video}
+                      />
+                    </div>
+                  )}
+                </div>
               </motion.div>
             );
           })}
