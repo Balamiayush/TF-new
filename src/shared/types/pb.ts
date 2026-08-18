@@ -50,7 +50,7 @@ export type ContactMessageRecord = BaseRecord & {
   company_name: string;
   industry: string;
   phone_number: string;
-  message: string;
+  referral_source: string;
 };
 
 export type DemoRequestRecord = BaseRecord & {
