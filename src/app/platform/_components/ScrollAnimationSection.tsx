@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function FeatureItems() {
   return (
-    <div className="flex w-full justify-between pt-8">
+    <div id="img-details" className="flex w-full justify-between opacity-0 pt-8">
       <div className="flex flex-col items-start gap-2">
         <p className="text-left text-[18px] leading-[110%]">Cross-account linking</p>
         <p className="max-w-[355px] text-left text-[14px] leading-[130%]">
@@ -80,7 +80,9 @@ export default function ScrollAnimationSection() {
         opacity: 0,
         duration: 1,
         force3D: true,
-      })
+      },'a').to(centerLogoRef.current,{
+        yPercent:40,
+      },'a')
 
       // Step 2: Background color transition & center graphic scale down
       .to(
@@ -101,7 +103,6 @@ export default function ScrollAnimationSection() {
         "<"
       )
 
-      // Step 3: Text content reveal & Image reveal expansion
       .fromTo(
         textContentRef.current,
         {
@@ -133,7 +134,10 @@ export default function ScrollAnimationSection() {
           duration: 1,
         },
         "-=0.4"
-      );
+      ).to("#img-details",{
+        opacity:1,
+        duration:0.5,
+      })
     },
     { scope: containerRef }
   );
@@ -242,7 +246,7 @@ export default function ScrollAnimationSection() {
             One trust platform makes every digital interaction trustworthy.
           </p>
 
-          {/* Image Reveal Sub-container */}
+     
           <div
             ref={imageContainerRef}
             className="relative h-[0] w-full overflow-hidden"
@@ -256,7 +260,7 @@ export default function ScrollAnimationSection() {
             />
           </div>
 
-          {/* Sub-section Container */}
+       
           <FeatureItems />
         </div>
       </div>

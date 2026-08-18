@@ -3,6 +3,7 @@ import LayoutWrapper from '@/shared/layouts/wrapper/LayoutWrapper'
 import PlatFormHeroSection from './_components/PlatFormHeroSection'
 import ScrollAnimationSection from './_components/ScrollAnimationSection'
 import ModularBlocksSection from './_components/ModularBlocksSection'
+import BehindObsidian from './_components/BehindObsidian'
 
 export default function page() {
   return (
@@ -16,6 +17,7 @@ export default function page() {
     </div>
     <ScrollAnimationSection/>
     <ModularBlocksSection/>
+    <BehindObsidian/>
    </div>
   )
 }
