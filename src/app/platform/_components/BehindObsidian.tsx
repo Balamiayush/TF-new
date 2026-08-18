@@ -56,7 +56,7 @@ export default function BehindObsidian() {
 
   return (
    
-     <div className="w-full overflow-hidden">
+     <div className="w-full overflow-hidden lg:py-[84px] py-[48px]">
   <LayoutWrapper>
     {/* Header */}
     <div className="flex items-center justify-between">

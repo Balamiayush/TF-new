@@ -4,7 +4,9 @@ import PlatFormHeroSection from './_components/PlatFormHeroSection'
 import ScrollAnimationSection from './_components/ScrollAnimationSection'
 import ModularBlocksSection from './_components/ModularBlocksSection'
 import BehindObsidian from './_components/BehindObsidian'
-
+import Infrastructure from '../(home-page)/_components/InfrastructureSection'
+import ReadAllStories from '../(home-page)/_components/ReadAllStoriesSection'
+import StartVerifyingSection from '../(home-page)/_components/StartVerifyingSection'
 export default function page() {
   return (
    <div className="w-full h-full relative">
@@ -17,6 +19,9 @@ export default function page() {
     </div>
     <ScrollAnimationSection/>
     <ModularBlocksSection/>
+         <Infrastructure />
+   <ReadAllStories/>
+   <StartVerifyingSection/>
     <BehindObsidian/>
    </div>
   )

@@ -52,7 +52,7 @@ export default function ReadAllStories() {
             Get insights, tips, and updates from our team.
           </h2>
 
-          <Button variant="secondary">Read all stories</Button>
+          <Button href="/blogs" variant="secondary">Read all stories</Button>
         </div>
 
         <div className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [scrollbar-width:none] md:grid md:grid-cols-2 md:overflow-visible md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
