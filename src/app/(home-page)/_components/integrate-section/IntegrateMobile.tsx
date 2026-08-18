@@ -11,9 +11,8 @@ export default function IntegrateMobile({ stepsData }: IntegrateProps) {
   return (
     <div className="block min-h-screen w-full bg-gradient-to-b from-[#FBEAF9] to-[#E8B9E5] py-12 xl:hidden">
       <LayoutWrapper>
-        <h2 className="text-alpha-light-1000 text-[26px] leading-[115%] font-medium tracking-tight lg:text-[48px]">
+        <h2 className="text-alpha-light-1000 text-[26px] max-w-[309px]  leading-[115%] font-medium tracking-tight lg:text-[48px]">
           Integrate in
-          <br />
           Days, Not Weeks
         </h2>
 
@@ -24,7 +23,7 @@ export default function IntegrateMobile({ stepsData }: IntegrateProps) {
             return (
               <div
                 key={step.id}
-                className="border-alpha-light-100 border-t py-4 transition-colors last:border-b"
+                className="first:border-none border-alpha-light-100 border-t py-4 transition-colors last:border-b"
               >
                 <button
                   type="button"

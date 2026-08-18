@@ -17,16 +17,16 @@ import { useState } from "react";
 export default function PlatFormHeroSection() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
-const TRUSTED_LOGOS = [
-  { name: "esewa", image: "/images/trused-by-imgs/esewa.webp" },
-  { name: "everest", image: "/images/trused-by-imgs/everest.webp" },
-  { name: "laxmi", image: "/images/trused-by-imgs/laxmi.webp" },
-  { name: "sagilo", image: "/images/trused-by-imgs/sagilo.webp" },
-  {
-    name: "siddhartha-bank",
-    image: "/images/trused-by-imgs/siddhartha-bank.webp",
-  },
-];
+  const TRUSTED_LOGOS = [
+    { name: "esewa", image: "/images/trused-by-imgs/esewa.webp" },
+    { name: "everest", image: "/images/trused-by-imgs/everest.webp" },
+    { name: "laxmi", image: "/images/trused-by-imgs/laxmi.webp" },
+    { name: "sagilo", image: "/images/trused-by-imgs/sagilo.webp" },
+    {
+      name: "siddhartha-bank",
+      image: "/images/trused-by-imgs/siddhartha-bank.webp",
+    },
+  ];
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center bg-[#E9F1FF14] py-12 md:py-20 lg:py-0">
       <DitherHoverBackground
@@ -58,7 +58,7 @@ const TRUSTED_LOGOS = [
         {/* Left Column: Hero Content */}
         <div className="flex max-w-[558px] flex-col gap-8 md:gap-10 lg:gap-12">
           <div>
-            <h1 className="text-4xl font-medium leading-[1.05] tracking-[-0.3px] text-slate-900 md:text-6xl lg:text-[64px]">
+            <h1 className="text-4xl leading-[1.05] font-medium tracking-[-0.3px] text-slate-900 md:text-6xl lg:text-[64px]">
               Approve the right customer at scale
             </h1>
             <p className="mt-4 max-w-[450px] text-sm tracking-[-0.4px] text-slate-600 md:text-base">
@@ -95,8 +95,8 @@ const TRUSTED_LOGOS = [
         </div>
 
         {/* Right Column: Hero Graphic Wrapper */}
-        <div className="w-full  lg:max-w-[44.44vw]">
-          <div className="relative lg:h-[35vw] h-[400px] w-full overflow-hidden rounded-lg">
+        <div className="w-full lg:max-w-[44.44vw]">
+          <div className="relative h-[400px] w-full overflow-hidden rounded-lg lg:h-[35vw]">
             <Image
               alt="Verification Platform Preview"
               fill
@@ -106,26 +106,24 @@ const TRUSTED_LOGOS = [
               src="https://res.cloudinary.com/dfajjqglx/image/upload/v1787037228/dfaaf_bt076x.png"
             />
           </div>
-          <div className="mt-10 flex items-center lg:flex-row flex-col gap-4">
-                        <p className="text-[15px]  font-medium text-slate-600">
-                          Trusted by
-                        </p>
-                        <div className="flex flex-wrap items-center gap-3">
-                          {TRUSTED_LOGOS.map((logo, index) => (
-                            <div
-                              key={index}
-                              className="relative flex h-[38px] w-[100px] items-center"
-                            >
-                              <Image
-                                src={logo.image}
-                                alt={logo.name}
-                                fill
-                                className="object-contain opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+          <div className="mt-10 flex flex-col items-center gap-4 lg:flex-row">
+            <p className="text-[15px] font-medium text-slate-600">Trusted by</p>
+            <div className="flex flex-wrap items-center gap-3">
+              {TRUSTED_LOGOS.map((logo, index) => (
+                <div
+                  key={index}
+                  className="relative flex h-[38px] w-[100px] items-center"
+                >
+                  <Image
+                    src={logo.image}
+                    alt={logo.name}
+                    fill
+                    className="object-contain opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </LayoutWrapper>
     </div>

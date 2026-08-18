@@ -18,7 +18,7 @@ export default function TrustedBy() {
   ];
 
   return (
-    <section className="flex w-full items-center justify-center border-t border-slate-200 pt-8 pb-20 overflow-hidden">
+    <section className="flex w-full items-center justify-center border-t border-slate-200 pt-8 md:pb-20  overflow-hidden max-lg:py-[24px]">
       <LayoutWrapper>
         <div className="flex w-full flex-col items-center justify-center gap-6">
           <Label as="Label L">Trusted by</Label>

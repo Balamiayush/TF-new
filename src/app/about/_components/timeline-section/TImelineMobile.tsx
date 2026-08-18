@@ -20,10 +20,11 @@ export default function TImelineMobile({
 }: TimelineProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const lineRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const lineRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      // 1. Cards Animation
       cardRefs.current.forEach((el) => {
         if (!el) return;
         gsap.fromTo(
@@ -43,24 +44,23 @@ export default function TImelineMobile({
         );
       });
 
-      lineRefs.current.forEach((el) => {
-        if (!el) return;
-        const targetHeight = el.dataset.targetHeight;
+      // 2. Line Progress Animation via transform scaleY
+      if (lineRef.current) {
         gsap.fromTo(
-          el,
-          { height: 0 },
+          lineRef.current,
+          { scaleY: 0 },
           {
-            height: targetHeight,
-            duration: 0.5,
-            ease: "power2.out",
+            scaleY: 1,
+            ease: "none",
             scrollTrigger: {
-              trigger: el,
-              start: "top 90%",
-              toggleActions: "play none none none",
+              trigger: wrapperRef.current,
+              start: "top 70%",
+              end: "bottom bottom",
+              scrub: 0.5,
             },
           }
         );
-      });
+      }
     }, wrapperRef);
 
     return () => ctx.revert();
@@ -77,14 +77,12 @@ export default function TImelineMobile({
         </h3>
 
         <div className="relative flex flex-col items-center">
-          <div className="absolute top-0 bottom-0 z-0 flex w-[48px] flex-col items-center overflow-hidden">
+         <div className="absolute top-0 bottom-0 z-0 flex w-[56px] flex-col items-center overflow-hidden  bg-slate-200">
+       
             <div
-              ref={(el) => {
-                lineRefs.current[0] = el;
-              }}
-              data-target-height="100%"
-              style={{ height: 0 }}
-              className="w-full h-full bg-gradient-to-b from-[#3B82F6] via-[#2563EB] to-[#E879F9]"
+              ref={lineRef}
+              style={{ transformOrigin: "top" }}
+              className="h-full w-full bg-gradient-to-b from-[#3B82F6] via-[#2563EB] to-[#E879F9]"
             />
           </div>
 
@@ -110,7 +108,7 @@ export default function TImelineMobile({
                 </div>
 
                 {/* Inner White Container */}
-                <div className="flex flex-col gap-[12px] rounded-[6px] border border-slate-100 bg-[var(--b-w-white,#FFFFFF)] p-2.5 ">
+                <div className="flex flex-col gap-[12px] rounded-[6px] border border-slate-100 bg-[var(--b-w-white,#FFFFFF)] p-2.5">
                   {item.image && (
                     <div className="relative h-[135px] w-full shrink-0 overflow-hidden rounded-[4px]">
                       <Image
@@ -122,7 +120,7 @@ export default function TImelineMobile({
                     </div>
                   )}
 
-                  {/* Description */}
+         
                   <p className="font-geist line-clamp-3 text-[12px] leading-[135%] tracking-[-0.1px] text-slate-600">
                     {item.description}
                   </p>

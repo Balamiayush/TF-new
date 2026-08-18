@@ -70,7 +70,6 @@ export default function MainNavigation({ children }: MainNavigationProps) {
     setMobileMenuOpen(false);
   }, []);
 
-  // Products menu now opens/closes on click (was hover-based).
   const toggleProductsMenu = useCallback(() => {
     setProductsMenuOpen((prev) => !prev);
     setCountryDropdownOpen(false);

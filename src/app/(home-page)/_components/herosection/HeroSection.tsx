@@ -117,7 +117,7 @@ export default function HeroSection() {
 
           <div className="mt-4 flex w-full flex-col items-start justify-between gap-6 md:flex-row md:items-center lg:flex-row">
             <h1 className="max-w-[680px] text-[32px] leading-[110%] font-medium tracking-[-0.6px] md:text-[40px] lg:text-[48px]">
-              AI native trust infrastructure for{" "}
+              AI native trust infrastructure <br className="lg:hidden block" /> for{" "}
               <span className="font-geist-pixel-circle vertical-bottom inline-grid overflow-hidden text-[#0088D4]">
                 <AnimatePresence mode="wait">
                   <motion.span

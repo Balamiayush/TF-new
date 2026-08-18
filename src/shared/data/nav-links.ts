@@ -6,6 +6,7 @@ export const navLinks: NavItem[] = [
     label: "Products",
     href: "/products",
     hasDropdown: true,
+    newTab:false,
   },
 
   {
@@ -13,11 +14,13 @@ export const navLinks: NavItem[] = [
     label: "Developer",
     href: "https://docs.v3.thirdfactor.ai/docs",
     hasDropdown: false,
+    newTab:true,
   },
 
   {
     id: "about",
     label: "About",
     href: "/about",
+    newTab:false,
   },
 ];

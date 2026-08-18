@@ -1,4 +1,3 @@
-// DesktopNav.tsx
 "use client";
 
 import React, { useCallback } from "react";
@@ -10,6 +9,7 @@ interface NavLinkItem {
   label: string;
   href?: string;
   hasDropdown?: boolean;
+  newTab?: boolean;
 }
 
 interface DesktopNavProps {
@@ -34,14 +34,14 @@ function DesktopNavComponent({
   );
 
   return (
-    <ul className="hidden items-center gap-8 lg:flex">
+    <ul className="hidden items-center gap-1 lg:flex">
       {links.map((link) => {
         if (link.id === "products") {
           return (
             <li
               key={link.id}
               onClick={handleProductsClick}
-              className={`cursor-pointer py-2 px-3 rounded-sm ${isProductsOpen ? "bg-[#F1F5F9]" : ""}`}
+              className={`cursor-pointer rounded-sm px-3 py-2 ${isProductsOpen ? "bg-[#F1F5F9]" : ""}`}
             >
               <span className="group/products flex items-center gap-1.5 text-sm font-medium text-slate-800 transition-colors hover:text-blue-600">
                 {link.label}
@@ -59,7 +59,9 @@ function DesktopNavComponent({
           <li key={link.id} onClick={onOtherClick}>
             <Link
               href={link.href ?? "/"}
-              className="text-sm font-medium text-slate-800 transition-colors hover:text-blue-600"
+              target={link.newTab ? "_blank" : "_self"}
+              rel={link.newTab ? "noopener noreferrer" : undefined}
+              className="text-sm font-medium px-3 py-2 text-slate-800 transition-colors hover:text-blue-600"
             >
               {link.label}
             </Link>
@@ -70,4 +72,4 @@ function DesktopNavComponent({
   );
 }
 
-export const DesktopNav = React.memo(DesktopNavComponent);
+export const DesktopNav = React.memo(DesktopNavComponent);  

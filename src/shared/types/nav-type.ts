@@ -4,6 +4,7 @@ export type NavItem = {
   href?: string;
   children?: NavItem[];
   hasDropdown?: boolean;
+  newTab?: boolean;
 };
 
 

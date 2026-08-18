@@ -48,7 +48,7 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-full right-0 left-0 z-[9999] pt-3 pb-8"
+            className="no-scrollbar absolute top-full right-0 left-0 z-[9999] max-h-[calc(100vh-80px)] overflow-y-auto pt-3 pb-8"
             data-lenis-prevent
           >
             <LayoutWrapper>
@@ -103,7 +103,7 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                     </div>
                   </div>
 
-                  {/* Right Preview Card */}
+             
                   <div className="relative min-h-[480px] w-[38%] shrink-0 overflow-hidden rounded-sm bg-blue-600">
                     <Image
                       src="https://res.cloudinary.com/dfajjqglx/image/upload/v1786620030/Container_xcsols.png"

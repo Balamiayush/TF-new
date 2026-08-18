@@ -13,14 +13,14 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 const streamlineData = [
   {
     title: "White-Label Mobile SDK ",
-    desc: "Native iOS and Android SDKs. Embed liveness detection and document capture directly in your app.  no WebView, fully branded to your product.",
+    desc: "Native iOS and Android SDKs. Embed liveness detection and document capture in your app, fully branded.",
     imgAlt: "White-Label Mobile SDK ",
     lottie: builtForOperations,
     maxwidth: "max-w-[294px]",
   },
   {
     title: "Build any identity workflow",
-    desc: "Drop in iFrame or headless React components. Full styling control for identity verification, compliance, and fraud prevention flows.",
+    desc: "Use iFrame or headless React components for styling identity verification and fraud prevention.",
     imgAlt: "Build any identity workflow",
     lottie: developer,
     maxwidth: "max-w-[272px]",
@@ -43,16 +43,14 @@ const streamlineData = [
 
 export default function Streamline() {
   return (
- <div className="relative w-full bg-white xl:py-21">
+ <div className="relative w-full bg-white xl:py-21 py-8">
   <LayoutWrapper className="">
     <div className="flex flex-col gap-6">
-      <h1 className="xl:max-w-[620px] text-[26px] max-w-[230px] xl:text-[42px] leading-[110%] font-medium tracking-[-0.6px] text-black">
+      <h1 className="xl:max-w-[620px] text-[26px] max-w-[358px] xl:text-[42px] leading-[110%] font-medium tracking-[-0.6px] text-black">
         Streamline user verification from one dashboard.
       </h1>
-      <p className="max-w-[554px] text-[16px] leading-[1.4] tracking-[-0.3px] text-gray-500">
-        Identity events like onboarding and screening rely on separate
-        tools. Third Factor unifies them into one platform with a single
-        integration and audit trail.
+      <p className="max-w-[554px] text-[16px] leading-[1.4] tracking-[-0.3px] text-[#64748B]">
+    Identity events like onboarding and screening are unified in one platform with a single integration.
       </p>
     </div>
   </LayoutWrapper>
@@ -72,7 +70,7 @@ export default function Streamline() {
                 {card.title}
               </h3>
               <p
-                className={`font-inter mt-3 xl:mt-[22px] ${card.maxwidth} text-[14px] leading-[130%] tracking-[-0.15px] text-[#1A1A1ABF]`}
+                className={`font-inter mt-4 xl:mt-[22px] ${card.maxwidth} text-[14px] leading-[130%] tracking-[-0.15px] text-[#1A1A1ABF]`}
               >
                 {card.desc}
               </p>

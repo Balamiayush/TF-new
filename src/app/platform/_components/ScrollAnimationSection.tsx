@@ -152,14 +152,6 @@ export default function ScrollAnimationSection() {
           },
           "<",
         )
-        .to(
-          imageContainerRef.current,
-          {
-            clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
-            ease: "power2.inOut",
-          },
-          "-=0.4",
-        )
         .to("#img-details", {
           opacity: 1,
           duration: 0.5,
@@ -273,10 +265,6 @@ export default function ScrollAnimationSection() {
           <div
             ref={imageContainerRef}
             className="relative mx-auto h-[220px] w-full  rounded-lg   md:h-[450px] lg:h-[44.44vw]"
-            style={{
-              clipPath: "polygon(0 50%, 100% 50%, 100% 50%, 0 50%)",
-              willChange: "clip-path, transform",
-            }}
           >
             <Image
               alt="Obsidian Platform Dashboard"

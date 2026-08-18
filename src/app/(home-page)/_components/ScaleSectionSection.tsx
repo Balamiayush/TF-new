@@ -225,7 +225,7 @@ export default function ScaleSection() {
             <div className="mt-14  lg:mt-[120px] grid lg:grid-cols-2 gap-y-6 gap-x-12">
               {statsData.map((stat, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <div className="animated-indicator h-full w-[4px] shrink-0 bg-brand-400" />
+                  <div className="animated-indicator h-full w-[2px] lg:w-[4px] shrink-0 bg-brand-500" />
 
                   <div>
                     <span
