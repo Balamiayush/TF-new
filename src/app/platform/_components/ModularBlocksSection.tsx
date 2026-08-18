@@ -142,7 +142,7 @@ export default function ModularBlocksSection() {
             <div className="absolute top-[15px] bottom-[15px] left-[14px] w-[2px] -translate-x-1/2 overflow-hidden">
               <div
                 ref={lineFillRef}
-                className="relative h-full w-full origin-top scale-y-0 before:absolute before:inset-y-0 before:left-0 before:w-[1px] before:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] after:absolute after:inset-y-0 after:right-0 after:w-[1px] after:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)]"
+                className="relative h-full w-full origin-top opacity-0.8 before:absolute before:inset-y-0 before:left-0 before:w-[1px] before:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] after:absolute after:inset-y-0 after:right-0 after:w-[1px] after:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)]"
               />
             </div>
 
