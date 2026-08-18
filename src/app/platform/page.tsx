@@ -2,6 +2,7 @@
 import LayoutWrapper from '@/shared/layouts/wrapper/LayoutWrapper'
 import PlatFormHeroSection from './_components/PlatFormHeroSection'
 import ScrollAnimationSection from './_components/ScrollAnimationSection'
+import ModularBlocksSection from './_components/ModularBlocksSection'
 
 export default function page() {
   return (
@@ -14,6 +15,7 @@ export default function page() {
       </LayoutWrapper>
     </div>
     <ScrollAnimationSection/>
+    <ModularBlocksSection/>
    </div>
   )
 }
