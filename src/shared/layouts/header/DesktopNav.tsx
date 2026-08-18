@@ -41,7 +41,7 @@ function DesktopNavComponent({
             <li
               key={link.id}
               onClick={handleProductsClick}
-              className="cursor-pointer py-2"
+              className={`cursor-pointer py-2 px-3 rounded-sm ${isProductsOpen ? "bg-[#F1F5F9]" : ""}`}
             >
               <span className="group/products flex items-center gap-1.5 text-sm font-medium text-slate-800 transition-colors hover:text-blue-600">
                 {link.label}
