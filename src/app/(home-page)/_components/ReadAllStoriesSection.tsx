@@ -46,7 +46,7 @@ export default function ReadAllStories() {
         className="pointer-events-none  z-[-1] absolute h-full w-full object-cover"
         src={"/gitter.png"}
       />
-      <LayoutWrapper>
+      <LayoutWrapper className=" max-xl:pl-8 max-md:pl-4 pr-0!">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <h2 className="font-geist max-w-[300px] text-[26px] font-medium leading-[120%] tracking-[0px] text-[#1A1A1A] lg:max-w-[500px] lg:text-[40px]">
             Get insights, tips, and updates from our team.

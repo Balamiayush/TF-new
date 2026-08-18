@@ -212,7 +212,7 @@ export default function ModularBlocksSection() {
                       </div>
 
                       {/* Inline Image for Mobile (< lg) */}
-                      <div className="mt-4 h-[260px] w-full overflow-hidden rounded-xl border border-slate-200/80 sm:h-[350px] lg:hidden">
+                      <div className="mt-4 h-[260px] w-full overflow-hidden rounded-lg border border-slate-200/80 sm:h-[350px] lg:hidden">
                         <div className="relative h-full w-full">
                           <Image
                             src={step.image}
@@ -229,7 +229,7 @@ export default function ModularBlocksSection() {
             </div>
           </div>
 
-          <div className="sticky top-[120px] hidden h-[580px] w-full max-w-[677px] overflow-hidden rounded-2xl border border-slate-200/80 bg-white lg:block">
+          <div className="sticky top-[120px] hidden h-[580px] w-full max-w-[677px] overflow-hidden rounded-lg border border-slate-200/80 bg-white lg:block">
             <div className="relative h-full w-full">
               {STEPS_DATA.map((step, index) => (
                 <div

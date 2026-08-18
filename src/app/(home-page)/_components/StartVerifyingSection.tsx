@@ -87,7 +87,7 @@ export default function StartVerifyingSection() {
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#2563EB] px-4 py-32"
+      className="relative flex h-[90vh] lg:min-h-screen w-full items-center justify-center overflow-hidden bg-[#2563EB] px-4 py-32"
     >
       <DitherHoverBackground
       
