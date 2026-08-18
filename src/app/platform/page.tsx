@@ -20,9 +20,9 @@ export default function page() {
     <ScrollAnimationSection/>
     <ModularBlocksSection/>
          <Infrastructure />
+    <BehindObsidian/>
    <ReadAllStories/>
    <StartVerifyingSection/>
-    <BehindObsidian/>
    </div>
   )
 }
