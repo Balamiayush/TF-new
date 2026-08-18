@@ -7,11 +7,10 @@ export const productsMenuData: MegaMenuData = {
     {
       title: "Onboarding",
       items: [
-        { label: "Global KYC", href: "/products/kyc" },
+        { label: "Global KYC", href: "/products" },
         { label: "Global KYB", href: "/products/kyb" },
         { label: "Identity Verification", href: "/products/identity-verification" },
         { label: "Bank Verification", href: "/products/bank-verification" },
-        { label: "Credit Underwriting", href: "/products/credit-underwriting" },
         { label: "Credit Underwriting", href: "/products/credit-underwriting" },
       ],
     },

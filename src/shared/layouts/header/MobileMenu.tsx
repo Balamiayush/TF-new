@@ -98,7 +98,7 @@ export const MobileMenu = React.memo(function MobileMenu({
             exit="closed"
             variants={menuVariants}
             data-lenis-prevent
-            className="fixed top-[72px] z-[9999] flex h-full flex-col justify-between overflow-y-auto  bg-white p-4 w-full "
+            className="fixed top-[72px] z-[9999] flex h-full w-full flex-col justify-between overflow-y-auto bg-white p-4"
             style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
           >
             <div className="flex flex-col gap-1">
@@ -148,15 +148,15 @@ export const MobileMenu = React.memo(function MobileMenu({
                                   return (
                                     <div
                                       key={category.title || idx}
-                                      className="flex flex-col rounded-md border border-slate-200 bg-white p-3 "
+                                      className="flex flex-col rounded-md border border-slate-200 bg-white p-3"
                                     >
                                       {/* Category Header */}
                                       <button
                                         type="button"
                                         onClick={() => toggleCategory(idx)}
-                                        className="flex w-full items-center justify-between text-left "
+                                        className="flex w-full items-center justify-between text-left"
                                       >
-                                        <span className="text-[14px] font-medium  text-alpha-light-800">
+                                        <span className="text-alpha-light-800 text-[14px] font-medium">
                                           {category.title}
                                         </span>
                                         <motion.div
@@ -186,18 +186,18 @@ export const MobileMenu = React.memo(function MobileMenu({
                                             }}
                                             className="overflow-hidden"
                                           >
-                                          <div className="mt-2 flex flex-col gap-1 border-t border-[#1A1A1A17] pt-2">
+                                            <div className="mt-2 flex flex-col gap-1 border-t border-[#1A1A1A17] pt-2">
                                               {category.items.map(
                                                 (item, itemIdx) => (
                                                   <Link
-                                                    key={item.href || itemIdx}
+                                                    key={`${idx}-${item.href || itemIdx}`}
                                                     href={item.href}
                                                     onClick={onClose}
                                                     className="group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-slate-50"
                                                   >
                                                     <div className="flex items-center gap-2.5">
                                                       <UserAddedIcon />
-                                                      <span className="text-[14px] font-medium text-[#1A1A1ABF] ">
+                                                      <span className="text-[14px] font-medium text-[#1A1A1ABF]">
                                                         {item.label}
                                                       </span>
                                                     </div>
@@ -218,7 +218,7 @@ export const MobileMenu = React.memo(function MobileMenu({
 
                               {/* Featured Blue Promo Banner */}
                               <div
-                                className="relative mt-2 flex flex-col justify-between overflow-hidden rounded-xl p-6 text-white "
+                                className="relative mt-2 flex flex-col justify-between overflow-hidden rounded-xl p-6 text-white"
                                 style={{
                                   background:
                                     "linear-gradient(179.91deg, #3B82F6 0.08%, #60A5FA 54.75%, #2563EB 97.46%)",
@@ -269,22 +269,14 @@ export const MobileMenu = React.memo(function MobileMenu({
                     className="flex items-center justify-between border-b border-slate-200/60 py-3.5 text-[17px] font-medium text-slate-900"
                   >
                     <span>{link.label}</span>
-                    <div className="-rotate-90 text-slate-400">
-                    </div>
+                    <div className="-rotate-90 text-slate-400"></div>
                   </Link>
                 );
               })}
             </div>
             <div className=" ">
-              <Button
-                variant="secondary"
-                
-              >
-                Log in
-              </Button>
-              <Button link="book-a-demo" >
-                Book a demo
-              </Button>
+              <Button variant="secondary">Log in</Button>
+              <Button link="book-a-demo">Book a demo</Button>
             </div>
           </motion.div>
         </>

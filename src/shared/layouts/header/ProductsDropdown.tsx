@@ -78,7 +78,7 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
 
                           <ul className="flex flex-col gap-1">
                             {category.items.map((item, itemIdx) => (
-                              <li key={item.href || itemIdx}>
+                              <li key={`${idx}-${itemIdx}`}>
                                 <Link
                                   href={item.href}
                                   onClick={onClose}
