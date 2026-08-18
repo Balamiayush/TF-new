@@ -180,6 +180,7 @@ export default function ScrollAnimationSection() {
             alt="Platform Central Graphic"
             width={120}
             height={120}
+            className="max-lg:w-[50px]"
             priority
           />
         </div>

@@ -55,7 +55,6 @@ export default function PlatFormHeroSection() {
       <DitherControls value={dither} onChange={setDither} />
 
       <LayoutWrapper className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12 ">
-        {/* Left Column: Hero Content */}
         <div className="flex max-w-[558px] flex-col gap-8 md:gap-10 lg:gap-12">
           <div>
             <h1 className="text-4xl leading-[1.05] font-medium tracking-[-0.3px] text-slate-900 md:text-6xl lg:text-[64px]">
@@ -94,7 +93,6 @@ export default function PlatFormHeroSection() {
           </div>
         </div>
 
-        {/* Right Column: Hero Graphic Wrapper */}
         <div className="w-full lg:max-w-[44.44vw]">
           <div className="relative h-[400px] w-full overflow-hidden rounded-lg lg:h-[35vw]">
             <Image

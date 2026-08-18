@@ -19,8 +19,10 @@ const STEPS_DATA = [
     id: 1,
     tag: "Onboarding",
     title: "Verify consumers and businesses with confidence.",
-    description: "One trust platform makes every digital interaction trustworthy.",
-    image: "https://i.pinimg.com/1200x/54/42/7e/54427e6a1a808807e3b3e909d58de075.jpg",
+    description:
+      "One trust platform makes every digital interaction trustworthy.",
+    image:
+      "https://i.pinimg.com/1200x/54/42/7e/54427e6a1a808807e3b3e909d58de075.jpg",
     subFeatures: [
       "Agentic AML Ops",
       "Transaction Monitoring",
@@ -34,8 +36,10 @@ const STEPS_DATA = [
     id: 2,
     tag: "Fraud Prevention",
     title: "Stop fraud before it enters your funnel.",
-    description: "Blocklists, watchlists and behavior signals unified in one graph stop known bad actors instantly.",
-    image: "https://i.pinimg.com/1200x/4b/41/88/4b418864b00bc52845e4db6735593bee.jpg",
+    description:
+      "Blocklists, watchlists and behavior signals unified in one graph stop known bad actors instantly.",
+    image:
+      "https://i.pinimg.com/1200x/4b/41/88/4b418864b00bc52845e4db6735593bee.jpg",
     subFeatures: [
       "Agentic AML Ops",
       "Transaction Monitoring",
@@ -49,8 +53,10 @@ const STEPS_DATA = [
     id: 3,
     tag: "AML Compliance",
     title: "Automate financial crime operations.",
-    description: "Screen every counterparty and transaction against AML, PEP and sanctions lists — with agentic case work.",
-    image: "https://i.pinimg.com/1200x/c3/7c/8d/c37c8d887c04bce699b62739ed1d18f1.jpg",
+    description:
+      "Screen every counterparty and transaction against AML, PEP and sanctions lists — with agentic case work.",
+    image:
+      "https://i.pinimg.com/1200x/c3/7c/8d/c37c8d887c04bce699b62739ed1d18f1.jpg",
     subFeatures: [
       "Agentic AML Ops",
       "Transaction Monitoring",
@@ -64,8 +70,10 @@ const STEPS_DATA = [
     id: 4,
     tag: "Cyber security",
     title: "Session-level trust, not one-time login.",
-    description: "Continuous device fingerprint, IP intelligence and behavior biometrics catch account takeover, bots and mule accounts.",
-    image: "https://i.pinimg.com/736x/1b/41/5b/1b415bb5950c9d3a11324c447e40b530.jpg",
+    description:
+      "Continuous device fingerprint, IP intelligence and behavior biometrics catch account takeover, bots and mule accounts.",
+    image:
+      "https://i.pinimg.com/736x/1b/41/5b/1b415bb5950c9d3a11324c447e40b530.jpg",
     subFeatures: [
       "Agentic AML Ops",
       "Transaction Monitoring",
@@ -109,15 +117,18 @@ export default function ModularBlocksSection() {
         },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
-    <div ref={sectionRef} className="relative min-h-screen w-full py-16 md:py-24 lg:py-[120px]">
+    <div
+      ref={sectionRef}
+      className="relative min-h-screen w-full py-16 md:py-24 lg:py-[120px]"
+    >
       <LayoutWrapper>
         {/* Header Section */}
         <div className="flex w-full flex-col justify-between gap-6 lg:flex-row lg:items-end lg:gap-12">
-          <h3 className="max-w-[613px] text-2xl font-medium leading-[110%] tracking-[-0.3px] text-slate-900 md:text-3xl lg:text-[42px]">
+          <h3 className="max-w-[613px] text-2xl leading-[110%] font-medium tracking-[-0.3px] text-slate-900 md:text-3xl lg:text-[42px]">
             Modular blocks for managing risk in the customer journey.
           </h3>
           <div className="flex flex-col items-start gap-4">
@@ -137,24 +148,22 @@ export default function ModularBlocksSection() {
 
         {/* Content Grid */}
         <div className="relative mt-12 flex flex-col items-start justify-between gap-12 lg:mt-[84px] lg:flex-row">
-          
           <div className="relative flex w-full flex-1 flex-col">
             <div className="absolute top-[15px] bottom-[15px] left-[14px] w-[2px] -translate-x-1/2 overflow-hidden">
               <div
                 ref={lineFillRef}
-                className="relative h-full w-full origin-top opacity-0.8 before:absolute before:inset-y-0 before:left-0 before:w-[1px] before:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] after:absolute after:inset-y-0 after:right-0 after:w-[1px] after:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)]"
+                className="opacity-0.8 relative hidden h-full w-full origin-top before:absolute before:inset-y-0 before:left-0 before:w-[1px] before:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] after:absolute after:inset-y-0 after:right-0 after:w-[1px] after:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] lg:block"
               />
             </div>
 
-         
-            <div className="steps-container flex flex-col gap-16 md:gap-24 lg:gap-[120px] lg:mt-40">
+            <div className="steps-container flex flex-col gap-16 md:gap-24 lg:mt-40 lg:gap-[120px]">
               {STEPS_DATA.map((step, index) => {
                 const isActive = activeIndex === index;
 
                 return (
                   <div
                     key={step.id}
-                    className={`step-block flex flex-col gap-6 lg:flex-row lg:gap-8 transition-opacity duration-500 ease-out ${
+                    className={`step-block flex flex-col gap-6 transition-opacity duration-500 ease-out lg:flex-row lg:gap-8 ${
                       isActive ? "opacity-100" : "opacity-100 lg:opacity-35"
                     }`}
                   >
@@ -166,22 +175,22 @@ export default function ModularBlocksSection() {
                             : "border-slate-300 bg-slate-100 text-slate-700"
                         }`}
                       >
-                        <p className="text-[16px] font-medium leading-none">
+                        <p className="text-[16px] leading-none font-medium">
                           {step.id}
                         </p>
                       </div>
-                      
+
                       {/* Mobile Tag inline with badge */}
-                      <p className="text-base font-medium leading-[110%] text-slate-900 lg:hidden">
+                      <p className="text-base leading-[110%] font-medium text-slate-900 lg:hidden">
                         {step.tag}
                       </p>
                     </div>
 
-                    <div className="flex max-w-[500px] flex-col gap-4 pl-11 lg:gap-6 lg:pl-0 lg:pt-0.5">
-                      <p className="hidden text-[16px] font-medium leading-[110%] text-slate-900 lg:block">
+                    <div className="flex w-full flex-col gap-4 lg:max-w-[500px] lg:gap-6 lg:pt-0.5 lg:pl-0 lg:pl-11">
+                      <p className="hidden text-[16px] leading-[110%] font-medium text-slate-900 lg:block">
                         {step.tag}
                       </p>
-                      <h4 className="text-2xl font-normal leading-[110%] tracking-[-0.3px] text-slate-900 md:text-3xl lg:text-[34px]">
+                      <h4 className="text-2xl leading-[110%] font-normal tracking-[-0.3px] text-slate-900 md:text-3xl lg:text-[34px]">
                         {step.title}
                       </h4>
                       <p className="text-sm leading-[130%] text-slate-600">
@@ -193,11 +202,7 @@ export default function ModularBlocksSection() {
                         {step.subFeatures.map((feat, fIdx) => (
                           <div
                             key={fIdx}
-                            className={`flex items-center justify-between rounded-sm px-4 py-3 text-[14px] font-medium transition-all ${
-                              fIdx === 0
-                                ? "bg-slate-100 text-slate-900"
-                                : "text-slate-500 hover:text-slate-800"
-                            }`}
+                            className="flex items-center justify-between rounded-sm px-4 py-3 text-[14px] font-medium text-slate-500 transition-all hover:bg-slate-100 hover:text-slate-900"
                           >
                             <div className="flex items-center gap-2">
                               <UserAddedIcon />
@@ -251,7 +256,6 @@ export default function ModularBlocksSection() {
               ))}
             </div>
           </div>
-
         </div>
       </LayoutWrapper>
     </div>

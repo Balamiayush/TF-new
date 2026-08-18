@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+
 import Image from "next/image";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import Button from "@/shared/ui/buttons/Button";
@@ -40,6 +40,8 @@ const storiesData = [
 export default function ReadAllStories() {
   return (
     <section className="relative w-full bg-[#EDF4FF47] lg:py-30 py-12 ">
+
+      
       <Image
         alt="gitter"
         fill
