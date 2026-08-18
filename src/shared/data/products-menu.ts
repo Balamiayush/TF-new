@@ -12,6 +12,7 @@ export const productsMenuData: MegaMenuData = {
         { label: "Identity Verification", href: "/products/identity-verification" },
         { label: "Bank Verification", href: "/products/bank-verification" },
         { label: "Credit Underwriting", href: "/products/credit-underwriting" },
+        { label: "Credit Underwriting", href: "/products/credit-underwriting" },
       ],
     },
     {
@@ -23,7 +24,6 @@ export const productsMenuData: MegaMenuData = {
         { label: "Bank Transactions", href: "/products/bank-transactions" },
         { label: "Card Issuing Fraud", href: "/products/card-issuing-fraud" },
         { label: "Merchant Monitoring", href: "/products/merchant-monitoring" },
-        { label: "Policy Abuse", href: "/products/policy-abuse" },
       ],
     },
     {
