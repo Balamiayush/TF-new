@@ -34,3 +34,19 @@ export async function getBlogPosts() {
     return [];
   }
 }
+
+export async function getBlogPostBySlug(slug: string) {
+  try {
+    const record = await pb
+      .collection<BlogPostRecord>(PB_COLLECTION.BLOG_POSTS)
+      .getFirstListItem(`slug = "${slug}"`, {
+        expand: "category",
+      });
+
+    return record;
+  } catch (error) {
+    console.error("Error fetching Blog Post record by slug:", error);
+
+    return null;
+  }
+}
