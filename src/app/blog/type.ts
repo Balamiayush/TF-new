@@ -41,3 +41,20 @@ export interface FeaturedCardProps {
   reversed?: boolean;
   className?: string;
 }
+
+export type TocItem = {
+  id: string;
+  text: string;
+};
+
+ export interface ArticleData {
+  id: string;
+  collectionId: string;
+  title: string;
+  author: string;
+  author_role: string;
+  created: string;
+  description: string;
+  image: string;
+  category: string;
+}

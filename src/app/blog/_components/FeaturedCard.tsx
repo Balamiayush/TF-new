@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getPocketBaseImageUrl } from "@/utils/get-pocket-base-img";
 import { FeaturedCardProps } from "../type";
 
 export default function FeaturedCard({
@@ -8,20 +9,19 @@ export default function FeaturedCard({
   reversed = false,
   className = "",
 }: FeaturedCardProps) {
-  const getImageUrl = (imageSrc: string) => {
-    if (!imageSrc) return "/placeholder-image.webp";
-    if (
-      imageSrc.startsWith("http://") ||
-      imageSrc.startsWith("https://") ||
-      imageSrc.startsWith("/")
-    ) {
-      return imageSrc;
-    }
-    const pbUrl = process.env.NEXT_PUBLIC_POCKETBASE_URL || "";
-    return `${pbUrl}/api/files/${post.collectionId || "blog_posts"}/${post.id}/${imageSrc}`;
-  };
+  const isExternalOrPath =
+    post.image?.startsWith("http://") ||
+    post.image?.startsWith("https://") ||
+    post.image?.startsWith("/");
 
-  const imageSrc = getImageUrl(post.image);
+  const imageSrc = isExternalOrPath
+    ? post.image
+    : getPocketBaseImageUrl(
+        post.collectionId || "blog_posts",
+        post.id,
+        post.image,
+      );
+
   const slugPath = post.slug || post.id;
 
   return (
