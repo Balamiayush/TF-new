@@ -46,24 +46,29 @@ export default function Streamline() {
  <div className="relative w-full bg-white xl:py-21 py-8">
   <LayoutWrapper className="">
     <div className="flex flex-col gap-6">
-      <h1 className="xl:max-w-[620px] text-[26px] max-w-[358px] xl:text-[42px] leading-[110%] font-medium tracking-[-0.6px] text-black">
-        Streamline user verification from one dashboard.
+      <h1 className="text-[26px] xl:text-[42px] leading-[110%] font-medium tracking-[-0.6px] text-black">
+        Streamline <span className="font-geist-pixel-square  text-blue-500" >
+           user verification 
+          </span> <br />
+          
+          from one dashboard.
       </h1>
       <p className="max-w-[554px] text-[16px] leading-[1.4] tracking-[-0.3px] text-[#64748B]">
-    Identity events like onboarding and screening are unified in one platform with a single integration.
+Identity events like onboarding and screening rely on separate tools. Third Factor unifies them into one platform with a single integration and audit trail.
+
       </p>
     </div>
   </LayoutWrapper>
 
   <LayoutWrapper className="pr-0! xl:pr-8!">
-    <div className="mt-12 xl:mt-21 flex overflow-x-auto xl:overflow-x-visible space-x-3 xl:space-x-0 xl:flex-col xl:gap-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing pb-8 xl:pb-0">
+    <div className="mt-12 xl:mt-21 flex overflow-x-auto xl:overflow-x-visible space-x-3 xl:space-x-0 xl:flex-col xl:gap-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden max-lg:cursor-grab active:cursor-grabbing pb-8 xl:pb-0">
       
       {/* Row 1 */}
       <div className="flex flex-row gap-3 xl:flex-row shrink-0 xl:shrink">
         {streamlineData.slice(0, 2).map((card, index) => (
           <div
             key={index}
-            className="relative flex w-[326px] h-[335px] shrink-0 flex-col justify-between overflow-hidden rounded-[8px] bg-[#F1F5F9] p-[16px] xl:w-auto xl:h-[266px] xl:flex-1 xl:flex-row xl:p-8 xl:shrink"
+            className="relative flex w-[326px] h-[335px] shrink-0 flex-col justify-between overflow-hidden rounded-[8px] bg-slate-100 p-[16px] xl:w-auto xl:h-[266px] xl:flex-1 xl:flex-row xl:p-8 xl:shrink hover:bg-blue-100 transition-all duration-300"
           >
             <div className="z-10 flex flex-col justify-start">
               <h3 className="font-geist text-[22px] xl:text-[24px] leading-[100%] font-medium tracking-[0.6px] text-[#1A1A1A]">
@@ -92,7 +97,7 @@ export default function Streamline() {
         {streamlineData.slice(2, 5).map((card, index) => (
           <div
             key={index}
-            className={`relative flex w-[326px] h-[335px] shrink-0 flex-col justify-between overflow-hidden rounded-[8px] bg-[#F1F5F9] p-[16px] xl:h-[266px] xl:flex-row xl:p-8 xl:shrink ${
+            className={`relative flex w-[326px] h-[335px] shrink-0 flex-col justify-between overflow-hidden rounded-[8px] bg-[#F1F5F9] p-[16px] xl:h-[266px] xl:flex-row xl:p-8 xl:shrink transition-all duration-300 hover:bg-blue-100  ${
               index === 0 ? "xl:w-[504px]" : "xl:flex-1"
             }`}
           >

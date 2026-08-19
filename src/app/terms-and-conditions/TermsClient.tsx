@@ -169,14 +169,14 @@ export default function TermsClient({
   );
 
   return (
-    <div className="w-full bg-[#E4F0FF] h-full py-21 md:py-[120px] overflow-clip">
+    <div className="w-full bg-[#EDF4FF14] h-full py-21 md:py-[120px] overflow-clip">
       <LayoutWrapper>
         <div className="flex flex-col gap-6 sm:gap-10">
           <div className="flex items-start flex-col lg:flex-row justify-between border-b border-slate-200/80 pb-4 sm:pb-6 gap-4">
             <div className="flex items-center gap-1.5 sm:gap-2 w-full sm:w-auto">
               <Button
                 className={
-                  activeTab === "terms" ? "" : "bg-transparent text-slate-700"
+                  activeTab === "terms" ? "bg-alpha-light-50" : "bg-transparent text-slate-700"
                 }
                 onClick={() => handleTabChange("terms")}
                 variant="secondary"
@@ -186,8 +186,8 @@ export default function TermsClient({
               <Button
                 className={
                   activeTab === "privacy"
-                    ? ""
-                    : "bg-transparent text-slate-700"
+                    ? " bg-alpha-light-50"
+                    : " text-slate-700"
                 }
                 onClick={() => handleTabChange("privacy")}
                 variant="secondary"

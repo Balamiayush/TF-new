@@ -5,6 +5,7 @@ import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
 import GitterImage from "@/shared/ui/GitterImg";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -55,33 +56,35 @@ export default function Infrastructure() {
   };
 
   const handlePrev = () => {
-    const nextIndex = currentIndex === 0 ? testimonials.length - 1 : currentIndex - 1;
+    const nextIndex =
+      currentIndex === 0 ? testimonials.length - 1 : currentIndex - 1;
     scrollToCard(nextIndex);
   };
 
   const handleNext = () => {
-    const nextIndex = currentIndex === testimonials.length - 1 ? 0 : currentIndex + 1;
+    const nextIndex =
+      currentIndex === testimonials.length - 1 ? 0 : currentIndex + 1;
     scrollToCard(nextIndex);
   };
 
   return (
-    <section className="relative w-full bg-[#EDF4FF47] pt-16 lg:pt-30 pb-16 lg:pb-20 overflow-hidden">
-     <GitterImage/>
-      
+    <section className="relative w-full overflow-hidden bg-[#EDF4FF47] pt-16 pb-16 lg:pt-30 lg:pb-20">
+      <GitterImage />
+
       <div className="relative z-10">
         <LayoutWrapper>
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-            <h2 className="text-[26px] lg:max-w-[732px] max-w-[358px] lg:text-[42px] leading-[115%] font-medium tracking-tight text-black">
+            <h2 className="max-w-[358px] text-[26px] leading-[115%] font-medium tracking-tight text-black lg:max-w-[646px] lg:text-[42px]">
               Infrastructure trusted in high volume, regulated environments.
             </h2>
 
-            <div className="lg:flex hidden items-center gap-3 self-end md:self-auto">
+            <div className="hidden items-center gap-3 self-end md:self-auto lg:flex">
               <div className="flex items-center gap-1.5">
                 <button
                   type="button"
                   onClick={handlePrev}
                   aria-label="Previous slide"
-                  className="flex h-10 w-10 items-center justify-center cursor-pointer bg-[#E2E8F0] text-gray-700 transition-colors hover:bg-gray-300"
+                  className="flex h-10 w-10 cursor-pointer items-center justify-center bg-[#E2E8F0] text-gray-700 transition-colors hover:bg-gray-300"
                 >
                   <DropdownArrow className="rotate-[90deg]" />
                 </button>
@@ -89,7 +92,7 @@ export default function Infrastructure() {
                   type="button"
                   onClick={handleNext}
                   aria-label="Next slide"
-                  className="flex h-10 w-10 items-center justify-center cursor-pointer bg-[#E2E8F0] text-gray-700 transition-colors hover:bg-gray-300"
+                  className="flex h-10 w-10 cursor-pointer items-center justify-center bg-[#E2E8F0] text-gray-700 transition-colors hover:bg-gray-300"
                 >
                   <DropdownArrow className="rotate-[-90deg]" />
                 </button>
@@ -98,29 +101,26 @@ export default function Infrastructure() {
           </div>
         </LayoutWrapper>
 
-        <div className="w-full pl-6 lg:pl-[calc(max(0px,100vw-1376px)/2)] pr-0">
+        <div className="w-full pr-0 pl-6 lg:pl-[calc(max(0px,100vw-1376px)/2)]">
           <div className="mt-8 lg:mt-14">
             <div
               ref={scrollContainerRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 lg:px-8 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-4 [scrollbar-width:none] lg:px-8 [&::-webkit-scrollbar]:hidden"
             >
               {testimonials.map((item) => (
                 <div
                   key={item.id}
                   /* Changed h-[334px] -> min-h-[334px] h-auto on mobile so gaps don't cause text overflow */
-                  className={`relative flex shrink-0 opacity-100 snap-start text-white overflow-hidden ${item.bgGradient}
-                    w-[334px] min-h-[334px] h-auto rounded-[8px] p-4 flex-col justify-between
-                    lg:w-[880px] lg:h-[472px] lg:min-h-[472px]  lg:p-0 lg:flex-row`}
+                  className={`relative flex shrink-0 snap-start overflow-hidden text-white opacity-100 ${item.bgGradient} h-auto min-h-[334px] w-[334px] flex-col justify-between rounded-[8px] p-4 lg:h-[472px] lg:min-h-[472px] lg:w-[880px] lg:flex-row lg:p-0`}
                 >
                   {/* Content Box with your requested gap-8 */}
-                  <div className="z-10 flex flex-col gap-8 h-full w-full lg:w-[480px] lg:p-10 lg:justify-between">
-                    
+                  <div className="z-10 flex h-full w-full flex-col gap-8 lg:w-[480px] lg:justify-between lg:p-10">
                     <div className="flex flex-col gap-[24px]">
-                      <div className="text-[22px] lg:text-[28px] font-bold tracking-tight lowercase flex items-center">
+                      <div className="flex items-center text-[22px] font-bold tracking-tight lowercase lg:text-[28px]">
                         v<span className="text-red-500">i</span>anet
                       </div>
 
-                      <p className="font-geist text-[20px] lg:text-[24px] leading-[125%] font-normal lg:font-medium tracking-tight text-white/95">
+                      <p className="font-geist text-[20px] leading-[125%] font-normal tracking-tight text-white/95 lg:text-[24px] lg:font-medium">
                         {item.quote}
                       </p>
                     </div>
@@ -132,10 +132,10 @@ export default function Infrastructure() {
                           key={idx}
                           className="flex items-center justify-between lg:flex-col lg:items-start lg:gap-0"
                         >
-                          <span className="font-geist text-[24px] lg:text-[28px] leading-none font-medium w-[70px] lg:w-auto shrink-0">
+                          <span className="font-geist w-[70px] shrink-0 text-[24px] leading-none font-medium lg:w-auto lg:text-[28px]">
                             {stat.value}
                           </span>
-                          <span className="font-inter max-md:max-w-[162px] text-[14px] lg:text-[11px] leading-[120%] text-white/90 lg:text-white/80 lg:mt-1.5">
+                          <span className="font-inter text-[14px] leading-[120%] text-white/90 max-md:max-w-[162px] lg:mt-1.5 lg:text-[11px] lg:text-white/80">
                             {stat.label}
                           </span>
                         </div>
@@ -144,9 +144,10 @@ export default function Infrastructure() {
                   </div>
 
                   {/* Desktop Side Image */}
-                  <div className="hidden lg:block relative flex-1 overflow-hidden h-[472px]">
+                  <div className="relative hidden h-[472px] w-[520px] lg:block">
                     {item.imageSrc ? (
-                      <img
+                      <Image
+                        fill
                         src={item.imageSrc}
                         alt="Venue showcase"
                         className="h-full w-full object-cover"
@@ -164,3 +165,5 @@ export default function Infrastructure() {
     </section>
   );
 }
+
+// if new card added then layout should be in pink blue pink blue 

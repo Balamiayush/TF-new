@@ -11,6 +11,7 @@ import {
   type DitherSettings,
 } from "@/shared/ui/DitherControls";
 import { DitherHoverBackground } from "@/shared/ui/DitherHoverBackground";
+import TrustedMarquee from "@/shared/ui/TrustedMarquee";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -28,7 +29,7 @@ export default function PlatFormHeroSection() {
     },
   ];
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#E9F1FF14] py-21 md:py-20 lg:py-0">
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#E9F1FF14] pt-[120px] md:pt-20 lg:pt-0">
       <DitherHoverBackground
         baseColor="transparent"
         gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}
@@ -54,7 +55,7 @@ export default function PlatFormHeroSection() {
       />
       <DitherControls value={dither} onChange={setDither} />
 
-      <LayoutWrapper className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12 ">
+      <LayoutWrapper className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
         <div className="flex max-w-[558px] flex-col gap-8 md:gap-10 lg:gap-12">
           <div>
             <h1 className="text-4xl leading-[1.05] font-medium tracking-[-0.3px] text-slate-900 md:text-6xl lg:text-[64px]">
@@ -104,8 +105,8 @@ export default function PlatFormHeroSection() {
               src="https://res.cloudinary.com/dfajjqglx/image/upload/v1787037228/dfaaf_bt076x.png"
             />
           </div>
-          <div className="mt-10 flex flex-col items-center gap-4 lg:flex-row">
-            <p className="text-[15px] font-medium text-slate-600">Trusted by</p>
+          <div className="lg:mt-[24px] mt-[72px] flex flex-col items-center gap-4 lg:flex-row">
+            {/* <p className="text-[15px] font-medium text-slate-600">Trusted by</p>
             <div className="flex flex-wrap items-center gap-3">
               {TRUSTED_LOGOS.map((logo, index) => (
                 <div
@@ -120,7 +121,8 @@ export default function PlatFormHeroSection() {
                   />
                 </div>
               ))}
-            </div>
+            </div> */}
+            <TrustedMarquee/>
           </div>
         </div>
       </LayoutWrapper>

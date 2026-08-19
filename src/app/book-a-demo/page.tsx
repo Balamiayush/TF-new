@@ -4,8 +4,9 @@ import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import BookADemoPageArrowIcon from "@/shared/icons/BookADemoPageArrowIcon";
 import FAQ from "../(home-page)/_components/FAQSection";
 import Infrastructure from "../(home-page)/_components/InfrastructureSection";
-import ContactForm from "./_components/ContactForm";
+import ContactForm from "./_components/BookADemoForm";
 import GitterImage from "@/shared/ui/GitterImg";
+import BookADemoForm from "./_components/BookADemoForm";
 
 export default function page() {
   const labels = ["NRB Compliant", "VAPT Certified", "Sub-0.1ms 1:N Search"];
@@ -83,7 +84,7 @@ export default function page() {
 
             {/* Right Form Card Container */}
             <div className="mt-6 w-full bg-white p-4 md:p-8 lg:mt-[64px] lg:w-[648px]">
-              <ContactForm />
+              <BookADemoForm/>
             </div>
           </div>
         </LayoutWrapper>

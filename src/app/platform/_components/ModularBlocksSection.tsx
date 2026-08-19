@@ -128,11 +128,11 @@ export default function ModularBlocksSection() {
       <LayoutWrapper>
         {/* Header Section */}
         <div className="flex w-full flex-col justify-between gap-6 lg:flex-row lg:items-end lg:gap-12">
-          <h3 className="max-w-[613px] text-2xl leading-[110%] font-medium tracking-[-0.3px] text-slate-900 md:text-3xl lg:text-[42px]">
+          <h3 className="max-w-[613px] text-[26px] leading-[110%] font-medium tracking-[-0.3px] text-slate-900 md:text-3xl lg:text-[42px]">
             Modular blocks for managing risk in the customer journey.
           </h3>
           <div className="flex flex-col items-start gap-4">
-            <p className="max-w-[475px] text-sm leading-[130%] tracking-[-0.4px] text-slate-600 md:text-base">
+            <p className="max-w-[475px] max-lg:max-w-[358px] text-sm leading-[130%] tracking-[-0.4px] text-[#1A1A1ACC] md:text-base">
               Pick the products you need today. Compose new workflows tomorrow.
               Every module runs on the same Obsidian trust graph.
             </p>
@@ -187,13 +187,13 @@ export default function ModularBlocksSection() {
                     </div>
 
                     <div className="flex w-full flex-col gap-4 lg:max-w-[500px] lg:gap-6 lg:pt-0.5 lg:pl-0 lg:pl-11">
-                      <p className="hidden text-[16px] leading-[110%] font-medium text-slate-900 lg:block">
+                      <p className="hidden text-[16px]  leading-[110%] font-medium text-slate-900 lg:block">
                         {step.tag}
                       </p>
-                      <h4 className="text-2xl leading-[110%] font-normal tracking-[-0.3px] text-slate-900 md:text-3xl lg:text-[34px]">
+                      <h4 className="text-[20px] max-lg:max-w-[292px] leading-[110%] font-normal tracking-[-0.3px] text-slate-900 md:text-3xl lg:text-[34px]">
                         {step.title}
                       </h4>
-                      <p className="text-sm leading-[130%] text-slate-600">
+                      <p className="text-sm leading-[130%] max-lg:max-w-[292px] text-slate-600">
                         {step.description}
                       </p>
 
@@ -216,7 +216,7 @@ export default function ModularBlocksSection() {
                         ))}
                       </div>
 
-                      {/* Inline Image for Mobile (< lg) */}
+                     
                       <div className="mt-4 h-[260px] w-full overflow-hidden rounded-lg border border-slate-200/80 sm:h-[350px] lg:hidden">
                         <div className="relative h-full w-full">
                           <Image

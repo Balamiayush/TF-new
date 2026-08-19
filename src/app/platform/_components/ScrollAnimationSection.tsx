@@ -16,32 +16,33 @@ function FeatureItems() {
       className="flex lg:flex-row  flex-col  w-full justify-between lg:gap-0 gap-5 pt-8 opacity-0 max-md:px-4 "
     >
       <div className="flex flex-col items-start gap-2">
-        <p className="text-left text-[18px] leading-[110%]">
+        <p className="text-left text-[16px] text-[#0F172A] lg:text-[18px] leading-[110%]">
           Cross-account linking
         </p>
-        <p className="max-w-[355px] text-left text-[14px] leading-[130%]">
+        <p className="max-w-[355px] text-left text-[14px] leading-[130%] text-[#1A1A1ACC]">
           Surface linked accounts through shared identifiers across users and
           devices.
         </p>
       </div>
       <div className="flex flex-col items-start gap-2">
-        <p className="text-left text-[18px] leading-[110%]">
+        <p className="text-left text-[16px] text-[#0F172A] lg:text-[18px] leading-[110%]">
           Cross-account linking
         </p>
-        <p className="max-w-[355px] text-left text-[14px] leading-[130%]">
+        <p className="max-w-[355px] text-left text-[14px] leading-[130%] text-[#1A1A1ACC]">
           Surface linked accounts through shared identifiers across users and
           devices.
         </p>
       </div>
       <div className="flex flex-col items-start gap-2">
-        <p className="text-left text-[18px] leading-[110%]">
+        <p className="text-left text-[16px] text-[#0F172A] lg:text-[18px] leading-[110%]">
           Cross-account linking
         </p>
-        <p className="max-w-[355px] text-left text-[14px] leading-[130%]">
+        <p className="max-w-[355px] text-left text-[14px] leading-[130%] text-[#1A1A1ACC]">
           Surface linked accounts through shared identifiers across users and
           devices.
         </p>
       </div>
+     
     </div>
   );
 }
@@ -102,13 +103,6 @@ export default function ScrollAnimationSection() {
         },
         "a",
       )
-        .to(
-          centerLogoRef.current,
-          {
-            yPercent: 40,
-          },
-          "a",
-        )
 
         // Step 2: Background color transition & center graphic scale down
         .to(
@@ -164,14 +158,9 @@ export default function ScrollAnimationSection() {
     <div
       ref={containerRef}
       id="ScrollAnimPlatformMain"
-      className="relative  min-h-screen lg:min-h-[120vh] w-full overflow-hidden bg-white lg:pb-[84px]"
+      className="relative  h-screen lg:min-h-[130vh] w-full overflow-hidden bg-white lg:pb-[84px] py-[48px]"
     >
-      <div
-        id="max-width-container"
-        className="relative mx-auto flex  min-h-screen lg:min-h-[120vh] w-full items-center justify-center transition-all duration-300 lg:max-w-[1000px]"
-      >
-        {/* Central Graphic */}
-        <div
+       <div
           ref={centerLogoRef}
           className="absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
         >
@@ -184,8 +173,12 @@ export default function ScrollAnimationSection() {
             priority
           />
         </div>
+      <div
+        id="max-width-container"
+        className="relative mx-auto flex  h-screen lg:min-h-[100vh] w-full items-center justify-center transition-all duration-300 lg:max-w-[1000px]"
+      >
+       
 
-        {/* Card 1: Top-Left */}
         <div className="boxes absolute top-[20%] left-5 z-10 lg:left-10">
           <div className="box w-[150px] overflow-hidden rounded-lg lg:w-[283px]">
             <div className="Img relative h-[100px] w-full lg:h-[187px]">
@@ -202,7 +195,6 @@ export default function ScrollAnimationSection() {
           </div>
         </div>
 
-        {/* Card 2: Top-Right */}
         <div className="boxes absolute top-[15%] right-10 z-10">
           <div className="box w-[150px] overflow-hidden rounded-lg lg:w-[283px]">
             <div className="Img relative h-[100px] w-full lg:h-[187px]">
@@ -219,7 +211,6 @@ export default function ScrollAnimationSection() {
           </div>
         </div>
 
-        {/* Card 3: Bottom-Left */}
         <div className="boxes absolute bottom-[20%] left-10 z-10">
           <div className="box w-[150px] overflow-hidden rounded-lg lg:w-[283px]">
             <div className="Img relative h-[100px] w-full lg:h-[187px]">
@@ -236,7 +227,6 @@ export default function ScrollAnimationSection() {
           </div>
         </div>
 
-        {/* Card 4: Bottom-Right */}
         <div className="boxes absolute right-10 bottom-[18%] z-10">
           <div className="box w-[150px] overflow-hidden rounded-lg lg:w-[283px]">
             <div className="Img relative h-[100px] w-full lg:h-[187px]">
@@ -253,7 +243,6 @@ export default function ScrollAnimationSection() {
           </div>
         </div>
 
-        {/* Revealed Section: Title, Scaled Image & Features */}
         <div ref={textContentRef} className="z-30 w-full text-center opacity-0">
           <h2 className="text-3xl leading-[100%] font-semibold tracking-[-0.3px] text-[#3B82F6] md:text-5xl lg:text-[64px]">
             Meet Obsidian
@@ -262,10 +251,9 @@ export default function ScrollAnimationSection() {
             One trust platform makes every digital interaction trustworthy.
           </p>
 
-          {/* Fixed Smooth Dashboard Image Reveal */}
           <div
             ref={imageContainerRef}
-            className="relative mx-auto h-[220px] w-full  rounded-lg   md:h-[450px] lg:h-[44.44vw]"
+            className="relative mx-auto h-[220px] w-full max-lg:max-w-[358px] overflow-clip  rounded-lg   md:h-[450px] lg:h-[44.44vw]"
           >
             <Image
               alt="Obsidian Platform Dashboard"

@@ -1,16 +1,39 @@
-import React from "react";
+import React, { memo, useEffect } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import { CategoryFilterProps } from "../type";
 
-export default function CategoryFilter({
-  categories,
-  activeCategory,
+const ALL_CATEGORY_ID = "-1";
+
+function CategoryFilter({
+  categories = [],
+  activeCategory = ALL_CATEGORY_ID,
   onSelectCategory,
 }: CategoryFilterProps) {
+  useEffect(() => {
+    console.log("Categories in Filter:", categories);
+    console.log("Current Active Category ID:", activeCategory);
+  }, [categories, activeCategory]);
+
+  const totalCount = categories.reduce(
+    (acc, cat: any) => acc + (cat.count ?? 0),
+    0
+  );
+
+  const allCategoryItem = {
+    id: ALL_CATEGORY_ID,
+    title: "All",
+    count: totalCount,
+  };
+
+  const categoryList = [allCategoryItem, ...categories];
+
   return (
     <div className="flex w-full items-center gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] md:flex-wrap md:overflow-visible md:pb-0 max-md:[&::-webkit-scrollbar]:hidden">
-      {categories.map((category) => {
-        const isActive = activeCategory === category.id;
+      {categoryList.map((category: any) => {
+        const isActive = String(activeCategory) === String(category.id);
+        const categoryLabel = category.title || category.name || "All";
+        const categoryCount = category.count ?? 0;
+
         return (
           <div
             key={category.id}
@@ -19,17 +42,15 @@ export default function CategoryFilter({
           >
             <Button
               variant="tertiary"
-              className={isActive ? "bg-[#000000] text-white" : "bg-[#F1F1F1]"}
+              className={isActive ? "bg-[#000000] text-white" : "bg-[#F1F1F1] hover:bg-[#D9D9D9] hover:text-[#101010] "}
             >
-              {category.name}{" "}
+              {categoryLabel}{" "}
               <span
                 className={`font-geist-pixel-square ${
-                  isActive
-                    ? "text-white"
-                    : "text-blue-500 group-hover:text-white"
+                  isActive ? "text-white" : "text-blue-500  " 
                 }`}
               >
-                [{category.count}]
+                [{categoryCount}]
               </span>
             </Button>
           </div>
@@ -38,3 +59,5 @@ export default function CategoryFilter({
     </div>
   );
 }
+
+export default memo(CategoryFilter);

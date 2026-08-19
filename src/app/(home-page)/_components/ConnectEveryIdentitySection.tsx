@@ -25,8 +25,7 @@ const FEATURES_DATA: FeatureItem[] = [
     description:
       "Proprietary device and behavioral signals uncover early signs of fraud, without adding friction.",
     icon: <Smartphone className="h-5 w-5 text-white" />,
-    imgSrc:
-      "https://images.pexels.com/photos/7241592/pexels-photo-7241592.jpeg",
+    imgSrc: "/images/connect-every-identity-section-imgs/stay-compliant.svg",
     ACCORDION_DATA: [
       {
         id: 1,
@@ -121,7 +120,6 @@ import FeatureAccordion from "./FeatureAccordion";
 import Button from "@/shared/ui/buttons/Button";
 import PhoneIcon from "@/shared/icons/PhoneIcon";
 
-
 export default function ConnectEveryIdentitySection() {
   const [activeImage, setActiveImage] = useState(FEATURES_DATA[0].imgSrc);
   const [activeFeatureId, setActiveFeatureId] = useState(FEATURES_DATA[0].id);
@@ -168,8 +166,10 @@ export default function ConnectEveryIdentitySection() {
       <div className="py-8 lg:py-30">
         <LayoutWrapper>
           <div className="flex w-full flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-6">
-            <h2 className="font-geist max-w-[660px] text-[24px] leading-[115%] font-medium tracking-tight text-black sm:text-[28px] lg:text-[42px]">
-              Connect every identity signal to one governed trust layer.
+            <h2 className="font-geist text-[24px] leading-[115%] font-medium tracking-tight text-black sm:text-[28px] lg:text-[42px]">
+              Connect every
+              <span className="font-geist-pixel-square text-blue-500"> identity signal</span> <br />
+              to one governed trust layer.
             </h2>
             <Button variant="contactus">
               <PhoneIcon />

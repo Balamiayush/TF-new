@@ -4,6 +4,7 @@ import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IntegrateProps } from "./type";
+import Image from "next/image";
 
 // Hoisted outside the component — these never change between renders.
 const CARD_GAP = 20;
@@ -170,17 +171,17 @@ export default function Integrate({ stepsData }: IntegrateProps) {
                     }}
                     transition={SPRING_TRANSITION}
                     style={{ willChange: "width, height, transform" }}
-                    className={`relative shrink-0 cursor-pointer overflow-hidden transition-opacity duration-300 ${
+                    className={`relative  shrink-0 cursor-pointer overflow-hidden transition-opacity duration-300 ${
                       isActive ? "opacity-100" : "opacity-70 hover:opacity-90"
                     }`}
                   >
                     {step.imgSrc && (
-                      <img
+                      <Image
+                        fill
                         src={step.imgSrc}
                         alt={step.title}
-                        className="h-full w-full object-cover"
-                        loading={isActive ? "eager" : "lazy"}
-                        decoding="async"
+                        className="h-full w-full object-contain"
+                        
                       />
                     )}
                   </motion.div>

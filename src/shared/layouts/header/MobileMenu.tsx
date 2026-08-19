@@ -47,18 +47,19 @@ export const MobileMenu = React.memo(function MobileMenu({
   links,
   onClose,
 }: MobileMenuProps) {
+  // FIXED: Set initial state to null instead of "products"
   const [expandedDropdown, setExpandedDropdown] = useState<
     string | number | null
-  >("products");
-  const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
+  >(null);
+  const [expandedCategory, setExpandedCategory] = useState<number | null>(null);
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
-      setExpandedDropdown("products");
-      setExpandedCategory(0);
+      setExpandedDropdown(null);
+      setExpandedCategory(null);
     }
     return () => {
       document.body.style.overflow = "";
@@ -81,7 +82,6 @@ export const MobileMenu = React.memo(function MobileMenu({
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial="closed"
             animate="open"
@@ -91,17 +91,17 @@ export const MobileMenu = React.memo(function MobileMenu({
             className="fixed inset-0 z-[1000] lg:hidden"
           />
 
-          {/* Mobile Sheet Container */}
+        
           <motion.div
             initial="closed"
             animate="open"
             exit="closed"
             variants={menuVariants}
             data-lenis-prevent
-            className="fixed top-[72px] z-[9999] flex h-full w-full flex-col justify-between overflow-y-auto bg-white p-4"
+            className="fixed inset-x-0 top-[72px] bottom-0 z-[9999] flex h-[calc(100dvh-72px)] w-full flex-col justify-between bg-white px-5 py-4"
             style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
           >
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-1 flex-col gap-1 overflow-y-auto pb-4">
               {links.map((link) => {
                 const isExpanded = expandedDropdown === link.id;
 
@@ -159,15 +159,6 @@ export const MobileMenu = React.memo(function MobileMenu({
                                         <span className="text-alpha-light-800 text-[14px] font-medium">
                                           {category.title}
                                         </span>
-                                        <motion.div
-                                          animate={{
-                                            rotate: isCategoryOpen ? 180 : 0,
-                                          }}
-                                          transition={{ duration: 0.2 }}
-                                          className="text-slate-400"
-                                        >
-                                          {/* <DropdownArrow /> */}
-                                        </motion.div>
                                       </button>
 
                                       {/* Sub-items List */}
@@ -257,6 +248,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                           </motion.div>
                         )}
                       </AnimatePresence>
+                      
                     </div>
                   );
                 }
@@ -269,15 +261,19 @@ export const MobileMenu = React.memo(function MobileMenu({
                     className="flex items-center justify-between border-b border-slate-200/60 py-3.5 text-[17px] font-medium text-slate-900"
                   >
                     <span>{link.label}</span>
-                    <div className="-rotate-90 text-slate-400"></div>
                   </Link>
                 );
               })}
-            </div>
-            <div className=" ">
+                  <div className=" flex flex-col gap-2.5 bg-white pt-3 pb-2">
               <Button variant="secondary">Log in</Button>
               <Button link="book-a-demo">Book a demo</Button>
             </div>
+            </div>
+
+            {/* <div className=" flex flex-col gap-2.5 bg-white pt-3 pb-2">
+              <Button variant="secondary">Log in</Button>
+              <Button link="book-a-demo">Book a demo</Button>
+            </div> */}
           </motion.div>
         </>
       )}

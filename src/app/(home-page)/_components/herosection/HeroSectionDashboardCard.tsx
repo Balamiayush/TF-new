@@ -1,26 +1,25 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Image from "next/image";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const DASHBOARD_IMAGES = [
-  '/images/hero/dashboard-preview.png',
-  'https://images.pexels.com/photos/159299/graphic-design-studio-tracfone-programming-html-159299.jpeg',
-  'https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg',
-  'https://images.pexels.com/photos/36950633/pexels-photo-36950633.jpeg',
+  "/images/hero/hero-section-dasbord-imgs/dasboard-img.webp",
+  "/images/hero/hero-section-dasbord-imgs/analytics-img.webp",
+  "/images/hero/hero-section-dasbord-imgs/activity-img.webp",
+  "/images/hero/hero-section-dasbord-imgs/risk-scoring-img.webp",
 ];
 
 const TABS = [
-  { id: 0, label: 'Dashboard', icon: <TabIconDashboard /> },
-  { id: 1, label: 'Analytics', icon: <TabIconTrending /> },
-  { id: 2, label: 'Session Replay', icon: <TabIconVideo /> },
-  { id: 3, label: 'Metric Trees', icon: <TabIconFork /> },
+  { id: 0, label: "Dashboard", icon: <TabIconDashboard /> },
+  { id: 1, label: "Analytics", icon: <TabIconTrending /> },
+  { id: 2, label: "Session Replay", icon: <TabIconVideo /> },
+  { id: 3, label: "Metric Trees", icon: <TabIconFork /> },
 ];
 
 export default function HeroSectionDashboardCard() {
   const [activeIndex, setActiveIndex] = useState(0);
-
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -31,9 +30,8 @@ export default function HeroSectionDashboardCard() {
   }, [activeIndex]);
 
   return (
-    <div className="flex h-[420px] relative z-1000 flex-col overflow-hidden rounded-lg bg-alpha-dark-400 p-1  lg:h-[518px] mb-[50px]  ">
-
-      <div className="lg:flex hidden w-full items-center border-b border-[#1a1a1a]/[0.06] bg-alpha-dark-500 ">
+    <div className="bg-alpha-dark-400 relative z-1000 mb-[50px] flex h-[420px] flex-col overflow-hidden rounded-lg p-1 lg:h-[518px]">
+      <div className="bg-alpha-dark-500 hidden w-full items-center border-b border-[#1a1a1a]/[0.06] lg:flex">
         {TABS.map((tab, index) => (
           <DashboardTab
             key={tab.label}
@@ -45,12 +43,11 @@ export default function HeroSectionDashboardCard() {
         ))}
       </div>
 
- 
-      <div className="relative flex-1 overflow-hidden  bg-[#5e93da] max-lg:rounded-[6px] max-lg:border border-alpha-dark-500 max-lg:p-2">
+      <div className="border-alpha-dark-500 relative flex-1 overflow-hidden bg-[#5e93da] max-lg:rounded-[6px] max-lg:border max-lg:p-2">
         <motion.div
           whileHover={{ scale: 1.01 }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="absolute inset-0 top-[42px] left-[40px] overflow-hidden rounded-lg bg-white shadow-xl"
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="absolute inset-0 top-[42px] left-[40px] overflow-hidden rounded-l-lg rounded-b-[0] bg-white shadow-xl"
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -65,7 +62,6 @@ export default function HeroSectionDashboardCard() {
                 src={DASHBOARD_IMAGES[activeIndex] || DASHBOARD_IMAGES[0]}
                 alt="dashboard preview"
                 fill
-                priority
                 className="object-cover object-left-top"
                 sizes="(min-width: 1024px) 878px, 100vw"
               />
@@ -91,29 +87,29 @@ export function DashboardTab({
   return (
     <div
       onClick={onClick}
-      className="relative flex flex-1 items-center gap-2.5 border-r border-[#1a1a1a]/[0.06] px-4 py-3 last:border-r-0 bg-alpha-dark-400  cursor-pointer overflow-hidden   "
+      className="bg-alpha-dark-400 relative flex flex-1 cursor-pointer items-center gap-2.5 overflow-hidden border-r border-[#1a1a1a]/[0.06] px-4 py-3 last:border-r-0"
     >
       {active && (
         <motion.div
           key={label}
-          initial={{ width: '0%' }}
-          animate={{ width: '100%' }}
-          transition={{ duration: 5, ease: 'linear' }}
-          className="absolute inset-0 bg-white  pointer-events-none"
+          initial={{ width: "0%" }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 5, ease: "linear" }}
+          className="pointer-events-none absolute inset-0 bg-white"
         />
       )}
 
       <span
-        className={`relative z-10 inline-flex h-3.5 w-3.5 items-center justify-center [&>svg]:h-3.5 [&>svg]:w-3.5 transition-colors duration-300 ${
-          active ? 'text-[#0070ae]' : 'text-[#1a1a1a]/70'
+        className={`relative z-10 inline-flex h-3.5 w-3.5 items-center justify-center transition-colors duration-300 [&>svg]:h-3.5 [&>svg]:w-3.5 ${
+          active ? "text-[#0070ae]" : "text-[#1a1a1a]/70"
         }`}
       >
         {icon}
       </span>
 
       <span
-        className={`relative z-10 font-inter text-[14px] leading-[1.3] tracking-[-0.4px] whitespace-nowrap transition-colors duration-300 ${
-          active ? 'text-brand-600' : 'text-[#1a1a1a]/70'
+        className={`font-inter relative z-10 text-[14px] leading-[1.3] tracking-[-0.4px] whitespace-nowrap transition-colors duration-300 ${
+          active ? "text-brand-600" : "text-[#1a1a1a]/70"
         }`}
       >
         {label}
@@ -122,7 +118,7 @@ export function DashboardTab({
   );
 }
 
-export  function TabIconDashboard() {
+export function TabIconDashboard() {
   return (
     <svg viewBox="0 0 14 14" fill="none" className="h-full w-full" aria-hidden>
       <rect
@@ -143,7 +139,7 @@ export  function TabIconDashboard() {
   );
 }
 
-export  function TabIconTrending() {
+export function TabIconTrending() {
   return (
     <svg viewBox="0 0 14 14" fill="none" className="h-full w-full" aria-hidden>
       <path
@@ -157,7 +153,7 @@ export  function TabIconTrending() {
   );
 }
 
-export  function TabIconVideo() {
+export function TabIconVideo() {
   return (
     <svg viewBox="0 0 14 14" fill="none" className="h-full w-full" aria-hidden>
       <rect
@@ -179,7 +175,7 @@ export  function TabIconVideo() {
   );
 }
 
-export  function TabIconFork() {
+export function TabIconFork() {
   return (
     <svg viewBox="0 0 14 14" fill="none" className="h-full w-full" aria-hidden>
       <circle cx="3.5" cy="3" r="1.5" stroke="currentColor" strokeWidth="1.2" />

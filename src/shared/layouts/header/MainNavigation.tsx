@@ -84,7 +84,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className={`${
             productsMenuOpen
-              ? "mx-auto rounded-[8px] mt-4 xl:max-w-[95%] 2xl:max-w-[98%] backdrop-blur-2xl"
+              ? "mx-auto rounded-[8px] mt-4 xl:max-w-[1500px]  backdrop-blur-2xl"
               : ""
           } pointer-events-auto py-4.5 transition-colors duration-300 ${
             isScrolled || productsMenuOpen || mobileMenuOpen

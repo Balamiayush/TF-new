@@ -4,6 +4,7 @@ import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IntegrateProps } from "./type";
+import Image from "next/image";
 
 export default function IntegrateMobile({ stepsData }: IntegrateProps) {
   const [activeTab, setActiveTab] = useState(0);
@@ -56,10 +57,11 @@ export default function IntegrateMobile({ stepsData }: IntegrateProps) {
                       <div className="mt-4 flex flex-col gap-[20px]">
                         <div className="img-container relative h-[370px] w-full overflow-clip flex items-center justify-center rounded-md bg-[#E18CFF]">
                           {step.imgSrc && (
-                            <img
+                            <Image
+                            fill
                               src={step.imgSrc}
                               alt={step.title}
-                              className=" object-cover w-[170px]"
+                              className=" object-contain w-[170px]"
                             />
                           )}
                         </div>
