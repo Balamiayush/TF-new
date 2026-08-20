@@ -15,7 +15,6 @@ import {
 } from "@/shared/ui/DitherControls";
 import { DitherHoverBackground } from "@/shared/ui/DitherHoverBackground";
 
-
 const testimonials = [
   {
     id: 1,
@@ -48,8 +47,8 @@ const testimonials = [
 ];
 
 export default function Infrastructure() {
-    const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
-  
+  const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -82,29 +81,29 @@ export default function Infrastructure() {
     <section className="relative w-full overflow-hidden bg-[#EDF4FF47] pt-16 pb-16 lg:pt-30 lg:pb-20">
       <GitterImage />
       <DitherHoverBackground
-              baseColor="transparent"
-              gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}
-              gridSize={dither.gridSize}
-              dotRadius={dither.dotRadius}
-              ditherColor={hexToRgba(dither.ditherColor, dither.ditherAlpha)}
-              radiusPercent={dither.radiusPercent}
-              followDurationMs={dither.followDurationMs}
-              fadeDurationMs={dither.fadeDurationMs}
-              intensity={dither.intensity}
-              ditherDotSize={dither.ditherDotSize}
-              jitter={dither.jitter}
-              opacity={dither.opacity}
-              blobWobble={dither.blobWobble}
-              blobLobes={dither.blobLobes}
-              blobMorphMs={dither.blobMorphMs}
-              velocitySaturation={dither.velocitySaturation}
-              velocityDecayMs={dither.velocityDecayMs}
-              imageSource={dither.imageSource}
-              imageInvert={dither.imageInvert}
-              imageFit={dither.imageFit}
-              className="mix-blend-multiply"
-            />
-      
+        baseColor="transparent"
+        gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}
+        gridSize={dither.gridSize}
+        dotRadius={dither.dotRadius}
+        ditherColor={hexToRgba(dither.ditherColor, dither.ditherAlpha)}
+        radiusPercent={dither.radiusPercent}
+        followDurationMs={dither.followDurationMs}
+        fadeDurationMs={dither.fadeDurationMs}
+        intensity={dither.intensity}
+        ditherDotSize={dither.ditherDotSize}
+        jitter={dither.jitter}
+        opacity={dither.opacity}
+        blobWobble={dither.blobWobble}
+        blobLobes={dither.blobLobes}
+        blobMorphMs={dither.blobMorphMs}
+        velocitySaturation={dither.velocitySaturation}
+        velocityDecayMs={dither.velocityDecayMs}
+        imageSource={dither.imageSource}
+        imageInvert={dither.imageInvert}
+        imageFit={dither.imageFit}
+        className="mix-blend-multiply"
+      />
+
       <div className="relative z-10">
         <LayoutWrapper>
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
@@ -200,4 +199,4 @@ export default function Infrastructure() {
   );
 }
 
-// if new card added then layout should be in pink blue pink blue 
+// if new card added then layout should be in pink blue pink blue
