@@ -21,6 +21,12 @@ export default function PlatFormHeroSection() {
 
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center bg-[##EDF4FF1F] pt-[120px] pb-16 md:pt-20 lg:pt-25">
+      <Image
+      alt=""
+      fill
+      src={'https://res.cloudinary.com/dfajjqglx/image/upload/v1787225272/Rectangle_8_impaxu.webp'}
+      className=" w-full h-full absolute z-[-1]"
+      />
       <DitherHoverBackground
         baseColor="transparent"
         gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}
