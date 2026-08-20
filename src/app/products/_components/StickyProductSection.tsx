@@ -110,7 +110,7 @@ export default function StickyProductSection() {
             </div>
 
             <div className="mt-6 sm:mt-8 lg:mt-[48px]">
-              <Button>Book a demo</Button>
+              <Button href="/book-a-demo">Book a demo</Button>
             </div>
           </div>
 

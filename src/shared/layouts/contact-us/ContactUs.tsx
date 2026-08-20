@@ -21,9 +21,6 @@ interface ContactUsProps {
   onSuccess?: () => void;
 }
 
-// ----------------------------------------------------------------------
-// Constants & Styles
-// ----------------------------------------------------------------------
 const INDUSTRY_OPTIONS = [
   "Fintech",
   "Banking",

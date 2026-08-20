@@ -137,7 +137,7 @@ export default function ModularBlocksSection() {
               Every module runs on the same Obsidian trust graph.
             </p>
             <div className="flex flex-wrap items-center gap-2">
-              <Button>Book a demo</Button>
+              <Button href="/book-a-demo">Book a demo</Button>
               <Button variant="contactus">
                 <PhoneIcon />
                 Contact us

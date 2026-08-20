@@ -19,7 +19,7 @@ const buttonClasses = tv({
       secondary: " bg-alpha-light-00 text-gray-900 ",
       ghost: "bg-transparent text-slate-900 ",
       tertiary: "bg-[#FAFAFA] text-black group-hover:bg-alpha-dark-00 group-hover:text-white",
-      contactus: " bg-white/60 text-[#1A1A1ACC]",
+      contactus: " bg-white/60 text-[#1A1A1ACC]"
     },
     hasRightIcon: {
       true: "pr-[6px]",
@@ -41,7 +41,6 @@ type BaseProps = {
   link?: string;
 } & PropsWithChildren;
 
-// Omit 'href' from Next.js Link props to prevent duplicate declaration
 type AnchorProps = Omit<ComponentPropsWithoutRef<typeof Link>, "href"> & {
   href?: string;
 };
