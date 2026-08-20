@@ -148,13 +148,13 @@ export default function ModularBlocksSection() {
 
         {/* Content Grid */}
         <div className="relative mt-12 flex flex-col items-start justify-between gap-12 lg:mt-[84px] lg:flex-row">
-          <div className="relative flex w-full flex-1 flex-col">
-            <div className="absolute top-[15px] bottom-[15px] left-[14px] w-[2px] -translate-x-1/2 overflow-hidden">
-              <div
-                ref={lineFillRef}
-                className="opacity-0.8 relative hidden h-full w-full origin-top before:absolute before:inset-y-0 before:left-0 before:w-[1px] before:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] after:absolute after:inset-y-0 after:right-0 after:w-[1px] after:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] lg:block"
-              />
-            </div>
+          <div className="relative flex w-full flex-1 flex-col z-[1]">
+<div className="absolute top-[15px] bottom-[15px] left-[15px]  w-[2px] -translate-x-1/2 overflow-hidden">
+  <div
+    ref={lineFillRef}
+    className="relative hidden h-full w-full origin-top opacity-80 before:absolute before:inset-y-0 before:left-0 before:w-[1px] before:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] after:absolute after:inset-y-0 after:right-0 after:w-[1px] after:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] lg:block"
+  />
+</div>
 
             <div className="steps-container flex flex-col gap-16 md:gap-24 lg:mt-40 lg:gap-[120px]">
               {STEPS_DATA.map((step, index) => {
@@ -163,16 +163,16 @@ export default function ModularBlocksSection() {
                 return (
                   <div
                     key={step.id}
-                    className={`step-block flex flex-col gap-6 transition-opacity duration-500 ease-out lg:flex-row lg:gap-8 ${
+                    className={`step-block flex flex-col gap-6 transition-opacity relative z-100 duration-500 ease-out lg:flex-row lg:gap-8 ${
                       isActive ? "opacity-100" : "opacity-100 lg:opacity-35"
                     }`}
                   >
                     <div className="relative z-10 flex items-center gap-4 lg:flex-col lg:items-center lg:gap-0">
                       <div
-                        className={`flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-sm border-[0.73px] transition-all duration-300 ${
+                        className={`flex h-[30px] w-[30px] relative  shrink-0 items-center justify-center rounded-sm border-[0.73px] transition-all duration-300  ${
                           isActive
                             ? "border-blue-500 bg-blue-600 text-white shadow-[inset_0px_2.91px_2.91px_0px_#FFFFFF40]"
-                            : "border-slate-300 bg-slate-100 text-slate-700"
+                            : "border-slate-300 bg-slate-100 text-slate-700 "
                         }`}
                       >
                         <p className="text-[16px] leading-none font-medium">

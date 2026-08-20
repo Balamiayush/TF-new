@@ -208,6 +208,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                               )}
 
                               {/* Featured Blue Promo Banner */}
+                              <Link href={'/platform'} onClick={onClose}>
                               <div
                                 className="relative mt-2 flex flex-col justify-between overflow-hidden rounded-xl p-6 text-white"
                                 style={{
@@ -243,7 +244,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                                     Sponsor Monitor
                                   </Link>
                                 </div>
-                              </div>
+                              </div></Link>
                             </div>
                           </motion.div>
                         )}

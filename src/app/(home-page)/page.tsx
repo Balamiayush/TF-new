@@ -10,12 +10,16 @@ import Streamline from "./_components/StreamlineSection";
 import TrustedBy from "./_components/TrustedBy";
 import StartVerifyingSection from "./_components/StartVerifyingSection";
 import IntegrateMain from "./_components/integrate-section/IntegrateMain";
+import TrustedMarquee from "@/shared/ui/TrustedMarquee";
 
 export default function HomePage() {
   return (
     <main className="relative h-full w-full">
       <HeroSection />
-      <TrustedBy/>
+      {/* <TrustedBy/> */}
+       <div className="my-8  w-full ">
+                  <TrustedMarquee className="flex flex-col" />
+                </div>
       <Streamline />
       <IntegrateMain/>
       <ConnectEveryIdentitySection/>

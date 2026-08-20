@@ -56,7 +56,7 @@ export function FingerprintCard() {
   const currentStep = STEPS[currentVideoIndex];
 
   return (
-    <div className="relative flex h-[420px] min-w-[328px] flex-col overflow-hidden rounded-lg border-4 border-white/60 p-5 lg:h-[518px]">
+    <div className="relative flex h-[420px] min-w-[328px] flex-col overflow-hidden rounded-[12px] border-4 border-white/60 p-3.5 lg:h-[518px]">
       <Image
         alt="thirdfactor.ai background"
         fill
@@ -66,7 +66,7 @@ export function FingerprintCard() {
       />
 
       {/* Top Bar */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between py-3.5">
         <Image
           alt="thirdfactor.ai logo"
           width={110}
@@ -76,23 +76,24 @@ export function FingerprintCard() {
         />
 
         <div className="flex items-center gap-1.5 rounded-full border border-white/80 bg-white/90 py-1 pr-2 pl-1">
-          <div className="relative flex h-4 w-4 overflow-hidden rounded-full">
-            <span className="flex h-full w-full items-center justify-center bg-blue-900 text-[9px] font-bold text-white">
-              NP
-            </span>
+          <div className="relative flex h-4 w-4 rounded-full overflow-hidden">
+            <Image
+              alt="india flag"
+              fill
+              className=" object-cover"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/1920px-Flag_of_the_United_Kingdom_%283-5%29.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20250726143817"
+            />
           </div>
-          <span className="text-[11px] font-semibold text-slate-800">EN</span>
+        <span className="text-[10px]  text-[#404040]">EN</span>
         </div>
       </div>
 
-      {/* Main Title */}
       <h2 className="font-geist mt-4 text-[20px] leading-[120%] font-medium tracking-[-0.13px] text-slate-900">
         Third Factor KYC
       </h2>
 
-      {/* Step Info Row */}
       <div className="mt-3 flex items-center justify-between">
-        <span className="font-geist text-[14px] font-medium text-[#2B548F]">
+        <span className="font-geist text-[12px]  text-blue-500">
           {currentStep.title}
         </span>
 
@@ -147,7 +148,7 @@ export function FingerprintCard() {
       </div>
 
       {/* Video Frame */}
-      <div className="relative mt-4 flex-1 overflow-hidden rounded-lg border border-white/80 bg-white/40">
+      <div className="relative mt-4 flex-1 overflow-hidden rounded-lg ">
         <video
           key={currentVideoIndex}
           autoPlay
