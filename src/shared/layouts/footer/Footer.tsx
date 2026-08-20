@@ -18,7 +18,7 @@ const NAV_SECTIONS = [
       { label: "About", href: "/about" },
       { 
         label: "Career", 
-        href: "https://www.linkedin.com/company/thirdfactor-ai/posts/?feedView=all",
+        href: "https://www.linkedin.com/company/thirdfactor-ai/jobs/",
         target: "_blank"
       },
     ],
@@ -28,7 +28,9 @@ const NAV_SECTIONS = [
     links: [
       { label: "Blog", href: "/blog" },
       { label: "Case Studies", href: "/case-studies" },
-      { label: "Changelog", href: "/changelog" },
+      { label: "Changelog", href: "https://docs.v3.thirdfactor.ai/docs/resources/changelog",
+        target: "_blank"
+       },
       { 
         label: "Docs", 
         href: "https://docs.v3.thirdfactor.ai/docs",
@@ -157,7 +159,7 @@ export default function Footer() {
                 alt="A Prixa Company"
               />
             </div>
-            <Button variant="secondary" hasRightIcon className="group">
+            <Button href="/book-a-demo" variant="secondary" hasRightIcon className="group">
               Get a demo
               <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-xs bg-slate-200 p-1.5">
                 <ArrowRight

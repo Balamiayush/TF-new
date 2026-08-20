@@ -105,7 +105,7 @@ export default function ReadAllStories() {
             Get insights, tips, and updates from our team.
           </h2>
 
-          <Button href="/blogs" variant="secondary" className=" max-lg:hidden">Read all stories</Button>
+          <Button href="/blog" variant="secondary" className=" max-lg:hidden">Read all stories</Button>
         </div>
 
         <div className=" lg:mt-21 mt-8 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [scrollbar-width:none] md:grid md:grid-cols-2 md:overflow-visible md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
@@ -117,7 +117,7 @@ export default function ReadAllStories() {
             />
           ))}
         </div>
-         <Button href="/blogs" variant="secondary" className="lg:hidden! mt-8">Read all stories</Button>
+         <Button href="/blog" variant="secondary" className="lg:hidden! mt-8">Read all stories</Button>
       </LayoutWrapper>
     </section>
   );

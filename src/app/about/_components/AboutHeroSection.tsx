@@ -11,6 +11,7 @@ import {
   hexToRgba,
   type DitherSettings,
 } from "@/shared/ui/DitherControls";
+import ContactUsButton from "@/shared/ui/buttons/ContactUsButton";
 
 export default function AboutHeroSection() {
   const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
@@ -66,7 +67,11 @@ export default function AboutHeroSection() {
 
             <div className="flex items-center justify-center gap-4">
               <Button variant="secondary">Read Manifesto</Button>
-              <Button variant="ghost">Contact us</Button>
+              <ContactUsButton
+              className="bg-transparent"
+              > 
+                Contact us
+              </ContactUsButton>
             </div>
           </div>
         </div>

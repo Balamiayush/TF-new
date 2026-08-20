@@ -4,7 +4,7 @@ type AccordionItem = {
   id: number;
   title: string;
   description: string;
-  imgSrc?: string;
+  src?: string;
 };
 
 type FeatureItem = {
@@ -13,7 +13,7 @@ type FeatureItem = {
   title: string;
   description: string;
   icon: ReactNode;
-  imgSrc: string;
+  src: string;
   ACCORDION_DATA: AccordionItem[];
 };
 
@@ -25,7 +25,7 @@ const FEATURES_DATA: FeatureItem[] = [
     description:
       "Proprietary device and behavioral signals uncover early signs of fraud, without adding friction.",
     icon: <Smartphone className="h-5 w-5 text-white" />,
-    imgSrc: "/images/connect-every-identity-section-imgs/stay-compliant.svg",
+    src: "/images/connect-every-identity-section/suspicious-behaviour-spotting.webm",
     ACCORDION_DATA: [
       {
         id: 1,
@@ -52,32 +52,25 @@ const FEATURES_DATA: FeatureItem[] = [
     title: "Verify real identities in milliseconds",
     description: "Automated document scanning and face matching",
     icon: <ScanFace className="h-5 w-5 text-white" />,
-    imgSrc:
-      "https://images.pexels.com/photos/9799395/pexels-photo-9799395.jpeg",
+    src: "/images/connect-every-identity-section/verify-Identities-in.webm",
     ACCORDION_DATA: [
       {
         id: 1,
         title: "Document Verification & OCR",
         description:
           "Reads official documents — including handwritten Nepali document.",
-        imgSrc:
-          "https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg",
       },
       {
         id: 2,
         title: "1:1 Face Match",
         description:
           "Confirms the live person is the same person on the submitted document.",
-        imgSrc:
-          "https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg",
       },
       {
         id: 3,
         title: "1:N Face Match",
         description:
           "Compares one face against many to detect duplicates, fraud rings, and repeat applicants.",
-        imgSrc:
-          "https://images.pexels.com/photos/38779238/pexels-photo-38779238.jpeg",
       },
     ],
   },
@@ -88,8 +81,7 @@ const FEATURES_DATA: FeatureItem[] = [
     description:
       "Bank-grade infrastructure built to scale effortlessly across jurisdictions.",
     icon: <Fingerprint className="h-5 w-5 text-white" />,
-    imgSrc:
-      "https://images.pexels.com/photos/35182045/pexels-photo-35182045.jpeg",
+    src: "/images/connect-every-identity-section/stay-compliant-with.webm",
     ACCORDION_DATA: [
       {
         id: 1,
@@ -119,9 +111,10 @@ import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import FeatureAccordion from "./FeatureAccordion";
 import Button from "@/shared/ui/buttons/Button";
 import PhoneIcon from "@/shared/icons/PhoneIcon";
+import ContactUsButton from "@/shared/ui/buttons/ContactUsButton";
 
 export default function ConnectEveryIdentitySection() {
-  const [activeImage, setActiveImage] = useState(FEATURES_DATA[0].imgSrc);
+  const [activeImage, setActiveImage] = useState(FEATURES_DATA[0].src);
   const [activeFeatureId, setActiveFeatureId] = useState(FEATURES_DATA[0].id);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -141,8 +134,8 @@ export default function ConnectEveryIdentitySection() {
             setActiveFeatureId(numericId);
 
             const featureObj = FEATURES_DATA.find((f) => f.id === numericId);
-            if (featureObj && featureObj.imgSrc) {
-              setActiveImage(featureObj.imgSrc);
+            if (featureObj && featureObj.src) {
+              setActiveImage(featureObj.src);
             }
           }
         }
@@ -166,15 +159,19 @@ export default function ConnectEveryIdentitySection() {
       <div className="py-8 lg:py-30">
         <LayoutWrapper>
           <div className="flex w-full flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-6">
-            <h2 className="font-geist text-[24px] leading-[115%] font-medium tracking-tight text-black sm:text-[28px] lg:text-[42px]">
+            <h2 className="font-geist text-[26px] leading-[115%] font-medium tracking-[-0.6px] text-black  lg:text-[42px]">
               Connect every
-              <span className="font-geist-pixel-square text-blue-500"> identity signal</span> <br />
+              <span className="font-geist-pixel-square text-blue-500">
+                {" "}
+                identity signal
+              </span>{" "}
+              <br className="lg:block hidden" />
               to one governed trust layer.
             </h2>
-            <Button variant="contactus">
+            <ContactUsButton>
               <PhoneIcon />
               Contact us
-            </Button>
+            </ContactUsButton>
           </div>
 
           <div
@@ -182,12 +179,20 @@ export default function ConnectEveryIdentitySection() {
             className="relative mt-6 flex h-full w-full flex-col items-start gap-6 lg:mt-12 lg:flex-row lg:gap-3"
           >
             <div className="relative sticky top-[5%] hidden h-[700px] flex-1 overflow-hidden rounded-[10px] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)] lg:block">
-              <Image
+              {/* <Image
                 src={activeImage}
                 alt="Active Feature Visual"
                 fill
                 className="object-cover transition-opacity duration-500 ease-in-out"
                 priority
+              /> */}
+              <video
+                src={activeImage}
+                loop
+                muted
+                autoPlay
+
+                className="object-cover w-full h-full transition-all duration-300"
               />
             </div>
 
@@ -202,10 +207,11 @@ export default function ConnectEveryIdentitySection() {
                     className="feature-card flex w-full flex-col"
                   >
                     <div className="relative mb-3 block aspect-[4/3] w-full overflow-hidden rounded-[10px] bg-[linear-gradient(180deg,_#FBEAF9_0%,_#E8B9E5_100%)] lg:hidden">
-                      <Image
-                        src={isSectionVisible ? activeImage : feature.imgSrc}
-                        alt={feature.title}
-                        fill
+                      <video
+                        src={isSectionVisible ? activeImage : feature.src}
+                        loop
+                        muted
+                        autoPlay
                         className="object-cover transition-all duration-300"
                       />
                     </div>
@@ -231,8 +237,7 @@ export default function ConnectEveryIdentitySection() {
                           isParentActive={isSectionVisible}
                           onAccordionChange={(index) => {
                             const targetImage =
-                              feature.ACCORDION_DATA[index]?.imgSrc ||
-                              feature.imgSrc;
+                              feature.ACCORDION_DATA[index]?.src || feature.src;
                             if (targetImage) {
                               setActiveImage(targetImage);
                             }

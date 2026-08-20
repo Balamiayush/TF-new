@@ -97,7 +97,7 @@ export default function ContactUs({ onClose, onSuccess }: ContactUsProps) {
       exit="exit"
       transition={{ duration: 0.2, ease: "easeInOut" }}
       onClick={onClose}
-      className="fixed inset-0 z-[100000] flex h-screen w-full items-center justify-center bg-black/20 backdrop-blur-[20px]"
+      className="fixed inset-0 z-[999] flex min-h-screen w-full items-center justify-center bg-black/20 backdrop-blur-[20px]"
       data-lenis-prevent
     >
       <motion.div
@@ -230,7 +230,7 @@ export default function ContactUs({ onClose, onSuccess }: ContactUsProps) {
           </Button>
 
           <p className="font-inter text-[13px] leading-[140%] text-slate-700 md:text-[14px]">
-            By submitting this form, you confirm that you have read and
+            By submitting this form, you confirm that you have read <br className="max-lg:hidden" /> and
             understand thirdfactor’s{" "}
             <Link
               href="/privacy"
