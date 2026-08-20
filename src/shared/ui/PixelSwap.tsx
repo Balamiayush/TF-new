@@ -1,19 +1,28 @@
 "use client";
-import { CSSProperties, KeyboardEvent, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  CSSProperties,
+  KeyboardEvent,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import React, { useImperativeHandle, forwardRef } from "react";
 
 export type PixelSwapPattern =
-  | 'random'
-  | 'center'
-  | 'edges'
-  | 'left-to-right'
-  | 'right-to-left'
-  | 'top-to-bottom'
-  | 'bottom-to-top'
-  | 'diagonal'
-  | 'spiral';
+  | "random"
+  | "center"
+  | "edges"
+  | "left-to-right"
+  | "right-to-left"
+  | "top-to-bottom"
+  | "bottom-to-top"
+  | "diagonal"
+  | "spiral";
 
-export type PixelSwapTrigger = 'hover' | 'click' | 'manual';
+export type PixelSwapTrigger = "hover" | "click" | "manual";
 
 export interface PixelSwapProps {
   firstContent: ReactNode;
@@ -62,31 +71,35 @@ interface Transition {
 const MAX_PIXELS = 180;
 const KEYFRAME_STEPS = 10;
 
-const PATTERNS: Record<PixelSwapPattern, (x: number, y: number) => number | null> = {
+const PATTERNS: Record<
+  PixelSwapPattern,
+  (x: number, y: number) => number | null
+> = {
   random: () => null,
   center: (x, y) => Math.hypot(x - 0.5, y - 0.5) / Math.SQRT1_2,
   edges: (x, y) => Math.min(x, 1 - x, y, 1 - y) * 2,
-  'left-to-right': x => x,
-  'right-to-left': x => 1 - x,
-  'top-to-bottom': (_x, y) => y,
-  'bottom-to-top': (_x, y) => 1 - y,
+  "left-to-right": (x) => x,
+  "right-to-left": (x) => 1 - x,
+  "top-to-bottom": (_x, y) => y,
+  "bottom-to-top": (_x, y) => 1 - y,
   diagonal: (x, y) => (x + y) / 2,
   spiral: (x, y) => {
     const angle = (Math.atan2(y - 0.5, x - 0.5) + Math.PI) / (Math.PI * 2);
     const radius = Math.hypot(x - 0.5, y - 0.5) / Math.SQRT1_2;
     return (angle + radius) % 1;
-  }
+  },
 };
 
 const EASINGS: Record<string, number[]> = {
   linear: [0, 0, 1, 1],
   ease: [0.25, 0.1, 0.25, 1],
-  'ease-in': [0.42, 0, 1, 1],
-  'ease-out': [0, 0, 0.58, 1],
-  'ease-in-out': [0.42, 0, 0.58, 1]
+  "ease-in": [0.42, 0, 1, 1],
+  "ease-out": [0, 0, 0.58, 1],
+  "ease-in-out": [0.42, 0, 0.58, 1],
 };
 
-const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(Math.max(value, min), max);
 
 const noise = (seed: number): number => {
   const value = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
@@ -95,8 +108,9 @@ const noise = (seed: number): number => {
 
 const makeEasing = (value: string): ((progress: number) => number) => {
   const match = /cubic-bezier\(([^)]+)\)/.exec(value);
-  const points = match ? match[1].split(',').map(Number) : EASINGS[value];
-  if (!points || points.length !== 4 || points.some(Number.isNaN)) return makeEasing('ease');
+  const points = match ? match[1].split(",").map(Number) : EASINGS[value];
+  if (!points || points.length !== 4 || points.some(Number.isNaN))
+    return makeEasing("ease");
 
   const [x1, y1, x2, y2] = points;
   if (x1 === y1 && x2 === y2) return (progress: number) => progress;
@@ -132,7 +146,7 @@ const buildGrid = ({
   pixelSize,
   gap,
   pattern,
-  randomness
+  randomness,
 }: {
   width: number;
   height: number;
@@ -170,7 +184,7 @@ const buildGrid = ({
         id: index,
         left: originX + column * stride,
         top: originY + row * stride,
-        offset: base === null ? random : base * (1 - mix) + random * mix
+        offset: base === null ? random : base * (1 - mix) + random * mix,
       });
     }
   }
@@ -183,7 +197,7 @@ const buildKeyframes = ({
   startScale,
   endScale,
   spin,
-  fade
+  fade,
 }: {
   ease: (progress: number) => number;
   startScale: number;
@@ -203,11 +217,11 @@ const buildKeyframes = ({
     window.push({
       offset: progress,
       opacity: fade ? Math.min(1, eased * 1.6) : 1,
-      transform: `rotate(${angle}deg) scale(${scale})`
+      transform: `rotate(${angle}deg) scale(${scale})`,
     });
     content.push({
       offset: progress,
-      transform: `scale(${1 / scale}) rotate(${-angle}deg)`
+      transform: `scale(${1 / scale}) rotate(${-angle}deg)`,
     });
   }
 
@@ -226,19 +240,19 @@ const PixelSwap = forwardRef(function PixelSwap(
     fade = true,
     duration = 1000,
     pixelDuration = 350,
-    pattern = 'random',
+    pattern = "random",
     randomness = 0,
-    easing = 'cubic-bezier(0.22, 1, 0.36, 1)',
-    trigger = 'manual',
+    easing = "cubic-bezier(0.22, 1, 0.36, 1)",
+    trigger = "manual",
     initialActive = false,
     active,
     onActiveChange,
     onComplete,
     aspectRatio,
-    className = '',
-    style
+    className = "",
+    style,
   }: PixelSwapProps,
-  ref
+  ref,
 ) {
   const [internalActive, setInternalActive] = useState(initialActive);
   const [shownActive, setShownActive] = useState(active ?? initialActive);
@@ -257,7 +271,7 @@ const PixelSwap = forwardRef(function PixelSwap(
   useImperativeHandle(ref, () => ({
     triggerTransition: () => {
       setInternalActive((prev) => !prev);
-    }
+    },
   }));
 
   const grid = useMemo(
@@ -268,12 +282,21 @@ const PixelSwap = forwardRef(function PixelSwap(
         pixelSize: Math.max(16, Math.round(pixelSize)),
         gap: Math.max(0, Math.round(gap)),
         pattern,
-        randomness
+        randomness,
       }),
-    [box.width, box.height, pixelSize, gap, pattern, randomness]
+    [box.width, box.height, pixelSize, gap, pattern, randomness],
   );
 
-  const config = { duration, pixelDuration, pixelSpin, pixelScale, pixelRadius, fade, easing, onComplete };
+  const config = {
+    duration,
+    pixelDuration,
+    pixelSpin,
+    pixelScale,
+    pixelRadius,
+    fade,
+    easing,
+    onComplete,
+  };
   const configRef = useRef(config);
   const gridRef = useRef(grid);
   configRef.current = config;
@@ -287,7 +310,11 @@ const PixelSwap = forwardRef(function PixelSwap(
       const width = container.clientWidth;
       const height = container.clientHeight;
       if (!width || !height) return;
-      setBox(current => (current.width === width && current.height === height ? current : { width, height }));
+      setBox((current) =>
+        current.width === width && current.height === height
+          ? current
+          : { width, height },
+      );
     };
 
     measure();
@@ -297,9 +324,9 @@ const PixelSwap = forwardRef(function PixelSwap(
   }, []);
 
   const stopAnimations = useCallback(() => {
-    animationsRef.current.forEach(animation => animation.cancel());
+    animationsRef.current.forEach((animation) => animation.cancel());
     animationsRef.current = [];
-    pixelRefs.current.forEach(pixel => pixel?.replaceChildren());
+    pixelRefs.current.forEach((pixel) => pixel?.replaceChildren());
     if (timerRef.current) window.clearTimeout(timerRef.current);
     timerRef.current = 0;
   }, []);
@@ -324,7 +351,11 @@ const PixelSwap = forwardRef(function PixelSwap(
     };
 
     const source = layerRefs.current[to ? 1 : 0];
-    if (!source || !frozenGrid.pixels.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (
+      !source ||
+      !frozenGrid.pixels.length ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       finish();
       return;
     }
@@ -332,13 +363,17 @@ const PixelSwap = forwardRef(function PixelSwap(
     const total = Math.max(200, settings.duration);
     const pixelMs = clamp(settings.pixelDuration, 60, total);
     const spread = Math.max(0, total - pixelMs);
-    const endScale = coverScale(frozenGrid.size, frozenGrid.gap, settings.pixelRadius);
+    const endScale = coverScale(
+      frozenGrid.size,
+      frozenGrid.gap,
+      settings.pixelRadius,
+    );
     const keyframes = buildKeyframes({
       ease: makeEasing(settings.easing),
       startScale: clamp(settings.pixelScale, 0.05, 1) * endScale,
       endScale,
       spin: settings.pixelSpin,
-      fade: settings.fade
+      fade: settings.fade,
     });
 
     frozenGrid.pixels.forEach((pixel, index) => {
@@ -346,8 +381,8 @@ const PixelSwap = forwardRef(function PixelSwap(
       if (!pixelElement) return;
 
       // Lightweight background tile instead of repeating cloneNode on entire page trees
-      const content = document.createElement('div');
-      content.className = 'absolute';
+      const content = document.createElement("div");
+      content.className = "absolute";
       content.style.left = `${-pixel.left}px`;
       content.style.top = `${-pixel.top}px`;
       content.style.width = `${frozenGrid.width}px`;
@@ -358,8 +393,8 @@ const PixelSwap = forwardRef(function PixelSwap(
       content.style.transformOrigin = `${originX}px ${originY}px`;
 
       // Optimized lightweight copy for transition pixels
-      const overlay = document.createElement('div');
-      overlay.className = 'w-full h-full bg-slate-900/90 backdrop-blur-md';
+      const overlay = document.createElement("div");
+      overlay.className = "w-full h-full bg-slate-900/90 backdrop-blur-md";
       content.appendChild(overlay);
 
       pixelElement.replaceChildren(content);
@@ -367,13 +402,13 @@ const PixelSwap = forwardRef(function PixelSwap(
       const timing: KeyframeAnimationOptions = {
         duration: pixelMs,
         delay: pixel.offset * spread,
-        easing: 'linear',
-        fill: 'both'
+        easing: "linear",
+        fill: "both",
       };
 
       animationsRef.current.push(
         pixelElement.animate(keyframes.window, timing),
-        content.animate(keyframes.content, timing)
+        content.animate(keyframes.content, timing),
       );
     });
 
@@ -386,7 +421,7 @@ const PixelSwap = forwardRef(function PixelSwap(
     return (
       <div
         key={index}
-        ref={element => {
+        ref={(element) => {
           layerRefs.current[index] = element;
         }}
         className="absolute inset-0 h-full w-full data-[visible=false]:invisible"
@@ -402,7 +437,7 @@ const PixelSwap = forwardRef(function PixelSwap(
   return (
     <div
       ref={containerRef}
-      className={`relative isolate w-full min-h-screen  outline-none ${className}`.trim()}
+      className={`relative isolate min-h-screen w-full outline-none ${className}`.trim()}
       style={{ aspectRatio, ...style }}
       data-active={shownActive}
       data-transitioning={!!transition}
@@ -411,11 +446,14 @@ const PixelSwap = forwardRef(function PixelSwap(
       {renderLayer(secondContent, 1)}
 
       {transition && (
-        <div className="pointer-events-none absolute inset-0 z-[99]" aria-hidden="true">
+        <div
+          className="pointer-events-none absolute inset-0 z-[99]"
+          aria-hidden="true"
+        >
           {transition.grid.pixels.map((pixel, index) => (
             <div
               key={pixel.id}
-              ref={element => {
+              ref={(element) => {
                 pixelRefs.current[index] = element;
               }}
               className="absolute overflow-hidden opacity-0 [contain:paint]"
@@ -424,7 +462,7 @@ const PixelSwap = forwardRef(function PixelSwap(
                 top: pixel.top,
                 width: transition.grid.size,
                 height: transition.grid.size,
-                borderRadius: `${clamp(pixelRadius, 0, 50)}%`
+                borderRadius: `${clamp(pixelRadius, 0, 50)}%`,
               }}
             />
           ))}
