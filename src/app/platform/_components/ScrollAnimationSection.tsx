@@ -122,6 +122,14 @@ export default function ScrollAnimationSection() {
           },
           "<",
         )
+        .to(
+          "#max-width-container",
+          {
+            maxWidth: 1376,
+            duration: 0.8,
+          },
+          "<",
+        )
 
         .fromTo(
           textContentRef.current,
@@ -138,14 +146,6 @@ export default function ScrollAnimationSection() {
           },
           "-=0.2",
         )
-        .to(
-          "#max-width-container",
-          {
-            maxWidth: 1376,
-            duration: 0.8,
-          },
-          "<",
-        )
         .to("#img-details", {
           opacity: 1,
           duration: 0.5,
@@ -158,7 +158,7 @@ export default function ScrollAnimationSection() {
     <div
       ref={containerRef}
       id="ScrollAnimPlatformMain"
-      className="relative  h-screen lg:min-h-[130vh] w-full overflow-hidden bg-white lg:pb-[84px] py-[48px]"
+      className="relative  h-screen lg:min-h-[120vh] 2xl:min-h-[110vh] w-full overflow-hidden bg-white lg:pb-[84px] py-[48px]"
     >
        <div
           ref={centerLogoRef}
@@ -250,16 +250,15 @@ export default function ScrollAnimationSection() {
           <p className="mt-3 mb-8 text-sm leading-[120%] text-slate-700 md:mt-4 md:mb-12 md:text-lg lg:mb-[64px] lg:text-[16px]">
             One trust platform makes every digital interaction trustworthy.
           </p>
-
           <div
             ref={imageContainerRef}
-            className="relative mx-auto h-[220px] w-full max-lg:max-w-[358px] overflow-clip  rounded-lg   md:h-[450px] lg:h-[44.44vw]"
+            className="relative mx-auto aspect-square h-[220px] w-full max-lg:max-w-[358px] overflow-clip  rounded-lg   md:h-[450px] lg:h-[640px]"
           >
             <Image
               alt="Obsidian Platform Dashboard"
               fill
               priority
-              className="object-cover w-full h-full "
+              className="object-contain w-full h-auto  "
               src="https://i.pinimg.com/1200x/c3/7c/8d/c37c8d887c04bce699b62739ed1d18f1.jpg"
             />
           </div>

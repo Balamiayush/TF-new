@@ -18,18 +18,9 @@ import { useState } from "react";
 export default function PlatFormHeroSection() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
-  const TRUSTED_LOGOS = [
-    { name: "esewa", image: "/images/trused-by-imgs/esewa.webp" },
-    { name: "everest", image: "/images/trused-by-imgs/everest.webp" },
-    { name: "laxmi", image: "/images/trused-by-imgs/laxmi.webp" },
-    { name: "sagilo", image: "/images/trused-by-imgs/sagilo.webp" },
-    {
-      name: "siddhartha-bank",
-      image: "/images/trused-by-imgs/siddhartha-bank.webp",
-    },
-  ];
+
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#E9F1FF14] pt-[120px] md:pt-20 lg:pt-0">
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-[##EDF4FF1F] pt-[120px] pb-16 md:pt-20 lg:pt-25">
       <DitherHoverBackground
         baseColor="transparent"
         gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}
@@ -53,21 +44,21 @@ export default function PlatFormHeroSection() {
         imageFit={dither.imageFit}
         className="mix-blend-multiply"
       />
-      <DitherControls value={dither} onChange={setDither} />
 
-      <LayoutWrapper className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
-        <div className="flex max-w-[558px] flex-col gap-8 md:gap-10 lg:gap-12">
+      <LayoutWrapper className="relative z-10 flex flex-col items-center gap-10 md:gap-12">
+        {/* Centered Hero Content */}
+        <div className="flex max-w-[720px] flex-col items-center text-center gap-6 md:gap-8">
           <div>
             <h1 className="text-4xl leading-[1.05] font-medium tracking-[-0.3px] text-slate-900 md:text-6xl lg:text-[64px]">
               Approve the right customer at scale
             </h1>
-            <p className="mt-4 max-w-[450px] text-sm tracking-[-0.4px] text-slate-600 md:text-base">
+            <p className="mt-4 mx-auto max-w-[520px] text-sm tracking-[-0.4px] text-slate-600 md:text-base">
               Verify customers globally using identity, device, and behavioral
               signals with progressive checks that adapt to risk.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <Button
               href="/book-a-demo"
               variant="secondary"
@@ -94,38 +85,30 @@ export default function PlatFormHeroSection() {
           </div>
         </div>
 
-        <div className="w-full lg:max-w-[44.44vw]">
-          <div className="relative h-[400px] w-full overflow-hidden rounded-lg lg:h-[35vw]">
-            <Image
-              alt="Verification Platform Preview"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 44.44vw"
-              className="object-cover"
-              src="https://res.cloudinary.com/dfajjqglx/image/upload/v1787037228/dfaaf_bt076x.png"
-            />
+        <div className="w-full ">
+          <div className=" flex gap-4 lg:flex-row flex-col">
+            <div className="relative min-h-[360px] w-full flex flex-1 rounded-xl bg-slate-50 md:col-span-8 md:min-h-[460px]">
+            </div>
+
+            {/* Right Side Image Card */}
+            <div className="relative min-h-[360px] w-full overflow-hidden rounded-xl md:col-span-4 md:min-h-[506px] lg:max-w-[320px]">
+              <Image
+                alt="Verification Platform Preview"
+                fill
+                priority
+                // sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover"
+                src="https://res.cloudinary.com/dfajjqglx/image/upload/v1787037228/dfaaf_bt076x.png"
+              />
+            </div>
           </div>
-          <div className="lg:mt-[24px] mt-[72px] flex flex-col items-center gap-4 lg:flex-row">
-            {/* <p className="text-[15px] font-medium text-slate-600">Trusted by</p>
-            <div className="flex flex-wrap items-center gap-3">
-              {TRUSTED_LOGOS.map((logo, index) => (
-                <div
-                  key={index}
-                  className="relative flex h-[38px] w-[100px] items-center"
-                >
-                  <Image
-                    src={logo.image}
-                    alt={logo.name}
-                    fill
-                    className="object-contain opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-                  />
-                </div>
-              ))}
-            </div> */}
-            <TrustedMarquee/>
+
+          {/* Trusted Marquee Bar */}
+          <div className="mt-8 flex w-full justify-center">
+            <TrustedMarquee />
           </div>
         </div>
       </LayoutWrapper>
     </div>
   );
-}
+} 

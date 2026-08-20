@@ -129,12 +129,12 @@ export default function MainNavigation({ children }: MainNavigationProps) {
                 />
 
                 <div className="hidden items-center gap-2 md:flex">
-                  <Button
+                  {/* <Button
                     variant="secondary"
                     className={!isScrolled ? "" : "bg-slate-50"}
                   >
                     Log in
-                  </Button>
+                  </Button> */}
                   <Button link="book-a-demo">Book a demo</Button>
                 </div>
 

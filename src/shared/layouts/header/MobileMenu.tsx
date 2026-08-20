@@ -265,7 +265,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                 );
               })}
                   <div className=" flex flex-col gap-2.5 bg-white pt-3 pb-2">
-              <Button variant="secondary">Log in</Button>
+              {/* <Button variant="secondary">Log in</Button> */}
               <Button link="/book-a-demo">Book a demo</Button>
             </div>
             </div>

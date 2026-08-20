@@ -13,83 +13,98 @@ interface PixelTransitionProps {
   color?: string;
 }
 
-interface PixelData {
+type PixelData = {
   element: HTMLDivElement;
   order: number;
-}
+};
+
+// Config Constants matching the exact "Default" Preset
+const CONFIG = {
+  pixelSize: 40,
+  coverDur: 0.04,
+  revealDur: 0.06,
+  staggerEach: 0.000257,
+  jitter: 0.45,
+  color: "#ffffff",
+  coverEase: "power1.inOut",
+  revealEase: "power3.inOut",
+  showOutline: true,
+};
 
 const PixelTransition = forwardRef<PixelTransitionRef, PixelTransitionProps>(
-  ({ pixelSize = 36, color = "#ffffff" }, ref) => {
+  ({ pixelSize = CONFIG.pixelSize, color = CONFIG.color }, ref) => {
     const gridRef = useRef<HTMLDivElement | null>(null);
-    const pixelDataRef = useRef<PixelData[]>([]);
+    const pixelsRef = useRef<PixelData[]>([]);
 
     const buildGrid = () => {
-      if (!gridRef.current) return;
+      const container = gridRef.current;
+      if (!container) return;
 
-      gridRef.current.innerHTML = "";
-      pixelDataRef.current = [];
+      container.replaceChildren();
+      pixelsRef.current = [];
 
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      const cols = Math.ceil(window.innerWidth / pixelSize);
+      const rows = Math.ceil(window.innerHeight / pixelSize);
 
-      const cols = Math.ceil(width / pixelSize);
-      const rows = Math.ceil(height / pixelSize);
-
-      gridRef.current.style.gridTemplateColumns = `repeat(${cols}, ${pixelSize}px)`;
-      gridRef.current.style.gridTemplateRows = `repeat(${rows}, ${pixelSize}px)`;
+      container.style.gridTemplateColumns = `repeat(${cols}, ${pixelSize}px)`;
+      container.style.gridTemplateRows = `repeat(${rows}, ${pixelSize}px)`;
 
       const fragment = document.createDocumentFragment();
-      const maxDistance = Math.sqrt(cols * cols + rows * rows);
 
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-          const pixel = document.createElement("div");
-          pixel.style.backgroundColor = color;
-          pixel.style.opacity = "0";
-          pixel.style.transform = "scale(0)";
-          pixel.style.outline = `1px solid ${color}`;
-          pixel.style.willChange = "transform, opacity";
+          const el = document.createElement("div");
+          el.style.backgroundColor = color;
+          el.style.opacity = "0";
+          el.style.transform = "scale(0)";
+          el.style.outline = CONFIG.showOutline ? `1px solid ${color}` : "none";
+          el.style.willChange = "transform, opacity";
 
-          // Calculate normalized diagonal distance (0 to 1) from Top-Left
-          const distance = Math.sqrt(c * c + r * r) / maxDistance;
-          
-          // Add random jitter noise (-0.25 to +0.25) to break strict lines into scattered pixels
-          const noise = (Math.random() - 0.5) * 0.5;
-          const order = Math.max(0, distance + noise);
+          // Calculate "tl-br" diagonal base order
+          const baseOrder = Math.hypot(c, r) / Math.hypot(cols, rows);
+          const noise = (Math.random() - 0.5) * CONFIG.jitter;
+          const order = Math.max(0, Math.min(1, baseOrder + noise));
 
-          fragment.appendChild(pixel);
-          pixelDataRef.current.push({ element: pixel, order });
+          fragment.appendChild(el);
+          pixelsRef.current.push({ element: el, order });
         }
       }
 
-      gridRef.current.appendChild(fragment);
+      container.appendChild(fragment);
     };
 
     useEffect(() => {
       buildGrid();
       const handleResize = () => buildGrid();
       window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
     }, [pixelSize, color]);
 
     useImperativeHandle(ref, () => ({
       cover: () => {
         return new Promise<void>((resolve) => {
-          const items = pixelDataRef.current;
-          if (!items.length) {
+          const pixels = pixelsRef.current;
+          if (!pixels.length) {
             resolve();
             return;
           }
 
-          const sorted = [...items].sort((a, b) => a.order - b.order);
-          const elements = sorted.map((item) => item.element);
+          const elements = [...pixels]
+            .sort((a, b) => a.order - b.order)
+            .map((p) => p.element);
 
           gsap.to(elements, {
             opacity: 1,
-            scale: 1.0,
-            duration: 0.04,
-           ease: "expo.inOut",
-            stagger: 0.001, 
+            scale: 1,
+            duration: CONFIG.coverDur,
+            ease: CONFIG.coverEase,
+            stagger: {
+              each: CONFIG.staggerEach,
+              from: "start",
+            },
             onComplete: resolve,
           });
         });
@@ -97,22 +112,25 @@ const PixelTransition = forwardRef<PixelTransitionRef, PixelTransitionProps>(
 
       reveal: () => {
         return new Promise<void>((resolve) => {
-          const items = pixelDataRef.current;
-          if (!items.length) {
+          const pixels = pixelsRef.current;
+          if (!pixels.length) {
             resolve();
             return;
           }
 
-          // Keep same order so the clear wave follows the cover direction
-          const sorted = [...items].sort((a, b) =>   b.order-a.order);
-          const elements = sorted.map((item) => item.element);
+          const elements = [...pixels]
+            .sort((a, b) => a.order - b.order)
+            .map((p) => p.element);
 
           gsap.to(elements, {
             opacity: 0,
             scale: 0,
-            duration: 0.04,
-           ease: "expo.inOut",
-            stagger: 0.001,
+            duration: CONFIG.revealDur,
+            ease: CONFIG.revealEase,
+            stagger: {
+              each: CONFIG.staggerEach,
+              from: "start",
+            },
             onComplete: resolve,
           });
         });
@@ -121,7 +139,10 @@ const PixelTransition = forwardRef<PixelTransitionRef, PixelTransitionProps>(
 
     return (
       <div className="pointer-events-none fixed inset-0 z-[99999] h-screen w-screen overflow-hidden">
-        <div ref={gridRef} className="grid h-full w-full content-center justify-center" />
+        <div
+          ref={gridRef}
+          className="grid h-full w-full content-center justify-center"
+        />
       </div>
     );
   }

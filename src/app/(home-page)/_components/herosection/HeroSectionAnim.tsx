@@ -1,117 +1,166 @@
 "use client";
 
 import Image from "next/image";
-import React, { useRef, useState } from "react";
-import { Fingerprint } from "lucide-react";
-import { motion, PanInfo } from "framer-motion";
+import React, { useState } from "react";
+
+interface VideoStep {
+  src: string;
+  title: string;
+}
+
+const STEPS: VideoStep[] = [
+  {
+    src: "/images/hero/hero-section-video/1.webm",
+    title: "Live Face Verification",
+  },
+  {
+    src: "/images/hero/hero-section-video/liveness-verification.webm",
+    title: "Document Upload",
+  },
+  {
+    src: "/images/hero/hero-section-video/liveness-verification.webm",
+    title: "Liveness Verification",
+  },
+];
+
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+}
+
+export function SvgTf({ size = 20, className = "", ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      {...props}
+    >
+      <path
+        d="M19.8222 10.1061C19.8222 10.4757 19.8035 10.8402 19.7642 11.1996C19.303 15.5767 16.1041 19.1154 11.9486 20V13.9767C13.3492 13.2427 14.3056 11.7711 14.3056 10.077C14.3056 8.34363 13.3031 6.84294 11.8479 6.12595C11.2639 5.83677 10.6062 5.67592 9.91106 5.67592C7.48412 5.67592 5.5166 7.64719 5.5166 10.077C5.5166 11.7711 6.47129 13.2409 7.87185 13.9751V20C7.32186 19.8819 6.78732 19.7194 6.27495 19.5107C4.73101 18.8913 3.37656 17.8868 2.32624 16.6119C0.874509 14.8547 0 12.5839 0 10.1061C0 7.62836 0.874509 5.35937 2.32624 3.602C3.37656 2.32717 4.73101 1.32273 6.27495 0.703287C7.40039 0.24812 8.62678 0 9.91106 0C15.023 0 19.2296 3.94594 19.7642 9.01268C19.8035 9.37204 19.8222 9.73651 19.8222 10.1061Z"
+        fill="#007BE5"
+      />
+    </svg>
+  );
+}
 
 export function FingerprintCard() {
-  const globeRings = [
-    { w: 302, h: 302 },
-    { w: 302, h: 244.5 },
-    { w: 302, h: 180.79 },
-    { w: 302, h: 132.17 },
-    { w: 302, h: 78.75 },
-    { w: 302, h: 41.09 },
-  ];
-  const eyeRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [pupilOffset, setPupilOffset] = useState({ x: 0, y: 0 });
-  const [position, setPosition] = useState<"right" | "left">("right");
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-  const followPointer = (event: React.PointerEvent<HTMLDivElement>) => {
-    const eyeBounds = eyeRef.current?.getBoundingClientRect();
-    if (!eyeBounds) return;
-
-    const horizontal =
-      (event.clientX - (eyeBounds.left + eyeBounds.width / 2)) /
-      (eyeBounds.width / 2);
-    const vertical =
-      (event.clientY - (eyeBounds.top + eyeBounds.height / 2)) /
-      (eyeBounds.height / 2);
-    const distance = Math.hypot(horizontal, vertical);
-    const limit = distance > 1 ? 1 / distance : 1;
-
-    setPupilOffset({
-      x: horizontal * limit * 14,
-      y: vertical * limit * 14,
-    });
+  const handleVideoEnded = () => {
+    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % STEPS.length);
   };
 
-  const handleDragEnd = (_: any, info: PanInfo) => {
-    // If dragged left past -30px or swiped left quickly, snap to the left side
-    if (info.offset.x < -30 || info.velocity.x < -200) {
-      setPosition("left");
-    } 
-    // If dragged right past 30px or swiped right quickly, snap to the right side
-    else if (info.offset.x > 30 || info.velocity.x > 200) {
-      setPosition("right");
-    }
-  };
+  const currentStep = STEPS[currentVideoIndex];
 
   return (
-    <div
-      className="relative h-[420px] overflow-hidden rounded-lg border border-slate-100 bg-white lg:h-[518px]"
-      onPointerMove={followPointer}
-      onPointerLeave={() => setPupilOffset({ x: 0, y: 0 })}
-    >
-      <img
-        src="/images/hero/fingerprint-globe.svg"
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute bottom-[-41px] left-1/2 h-[217px] w-[555%] max-w-none -translate-x-1/2"
-      />
-      <img
-        src="/images/hero/fingerprint-bottom.svg"
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute top-[59.14%] left-1/2 h-auto w-[555%] max-w-none -translate-x-1/2 opacity-90"
+    <div className="relative flex h-[420px] min-w-[328px] flex-col overflow-hidden rounded-2xl border-4 border-white/60 p-5 lg:h-[518px]">
+      <Image
+        alt="thirdfactor.ai background"
+        fill
+        className="absolute z-[-1]"
+        priority
+        src="/images/hero/hero-section-video/bg-img.webp"
       />
 
-      <div className="pointer-events-none absolute top-[9px] left-1/2 h-[302px] w-[302px] -translate-x-1/2">
-        {globeRings.map(({ w, h }, i) => (
-          <div
-            key={i}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-slate-200/70"
-            style={{ width: `${w}px`, height: `${h}px` }}
-          />
-        ))}
-        <div className="absolute top-1/2 left-1/2 h-[60px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-transparent via-[#e18cff]/70 to-transparent blur-md" />
-        <div
-          ref={eyeRef}
-          className="absolute top-1/2 left-1/2 flex h-[60px] w-[60px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#E18CFF] shadow-[0_0_28px_6px_rgba(225,140,255,0.55)]"
-        >
-          <span
-            aria-hidden
-            className="h-[24px] w-[24px] rounded-full bg-[#2d1440] shadow-[0_1px_4px_rgba(45,20,64,0.35)] transition-transform duration-100 ease-out motion-reduce:transition-none"
-            style={{
-              transform: `translate3d(${pupilOffset.x}px, ${pupilOffset.y}px, 0)`,
-            }}
-          >
-            <span className="absolute top-[5px] left-[5px] h-[6px] w-[6px] rounded-full bg-white/90" />
-          </span>
+      {/* Top Bar */}
+      <div className="flex items-center justify-between">
+        <Image
+          alt="thirdfactor.ai logo"
+          width={110}
+          height={20}
+          priority
+          src="/logos/thirdfactor-logo.svg"
+        />
+
+        <div className="flex items-center gap-1.5 rounded-full border border-white/80 bg-white/90 py-1 pr-2 pl-1">
+          <div className="relative flex h-4 w-4 overflow-hidden rounded-full">
+            <span className="flex h-full w-full items-center justify-center bg-blue-900 text-[9px] font-bold text-white">
+              NP
+            </span>
+          </div>
+          <span className="text-[11px] font-semibold text-slate-800">EN</span>
         </div>
       </div>
 
-      <div
-        ref={trackRef}
-        className="absolute bottom-6 left-1/2 flex h-[109px] w-[306px] -translate-x-1/2 items-center justify-end rounded-full border-[1.2px] border-slate-200 bg-white/70 py-1.5 pr-[7px] pl-[196px] backdrop-blur-xl"
-      >
-        <motion.div
-          drag="x"
-          dragConstraints={{ left: -189, right: 0 }}
-          dragElastic={0.05}
-          animate={{ x: position === "left" ? -189 : 0 }}
-          onDragEnd={handleDragEnd}
-          transition={{
-            type: "spring",
-            stiffness: 500,
-            damping: 30,
+      {/* Main Title */}
+      <h2 className="font-geist mt-4 text-[20px] leading-[120%] font-medium tracking-[-0.13px] text-slate-900">
+        Third Factor KYC
+      </h2>
+
+      {/* Step Info Row */}
+      <div className="mt-3 flex items-center justify-between">
+        <span className="font-geist text-[14px] font-medium text-[#2B548F]">
+          {currentStep.title}
+        </span>
+
+        {/* Step Indicators */}
+        <div className="flex items-center gap-1.5">
+          {STEPS.map((_, idx) => {
+            const isActive = idx === currentVideoIndex;
+            const isCompleted = idx < currentVideoIndex;
+
+            return (
+              <React.Fragment key={idx}>
+                {/* Connecting Line */}
+                {idx > 0 && (
+                  <span
+                    className={`h-[1px] w-2.5 transition-colors duration-300 ${
+                      idx <= currentVideoIndex ? "bg-[#007BE5]" : "bg-white"
+                    }`}
+                  />
+                )}
+
+                {/* Step Node */}
+                <div
+                  className={`flex h-[22px] w-[22px] items-center justify-center rounded-full transition-all duration-300 ${
+                    isActive
+                      ? "text-white"
+                      : isCompleted
+                      ? "bg-[#93C5FD] text-white"
+                      : "border-2 border-dashed border-[#1E3A8A]/40 bg-transparent"
+                  }`}
+                >
+                  {isActive ? (
+                    <SvgTf className="" />
+                  ) : isCompleted ? (
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  ) : null}
+                </div>
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Video Frame */}
+      <div className="relative mt-4 flex-1 overflow-hidden rounded-lg border border-white/80 bg-white/40">
+        <video
+          key={currentVideoIndex}
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          onEnded={handleVideoEnded}
+          onLoadedData={(e) => {
+            e.currentTarget.play().catch(() => {});
           }}
-          className="flex h-[97px] w-[127px] items-center justify-center rounded-full border border-slate-200 bg-white cursor-grab active:cursor-grabbing select-none touch-none"
-        >
-          <Fingerprint className="h-16 w-16 text-slate-700 pointer-events-none" strokeWidth={1.5} />
-        </motion.div>
+          className="h-full w-full object-cover"
+          src={currentStep.src}
+        />
       </div>
     </div>
   );

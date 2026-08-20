@@ -139,7 +139,7 @@ export default function StartVerifyingSection() {
         </h1>
 
         <div className="mt-8 flex items-center gap-3">
-          <Button variant="secondary">Log in</Button>
+          {/* <Button variant="secondary">Log in</Button> */}
           <Button variant="primary" className="hover:bg-[#3B82F6]" href="/book-a-demo">Book a demo</Button>
         </div> 
       </div>
