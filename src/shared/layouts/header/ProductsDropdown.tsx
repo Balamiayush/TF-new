@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { productsMenuData } from "@/shared/data/products-menu";
 import LayoutWrapper from "../wrapper/LayoutWrapper";
@@ -15,6 +16,8 @@ interface ProductsDropdownProps {
 }
 
 function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
+  const router = useRouter();
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -101,9 +104,13 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                     </div>
                   </div>
                 </div>
-
                 <div
-                  className="relative flex h-[690px] w-[516px] shrink-0 flex-col justify-between overflow-hidden rounded-xl p-8 text-white shadow-lg"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onClose();
+                    router.push("/platform");
+                  }}
+                  className="relative flex h-[690px] w-[516px] shrink-0 flex-col justify-between overflow-hidden rounded-xl p-8 text-white shadow-lg cursor-pointer"
                   style={{
                     background:
                       "linear-gradient(179.91deg, #3B82F6 0.08%, #60A5FA 54.75%, #2563EB 97.46%, #2563EB 125.56%)",

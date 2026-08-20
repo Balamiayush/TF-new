@@ -12,7 +12,7 @@ export default function TimelineMain() {
       description:
         "Third Factor AI launches on stage at the Nepal Fintech Alliance 2026 event. A KYC platform built for accuracy, speed, and simple integration. Identity verification at onboarding, done well.",
       image:
-        "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg",
+        "https://tf-landing-puce.vercel.app/_next/image?url=%2Fabout-us%2Ffintech.jpeg&w=1920&q=75",
       barGradient: "bg-[#60A5FA]",
       mobileGradient: "bg-[#60A5FA]",
       position: "bottom",
@@ -24,7 +24,7 @@ export default function TimelineMain() {
       description:
         "More than 300,000 pensioners. The challenge was not verifying identity once. It was confirming presence every month. Traditional KYC had no answer. We built one.",
       image:
-        "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
+        "https://tf-landing-puce.vercel.app/_next/image?url=%2Fabout-us%2FPMO.png&w=1920&q=75",
       barGradient: "bg-[#2563EB]",
       mobileGradient: "bg-[#2563EB]",
       position: "top",
@@ -36,7 +36,7 @@ export default function TimelineMain() {
       description:
         "An ISP with no regulatory requirement for KYC. Their challenge was continuously trusting who they were serving. The pattern became clear. This was not a KYC problem. It was a trust infrastructure problem.",
       image:
-        "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg",
+        "https://tf-landing-puce.vercel.app/_next/image?url=%2Fabout-us%2Fvianet.jpeg&w=1920&q=75",
       barGradient: "bg-[#D96EFF]",
       mobileGradient: "bg-[#D96EFF]",
       position: "bottom",

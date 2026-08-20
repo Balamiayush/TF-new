@@ -9,6 +9,9 @@ const nextConfig = {
       },
     ],
   },
+  expermental:{
+    ViewTransition:true
+  }
 };
 
 export default nextConfig;

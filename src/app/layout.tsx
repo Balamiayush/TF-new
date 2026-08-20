@@ -16,6 +16,7 @@ import "./globals.css";
 import MainNavigation from "@/shared/layouts/header/MainNavigation";
 import Footer from "@/shared/layouts/footer/Footer";
 import LenisContextProvider from "@/store/lenis-context";
+import Template from "@/shared/ui/template";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,13 +38,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning
+      <body
+        suppressHydrationWarning
         className={`${inter.variable} ${GeistSans.variable} ${GeistPixelSquare.variable} ${GeistPixelGrid.variable} ${GeistPixelCircle.variable} ${GeistPixelTriangle.variable} ${GeistPixelLine.variable} antialiased`}
       >
         <LenisContextProvider>
-        <MainNavigation />
-        {children}
-        <Footer/>
+          <MainNavigation />
+          <Template>{children}</Template>
+          <Footer />
         </LenisContextProvider>
       </body>
     </html>
