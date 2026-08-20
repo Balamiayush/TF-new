@@ -77,7 +77,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
 
   return (
     <>
-      <div className="fixed top-0 right-0 left-0 z-[1] w-full">
+      <div className="fixed top-0 right-0 left-0 z-[999] w-full">
         <motion.header
           variants={headerVariants}
           animate={hidden ? "hidden" : "visible"}
