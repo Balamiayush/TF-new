@@ -66,7 +66,7 @@ export default function AboutHeroSection() {
             </p>
 
             <div className="flex items-center justify-center gap-4">
-              <Button variant="secondary">Read Manifesto</Button>
+              <Button variant="secondary" href="/blog">Read Manifesto</Button>
               <ContactUsButton
               className="bg-transparent"
               > 

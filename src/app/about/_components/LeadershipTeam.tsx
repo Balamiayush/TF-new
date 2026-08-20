@@ -15,7 +15,7 @@ export default function LeadershipTeam() {
         "https://tf-landing-puce.vercel.app/_next/image?url=%2Fillustrations%2Fmanish.png&w=1920&q=75",
       title: "CEO",
       bio: "Manish Sharma serves as the Chief Executive Officer at Thirdfactor leading AI & product strategy.",
-      linkedin: "https://linkedin.com",
+      linkedin: "https://www.linkedin.com/in/manishksharma01/",
     },
     {
       name: "Sojan Prajapati",
@@ -23,7 +23,7 @@ export default function LeadershipTeam() {
         "https://tf-landing-puce.vercel.app/_next/image?url=%2Fillustrations%2Fsojan.png&w=1920&q=75",
       title: "CBO",
       bio: "Sojan Prajapati serves as the Chief Business Officer at Thirdfactor. He started his professional journey",
-      linkedin: "https://linkedin.com",
+      linkedin: "https://www.linkedin.com/in/sojan-prajapati/",
     },
     {
       name: "Sudip Dawadi",
@@ -31,7 +31,7 @@ export default function LeadershipTeam() {
         "https://tf-landing-puce.vercel.app/_next/image?url=%2Fillustrations%2Fsudip.png&w=1920&q=75",
       title: "CPO",
       bio: "Sudip Dawadi serves as the Chief Product Officer at Thirdfactor overseeing identity infrastructure.",
-      linkedin: "https://linkedin.com",
+      linkedin: "https://www.linkedin.com/in/sudip-dawadi/",
     },
     {
       name: "Niranjan Udas",
@@ -39,7 +39,7 @@ export default function LeadershipTeam() {
         "https://tf-landing-puce.vercel.app/_next/image?url=%2Fillustrations%2Fniranjan.png&w=1920&q=75",
       title: "COO",
       bio: "Niranjan Udas serves as the Chief Operating Officer at Thirdfactor leading operational readiness.",
-      linkedin: "https://linkedin.com",
+      linkedin: "https://www.linkedin.com/in/niranjanudas/",
     },
   ];
 
