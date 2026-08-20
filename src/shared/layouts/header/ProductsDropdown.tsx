@@ -42,7 +42,7 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-[72px] z-[9998] backdrop-blur-3xl  "
+            className="fixed inset-0  top-[72px] z-[9998] backdrop-blur-3xl  "
             onClick={onClose}
             data-lenis-prevent
           />
@@ -83,15 +83,15 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                             {category.items.map((item, itemIdx) => (
                               <li key={`${idx}-${itemIdx}`}>
                                 <Link
-                                  href={item.href}
-                                  onClick={onClose}
-                                  className="group flex items-center justify-between rounded-sm p-2 text-[14px] leading-[130%] duration-300 ease-in-out hover:bg-slate-100"
+                                  href={'/'}
+                                  // onClick={onClose}
+                                  className="group flex items-center cursor-not-allowed justify-between rounded-sm p-2 text-[14px] leading-[130%] duration-300 ease-in-out "
                                 >
                                   <div className="flex items-center gap-2.5">
                                     <UserAddedIcon />
                                     <span>{item.label}</span>
                                   </div>
-                                  <div className="flex -rotate-90 flex-col opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                  <div className="flex -rotate-90 flex-col opacity-0 transition-opacity duration-300 ">
                                     <DropdownArrow />
                                     <DropdownArrow />
                                   </div>
