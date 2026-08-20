@@ -151,7 +151,7 @@ export default function BookADemoForm({ onSubmitSuccess, className = "" }: Conta
           </Button>
           <p className="font-inter text-[13px] leading-[140%] text-slate-700 md:text-[14px]">
             By submitting this form, you confirm that you have read and understand thirdfactor's{" "}
-            <Link href="/privacy" className="text-slate-900 underline underline-offset-2 hover:text-blue-600">
+            <Link href="/privacy-policy" className="text-slate-900 underline underline-offset-2 hover:text-blue-600">
               Privacy Notice.
             </Link>
           </p>

@@ -86,10 +86,10 @@ const PixelTransition = forwardRef<PixelTransitionRef, PixelTransitionProps>(
 
           gsap.to(elements, {
             opacity: 1,
-            scale: 1.05,
+            scale: 1.0,
             duration: 0.2,
-            ease: "power1.inOut",
-            stagger: 0.0012, 
+            ease: "power3.inOut",
+            stagger: 0.001, 
             onComplete: resolve,
           });
         });
@@ -110,9 +110,9 @@ const PixelTransition = forwardRef<PixelTransitionRef, PixelTransitionProps>(
           gsap.to(elements, {
             opacity: 0,
             scale: 0,
-            duration: 0.2,
-            ease: "power2.inOut",
-            stagger: 0.0012,
+            duration: 0.4,
+            ease: "expo.inOut",
+            stagger: 0.001,
             onComplete: resolve,
           });
         });

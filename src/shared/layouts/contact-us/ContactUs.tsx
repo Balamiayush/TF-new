@@ -255,7 +255,7 @@ export default function ContactUs({
                   By submitting this form, you confirm that you have read{" "}
                   <br className="max-lg:hidden" /> and understand thirdfactor’s{" "}
                   <Link
-                    href="/privacy"
+                    href="/privacy-policy"
                     className="text-slate-900 underline underline-offset-2 hover:text-blue-600"
                   >
                     Privacy Notice.
