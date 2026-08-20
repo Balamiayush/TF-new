@@ -21,6 +21,7 @@ import PhoneIcon from "@/shared/icons/PhoneIcon";
 import HeroSectionDashboardCard from "./HeroSectionDashboardCard";
 import GitterImage from "@/shared/ui/GitterImg";
 import ContactUs from "@/shared/layouts/contact-us/ContactUs";
+import ContactUsButton from "@/shared/ui/buttons/ContactUsButton";
 
 export default function HeroSection() {
   const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
@@ -58,9 +59,6 @@ export default function HeroSection() {
     <div className="relative isolate min-h-screen w-full overflow-hidden bg-[#fafcff] pt-[120px] lg:pt-[168px]">
       <GitterImage />
 
-      <AnimatePresence>
-        {isContactOpen && <ContactUs onClose={() => setIsContactOpen(false)} />}
-      </AnimatePresence>
       <div className="absolute top-0 right-0 h-[200px] w-[2000px] rotate-10 bg-[#95C5FF]/64 blur-[500px] lg:hidden" />
       <div
         aria-hidden
@@ -105,7 +103,7 @@ export default function HeroSection() {
       <DitherControls value={dither} onChange={setDither} />
 
       <LayoutWrapper>
-          <div className="relative z-100">
+        <div className="relative z-100">
           <div className="hidden gap-1 md:flex">
             {labels.map((label, index) => (
               <div key={index} className="flex items-center gap-1">
@@ -117,7 +115,8 @@ export default function HeroSection() {
 
           <div className="mt-4 flex w-full flex-col items-start justify-between gap-6 md:flex-row md:items-center lg:flex-row">
             <h1 className="max-w-[680px] text-[32px] leading-[110%] font-medium tracking-[-0.6px] md:text-[40px] lg:text-[48px]">
-              AI native trust infrastructure <br className="lg:hidden block" /> for{" "}
+              AI native trust infrastructure <br className="block lg:hidden" />{" "}
+              for{" "}
               <span className="font-geist-pixel-circle vertical-bottom inline-grid overflow-hidden text-[#0088D4]">
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -165,13 +164,10 @@ export default function HeroSection() {
                   </div>
                 </Button>
 
-                <Button
-                  onClick={() => setIsContactOpen(true)}
-                  variant="contactus"
-                >
+                <ContactUsButton>
                   <PhoneIcon />
                   Contact us
-                </Button>
+                </ContactUsButton>
               </div>
             </div>
           </div>

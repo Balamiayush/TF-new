@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import Button from "@/shared/ui/buttons/Button";
 import ContactUs from "@/shared/layouts/contact-us/ContactUs";
 
@@ -30,14 +29,11 @@ export default function ContactUsButton({
         {children}
       </Button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <ContactUs
-            onClose={() => setIsOpen(false)}
-            onSuccess={onSuccess}
-          />
-        )}
-      </AnimatePresence>
+      <ContactUs
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onSuccess={onSuccess}
+      />
     </>
   );
 }

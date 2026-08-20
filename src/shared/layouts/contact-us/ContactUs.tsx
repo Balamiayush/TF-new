@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Modal from "react-modal";
+import { motion, AnimatePresence } from "framer-motion";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -11,13 +12,19 @@ import Button from "@/shared/ui/buttons/Button";
 import { DropDown } from "@/shared/ui/DropDown";
 import FormField from "@/shared/ui/FormField";
 import { contactSchema, ContactFormData } from "@/schemas/contact.schema";
-import useScrollLock from "@/hook/useScrollLock";
 import useFormSubmit from "@/hook/useFormSubmit";
 import FormStatusAlert from "@/shared/ui/FormStatusAlert";
 import { submitDemoRequest } from "@/services/contact.service";
+import useScrollLock from "@/hook/useScrollLock";
+
+
+if (typeof window !== "undefined") {
+  Modal.setAppElement("body");
+}
 
 interface ContactUsProps {
-  onClose?: () => void;
+  isOpen: boolean;
+  onClose: () => void;
   onSuccess?: () => void;
 }
 
@@ -61,8 +68,13 @@ const FieldLabel = ({ children }: { children: React.ReactNode }) => (
   </label>
 );
 
-export default function ContactUs({ onClose, onSuccess }: ContactUsProps) {
-  useScrollLock();
+export default function ContactUs({
+  isOpen,
+  onClose,
+  onSuccess,
+}: ContactUsProps) {
+  // Pass isOpen directly into your Lenis-aware scroll lock hook
+  useScrollLock(isOpen);
 
   const { status, handleSubmit: handleFormSubmit } =
     useFormSubmit<ContactFormData>({
@@ -90,157 +102,170 @@ export default function ContactUs({ onClose, onSuccess }: ContactUsProps) {
   });
 
   return (
-    <motion.div
-      variants={backdropVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      transition={{ duration: 0.2, ease: "easeInOut" }}
-      onClick={onClose}
-      className="fixed inset-0 z-[999] flex min-h-screen w-full items-center justify-center bg-black/20 backdrop-blur-[20px]"
-      data-lenis-prevent
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      ariaHideApp={false}
+      bodyOpenClassName="overflow-hidden"
+      className="mantine-Drawer-root flex h-screen w-full items-center justify-center border-none bg-transparent p-0 outline-none"
+      overlayClassName="fixed inset-0 z-[99999] bg-transparent"
     >
-      <motion.div
-        variants={modalVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        onClick={(e) => e.stopPropagation()}
-        className="flex w-full max-w-[774px] flex-col gap-[48px] bg-white p-8"
-      >
-        {/* Header */}
-        <div className="flex w-full items-center justify-between">
-          <p className="text-[34px] leading-[1.1] font-medium tracking-[-0.6px]">
-            Contact us
-          </p>
-          <button
-            type="button"
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            variants={backdropVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            transition={{ duration: 0.2, ease: "easeInOut" }}
             onClick={onClose}
-            className="cursor-pointer p-1 transition-opacity hover:opacity-70"
-            aria-label="Close modal"
+            className="fixed inset-0 z-[99999] flex h-screen w-full items-center justify-center bg-black/20 backdrop-blur-[20px]"
+            data-lenis-prevent
           >
-            <CloseIcon />
-          </button>
-        </div>
-
-        {/* Form Body */}
-        <form
-          id="contact-form"
-          onSubmit={handleSubmit(handleFormSubmit)}
-          className="flex w-full flex-col gap-4 md:gap-7"
-          noValidate
-        >
-          <FormField
-            label="Name"
-            type="text"
-            placeholder="Urja khadka"
-            error={errors.name?.message}
-            {...register("name")}
-          />
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <FormField
-              label="Work email"
-              type="email"
-              placeholder="example@thirdfactor.ai"
-              error={errors.workEmail?.message}
-              {...register("workEmail")}
-            />
-            <FormField
-              label="Company Name"
-              type="text"
-              placeholder="Company"
-              error={errors.companyName?.message}
-              {...register("companyName")}
-            />
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="flex flex-col gap-2">
-              <FieldLabel>Industry</FieldLabel>
-              <Controller
-                name="industry"
-                control={control}
-                render={({ field }) => (
-                  <DropDown
-                    label={field.value || "Please Select"}
-                    items={INDUSTRY_OPTIONS}
-                    onSelect={field.onChange}
-                    buttonClassName={DROPDOWN_BTN_CLASS}
-                    menuClassName={DROPDOWN_MENU_CLASS}
-                  />
-                )}
-              />
-              {errors.industry && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.industry.message}
-                </p>
-              )}
-            </div>
-
-            <FormField
-              label="Phone Number"
-              type="text"
-              placeholder="+977 - "
-              error={errors.phoneNumber?.message}
-              {...register("phoneNumber")}
-            />
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <FieldLabel>How did you hear about us?</FieldLabel>
-            <Controller
-              name="referralSource"
-              control={control}
-              render={({ field }) => (
-                <DropDown
-                  label={field.value || "Please Select"}
-                  items={REFERRAL_OPTIONS}
-                  onSelect={field.onChange}
-                  buttonClassName={DROPDOWN_BTN_CLASS}
-                  menuClassName={DROPDOWN_MENU_CLASS}
-                />
-              )}
-            />
-            {errors.referralSource && (
-              <p className="mt-1 text-sm text-red-500">
-                {errors.referralSource.message}
-              </p>
-            )}
-          </div>
-        </form>
-
-        {/* Footer Actions */}
-        <div className="flex flex-col gap-3">
-          <FormStatusAlert status={status} />
-
-          <Button
-            type="submit"
-            form="contact-form"
-            variant="primary"
-            disabled={isSubmitting || status.type === "success"}
-            className="h-[52px] w-full justify-center bg-[#0070F3] text-[16px] font-medium text-white hover:bg-blue-600 disabled:opacity-50"
-          >
-            {isSubmitting
-              ? "Submitting..."
-              : status.type === "success"
-                ? "Submitted"
-                : "Submit request"}
-          </Button>
-
-          <p className="font-inter text-[13px] leading-[140%] text-slate-700 md:text-[14px]">
-            By submitting this form, you confirm that you have read <br className="max-lg:hidden" /> and
-            understand thirdfactor’s{" "}
-            <Link
-              href="/privacy"
-              className="text-slate-900 underline underline-offset-2 hover:text-blue-600"
+            <motion.div
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="flex max-h-[90vh] w-full max-w-[774px] flex-col gap-[48px] overflow-y-auto bg-white p-8"
             >
-              Privacy Notice.
-            </Link>
-          </p>
-        </div>
-      </motion.div>
-    </motion.div>
+              {/* Header */}
+              <div className="flex w-full items-center justify-between">
+                <p className="text-[34px] leading-[1.1] font-medium tracking-[-0.6px]">
+                  Contact us
+                </p>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="cursor-pointer p-1 transition-opacity hover:opacity-70"
+                  aria-label="Close modal"
+                >
+                  <CloseIcon />
+                </button>
+              </div>
+
+              {/* Form Body */}
+              <form
+                id="contact-form"
+                onSubmit={handleSubmit(handleFormSubmit)}
+                className="flex w-full flex-col gap-4 md:gap-7"
+                noValidate
+              >
+                <FormField
+                  label="Name"
+                  type="text"
+                  placeholder="Urja khadka"
+                  error={errors.name?.message}
+                  {...register("name")}
+                />
+
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <FormField
+                    label="Work email"
+                    type="email"
+                    placeholder="example@thirdfactor.ai"
+                    error={errors.workEmail?.message}
+                    {...register("workEmail")}
+                  />
+                  <FormField
+                    label="Company Name"
+                    type="text"
+                    placeholder="Company"
+                    error={errors.companyName?.message}
+                    {...register("companyName")}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div className="flex flex-col gap-2">
+                    <FieldLabel>Industry</FieldLabel>
+                    <Controller
+                      name="industry"
+                      control={control}
+                      render={({ field }) => (
+                        <DropDown
+                          label={field.value || "Please Select"}
+                          items={INDUSTRY_OPTIONS}
+                          onSelect={field.onChange}
+                          buttonClassName={DROPDOWN_BTN_CLASS}
+                          menuClassName={DROPDOWN_MENU_CLASS}
+                        />
+                      )}
+                    />
+                    {errors.industry && (
+                      <p className="mt-1 text-sm text-red-500">
+                        {errors.industry.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <FormField
+                    label="Phone Number"
+                    type="text"
+                    placeholder="+977 - "
+                    error={errors.phoneNumber?.message}
+                    {...register("phoneNumber")}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <FieldLabel>How did you hear about us?</FieldLabel>
+                  <Controller
+                    name="referralSource"
+                    control={control}
+                    render={({ field }) => (
+                      <DropDown
+                        label={field.value || "Please Select"}
+                        items={REFERRAL_OPTIONS}
+                        onSelect={field.onChange}
+                        buttonClassName={DROPDOWN_BTN_CLASS}
+                        menuClassName={DROPDOWN_MENU_CLASS}
+                      />
+                    )}
+                  />
+                  {errors.referralSource && (
+                    <p className="mt-1 text-sm text-red-500">
+                      {errors.referralSource.message}
+                    </p>
+                  )}
+                </div>
+              </form>
+
+              {/* Footer Actions */}
+              <div className="flex flex-col gap-3">
+                <FormStatusAlert status={status} />
+
+                <Button
+                  type="submit"
+                  form="contact-form"
+                  variant="primary"
+                  disabled={isSubmitting || status.type === "success"}
+                  className="h-[52px] w-full justify-center bg-[#0070F3] text-[16px] font-medium text-white hover:bg-blue-600 disabled:opacity-50"
+                >
+                  {isSubmitting
+                    ? "Submitting..."
+                    : status.type === "success"
+                      ? "Submitted"
+                      : "Submit request"}
+                </Button>
+
+                <p className="font-inter text-[13px] leading-[140%] text-slate-700 md:text-[14px]">
+                  By submitting this form, you confirm that you have read{" "}
+                  <br className="max-lg:hidden" /> and understand thirdfactor’s{" "}
+                  <Link
+                    href="/privacy"
+                    className="text-slate-900 underline underline-offset-2 hover:text-blue-600"
+                  >
+                    Privacy Notice.
+                  </Link>
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </Modal>
   );
 }
