@@ -56,7 +56,7 @@ export function FingerprintCard() {
   const currentStep = STEPS[currentVideoIndex];
 
   return (
-    <div className="relative flex h-[420px] min-w-[328px] flex-col overflow-hidden rounded-2xl border-4 border-white/60 p-5 lg:h-[518px]">
+    <div className="relative flex h-[420px] min-w-[328px] flex-col overflow-hidden rounded-lg border-4 border-white/60 p-5 lg:h-[518px]">
       <Image
         alt="thirdfactor.ai background"
         fill
