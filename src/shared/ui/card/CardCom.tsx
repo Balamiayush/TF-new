@@ -38,7 +38,7 @@ export default function CardCom({ story, className = "" }: CardComProps) {
   return (
     <Link
       href={`/blog/${slugPath}`}
-      className={`group flex shrink-0 cursor-pointer snap-start flex-col justify-between rounded-[8px] border border-slate-200 bg-slate-50 p-2 transition-all duration-300 md:w-full hover:translate-y-[-2.5%] hover:bg-slate-100 ${className}`}
+      className={`group flex shrink-0 cursor-pointer snap-start flex-col justify-between rounded-[8px] border border-slate-200 bg-slate-50 p-2 transition-all duration-300  hover:translate-y-[-2.5%] hover:bg-slate-100 ${className}`}
     >
       <div>
         <div className="relative h-[256.5px] w-full overflow-hidden rounded-[6px] border border-black/5">

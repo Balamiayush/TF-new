@@ -42,7 +42,7 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0  top-[72px] z-[9998] backdrop-blur-3xl  "
+            className="fixed inset-0 top-[3.75vw] z-[9998] backdrop-blur-3xl"
             onClick={onClose}
             data-lenis-prevent
           />
@@ -52,46 +52,45 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="no-scrollbar absolute top-full right-0 left-0 z-[9999] mx-auto max-h-[calc(100vh-90px)] overflow-y-auto bg-white pt-3 pb-8 rounded-[0px_0px_8px_8px] "
+            className="no-scrollbar absolute top-full right-0 left-0 z-[9999] mx-auto max-h-[calc(100vh-4.69vw)] overflow-y-auto bg-white pt-[0.78vw] pb-[2.08vw] rounded-[0px_0px_8px_8px]"
             data-lenis-prevent
           >
             <LayoutWrapper>
-              <div className="flex gap-4">
-                <div className="flex w-full items-stretch justify-between gap-8 rounded-lg border border-slate-200/80 bg-[#F4F7FC] p-6 lg:p-8">
+              <div className="flex gap-[1.04vw]">
+                <div className="flex w-full items-stretch justify-between gap-[2.08vw] rounded-lg border border-slate-200/80 bg-[#F4F7FC] p-[1.56vw] lg:p-[2.08vw]">
                   {/* Left Section */}
-                  <div className="flex flex-1 flex-col gap-8">
+                  <div className="flex flex-1 flex-col gap-[2.08vw]">
                     {/* Heading */}
-                    <h3 className="max-w-[340px] text-[32px] leading-[1.15] font-medium tracking-[-0.3px] text-slate-900 lg:text-[36px]">
+                    <h3 className=" text-[1.67vw] leading-[1.15] font-medium tracking-[-0.02vw] text-slate-900 lg:text-[1.88vw]">
                       {productsMenuData.heading}
                     </h3>
 
                     {/* 2x2 Grid Layout for Categories */}
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:gap-3">
+                    <div className="grid grid-cols-1 gap-[0.78vw] sm:grid-cols-2 lg:gap-[0.78vw]">
                       {productsMenuData.categories.map((category, idx) => (
                         <div
                           key={category.title || idx}
-                          className="flex flex-col rounded-md border border-slate-200/60 bg-white p-3"
+                          className="flex flex-col rounded-md border border-slate-200/60 bg-white p-[0.78vw]"
                         >
                           {/* Category Header */}
-                          <div className="mb-1.5 border-b border-slate-100 pb-2">
-                            <span className="text-[14px] leading-[100%] tracking-wide text-slate-400">
+                          <div className="mb-[0.39vw] border-b border-slate-100 pb-[0.52vw]">
+                            <span className="text-[0.73vw] leading-[100%] tracking-wide text-slate-400">
                               {category.title}
                             </span>
                           </div>
 
-                          <ul className="flex flex-col gap-1">
+                          <ul className="flex flex-col gap-[0.26vw]">
                             {category.items.map((item, itemIdx) => (
                               <li key={`${idx}-${itemIdx}`}>
                                 <Link
-                                  href={'/'}
-                                  // onClick={onClose}
-                                  className="group flex items-center cursor-not-allowed justify-between rounded-sm p-2 text-[14px] leading-[130%] duration-300 ease-in-out "
+                                  href={"/"}
+                                  className="group flex items-center cursor-not-allowed justify-between rounded-sm p-[0.52vw] text-[0.73vw] leading-[130%] duration-300 ease-in-out"
                                 >
-                                  <div className="flex items-center gap-2.5">
+                                  <div className="flex items-center gap-[0.65vw]">
                                     <UserAddedIcon />
                                     <span>{item.label}</span>
                                   </div>
-                                  <div className="flex -rotate-90 flex-col opacity-0 transition-opacity duration-300 ">
+                                  <div className="flex -rotate-90 flex-col opacity-0 transition-opacity duration-300">
                                     <DropdownArrow />
                                     <DropdownArrow />
                                   </div>
@@ -104,13 +103,14 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                     </div>
                   </div>
                 </div>
+
                 <div
                   onClick={(e) => {
                     e.stopPropagation();
                     onClose();
                     router.push("/platform");
                   }}
-                  className="relative flex h-[690px] w-[516px] shrink-0 flex-col justify-between overflow-hidden rounded-xl p-8 text-white shadow-lg cursor-pointer"
+                  className="relative flex h-[35.94vw] w-[26.88vw] shrink-0 flex-col justify-between overflow-hidden rounded-xl p-[2.08vw] text-white shadow-lg cursor-pointer"
                   style={{
                     background:
                       "linear-gradient(179.91deg, #3B82F6 0.08%, #60A5FA 54.75%, #2563EB 97.46%, #2563EB 125.56%)",
@@ -188,57 +188,39 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                     </svg>
                   </div>
 
-                  <div className="relative z-10 flex flex-col gap-6">
-                    <span className="text-alpha-dark-800 text-[16px] leading-[1]">
+                  <div className="relative z-10 flex flex-col gap-[1.56vw]">
+                    <span className="text-alpha-dark-800 text-[0.83vw] leading-[1]">
                       Platform
                     </span>
-                    <div className="flex flex-col gap-[24px]">
-                      <h4 className="font-geist-pixel-circle text-[26px] leading-[110%] tracking-[-0.3px]">
+                    <div className="flex flex-col gap-[1.25vw]">
+                      <h4 className="font-geist-pixel-circle text-[1.35vw] leading-[110%] tracking-[-0.02vw]">
                         Agentic risk platform to <br /> fight financial crime
                       </h4>
 
-                      <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-[14px] font-normal text-blue-50/90">
-                        <Link
-                          href="#"
-                          className="transition-colors hover:text-white"
-                        >
+                      <div className="grid grid-cols-2 gap-x-[1.56vw] gap-y-[0.52vw] text-[0.73vw] font-normal text-blue-50/90">
+                        <Link href="#" className="transition-colors hover:text-white">
                           Agentic AML Ops
                         </Link>
-                        <Link
-                          href="#"
-                          className="transition-colors hover:text-white"
-                        >
+                        <Link href="#" className="transition-colors hover:text-white">
                           Transaction Monitoring
                         </Link>
-                        <Link
-                          href="#"
-                          className="transition-colors hover:text-white"
-                        >
+                        <Link href="#" className="transition-colors hover:text-white">
                           Customer Risk Rating
                         </Link>
-                        <Link
-                          href="#"
-                          className="transition-colors hover:text-white"
-                        >
+                        <Link href="#" className="transition-colors hover:text-white">
                           Sanctions Screening
                         </Link>
-                        <Link
-                          href="#"
-                          className="transition-colors hover:text-white"
-                        >
+                        <Link href="#" className="transition-colors hover:text-white">
                           Case Management
                         </Link>
-                        <Link
-                          href="#"
-                          className="transition-colors hover:text-white"
-                        >
+                        <Link href="#" className="transition-colors hover:text-white">
                           Sponsor Monitor
                         </Link>
                       </div>
                     </div>
                   </div>
 
-                    <div className="absolute -right-2 -bottom-2 left-6 h-[270px] overflow-hidden rounded-tl-2xl border-t border-l border-white/20 bg-[#002B5B] p-3 shadow-2xl">
+                  <div className="absolute -right-[0.52vw] -bottom-[0.52vw] left-[1.56vw] h-[14.06vw] overflow-hidden rounded-tl-2xl border-t border-l border-white/20 bg-[#002B5B] p-[0.78vw] shadow-2xl">
                     <div className="h-full w-full overflow-hidden rounded-tl-xl bg-[#F8FAFC]">
                       <Image
                         src="https://i.pinimg.com/1200x/50/6f/a8/506fa8197b20a1fa08369a463f973282.jpg"

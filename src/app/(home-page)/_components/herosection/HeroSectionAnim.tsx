@@ -10,11 +10,11 @@ interface VideoStep {
 
 const STEPS: VideoStep[] = [
   {
-    src: "/images/hero/hero-section-video/1.webm",
+    src: "/images/hero/hero-section-video/face-scan.webm",
     title: "Live Face Verification",
   },
   {
-    src: "/images/hero/hero-section-video/liveness-verification.webm",
+    src: "/images/hero/hero-section-video/ocr.webm",
     title: "Document Upload",
   },
   {

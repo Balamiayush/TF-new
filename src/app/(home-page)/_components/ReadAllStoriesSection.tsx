@@ -1,6 +1,5 @@
 "use client";
 
-
 import Image from "next/image";
 import LayoutWrapper from "@/shared/layouts/wrapper/LayoutWrapper";
 import Button from "@/shared/ui/buttons/Button";
@@ -21,7 +20,7 @@ const storiesData = [
     date: "JUL 7, 2026",
     title:
       "Fraudology: Closing the chargeback representment gap between issuers and",
- 
+
     imageSrc:
       "https://images.pexels.com/photos/4427925/pexels-photo-4427925.jpeg",
   },
@@ -50,7 +49,7 @@ export default function ReadAllStories() {
   
   return (
     <section className="relative w-full bg-[#EDF4FF47] lg:py-30 py-12 overflow-hidden ">
-  <div
+      <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[820px] lg:block"
       >
@@ -100,7 +99,7 @@ export default function ReadAllStories() {
         src={"/gitter.png"}
       />
       <LayoutWrapper className=" max-xl:pl-8 max-md:pl-4 pr-0! relative z-100">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+        <div className="flex flex-col items-start justify-between gap-6 lg:flex-row md:items-center">
           <h2 className="font-geist max-w-[300px] text-[26px] font-medium leading-[120%] tracking-[0px] text-[#1A1A1A] lg:max-w-[500px] lg:text-[40px]">
             Get insights, tips, and updates from our team.
           </h2>
@@ -108,17 +107,17 @@ export default function ReadAllStories() {
           <Button href="/blog" variant="secondary" className=" max-lg:hidden">Read all stories</Button>
         </div>
 
-        <div className=" lg:mt-21 mt-8 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [scrollbar-width:none] md:grid md:grid-cols-2 md:overflow-visible md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
+        <div className="lg:mt-21 mt-8 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [scrollbar-width:none] lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
           {storiesData.map((story) => (
             <CardCom
               key={story.id}
               story={story}
-              className=""
+              className="max-lg:w-[320px] max-lg:shrink-0 max-lg:snap-start"
             />
           ))}
         </div>
-         <Button href="/blog" variant="secondary" className="lg:hidden! mt-8">Read all stories</Button>
+          <Button href="/blog" variant="secondary" className="lg:hidden! mt-8">Read all stories</Button>
       </LayoutWrapper>
     </section>
   );
-}
+}                             

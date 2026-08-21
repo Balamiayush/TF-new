@@ -10,10 +10,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 function FeatureItems() {
   return (
-
     <div
       id="img-details"
-      className="flex lg:flex-row  flex-col  w-full justify-between lg:gap-0 gap-5 pt-8 opacity-0 max-md:px-4 "
+      className="flex lg:flex-row flex-col w-full justify-between lg:gap-0 gap-5 pt-8 opacity-0 md:px-6 lg:px-0 max-md:px-4"
     >
       <div className="flex flex-col items-start gap-2">
         <p className="text-left text-[16px] text-[#0F172A] lg:text-[18px] leading-[110%]">
@@ -42,7 +41,6 @@ function FeatureItems() {
           devices.
         </p>
       </div>
-     
     </div>
   );
 }
@@ -67,11 +65,10 @@ export default function ScrollAnimationSection() {
           end: "+=250%",
           pin: true,
           scrub: 1,
-          anticipatePin: 1, // Prevents micro-stuttering on pinned entrance
+          anticipatePin: 1,
         },
       });
 
-      // Cache center bounds to prevent layout thrashing on scrub
       const getContainerCenter = () => {
         const rect = containerEl.getBoundingClientRect();
         return {
@@ -80,7 +77,6 @@ export default function ScrollAnimationSection() {
         };
       };
 
-      // Step 1: Scale down cards & converge to screen center
       tl.to(
         cards,
         {
@@ -103,8 +99,6 @@ export default function ScrollAnimationSection() {
         },
         "a",
       )
-
-        // Step 2: Background color transition & center graphic scale down
         .to(
           containerEl,
           {
@@ -130,7 +124,6 @@ export default function ScrollAnimationSection() {
           },
           "<",
         )
-
         .fromTo(
           textContentRef.current,
           {
@@ -158,28 +151,27 @@ export default function ScrollAnimationSection() {
     <div
       ref={containerRef}
       id="ScrollAnimPlatformMain"
-      className="relative  h-screen lg:min-h-[120vh] 2xl:min-h-[110vh] w-full overflow-hidden bg-white lg:pb-[84px] py-[48px]"
+      className="relative min-h-screen h-auto w-full overflow-hidden bg-white py-12 lg:py-16 flex flex-col justify-center items-center"
     >
-       <div
-          ref={centerLogoRef}
-          className="absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
-        >
-          <Image
-            src="https://res.cloudinary.com/dfajjqglx/image/upload/v1786967308/svgtf_t3tib8.svg"
-            alt="Platform Central Graphic"
-            width={120}
-            height={120}
-            className="max-lg:w-[50px]"
-            priority
-          />
-        </div>
+      <div
+        ref={centerLogoRef}
+        className="absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      >
+        <Image
+          src="https://res.cloudinary.com/dfajjqglx/image/upload/v1786967308/svgtf_t3tib8.svg"
+          alt="Platform Central Graphic"
+          width={120}
+          height={120}
+          className="max-lg:w-[50px]"
+          priority
+        />
+      </div>
+
       <div
         id="max-width-container"
-        className="relative mx-auto flex  h-screen lg:min-h-[100vh] w-full items-center justify-center transition-all duration-300 lg:max-w-[1000px]"
+        className="relative mx-auto flex h-auto min-h-fit w-full items-center justify-center transition-all duration-300 lg:max-w-[1000px]"
       >
-       
-
-        <div className="boxes absolute top-[20%] left-5 z-10 lg:left-10">
+        <div className="boxes absolute top-[10%] left-5 z-10 lg:left-10">
           <div className="box w-[150px] overflow-hidden rounded-lg lg:w-[283px]">
             <div className="Img relative h-[100px] w-full lg:h-[187px]">
               <Image
@@ -195,7 +187,7 @@ export default function ScrollAnimationSection() {
           </div>
         </div>
 
-        <div className="boxes absolute top-[15%] right-10 z-10">
+        <div className="boxes absolute top-[5%] right-10 z-10">
           <div className="box w-[150px] overflow-hidden rounded-lg lg:w-[283px]">
             <div className="Img relative h-[100px] w-full lg:h-[187px]">
               <Image
@@ -211,7 +203,7 @@ export default function ScrollAnimationSection() {
           </div>
         </div>
 
-        <div className="boxes absolute bottom-[20%] left-10 z-10">
+        <div className="boxes absolute bottom-[10%] left-10 z-10">
           <div className="box w-[150px] overflow-hidden rounded-lg lg:w-[283px]">
             <div className="Img relative h-[100px] w-full lg:h-[187px]">
               <Image
@@ -227,7 +219,7 @@ export default function ScrollAnimationSection() {
           </div>
         </div>
 
-        <div className="boxes absolute right-10 bottom-[18%] z-10">
+        <div className="boxes absolute right-10 bottom-[8%] z-10">
           <div className="box w-[150px] overflow-hidden rounded-lg lg:w-[283px]">
             <div className="Img relative h-[100px] w-full lg:h-[187px]">
               <Image
@@ -243,22 +235,23 @@ export default function ScrollAnimationSection() {
           </div>
         </div>
 
-        <div ref={textContentRef} className="z-30 w-full text-center opacity-0">
+        <div ref={textContentRef} className="z-30 w-full text-center opacity-0 py-4">
           <h2 className="text-3xl leading-[100%] font-semibold tracking-[-0.3px] text-[#3B82F6] md:text-5xl lg:text-[64px]">
             Meet Obsidian
           </h2>
-          <p className="mt-3 mb-8 text-sm leading-[120%] text-slate-700 md:mt-4 md:mb-12 md:text-lg lg:mb-[64px] lg:text-[16px]">
+          <p className="mt-3 mb-6 text-sm leading-[120%] text-slate-700 md:mt-4 md:mb-8 md:text-lg lg:text-[16px]">
             One trust platform makes every digital interaction trustworthy.
           </p>
+          
           <div
             ref={imageContainerRef}
-            className="relative mx-auto aspect-square h-[220px] w-full max-lg:max-w-[358px] overflow-clip  rounded-lg   md:h-[450px] lg:h-[640px]"
+            className="relative mx-auto w-full max-w-[358px] md:max-w-[700px] lg:max-w-[900px] aspect-[16/9] overflow-hidden rounded-lg"
           >
             <Image
               alt="Obsidian Platform Dashboard"
               fill
               priority
-              className="object-contain w-full h-auto  "
+              className="object-cover w-full h-full"
               src="https://i.pinimg.com/1200x/c3/7c/8d/c37c8d887c04bce699b62739ed1d18f1.jpg"
             />
           </div>
