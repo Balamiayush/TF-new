@@ -4,7 +4,7 @@ export const navLinks: NavItem[] = [
   {
     id: "products",
     label: "Products",
-    href: "/products",
+    // href: "/products",
     hasDropdown: true,
     newTab:false,
   },
@@ -22,5 +22,12 @@ export const navLinks: NavItem[] = [
     label: "About",
     href: "/about",
     newTab:false,
+  },
+  {
+    id: "resources",
+    label: "Resources",
+    hasDropdown: true,
+    newTab:false,
+    
   },
 ];

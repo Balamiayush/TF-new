@@ -240,58 +240,68 @@ export function DashboardTab({
 
 export function TabIconDashboard() {
   return (
-    <svg viewBox="0 0 14 14" fill="none" className="h-full w-full" aria-hidden>
-      <rect
-        x="1.5"
-        y="1.5"
-        width="11"
-        height="11"
-        rx="1"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
-      <path
-        d="M7 1.5V12.5M1.5 7H12.5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
-    </svg>
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    fill="none"
+    viewBox="0 0 14 14"
+  >
+    <path
+      fill="#0070AE"
+      d="M11.813 2.188h.75a.75.75 0 0 0-.75-.75zm0 9.625v.75a.75.75 0 0 0 .75-.75zm-9.625 0h-.75c0 .414.335.75.75.75zm0-9.625v-.75a.75.75 0 0 0-.75.75zm9.625 0h-.75v9.625h1.5V2.188zm0 9.625v-.75H2.188v1.5h9.625zm-9.625 0h.75V2.188h-1.5v9.625zm0-9.625v.75h9.625v-1.5H2.188z"
+    ></path>
+    <path
+      fill="#0070AE"
+      d="M7 7.563h-.75v1.5H7v-1.5m4.813 1.5h.75v-1.5h-.75v1.5M7 8.313v.75h4.813v-1.5H7zM7 6.438h.75v-1.5H7v1.5m-4.812-1.5h-.75v1.5h.75v-1.5M7 5.688v-.75H2.188v1.5H7z"
+    ></path>
+    <path
+      fill="#0070AE"
+      d="M6.25 11.813v.75h1.5v-.75h-1.5m1.5-9.625v-.75h-1.5v.75h1.5m-.75 0h-.75v9.625h1.5V2.188z"
+    ></path>
+  </svg>
   );
 }
 
 export function TabIconTrending() {
   return (
-    <svg viewBox="0 0 14 14" fill="none" className="h-full w-full" aria-hidden>
-      <path
-        d="M1.5 10L5 6.5L7.5 9L12.5 4M12.5 4H9M12.5 4V7.5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    fill="none"
+    viewBox="0 0 14 14"
+  >
+    <path
+      stroke="#1A1A1A"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeOpacity="0.7"
+      strokeWidth="1.5"
+      d="m1.604 7.602 1.313-1.769 1.75 2.917 2.916-6.562 2.917 9.625 1.896-3.61"
+    ></path>
+  </svg>
   );
 }
 
 export function TabIconVideo() {
   return (
-    <svg viewBox="0 0 14 14" fill="none" className="h-full w-full" aria-hidden>
-      <rect
-        x="1.5"
-        y="3"
-        width="8"
-        height="8"
-        rx="1"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
-      <path
-        d="M9.5 6L12.5 4V10L9.5 8V6Z"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinejoin="round"
-      />
-    </svg>
+     <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    fill="none"
+    viewBox="0 0 14 14"
+  >
+    <path
+      stroke="#1A1A1A"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeOpacity="0.7"
+      strokeWidth="1.5"
+      d="M2.77 2.188h8.46M6.707 7.729h.438m-.438 0v-.146m0 .146v.146m-5.104-4.23h10.792v8.168H1.604zm4.667 2.626v2.917l1.896-1.459z"
+    ></path>
+  </svg>
   );
 }
 

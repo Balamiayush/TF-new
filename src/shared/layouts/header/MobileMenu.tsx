@@ -8,6 +8,7 @@ import { DropdownArrow } from "@/shared/icons/DropdownArrow";
 import UserAddedIcon from "@/shared/icons/UserAddedIcon";
 import Button from "@/shared/ui/buttons/Button";
 import { productsMenuData } from "@/shared/data/products-menu";
+import { RESOURCE_ITEMS } from "./ResourcesDropdown";
 
 interface NavLinkItem {
   id: string | number;
@@ -104,7 +105,11 @@ export const MobileMenu = React.memo(function MobileMenu({
               {links.map((link) => {
                 const isExpanded = expandedDropdown === link.id;
 
-                if (link.hasDropdown || link.id === "products") {
+                if (
+                  link.hasDropdown ||
+                  link.id === "products" ||
+                  link.id === "resources"
+                ) {
                   return (
                     <div
                       key={link.id}
@@ -138,141 +143,170 @@ export const MobileMenu = React.memo(function MobileMenu({
                             className="overflow-hidden"
                           >
                             <div className="flex flex-col gap-3 pt-1 pb-3">
-                              {/* Product Categories */}
-                              {productsMenuData.categories.map(
-                                (category, idx) => {
-                                  const isCategoryOpen =
-                                    expandedCategory === idx;
+                              {/* Products Dropdown Section */}
+                              {link.id === "products" && (
+                                <>
+                                  {/* Product Categories */}
+                                  {productsMenuData.categories.map(
+                                    (category, idx) => {
+                                      const isCategoryOpen =
+                                        expandedCategory === idx;
 
-                                  return (
-                                    <div
-                                      key={category.title || idx}
-                                      className="flex flex-col rounded-md border border-slate-200 bg-white p-3"
-                                    >
-                                      {/* Category Header */}
-                                      <button
-                                        type="button"
-                                        onClick={() => toggleCategory(idx)}
-                                        className="flex w-full items-center justify-between text-left"
-                                      >
-                                        <span className="text-alpha-light-800 text-[14px] font-medium">
-                                          {category.title}
-                                        </span>
-                                      </button>
-
-                                      {/* Sub-items List */}
-                                      <AnimatePresence initial={false}>
-                                        {isCategoryOpen && (
-                                          <motion.div
-                                            initial={{ opacity: 0, height: 0 }}
-                                            animate={{
-                                              opacity: 1,
-                                              height: "auto",
-                                            }}
-                                            exit={{ opacity: 0, height: 0 }}
-                                            transition={{
-                                              duration: 0.25,
-                                              ease: [0.16, 1, 0.3, 1],
-                                            }}
-                                            className="overflow-hidden"
+                                      return (
+                                        <div
+                                          key={category.title || idx}
+                                          className="flex flex-col rounded-md border border-slate-200 bg-white p-3"
+                                        >
+                                          {/* Category Header */}
+                                          <button
+                                            type="button"
+                                            onClick={() => toggleCategory(idx)}
+                                            className="flex w-full items-center justify-between text-left"
                                           >
-                                            <div className="mt-2 flex flex-col gap-1 border-t border-[#1A1A1A17] pt-2">
-                                              {category.items.map(
-                                                (item, itemIdx) => (
-                                                  <Link
-                                                    key={`${idx}-${item.href || itemIdx}`}
-                                                    href={item.href}
-                                                    onClick={onClose}
-                                                    className="group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-slate-50"
-                                                  >
-                                                    <div className="flex items-center gap-2.5">
-                                                      <UserAddedIcon />
-                                                      <span className="text-[14px] font-medium text-[#1A1A1ABF]">
-                                                        {item.label}
-                                                      </span>
-                                                    </div>
-                                                    <div className="flex -rotate-90 flex-col text-slate-400 opacity-0 transition-opacity group-hover:opacity-100">
-                                                      <DropdownArrow />
-                                                    </div>
-                                                  </Link>
-                                                ),
-                                              )}
-                                            </div>
-                                          </motion.div>
-                                        )}
-                                      </AnimatePresence>
+                                            <span className="text-alpha-light-800 text-[14px] font-medium">
+                                              {category.title}
+                                            </span>
+                                          </button>
+
+                                          {/* Sub-items List */}
+                                          <AnimatePresence initial={false}>
+                                            {isCategoryOpen && (
+                                              <motion.div
+                                                initial={{
+                                                  opacity: 0,
+                                                  height: 0,
+                                                }}
+                                                animate={{
+                                                  opacity: 1,
+                                                  height: "auto",
+                                                }}
+                                                exit={{ opacity: 0, height: 0 }}
+                                                transition={{
+                                                  duration: 0.25,
+                                                  ease: [0.16, 1, 0.3, 1],
+                                                }}
+                                                className="overflow-hidden"
+                                              >
+                                                <div className="mt-2 flex flex-col gap-1 border-t border-[#1A1A1A17] pt-2">
+                                                  {category.items.map(
+                                                    (item, itemIdx) => (
+                                                      <Link
+                                                        key={`${idx}-${item.href || itemIdx}`}
+                                                        href={item.href}
+                                                        onClick={onClose}
+                                                        className="group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-slate-50"
+                                                      >
+                                                        <div className="flex items-center gap-2.5">
+                                                          <UserAddedIcon />
+                                                          <span className="text-[14px] font-medium text-[#1A1A1ABF]">
+                                                            {item.label}
+                                                          </span>
+                                                        </div>
+                                                        <div className="flex -rotate-90 flex-col text-slate-400 opacity-0 transition-opacity group-hover:opacity-100">
+                                                          <DropdownArrow />
+                                                        </div>
+                                                      </Link>
+                                                    ),
+                                                  )}
+                                                </div>
+                                              </motion.div>
+                                            )}
+                                          </AnimatePresence>
+                                        </div>
+                                      );
+                                    },
+                                  )}
+
+                                  {/* Featured Blue Promo Banner */}
+                                  <div
+                                    className="relative mt-2 flex flex-col justify-between overflow-hidden rounded-xl p-6 text-white"
+                                    style={{
+                                      background:
+                                        "linear-gradient(179.91deg, #3B82F6 0.08%, #60A5FA 54.75%, #2563EB 97.46%)",
+                                    }}
+                                  >
+                                    <Link
+                                      href={"/platform"}
+                                      onClick={onClose}
+                                      className="group block"
+                                    >
+                                      <span className="text-[14px] font-medium text-blue-100/80 group-hover:underline">
+                                        Platform
+                                      </span>
+                                      <h4 className="font-geist-pixel-circle mt-3 text-[22px] leading-[1.2] font-semibold tracking-tight group-hover:underline">
+                                        Agentic risk platform to <br /> fight
+                                        financial crime
+                                      </h4>
+                                    </Link>
+
+                                    <div className="mt-5 grid grid-cols-1 gap-2 text-[14px] text-blue-50/90">
+                                      <Link
+                                        href="#"
+                                        onClick={onClose}
+                                        className="hover:underline"
+                                      >
+                                        Agentic AML Ops
+                                      </Link>
+                                      <Link
+                                        href="#"
+                                        onClick={onClose}
+                                        className="hover:underline"
+                                      >
+                                        Transaction Monitoring
+                                      </Link>
+                                      <Link
+                                        href="#"
+                                        onClick={onClose}
+                                        className="hover:underline"
+                                      >
+                                        Customer Risk Rating
+                                      </Link>
+                                      <Link
+                                        href="#"
+                                        onClick={onClose}
+                                        className="hover:underline"
+                                      >
+                                        Sanctions Screening
+                                      </Link>
+                                      <Link
+                                        href="#"
+                                        onClick={onClose}
+                                        className="hover:underline"
+                                      >
+                                        Case Management
+                                      </Link>
+                                      <Link
+                                        href="#"
+                                        onClick={onClose}
+                                        className="hover:underline"
+                                      >
+                                        Sponsor Monitor
+                                      </Link>
                                     </div>
-                                  );
-                                },
+                                  </div>
+                                </>
                               )}
 
-                              {/* Featured Blue Promo Banner */}
-                              <div
-                                className="relative mt-2 flex flex-col justify-between overflow-hidden rounded-xl p-6 text-white"
-                                style={{
-                                  background:
-                                    "linear-gradient(179.91deg, #3B82F6 0.08%, #60A5FA 54.75%, #2563EB 97.46%)",
-                                }}
-                              >
-                                <Link
-                                  href={"/platform"}
-                                  onClick={onClose}
-                                  className="group block"
-                                >
-                                  <span className="text-[14px] font-medium text-blue-100/80 group-hover:underline">
-                                    Platform
-                                  </span>
-                                  <h4 className="font-geist-pixel-circle mt-3 text-[22px] leading-[1.2] font-semibold tracking-tight group-hover:underline">
-                                    Agentic risk platform to <br /> fight
-                                    financial crime
-                                  </h4>
-                                </Link>
-
-                                <div className="mt-5 grid grid-cols-1 gap-2 text-[14px] text-blue-50/90">
-                                  <Link
-                                    href="#"
-                                    onClick={onClose}
-                                    className="hover:underline"
-                                  >
-                                    Agentic AML Ops
-                                  </Link>
-                                  <Link
-                                    href="#"
-                                    onClick={onClose}
-                                    className="hover:underline"
-                                  >
-                                    Transaction Monitoring
-                                  </Link>
-                                  <Link
-                                    href="#"
-                                    onClick={onClose}
-                                    className="hover:underline"
-                                  >
-                                    Customer Risk Rating
-                                  </Link>
-                                  <Link
-                                    href="#"
-                                    onClick={onClose}
-                                    className="hover:underline"
-                                  >
-                                    Sanctions Screening
-                                  </Link>
-                                  <Link
-                                    href="#"
-                                    onClick={onClose}
-                                    className="hover:underline"
-                                  >
-                                    Case Management
-                                  </Link>
-                                  <Link
-                                    href="#"
-                                    onClick={onClose}
-                                    className="hover:underline"
-                                  >
-                                    Sponsor Monitor
-                                  </Link>
+                              {/* Resources Dropdown Section */}
+                              {link.id === "resources" && (
+                                <div className="grid grid-cols-1 gap-2">
+                                  {RESOURCE_ITEMS.map((item) => (
+                                    <Link
+                                      key={item.id}
+                                      href={`/${item.id}`}
+                                      onClick={onClose}
+                                      className="flex flex-col gap-1 rounded-lg border border-slate-200 bg-slate-50 p-3"
+                                    >
+                                      <span className="text-[15px] font-medium text-slate-900">
+                                        {item.title}
+                                      </span>
+                                      <span className="text-[13px] text-slate-600">
+                                        {item.description}
+                                      </span>
+                                    </Link>
+                                  ))}
                                 </div>
-                              </div>
+                              )}
                             </div>
                           </motion.div>
                         )}
@@ -293,15 +327,9 @@ export const MobileMenu = React.memo(function MobileMenu({
                 );
               })}
               <div className="flex flex-col gap-2.5 bg-white pt-3 pb-2">
-                {/* <Button variant="secondary">Log in</Button> */}
                 <Button link="/book-a-demo">Book a demo</Button>
               </div>
             </div>
-
-            {/* <div className=" flex flex-col gap-2.5 bg-white pt-3 pb-2">
-              <Button variant="secondary">Log in</Button>
-              <Button link="book-a-demo">Book a demo</Button>
-            </div> */}
           </motion.div>
         </>
       )}

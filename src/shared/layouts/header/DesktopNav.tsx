@@ -15,15 +15,19 @@ interface NavLinkItem {
 interface DesktopNavProps {
   links: NavLinkItem[];
   onProductsClick: () => void;
+  onResourcesClick: () => void;
   onOtherClick: () => void;
   isProductsOpen?: boolean;
+  isResourcesOpen?: boolean;
 }
 
 function DesktopNavComponent({
   links,
   onProductsClick,
+  onResourcesClick,
   onOtherClick,
   isProductsOpen,
+  isResourcesOpen,
 }: DesktopNavProps) {
   const handleProductsClick = useCallback(
     (e: React.MouseEvent) => {
@@ -31,6 +35,14 @@ function DesktopNavComponent({
       onProductsClick();
     },
     [onProductsClick],
+  );
+
+  const handleResourcesClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onResourcesClick();
+    },
+    [onResourcesClick],
   );
 
   return (
@@ -48,6 +60,25 @@ function DesktopNavComponent({
                 <DropdownArrow
                   className={`transition-transform duration-300 ${
                     isProductsOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </span>
+            </li>
+          );
+        }
+
+        if (link.id === "resources") {
+          return (
+            <li
+              key={link.id}
+              onClick={handleResourcesClick}
+              className={`cursor-pointer rounded-sm px-3 py-2 ${isResourcesOpen ? "bg-[#F1F5F9]" : ""}`}
+            >
+              <span className="group/resources flex items-center gap-1.5 text-sm font-medium text-slate-800 transition-colors hover:text-blue-600">
+                {link.label}
+                <DropdownArrow
+                  className={`transition-transform duration-300 ${
+                    isResourcesOpen ? "rotate-180" : ""
                   }`}
                 />
               </span>
