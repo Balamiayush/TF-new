@@ -96,8 +96,7 @@ export default function PlatFormHeroSection() {
             <div className="relative min-h-[360px] w-full flex flex-1 rounded-xl bg-slate-50 md:col-span-8 md:min-h-[460px]">
             </div>
 
-            {/* Right Side Image Card */}
-            <div className="relative min-h-[360px] w-full overflow-hidden rounded-xl md:col-span-4 md:min-h-[506px] lg:max-w-[320px]">
+          <div className="relative min-h-[360px] w-full overflow-hidden rounded-xl md:col-span-4 md:min-h-[506px] lg:max-w-[320px]  border-6 border-alpha-dark-500 ">
               <Image
                 alt="Verification Platform Preview"
                 fill

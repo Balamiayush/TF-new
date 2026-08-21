@@ -37,13 +37,12 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop Overlay with Blur Effect */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-[72px] z-[9998] backdrop-blur-3xl"
+            className="fixed inset-0 top-[72px] z-[9998] "
             onClick={onClose}
             data-lenis-prevent
           />
@@ -53,12 +52,12 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="no-scrollbar absolute top-full right-0 left-0 z-[9999] mx-auto max-h-[calc(100vh-90px)] rounded-[0px_0px_8px_8px] bg-white"
+            className="no-scrollbar absolute top-full right-0 left-0 z-[9999] mx-auto max-h-[calc(100vh-90px)] rounded-[0px_0px_8px_8px] bg-white pb-[1vw]"
             data-lenis-prevent
           >
             <LayoutWrapper>
               <div className="flex gap-4">
-                <div className="flex w-full items-stretch justify-between gap-[1.666vw] rounded-[0.416vw] border border-slate-200/80 bg-[#F4F7FC] p-[1.25vw]">
+                <div className="flex w-full items-stretch justify-between gap-[1.666vw] rounded-[0.416vw] border border-slate-200/80 bg-[#F4F7FC] p-[1.25vw] ">
                   {/* Left Section */}
                   <div className="flex flex-1 flex-col gap-[1.666vw]">
                     {/* Heading */}
