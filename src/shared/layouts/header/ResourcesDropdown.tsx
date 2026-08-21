@@ -8,23 +8,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import BookADemoPageArrowIcon from "@/shared/icons/BookADemoPageArrowIcon";
 import Link from "next/link";
 
-
 export interface ResourceItem {
   id: string;
   title: string;
   description: string;
   imageSrc?: string;
   hasArrow?: boolean;
-  herf: string;
-  tragetBlank?:boolean
+  href: string;
+  targetBlank?: boolean;
 }
 
 export const RESOURCE_ITEMS: ResourceItem[] = [
   {
     id: "blog",
     title: "Blog",
-    herf: "/blog",
-    tragetBlank:false,
+    href: "/blog",
+    targetBlank: false,
     description: "Stories and solutions for the modern entrepreneur.",
     imageSrc:
       "https://res.cloudinary.com/dfajjqglx/image/upload/v1787305443/681a747e016303ee4eeaf811877cfc47feb39dd4_jmaa5b.png",
@@ -32,8 +31,8 @@ export const RESOURCE_ITEMS: ResourceItem[] = [
   {
     id: "career",
     title: "Career",
-    tragetBlank:true,
-    herf: "https://www.linkedin.com/company/thirdfactor-ai/jobs/",
+    targetBlank: true,
+    href: "https://www.linkedin.com/company/thirdfactor-ai/jobs/",
     description:
       "Empowering narratives and practical solutions for today's entrepreneurs.",
     imageSrc:
@@ -42,16 +41,16 @@ export const RESOURCE_ITEMS: ResourceItem[] = [
   {
     id: "changelog",
     title: "Changelog",
-    tragetBlank:true,
-    herf: "https://docs.v3.thirdfactor.ai/docs/resources/changelog",
+    targetBlank: true,
+    href: "https://docs.v3.thirdfactor.ai/docs/resources/changelog",
     description: "Explore updates for entrepreneurs and solutions for success.",
     hasArrow: true,
   },
   {
     id: "case-studies",
     title: "Case studies",
-    herf: "/case-studies",
-    tragetBlank:false,
+    href: "/case-studies",
+    targetBlank: false,
     description:
       "Strategies help entrepreneurs. Our studies show ventures overcoming challenges.",
     hasArrow: true,
@@ -67,30 +66,36 @@ const FEATURED_STORY = {
     "https://images.pexels.com/photos/4427925/pexels-photo-4427925.jpeg",
 };
 
-
-function ResourceCard({ item, onClick }: { item: ResourceItem; onClick?: () => void }) {
+function ResourceCard({
+  item,
+  onClick,
+}: {
+  item: ResourceItem;
+  onClick?: () => void;
+}) {
   return (
-    <Link 
-      href={item.herf} 
+    <Link
+      href={item.href}
       onClick={onClick}
-      target={item.tragetBlank ? "_blank" : "_self"}
-      className="relative flex min-h-[180px] sm:h-[225px] w-full items-end overflow-hidden rounded-lg bg-[#F1F5F9] p-4 sm:p-6"
+      target={item.targetBlank ? "_blank" : "_self"}
+      rel={item.targetBlank ? "noopener noreferrer" : undefined}
+      className="relative flex min-h-[180px] w-full items-end overflow-hidden rounded-lg bg-[#F1F5F9] p-4 sm:h-[225px] sm:p-6"
     >
       <div className="z-10 flex max-w-[220px] flex-col gap-1.5 sm:gap-2">
-        <p className="text-[22px] sm:text-[30px] leading-[110%] font-medium">
+        <p className="text-[22px] font-medium leading-[110%] sm:text-[30px]">
           {item.title}
         </p>
-        <p className="text-[14px] sm:text-[16px] leading-[135%] text-slate-600">
+        <p className="text-[14px] leading-[135%] text-slate-600 sm:text-[16px]">
           {item.description}
         </p>
       </div>
 
       {item.hasArrow ? (
-        <div className="absolute top-4  right-4 sm:top-6 sm:right-6">
-          <BookADemoPageArrowIcon className="w-[56px] h-[56px]" />
+        <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
+          <BookADemoPageArrowIcon className="h-[56px] w-[56px]" />
         </div>
       ) : item.imageSrc ? (
-        <div className="absolute right-[-15%] sm:right-[-10%] bottom-0 opacity-80 sm:opacity-100">
+        <div className="absolute right-[-15%] bottom-0 opacity-80 sm:right-[-10%] sm:opacity-100">
           <div className="relative h-[140px] w-[200px] sm:h-[193px] sm:w-[280px]">
             <Image
               src={item.imageSrc}
@@ -110,7 +115,10 @@ interface ResourcesDropdownProps {
   onClose?: () => void;
 }
 
-export function ResourcesDropdown({ isOpen, onClose }: ResourcesDropdownProps) {
+export function ResourcesDropdown({
+  isOpen,
+  onClose,
+}: ResourcesDropdownProps) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -122,20 +130,23 @@ export function ResourcesDropdown({ isOpen, onClose }: ResourcesDropdownProps) {
           data-lenis-prevent
           className="absolute top-full left-0 w-full rounded-b-[8px] bg-white pt-4 pb-6 shadow-xl"
         >
-          <LayoutWrapper className="flex flex-col lg:flex-row gap-6">
-            <div className="grid flex-1 grid-cols-1 sm:grid-cols-2 gap-4">
+          <LayoutWrapper className="flex flex-col gap-6 lg:flex-row">
+            <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
               {RESOURCE_ITEMS.map((item) => (
                 <ResourceCard key={item.id} item={item} onClick={onClose} />
               ))}
             </div>
 
-            <div className="hidden lg:block w-[1px] bg-[#E2E8F0]" />
+            <div className="hidden w-[1px] bg-[#E2E8F0] lg:block" />
 
-            <div className="w-full lg:w-[408px] shrink-0">
-              <p className="mb-2 text-[14px] sm:text-[16px] text-slate-500">
+            <div className="w-full shrink-0 lg:w-[408px]">
+              <p className="mb-2 text-[14px] text-slate-500 sm:text-[16px]">
                 Recently updated blog
               </p>
-              <CardCom className="flex flex-col" story={FEATURED_STORY} />
+              {/* Wrapped in a div container with cursor pointer and onClick handler */}
+              <div onClick={onClose} className="cursor-pointer">
+                <CardCom className="flex flex-col" story={FEATURED_STORY} />
+              </div>
             </div>
           </LayoutWrapper>
         </motion.div>
