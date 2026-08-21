@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
 import UserAddedIcon from "@/shared/icons/UserAddedIcon";
@@ -48,7 +47,6 @@ export const MobileMenu = React.memo(function MobileMenu({
   links,
   onClose,
 }: MobileMenuProps) {
-  // FIXED: Set initial state to null instead of "products"
   const [expandedDropdown, setExpandedDropdown] = useState<
     string | number | null
   >(null);
@@ -89,7 +87,7 @@ export const MobileMenu = React.memo(function MobileMenu({
             exit="closed"
             variants={backdropVariants}
             onClick={onClose}
-            className="fixed inset-0 z-[1000] lg:hidden"
+            className="fixed inset-0 z-[1000] bg-black/20 lg:hidden"
           />
 
           <motion.div
@@ -118,6 +116,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                       <button
                         type="button"
                         onClick={() => toggleDropdown(link.id)}
+                        aria-expanded={isExpanded}
                         className="flex w-full items-center justify-between py-3 text-[17px] font-medium text-slate-900 focus:outline-none"
                       >
                         <span>{link.label}</span>
@@ -161,9 +160,10 @@ export const MobileMenu = React.memo(function MobileMenu({
                                           <button
                                             type="button"
                                             onClick={() => toggleCategory(idx)}
+                                            aria-expanded={isCategoryOpen}
                                             className="flex w-full items-center justify-between text-left"
                                           >
-                                            <span className="text-alpha-light-800 text-[14px] font-medium">
+                                            <span className="text-[14px] font-medium text-slate-800">
                                               {category.title}
                                             </span>
                                           </button>
@@ -180,14 +180,17 @@ export const MobileMenu = React.memo(function MobileMenu({
                                                   opacity: 1,
                                                   height: "auto",
                                                 }}
-                                                exit={{ opacity: 0, height: 0 }}
+                                                exit={{
+                                                  opacity: 0,
+                                                  height: 0,
+                                                }}
                                                 transition={{
                                                   duration: 0.25,
                                                   ease: [0.16, 1, 0.3, 1],
                                                 }}
                                                 className="overflow-hidden"
                                               >
-                                                <div className="mt-2 flex flex-col gap-1 border-t border-[#1A1A1A17] pt-2">
+                                                <div className="mt-2 flex flex-col gap-1 border-t border-slate-200/60 pt-2">
                                                   {category.items.map(
                                                     (item, itemIdx) => (
                                                       <Link
@@ -198,7 +201,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                                                       >
                                                         <div className="flex items-center gap-2.5">
                                                           <UserAddedIcon />
-                                                          <span className="text-[14px] font-medium text-[#1A1A1ABF]">
+                                                          <span className="text-[14px] font-medium text-slate-700">
                                                             {item.label}
                                                           </span>
                                                         </div>
@@ -206,7 +209,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                                                           <DropdownArrow />
                                                         </div>
                                                       </Link>
-                                                    ),
+                                                    )
                                                   )}
                                                 </div>
                                               </motion.div>
@@ -214,7 +217,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                                           </AnimatePresence>
                                         </div>
                                       );
-                                    },
+                                    }
                                   )}
 
                                   {/* Featured Blue Promo Banner */}
@@ -226,14 +229,14 @@ export const MobileMenu = React.memo(function MobileMenu({
                                     }}
                                   >
                                     <Link
-                                      href={"/platform"}
+                                      href="/platform"
                                       onClick={onClose}
                                       className="group block"
                                     >
                                       <span className="text-[14px] font-medium text-blue-100/80 group-hover:underline">
                                         Platform
                                       </span>
-                                      <h4 className="font-geist-pixel-circle mt-3 text-[22px] leading-[1.2] font-semibold tracking-tight group-hover:underline">
+                                      <h4 className="mt-3 text-[22px] font-semibold leading-[1.2] tracking-tight group-hover:underline">
                                         Agentic risk platform to <br /> fight
                                         financial crime
                                       </h4>
@@ -293,9 +296,17 @@ export const MobileMenu = React.memo(function MobileMenu({
                                   {RESOURCE_ITEMS.map((item) => (
                                     <Link
                                       key={item.id}
-                                      href={`/${item.id}`}
+                                      href={`${item.herf}`}
                                       onClick={onClose}
-                                      className="flex flex-col gap-1 rounded-lg border border-slate-200 bg-slate-50 p-3"
+                                      target={
+                                        item.tragetBlank ? "_blank" : "_self"
+                                      }
+                                      rel={
+                                        item.tragetBlank
+                                          ? "noopener noreferrer"
+                                          : undefined
+                                      }
+                                      className="flex flex-col gap-1 rounded-lg border border-slate-200 bg-slate-50 p-3 transition-colors hover:bg-slate-100"
                                     >
                                       <span className="text-[15px] font-medium text-slate-900">
                                         {item.title}
