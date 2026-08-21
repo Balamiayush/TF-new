@@ -27,39 +27,35 @@ export default function FeaturedCard({
   return (
     <Link
       href={`/blog/${slugPath}`}
-      className={`group flex cursor-pointer flex-col justify-between rounded-[8px] border border-slate-200 bg-slate-50 p-2 transition-all duration-300 hover:translate-y-[-2.5%] hover:bg-slate-100 md:col-span-2 md:flex-row md:gap-6 ${className}`}
+      className={`group flex cursor-pointer flex-col justify-between rounded-[12px] border border-slate-200 bg-slate-50 p-3 transition-all duration-300 hover:translate-y-[-2.5%] hover:bg-slate-100/80 md:col-span-2 ${
+        reversed ? "md:flex-row-reverse" : "md:flex-row"
+      } gap-4 md:gap-6 ${className}`}
     >
-      <div
-        className={`relative h-[240px] w-full overflow-hidden rounded-[6px] border border-black/5 md:h-full md:w-1/2 ${
-          reversed ? "max-md:order-1" : ""
-        }`}
-      >
+
+      <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-[8px] border border-black/5 md:w-1/2">
         <Image
           src={imageSrc}
           alt={post.title || "Blog featured image"}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
-      <div
-        className={`flex flex-1 flex-col justify-between p-4 max-md:mt-4 ${
-          reversed ? "max-md:order-2" : ""
-        }`}
-      >
+      {/* Content Container */}
+      <div className="flex flex-1 flex-col justify-between py-2 pr-2 max-md:p-2">
         <div>
-          <div className="font-inter text-[12px] font-medium text-slate-800">
+          <div className="font-inter text-[12px] font-medium text-slate-500">
             {post.category}
           </div>
 
-          <h3 className="font-geist mt-3 text-[20px] leading-[130%] font-medium tracking-[-0.3px] text-slate-900 transition-colors lg:text-[22px]">
+          <h3 className="font-geist mt-3 text-[18px] leading-[130%] font-medium tracking-[-0.3px] text-slate-900 lg:text-[22px]">
             {post.title}
           </h3>
+        </div>
 
-          <div className="font-inter mt-6 flex items-center gap-2 text-[12px] font-medium text-slate-800">
-            <span>{post.date}</span>
-          </div>
+        <div className="font-inter mt-6 flex items-center text-[12px] font-medium text-slate-500">
+          <span>{post.date}</span>
         </div>
       </div>
     </Link>

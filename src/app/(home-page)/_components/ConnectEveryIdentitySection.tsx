@@ -116,7 +116,7 @@ export default function ConnectEveryIdentitySection() {
                     <div className="w-full rounded-[16px] border border-[#F4F2F1] bg-[#F8FAFC] p-4 lg:flex lg:h-[700px] lg:flex-col lg:justify-between lg:rounded-[10px]">
                       {/* Text Header */}
                       <div className="flex flex-col gap-2.5 lg:gap-4 lg:py-4">
-                        <p className="font-geist-pixel-square text-alpha-light-1000 text-[14px] leading-[100%] tracking-[1.5px] uppercase sm:text-[16px]">
+                        <p className="font-geist-pixel-square text-alpha-light-1000 text-[14px] leading-[100%] tracking-[1.5px]  sm:text-[16px]">
                           {feature.tag}
                         </p>
 
