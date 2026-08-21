@@ -123,16 +123,16 @@ export default function ModularBlocksSection() {
   return (
     <div
       ref={sectionRef}
-      className="relative min-h-screen w-full py-16 md:py-24 lg:py-[120px]"
+      className="relative min-h-screen w-full py-16 md:py-24 xl:py-[120px]"
     >
       <LayoutWrapper>
         {/* Header Section */}
-        <div className="flex w-full flex-col justify-between gap-6 lg:flex-row lg:items-end lg:gap-12">
-          <h3 className="max-w-[613px] text-[26px] leading-[110%] font-medium tracking-[-0.3px] text-slate-900 md:text-3xl lg:text-[42px]">
+        <div className="flex w-full flex-col justify-between gap-6 xl:flex-row xl:items-end xl:gap-12">
+          <h3 className="max-w-[613px] text-[26px] leading-[110%] font-medium tracking-[-0.3px] text-slate-900 md:text-3xl xl:text-[42px]">
             Modular blocks for managing risk in the customer journey.
           </h3>
           <div className="flex flex-col items-start gap-4">
-            <p className="max-w-[475px] text-sm leading-[130%] tracking-[-0.4px] text-[#1A1A1ACC] max-lg:max-w-[358px] md:text-base">
+            <p className="max-w-[475px] text-sm leading-[130%] tracking-[-0.4px] text-[#1A1A1ACC] max-xl:max-w-[358px] md:text-base">
               Pick the products you need today. Compose new workflows tomorrow.
               Every module runs on the same Obsidian trust graph.
             </p>
@@ -147,27 +147,27 @@ export default function ModularBlocksSection() {
         </div>
 
         {/* Content Grid */}
-        <div className="relative mt-12 flex flex-col items-start justify-between gap-12 lg:mt-[84px] lg:flex-row">
+        <div className="relative mt-12 flex flex-col items-start justify-between gap-12 xl:mt-[84px] xl:flex-row">
           <div className="relative z-[1] flex w-full flex-1 flex-col">
             <div className="pointer-events-none absolute top-[15px] bottom-[15px] left-[15px] z-0 w-[2px] -translate-x-1/2 overflow-hidden">
               <div
                 ref={lineFillRef}
-                className="relative hidden h-full w-full origin-top opacity-80 before:absolute before:inset-y-0 before:left-0 before:w-[1px] before:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] after:absolute after:inset-y-0 after:right-0 after:w-[1px] after:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] lg:block"
+                className="relative hidden h-full w-full origin-top opacity-80 before:absolute before:inset-y-0 before:left-0 before:w-[1px] before:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] after:absolute after:inset-y-0 after:right-0 after:w-[1px] after:bg-[linear-gradient(180deg,transparent_0%,#E4EAF2_15%,#E4EAF2_90%,#FFFFFF_100%)] xl:block"
               />
             </div>
 
-            <div className="steps-container flex flex-col gap-16 md:gap-24 lg:mt-40 lg:gap-[120px]">
+            <div className="steps-container flex flex-col gap-16 md:gap-24 xl:mt-40 xl:gap-[120px]">
               {STEPS_DATA.map((step, index) => {
                 const isActive = activeIndex === index;
 
                 return (
                   <div
                     key={step.id}
-                    className={`step-block relative z-100 flex flex-col gap-6 transition-opacity duration-500 ease-out lg:flex-row lg:gap-8 ${
-                      isActive ? "opacity-100" : "opacity-100 lg:opacity-100"
+                    className={`step-block relative z-100 flex flex-col gap-6 transition-opacity duration-500 ease-out xl:flex-row xl:gap-8 ${
+                      isActive ? "opacity-100" : "opacity-100 xl:opacity-100"
                     }`}
                   >
-                    <div className="relative z-10 flex items-center gap-4 lg:flex-col lg:items-center lg:gap-0">
+                    <div className="relative z-10 flex items-center gap-4 xl:flex-col xl:items-center xl:gap-0">
                       <div
                         className={`relative flex h-[30px] w-[30px]  shrink-0 items-center justify-center rounded-sm border-[0.73px] transition-all duration-300 ${
                           isActive
@@ -181,18 +181,18 @@ export default function ModularBlocksSection() {
                       </div>
 
                       {/* Mobile Tag inline with badge */}
-                      <p className="text-base leading-[110%] font-medium text-slate-900 lg:hidden">
+                      <p className="text-base leading-[110%] font-medium text-slate-900 xl:hidden">
                         {step.tag}
                       </p>
                     </div>
-                    <div className="flex w-full flex-col gap-4 lg:max-w-[500px] lg:gap-6 lg:pt-0.5 lg:pl-0 lg:pl-11">
-                      <p className="hidden text-[16px] leading-[110%] font-medium text-slate-900 lg:block">
+                    <div className="flex w-full flex-col gap-4 xl:max-w-[500px] xl:gap-6 xl:pt-0.5 xl:pl-0 xl:pl-11">
+                      <p className="hidden text-[16px] leading-[110%] font-medium text-slate-900 xl:block">
                         {step.tag}
                       </p>
-                      <h4 className="text-[20px] leading-[110%] font-normal tracking-[-0.3px] text-slate-900 max-lg:max-w-[292px] md:text-3xl lg:text-[34px]">
+                      <h4 className="text-[20px] leading-[110%] font-normal tracking-[-0.3px] text-slate-900 max-xl:max-w-[292px] md:text-3xl xl:text-[34px]">
                         {step.title}
                       </h4>
-                      <p className="text-sm leading-[130%] text-slate-600 max-lg:max-w-[292px]">
+                      <p className="text-sm leading-[130%] text-slate-600 max-xl:max-w-[292px]">
                         {step.description}
                       </p>
 
@@ -215,7 +215,7 @@ export default function ModularBlocksSection() {
                         ))}
                       </div>
 
-                      <div className="mt-4 h-[260px] w-full overflow-hidden rounded-lg border border-slate-200/80 sm:h-[350px] lg:hidden">
+                      <div className="mt-4 h-[260px] w-full overflow-hidden rounded-xl border border-slate-200/80 sm:h-[350px] xl:hidden">
                         <div className="relative h-full w-full">
                           <Image
                             src={step.image}
@@ -232,7 +232,7 @@ export default function ModularBlocksSection() {
             </div>
           </div>
 
-          <div className="sticky top-[120px] hidden h-[580px] w-full max-w-[677px] overflow-hidden rounded-lg border border-slate-200/80 bg-white lg:block">
+          <div className="sticky top-[120px] hidden h-[580px] w-full max-w-[677px] overflow-hidden rounded-xl border border-slate-200/80 bg-white xl:block">
             <div className="relative h-full w-full">
               {STEPS_DATA.map((step, index) => (
                 <div

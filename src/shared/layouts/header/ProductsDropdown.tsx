@@ -9,6 +9,7 @@ import { productsMenuData } from "@/shared/data/products-menu";
 import LayoutWrapper from "../wrapper/LayoutWrapper";
 import UserAddedIcon from "@/shared/icons/UserAddedIcon";
 import { DropdownArrow } from "@/shared/icons/DropdownArrow";
+import TflogoIcon from "@/shared/icons/TflogoIcon";
 
 interface ProductsDropdownProps {
   isOpen: boolean;
@@ -36,12 +37,13 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
     <AnimatePresence>
       {isOpen && (
         <>
+          {/* Backdrop Overlay with Blur Effect */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-[3.75vw] z-[9998] backdrop-blur-3xl"
+            className="fixed inset-0 top-[72px] z-[9998] backdrop-blur-3xl"
             onClick={onClose}
             data-lenis-prevent
           />
@@ -51,16 +53,16 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="no-scrollbar absolute top-full right-0 left-0 z-[9999] mx-auto  overflow-y-auto rounded-[0px_0px_0.417vw_0.417vw] bg-white pt-[0.625vw] pb-[1.667vw]"
+            className="no-scrollbar absolute top-full right-0 left-0 z-[9999] mx-auto max-h-[calc(100vh-90px)] rounded-[0px_0px_8px_8px] bg-white"
             data-lenis-prevent
           >
-            <LayoutWrapper className="max-w-[1450px]!">
-              <div className="flex gap-[0.833vw]">
-                <div className="flex w-full items-stretch justify-between gap-[1.667vw] rounded-[0.417vw] border border-slate-200/80 bg-[#F4F7FC] p-[1.25vw]">
+            <LayoutWrapper>
+              <div className="flex gap-4">
+                <div className="flex w-full items-stretch justify-between gap-[1.666vw] rounded-[0.416vw] border border-slate-200/80 bg-[#F4F7FC] p-[1.25vw]">
                   {/* Left Section */}
-                  <div className="flex flex-1 flex-col gap-[1.25vw]">
+                  <div className="flex flex-1 flex-col gap-[1.666vw]">
                     {/* Heading */}
-                    <h3 className="text-[1.667vw] leading-[1.15] font-medium tracking-[-0.016vw] text-slate-900 lg:text-[1.875vw]">
+                    <h3 className="text-[32px] leading-[1.15] font-medium tracking-[-0.3px] text-slate-900 lg:text-[36px]">
                       {productsMenuData.heading}
                     </h3>
 
@@ -69,11 +71,11 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                       {productsMenuData.categories.map((category, idx) => (
                         <div
                           key={category.title || idx}
-                          className="flex flex-col rounded-[0.3125vw] border border-slate-200/60 bg-white p-[0.417vw]"
+                          className="flex flex-col rounded-[0.3125vw] border border-slate-200/60 bg-white p-[0.625vw]"
                         >
                           {/* Category Header */}
-                          <div className="mb-[0.3125vw] border-b border-slate-100 pb-[0.417vw]">
-                            <span className="text-[0.729vw] leading-[100%] tracking-wide text-slate-400">
+                          <div className="mb-[0.3125vw] border-b border-slate-100 pb-[0.416vw]">
+                            <span className="text-[14px] leading-[100%] tracking-wide text-slate-400">
                               {category.title}
                             </span>
                           </div>
@@ -84,21 +86,10 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                                 <Link
                                   href={"/"}
                                   // onClick={onClose}
-                                  className="group flex cursor-not-allowed items-center justify-between rounded-[0.104vw] p-[0.417vw] text-[0.729vw] leading-[130%] duration-300 ease-in-out"
+                                  className="group flex cursor-not-allowed items-center justify-between rounded-[0.104vw] p-[0.416vw] text-[14px] leading-[130%] duration-300 ease-in-out"
                                 >
-                                  <div className="flex items-center gap-[0.521vw]">
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      width="14"
-                                      height="14"
-                                      fill="none"
-                                      viewBox="0 0 14 14"
-                                    >
-                                      <path
-                                        fill="#1E293B"
-                                        d="M14 7.074q0 .388-.041.766c-.326 3.064-2.585 5.54-5.52 6.16V9.784a3.08 3.08 0 0 0 1.665-2.73 3.08 3.08 0 0 0-1.736-2.766A3.1 3.1 0 0 0 7 3.973c-1.714 0-3.104 1.38-3.104 3.08 0 1.187.675 2.216 1.664 2.73V14a6.99 6.99 0 0 1-3.917-2.372A7.1 7.1 0 0 1 0 7.074C0 5.34.618 3.752 1.643 2.521A7 7 0 0 1 4.432.492 6.9 6.9 0 0 1 7 0c3.61 0 6.581 2.762 6.959 6.309q.041.377.041.765"
-                                      ></path>
-                                    </svg>
+                                  <div className="flex items-center gap-[0.520vw]">
+                                    <TflogoIcon className="h-4 text-[#1E293B]"/>
                                     <span>{item.label}</span>
                                   </div>
                                   <div className="flex -rotate-90 flex-col opacity-0 transition-opacity duration-300">
@@ -120,7 +111,7 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                     onClose();
                     router.push("/platform");
                   }}
-                  className="relative flex h-[34.323vw] w-[26.875vw] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-[0.625vw] p-[1.667vw] text-white shadow-lg"
+                  className="relative flex h-[659px] w-[516px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-xl p-8 text-white shadow-lg"
                   style={{
                     background:
                       "linear-gradient(179.91deg, #3B82F6 0.08%, #60A5FA 54.75%, #2563EB 97.46%, #2563EB 125.56%)",
@@ -128,8 +119,8 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                 >
                   <div className="pointer-events-none absolute top-0 left-0 opacity-80">
                     <svg
-                      width="18.125vw"
-                      height="18.229vw"
+                      width="348"
+                      height="350"
                       fill="none"
                       viewBox="0 0 348 350"
                       xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +133,7 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                       >
                         <div
                           style={{
-                            backdropFilter: "blur(0.833vw)",
+                            backdropFilter: "blur(16px)",
                             height: "100%",
                             width: "100%",
                           }}
@@ -198,16 +189,16 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                     </svg>
                   </div>
 
-                  <div className="relative z-10 flex flex-col gap-[1.25vw]">
-                    <span className="text-alpha-dark-800 text-[0.833vw] leading-[1]">
+                  <div className="relative z-10 flex flex-col gap-6">
+                    <span className="text-alpha-dark-800 text-[16px] leading-[1]">
                       Platform
                     </span>
-                    <div className="flex flex-col gap-[1.25vw]">
-                      <h4 className="font-geist-pixel-circle text-[1.354vw] leading-[110%] tracking-[-0.016vw]">
+                    <div className="flex flex-col gap-[24px]">
+                      <h4 className="font-geist-pixel-circle text-[26px] leading-[110%] tracking-[-0.3px]">
                         Agentic risk platform to <br /> fight financial crime
                       </h4>
 
-                      <div className="grid grid-cols-2 gap-x-[1.25vw] gap-y-[0.417vw] text-[0.729vw] font-normal text-blue-50/90">
+                      <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-[14px] font-normal text-blue-50/90">
                         <Link
                           href="#"
                           className="transition-colors hover:text-white"
@@ -248,8 +239,8 @@ function ProductsDropdownComponent({ isOpen, onClose }: ProductsDropdownProps) {
                     </div>
                   </div>
 
-                  <div className="absolute -right-[0.104vw] -bottom-[0.104vw] left-[1.25vw] h-[14.0625vw] overflow-hidden rounded-tl-[0.833vw] border-t border-l border-white/20 bg-[#002B5B] p-[0.625vw] shadow-2xl">
-                    <div className="h-full w-full overflow-hidden rounded-tl-[0.625vw] bg-[#F8FAFC]">
+                  <div className="absolute -right-2 -bottom-2 left-6 h-[270px] overflow-hidden rounded-tl-2xl border-t border-l border-white/20 bg-[#002B5B] p-3 shadow-2xl">
+                    <div className="h-full w-full overflow-hidden rounded-tl-xl bg-[#F8FAFC]">
                       <Image
                         src="https://i.pinimg.com/1200x/50/6f/a8/506fa8197b20a1fa08369a463f973282.jpg"
                         alt="Dashboard Preview"

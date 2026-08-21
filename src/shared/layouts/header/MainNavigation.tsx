@@ -83,14 +83,14 @@ export default function MainNavigation({ children }: MainNavigationProps) {
   return (
     <>
       <div className="fixed top-0 right-0 left-0 z-[999] w-full">
-        <div className={`absolute pointer-events-none bg-white blur-[200px] h-screen  inset-0 ${productsMenuOpen || mobileMenuOpen? "block" : "hidden" }`}/>
+        <div className={`absolute pointer-events-none bg-white  h-screen  inset-0 ${productsMenuOpen || mobileMenuOpen? "block" : "hidden" }`}/>
         <motion.header
           variants={headerVariants}
           animate={hidden ? "hidden" : "visible"}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className={`${
             productsMenuOpen
-              ? "mx-auto mt-4 rounded-[8px] backdrop-blur-2xl max-w-[1490px]!"
+              ? "mx-auto mt-4 rounded-[8px] backdrop-blur-2xl "
               : ""
           } pointer-events-auto py-4.5 transition-colors duration-300 ${
             isScrolled || productsMenuOpen || mobileMenuOpen
@@ -99,7 +99,7 @@ export default function MainNavigation({ children }: MainNavigationProps) {
           }`}
         >
           <LayoutWrapper
-            className={`${productsMenuOpen ? "max-w-[1450px]! " : ""} `}
+            className={`${productsMenuOpen ? " " : ""} `}
           >
             <nav className="flex w-full items-center justify-between">
               <div className="flex items-center gap-12">

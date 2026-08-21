@@ -91,7 +91,6 @@ export const MobileMenu = React.memo(function MobileMenu({
             className="fixed inset-0 z-[1000] lg:hidden"
           />
 
-        
           <motion.div
             initial="closed"
             animate="open"
@@ -215,7 +214,11 @@ export const MobileMenu = React.memo(function MobileMenu({
                                     "linear-gradient(179.91deg, #3B82F6 0.08%, #60A5FA 54.75%, #2563EB 97.46%)",
                                 }}
                               >
-                                <Link href={'/platform'} onClick={onClose} className="group block">
+                                <Link
+                                  href={"/platform"}
+                                  onClick={onClose}
+                                  className="group block"
+                                >
                                   <span className="text-[14px] font-medium text-blue-100/80 group-hover:underline">
                                     Platform
                                   </span>
@@ -226,22 +229,46 @@ export const MobileMenu = React.memo(function MobileMenu({
                                 </Link>
 
                                 <div className="mt-5 grid grid-cols-1 gap-2 text-[14px] text-blue-50/90">
-                                  <Link href="#" onClick={onClose} className="hover:underline">
+                                  <Link
+                                    href="#"
+                                    onClick={onClose}
+                                    className="hover:underline"
+                                  >
                                     Agentic AML Ops
                                   </Link>
-                                  <Link href="#" onClick={onClose} className="hover:underline">
+                                  <Link
+                                    href="#"
+                                    onClick={onClose}
+                                    className="hover:underline"
+                                  >
                                     Transaction Monitoring
                                   </Link>
-                                  <Link href="#" onClick={onClose} className="hover:underline">
+                                  <Link
+                                    href="#"
+                                    onClick={onClose}
+                                    className="hover:underline"
+                                  >
                                     Customer Risk Rating
                                   </Link>
-                                  <Link href="#" onClick={onClose} className="hover:underline">
+                                  <Link
+                                    href="#"
+                                    onClick={onClose}
+                                    className="hover:underline"
+                                  >
                                     Sanctions Screening
                                   </Link>
-                                  <Link href="#" onClick={onClose} className="hover:underline">
+                                  <Link
+                                    href="#"
+                                    onClick={onClose}
+                                    className="hover:underline"
+                                  >
                                     Case Management
                                   </Link>
-                                  <Link href="#" onClick={onClose} className="hover:underline">
+                                  <Link
+                                    href="#"
+                                    onClick={onClose}
+                                    className="hover:underline"
+                                  >
                                     Sponsor Monitor
                                   </Link>
                                 </div>
@@ -250,7 +277,6 @@ export const MobileMenu = React.memo(function MobileMenu({
                           </motion.div>
                         )}
                       </AnimatePresence>
-                      
                     </div>
                   );
                 }
@@ -266,10 +292,10 @@ export const MobileMenu = React.memo(function MobileMenu({
                   </Link>
                 );
               })}
-                  <div className=" flex flex-col gap-2.5 bg-white pt-3 pb-2">
-              {/* <Button variant="secondary">Log in</Button> */}
-              <Button link="/book-a-demo">Book a demo</Button>
-            </div>
+              <div className="flex flex-col gap-2.5 bg-white pt-3 pb-2">
+                {/* <Button variant="secondary">Log in</Button> */}
+                <Button link="/book-a-demo">Book a demo</Button>
+              </div>
             </div>
 
             {/* <div className=" flex flex-col gap-2.5 bg-white pt-3 pb-2">

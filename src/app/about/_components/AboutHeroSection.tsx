@@ -17,7 +17,7 @@ export default function AboutHeroSection() {
   const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
 
   return (
-    <div className="relative flex h-[85vh] w-full items-center justify-center bg-[#EDF4FF] ">
+    <div className="relative flex xl:h-[85vh] w-full items-center justify-center bg-[#EDF4FF] ">
       <DitherHoverBackground
         baseColor="transparent"
         gridColor={hexToRgba(dither.gridColor, dither.gridAlpha)}

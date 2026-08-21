@@ -20,7 +20,7 @@ export default function PlatFormHeroSection() {
   const [dither, setDither] = useState<DitherSettings>(DEFAULT_DITHER_SETTINGS);
 
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-[##EDF4FF1F] pt-[120px] pb-16 md:pt-20 lg:pt-25">
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-[##EDF4FF1F] pt-[120px] pb-16 md:pt-20 lg:pt-35">
       <Image
       alt=""
       fill
@@ -55,7 +55,7 @@ export default function PlatFormHeroSection() {
         {/* Centered Hero Content */}
         <div className="flex max-w-[720px] flex-col items-center text-center gap-6 md:gap-8">
           <div>
-            <h1 className="text-4xl leading-[1.05] font-medium tracking-[-0.3px] text-slate-900 md:text-6xl lg:text-[64px]">
+            <h1 className="text-4xl leading-[94%] font-medium tracking-[-0.3px] text-slate-900 md:text-6xl lg:text-[74px]">
               Approve the right customer at scale
             </h1>
             <p className="mt-4 mx-auto max-w-[520px] text-sm tracking-[-0.4px] text-slate-600 md:text-base">
