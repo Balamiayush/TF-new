@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { motion } from "framer-motion";
+import gsap from "gsap";
 
 const DASHBOARD_IMAGES = [
   "/images/hero/hero-section-dasbord-imgs/dasboard-img.webp",
@@ -18,19 +19,144 @@ const TABS = [
   { id: 3, label: "Metric Trees", icon: <TabIconFork /> },
 ];
 
+// Inner Pixel Overlay Engine for Image Box
+interface PixelOverlayRef {
+  flash: (onCovered: () => void) => Promise<void>;
+}
+
+const PixelOverlay = React.forwardRef<PixelOverlayRef, { pixelSize?: number; color?: string }>(
+  ({ pixelSize = 28, color = "#2563eb" }, ref) => {
+    const gridRef = useRef<HTMLDivElement | null>(null);
+    const pixelsRef = useRef<{ element: HTMLDivElement; order: number }[]>([]);
+
+    const buildGrid = useCallback(() => {
+      const container = gridRef.current;
+      if (!container) return;
+
+      container.replaceChildren();
+      pixelsRef.current = [];
+
+      const rect = container.getBoundingClientRect();
+      const cols = Math.ceil(rect.width / pixelSize) || 20;
+      const rows = Math.ceil(rect.height / pixelSize) || 15;
+
+      container.style.gridTemplateColumns = `repeat(${cols}, ${pixelSize}px)`;
+      container.style.gridTemplateRows = `repeat(${rows}, ${pixelSize}px)`;
+
+      const fragment = document.createDocumentFragment();
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const el = document.createElement("div");
+          el.style.backgroundColor = color;
+          el.style.opacity = "0";
+          el.style.transform = "scale(0)";
+          el.style.outline = `1px solid ${color}`;
+          el.style.willChange = "transform, opacity";
+
+          const baseOrder = Math.hypot(c, r) / Math.hypot(cols, rows);
+          const noise = (Math.random() - 0.5) * 0.45;
+          const order = Math.max(0, Math.min(1, baseOrder + noise));
+
+          fragment.appendChild(el);
+          pixelsRef.current.push({ element: el, order });
+        }
+      }
+
+      container.appendChild(fragment);
+    }, [pixelSize, color]);
+
+    useEffect(() => {
+      buildGrid();
+      window.addEventListener("resize", buildGrid);
+      return () => window.removeEventListener("resize", buildGrid);
+    }, [buildGrid]);
+
+    React.useImperativeHandle(ref, () => ({
+      flash: (onCovered) => {
+        return new Promise<void>((resolve) => {
+          const pixels = pixelsRef.current;
+          if (!pixels.length) {
+            onCovered();
+            resolve();
+            return;
+          }
+
+          const sorted = [...pixels].sort((a, b) => a.order - b.order);
+          const elements = sorted.map((p) => p.element);
+
+          const tl = gsap.timeline({
+            onComplete: resolve,
+          });
+
+          // Phase 1: Cover Image with Pixels
+          tl.to(elements, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.04,
+            ease: "power1.inOut",
+            stagger: { each: 0.00025, from: "start" },
+          })
+            // Phase 2: Swap state while fully covered
+            .call(onCovered)
+            // Phase 3: Reveal new image
+            .to(elements, {
+              opacity: 0,
+              scale: 0,
+              duration: 0.06,
+              ease: "power3.inOut",
+              stagger: { each: 0.00025, from: "start" },
+            }, "+=0.01");
+        });
+      },
+    }));
+
+    return (
+      <div
+        ref={gridRef}
+        className="pointer-events-none absolute inset-0 z-50 grid h-full w-full content-center justify-center overflow-hidden"
+      />
+    );
+  }
+);
+PixelOverlay.displayName = "PixelOverlay";
+
 export default function HeroSectionDashboardCard() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [displayedIndex, setDisplayedIndex] = useState(0);
+  const pixelOverlayRef = useRef<PixelOverlayRef | null>(null);
+  const isAnimatingRef = useRef(false);
 
+  // Smoothly trigger transition sequence
+  const changeTab = useCallback((nextIndex: number) => {
+    if (nextIndex === activeIndex || isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+    setActiveIndex(nextIndex);
+
+    if (pixelOverlayRef.current) {
+      pixelOverlayRef.current.flash(() => {
+        setDisplayedIndex(nextIndex);
+      }).then(() => {
+        isAnimatingRef.current = false;
+      });
+    } else {
+      setDisplayedIndex(nextIndex);
+      isAnimatingRef.current = false;
+    }
+  }, [activeIndex]);
+
+  // Auto switch interval
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % TABS.length);
+      const next = (activeIndex + 1) % TABS.length;
+      changeTab(next);
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [activeIndex]);
+  }, [activeIndex, changeTab]);
 
   return (
-    <div className="bg-alpha-dark-400 relative z-1000 mb-[50px] flex h-[420px] flex-col overflow-hidden rounded-lg p-1 lg:h-[518px]">
+    <div className="bg-alpha-dark-400 relative z-10 mb-[50px] flex h-[420px] flex-col overflow-hidden rounded-lg p-1 lg:h-[518px]">
       <div className="bg-alpha-dark-500 hidden w-full items-center border-b border-[#1a1a1a]/[0.06] lg:flex">
         {TABS.map((tab, index) => (
           <DashboardTab
@@ -38,7 +164,7 @@ export default function HeroSectionDashboardCard() {
             label={tab.label}
             icon={tab.icon}
             active={activeIndex === index}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => changeTab(index)}
           />
         ))}
       </div>
@@ -47,26 +173,20 @@ export default function HeroSectionDashboardCard() {
         <motion.div
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="absolute inset-0 top-[42px] left-[40px] overflow-hidden rounded-l-lg rounded-b-[0] bg-white shadow-xl"
+          className="absolute inset-0 lg:top-[42px] lg:left-[40px]  top-[28px] left-[28px] overflow-hidden rounded-l-lg rounded-b-[0] bg-white "
         >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.02 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-full w-full"
-            >
-              <Image
-                src={DASHBOARD_IMAGES[activeIndex] || DASHBOARD_IMAGES[0]}
-                alt="dashboard preview"
-                fill
-                className="object-cover object-left-top"
-                sizes="(min-width: 1024px) 878px, 100vw"
-              />
-            </motion.div>
-          </AnimatePresence>
+          <PixelOverlay ref={pixelOverlayRef} pixelSize={32} color="#2563eb" />
+
+          <div className="relative h-full w-full">
+            <Image
+              src={DASHBOARD_IMAGES[displayedIndex] || DASHBOARD_IMAGES[0]}
+              alt="dashboard preview"
+              fill
+              className="object-cover object-left-top"
+              sizes="(min-width: 1024px) 878px, 100vw"
+              priority
+            />
+          </div>
         </motion.div>
       </div>
     </div>
