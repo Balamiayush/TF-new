@@ -27,7 +27,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         }
       }}
     >
-      <PixelTransition ref={pixelRef} pixelSize={44} color="#ffff   " />
+      <PixelTransition ref={pixelRef} pixelSize={44} color="#ffffff" />
       <div id="page-content" className="relative w-full min-h-screen">
         {children}  
       </div>

@@ -127,6 +127,7 @@ export function FingerprintCard() {
                   {isActive ? (
                     <SvgTf className="" />
                   ) : isCompleted ? (
+                    <div className="bg-green-500 flex h-full w-full items-center justify-center rounded-full">
                     <svg
                       width="12"
                       height="12"
@@ -136,9 +137,10 @@ export function FingerprintCard() {
                       strokeWidth="3.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                    >
+                      >
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
+                      </div>
                   ) : null}
                 </div>
               </React.Fragment>

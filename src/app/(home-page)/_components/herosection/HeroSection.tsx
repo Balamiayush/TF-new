@@ -173,8 +173,8 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="relative z-100 mt-12 grid grid-cols-1 gap-4 md:grid-cols-[280px_1fr] lg:grid-cols-[328px_1fr]">
-          <div className="hidden md:block">
+        <div className="relative z-100 mt-12 grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-[328px_1fr]">
+          <div className="hidden lg:block">
             <FingerprintCard />
           </div>
           <HeroSectionDashboardCard />

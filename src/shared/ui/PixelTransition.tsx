@@ -21,8 +21,8 @@ type PixelData = {
 // Config Constants matching the exact "Default" Preset
 const CONFIG = {
   pixelSize: 40,
-  coverDur: 0.04,
-  revealDur: 0.06,
+  coverDur: 0.08,
+  revealDur: 0.08,
   staggerEach: 0.000257,
   jitter: 0.45,
   color: "#ffffff",

@@ -169,13 +169,13 @@ export default function HeroSectionDashboardCard() {
         ))}
       </div>
 
-      <div className="border-alpha-dark-500 relative flex-1 overflow-hidden bg-[#5e93da] max-lg:rounded-[6px] max-lg:border max-lg:p-2">
+      <div className="border-alpha-dark-500 relative flex-1 overflow-hidden bg-[#F4D7FF] max-lg:rounded-[6px] max-lg:border max-lg:p-2">
         <motion.div
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
           className="absolute inset-0 lg:top-[42px] lg:left-[40px]  top-[28px] left-[28px] overflow-hidden rounded-l-lg rounded-b-[0] bg-white "
         >
-          <PixelOverlay ref={pixelOverlayRef} pixelSize={32} color="#2563eb" />
+          <PixelOverlay ref={pixelOverlayRef} pixelSize={32} color="#ffffff" />
 
           <div className="relative h-full w-full">
             <Image
