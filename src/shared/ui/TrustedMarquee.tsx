@@ -62,7 +62,25 @@ export default function TrustedMarquee({ className = "" }: TrustedMarqueeProps) 
           {TRUSTED_LOGOS.map((logo, index) => (
             <div
               key={`second-${index}`}
-              className="relative flex h-[38px] w-[110px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-slate-200/80 bg-white/60 p-2 shadow-xs transition-colors hover:border-slate-300"
+              className="relative flex h-[38px] w-[110px] shrink-0 items-center justify-center"
+            >
+              <Image
+                src={logo.image}
+                alt={logo.name}
+                fill
+                className="object-contain p-1 opacity-85 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+              />
+            </div>
+          ))}
+        </div>
+        <div
+          className="animate-marquee flex shrink-0 items-center gap-3 pr-3"
+          aria-hidden="true"
+        >
+          {TRUSTED_LOGOS.map((logo, index) => (
+            <div
+              key={`second-${index}`}
+              className="relative flex h-[38px] w-[110px] shrink-0 items-center justify-center"
             >
               <Image
                 src={logo.image}

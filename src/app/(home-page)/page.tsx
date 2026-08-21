@@ -1,5 +1,3 @@
-
-
 import FAQ from "./_components/FAQSection";
 import ConnectEveryIdentitySection from "./_components/ConnectEveryIdentitySection";
 import HeroSection from "./_components/herosection/HeroSection";
@@ -17,15 +15,15 @@ export default function HomePage() {
     <main className="relative h-full w-full">
       <HeroSection />
       {/* <TrustedBy/> */}
-       <div className="my-8  w-full ">
-                  <TrustedMarquee className="flex flex-col" />
-                </div>
+      <div className="my-8 w-full">
+        <TrustedMarquee className="flex flex-col" />
+      </div>
       <Streamline />
-      <IntegrateMain/>
-      <ConnectEveryIdentitySection/>
+      <IntegrateMain />
+      <ConnectEveryIdentitySection />
       <Infrastructure />
-      <ScaleSection/>
-      <StartVerifyingSection/>
+      <ScaleSection />
+      <StartVerifyingSection />
       <ReadAllStories />
       <FAQ />
     </main>

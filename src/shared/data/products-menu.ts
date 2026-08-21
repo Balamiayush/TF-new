@@ -36,17 +36,6 @@ export const productsMenuData: MegaMenuData = {
         { label: "Sponsor Monitor", href: "/products/sponsor-monitor" },
       ],
     },
-    {
-      title: "Cyber Security",
-      items: [
-        { label: "Agentic AML Ops", href: "/products/aml-ops" },
-        { label: "Transaction Monitoring", href: "/products/transaction-monitoring" },
-        { label: "Customer Risk Rating", href: "/products/risk-rating" },
-        { label: "Sanctions Screening", href: "/products/sanctions-screening" },
-        { label: "Case Management", href: "/products/case-management" },
-        { label: "Sponsor Monitor", href: "/products/sponsor-monitor" },
-      ],
-    },
   ],
   featured: {
     title: "Platform",

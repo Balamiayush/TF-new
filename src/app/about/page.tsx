@@ -17,6 +17,7 @@ export default function page() {
       <TimelineMain />
       <LeadershipTeam />
       <BuiltInNepalSection />
+      <StartVerifyingSection/>
       <ReadAllStories/>
       <FAQ />
     </div>

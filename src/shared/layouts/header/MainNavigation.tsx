@@ -3,7 +3,12 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useMotionValueEvent, Variants } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  Variants,
+} from "framer-motion";
 
 import LayoutWrapper from "../wrapper/LayoutWrapper";
 import { navLinks } from "@/shared/data";
@@ -75,19 +80,17 @@ export default function MainNavigation({ children }: MainNavigationProps) {
     setProductsMenuOpen(false);
   }, []);
 
-
-  
-
   return (
     <>
-      <div  className="fixed top-0 right-0 left-0 z-[999] w-full">
+      <div className="fixed top-0 right-0 left-0 z-[999] w-full">
+        <div className={`absolute pointer-events-none bg-white blur-[200px] h-screen  inset-0 ${productsMenuOpen || mobileMenuOpen? "block" : "hidden" }`}/>
         <motion.header
           variants={headerVariants}
           animate={hidden ? "hidden" : "visible"}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className={`${
             productsMenuOpen
-              ? "mx-auto rounded-[8px] mt-4 xl:max-w-[1500px]  backdrop-blur-2xl"
+              ? "mx-auto mt-4 rounded-[8px] backdrop-blur-2xl max-w-[1490px]!"
               : ""
           } pointer-events-auto py-4.5 transition-colors duration-300 ${
             isScrolled || productsMenuOpen || mobileMenuOpen
@@ -95,7 +98,9 @@ export default function MainNavigation({ children }: MainNavigationProps) {
               : "bg-transparent"
           }`}
         >
-          <LayoutWrapper>
+          <LayoutWrapper
+            className={`${productsMenuOpen ? "max-w-[1450px]! " : ""} `}
+          >
             <nav className="flex w-full items-center justify-between">
               <div className="flex items-center gap-12">
                 <Link href="/" className="relative flex shrink-0 items-center">

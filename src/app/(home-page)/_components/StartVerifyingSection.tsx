@@ -13,6 +13,7 @@ import {
   hexToRgba,
   type DitherSettings,
 } from "@/shared/ui/DitherControls";
+import ContactUsButton from "@/shared/ui/buttons/ContactUsButton";
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 if (typeof window !== "undefined") {
   CustomEase.create("punch", "M0,0 C0.7,0 0.16,1 1,1");
@@ -139,7 +140,10 @@ export default function StartVerifyingSection() {
         </h1>
 
         <div className="mt-8 flex items-center gap-3">
-          {/* <Button variant="secondary">Log in</Button> */}
+          <ContactUsButton variant="secondary">
+            Contact us
+
+          </ContactUsButton>
           <Button variant="primary" className="hover:bg-[#3B82F6]" href="/book-a-demo">Book a demo</Button>
         </div> 
       </div>

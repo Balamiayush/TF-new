@@ -208,7 +208,6 @@ export const MobileMenu = React.memo(function MobileMenu({
                               )}
 
                               {/* Featured Blue Promo Banner */}
-                              <Link href={'/platform'} onClick={onClose}>
                               <div
                                 className="relative mt-2 flex flex-col justify-between overflow-hidden rounded-xl p-6 text-white"
                                 style={{
@@ -216,35 +215,37 @@ export const MobileMenu = React.memo(function MobileMenu({
                                     "linear-gradient(179.91deg, #3B82F6 0.08%, #60A5FA 54.75%, #2563EB 97.46%)",
                                 }}
                               >
-                                <span className="text-[14px] font-medium text-blue-100/80">
-                                  Platform
-                                </span>
-                                <h4 className="font-geist-pixel-circle mt-3 text-[22px] leading-[1.2] font-semibold tracking-tight">
-                                  Agentic risk platform to <br /> fight
-                                  financial crime
-                                </h4>
+                                <Link href={'/platform'} onClick={onClose} className="group block">
+                                  <span className="text-[14px] font-medium text-blue-100/80 group-hover:underline">
+                                    Platform
+                                  </span>
+                                  <h4 className="font-geist-pixel-circle mt-3 text-[22px] leading-[1.2] font-semibold tracking-tight group-hover:underline">
+                                    Agentic risk platform to <br /> fight
+                                    financial crime
+                                  </h4>
+                                </Link>
 
                                 <div className="mt-5 grid grid-cols-1 gap-2 text-[14px] text-blue-50/90">
-                                  <Link href="#" className="hover:underline">
+                                  <Link href="#" onClick={onClose} className="hover:underline">
                                     Agentic AML Ops
                                   </Link>
-                                  <Link href="#" className="hover:underline">
+                                  <Link href="#" onClick={onClose} className="hover:underline">
                                     Transaction Monitoring
                                   </Link>
-                                  <Link href="#" className="hover:underline">
+                                  <Link href="#" onClick={onClose} className="hover:underline">
                                     Customer Risk Rating
                                   </Link>
-                                  <Link href="#" className="hover:underline">
+                                  <Link href="#" onClick={onClose} className="hover:underline">
                                     Sanctions Screening
                                   </Link>
-                                  <Link href="#" className="hover:underline">
+                                  <Link href="#" onClick={onClose} className="hover:underline">
                                     Case Management
                                   </Link>
-                                  <Link href="#" className="hover:underline">
+                                  <Link href="#" onClick={onClose} className="hover:underline">
                                     Sponsor Monitor
                                   </Link>
                                 </div>
-                              </div></Link>
+                              </div>
                             </div>
                           </motion.div>
                         )}
